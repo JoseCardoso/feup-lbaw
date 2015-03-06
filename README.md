@@ -1,6 +1,6 @@
 # FEUP-LBAW
 
-[AskFEUP](bit.ly/askfeup)
+[AskFEUP](http://bit.ly/askfeup)
 
 ##Grupo 24
 
