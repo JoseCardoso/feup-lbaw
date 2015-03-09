@@ -6,6 +6,7 @@
 	<title>AskFEUP</title>
 	<link rel="stylesheet" href="foundation/css/foundation.css" />
 	<link rel="stylesheet" href="foundation/icons/foundation-icons.css" />
+	<link rel="stylesheet" href="index.css" />
 	<script src="foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
@@ -13,10 +14,18 @@
 		<!-- Title -->
 		<ul class="title-area">
 			<!--<img src="http://placehold.it/100x100">-->
-			<li class="name"><h1><a href="#">AskFEUP</a></h1></li>
+			<li class="name">
+				<h1>
+					<a href="#">AskFEUP</a>
+				</h1>
+			</li>
 
 			<!-- Mobile Menu Toggle -->
-			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			<li class="toggle-topbar menu-icon">
+				<a href="#">
+					<span>Menu</span>
+				</a>
+			</li>
 		</ul>
 
 		<!-- Top Bar Section -->
@@ -41,7 +50,7 @@
 			<!-- Top Bar Right Nav Elements -->
 			<ul class="right button-group has-form">
 				<li><a href="#" class="button"><i class="fi-torso"></i> Profile</a></li>
-				<li><a href="#" class="button"><i class="fi-compass"></i> Explore</a></li>
+				<li><a href="#" class="button"><i class="glyphicons glyphicons-globe-af"></i> Explore</a></li>
 				<li><a href="#" class="button"><b>?</b> FAQ</a></li>
 			</ul>
 		</section>
@@ -49,26 +58,15 @@
 
 
 	<div class="row">
-		<div class="large-8 columns">
-			<div class="panel">
-				<h3>This shows the text you write on search</h3>
-				<i class="fi-magnifying-glass large"></i>
-				<i class="fi-magnifying-glass large"></i>
-				<div class="row">
-					<div class="large-4 medium-4 columns">
-						<p><a href="http://foundation.zurb.com/docs">Foundation Documentation</a><br />Everything you need to know about using the framework.</p>
-					</div>
-					<div class="large-4 medium-4 columns">
-						<p><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest code, issue reports, feature requests and more.</p>
-					</div>
-					<div class="large-4 medium-4 columns">
-						<p><a href="http://twitter.com/foundationzurb">@foundationzurb</a><br />Ping us on Twitter if you have questions. If you build something with this we'd love to see it (and send you a totally boss sticker).</p>
-					</div>        
-				</div>
+		<div class="large-12 columns search-box">
+			<div class="panel search-box-panel">
+				<input class="large-10 columns" type="text" placeholder="This shows the text you write on search">
+				<i class="large-2 columns fi-magnifying-glass search-box-panel-icon"></i>
 			</div>
 		</div>
+
 		<div class="large-4 columns">
-			<div class="panel">	
+			<div class="panel login-panel">	
 				<p>Log in via</p>
 				<a href="#" class="button"><i class="fi-social-facebook large"></i> Facebook</a>
 				<a href="#" class="button alert"><i class="fi-social-google-plus large"></i> Google+</a>
