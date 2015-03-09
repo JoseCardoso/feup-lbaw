@@ -1,0 +1,64 @@
+body {
+	background: #eee;
+}
+
+.panel {
+	background: #fff;
+}
+
+.top-bar {
+	border-top:0.5rem solid #8c2d19;
+	background: linear-gradient(to bottom, #8c2d19 0%, rgba(0, 0, 0, 0) 10%);
+
+	padding: 5px 5px 5px 5px;
+	background-color: #333;
+}
+
+/* Search input box */
+/*
+body > nav > section > ul.left > li > div > div.large-8.small-9.columns {
+	width: 500px;
+}
+
+body > nav > section > ul.left > li > div > div.large-8.small-9.columns > input[type="text"] {
+	border-radius: 20px;
+	z-index: 2;
+}
+
+body > nav > section > ul.left > li > div > div.large-4.small-3.columns {
+	width: 100px;
+	right: 20px;
+}
+
+body > nav > section > ul.left > li > div > div.large-4.small-3.columns > a {
+	padding-left: 13px;
+	border-radius: 9999px;
+}
+*/
+
+/* Center text animation */
+body .search-box {
+	top: 300px;
+}
+
+body .search-box-panel {
+	width: 650px;
+	height: 100px;
+	margin: 0;
+}
+
+.search-box-panel input[type="text"] {
+	width: 80%;
+	height: 120%;
+	font-size: 150%;
+	bottom: 5px;
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
+
+body .row .search-box-panel-icon {
+	font-size: 70px;
+	bottom: 25px;
+	transform: scale(-1, 1);
+}

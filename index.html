@@ -6,26 +6,20 @@
 	<title>AskFEUP</title>
 	<link rel="stylesheet" href="foundation/css/foundation.css" />
 	<link rel="stylesheet" href="foundation/icons/foundation-icons.css" />
-	<link rel="stylesheet" href="index.css" />
+	<link rel="stylesheet" href="assets/css/styles.css" />
 	<script src="foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
 	<nav class="top-bar" data-topbar="" role="navigation">
 		<!-- Title -->
 		<ul class="title-area">
-			<!--<img src="http://placehold.it/100x100">-->
 			<li class="name">
-				<h1>
-					<a href="#">AskFEUP</a>
-				</h1>
+				<img src="http://placehold.it/50x50&text=logo">
+				<h1><a href="#">AskFEUP</a></h1>
 			</li>
 
 			<!-- Mobile Menu Toggle -->
-			<li class="toggle-topbar menu-icon">
-				<a href="#">
-					<span>Menu</span>
-				</a>
-			</li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 		</ul>
 
 		<!-- Top Bar Section -->
@@ -50,7 +44,7 @@
 			<!-- Top Bar Right Nav Elements -->
 			<ul class="right button-group has-form">
 				<li><a href="#" class="button"><i class="fi-torso"></i> Profile</a></li>
-				<li><a href="#" class="button"><i class="glyphicons glyphicons-globe-af"></i> Explore</a></li>
+				<li><a href="#" class="button"><i class="fi-compass"></i> Explore</a></li>
 				<li><a href="#" class="button"><b>?</b> FAQ</a></li>
 			</ul>
 		</section>
@@ -61,15 +55,22 @@
 		<div class="large-12 columns search-box">
 			<div class="panel search-box-panel">
 				<input class="large-10 columns" type="text" placeholder="This shows the text you write on search">
-				<i class="large-2 columns fi-magnifying-glass search-box-panel-icon"></i>
+				<i class="large-2 columns fi-magnifying-glass large search-box-panel-icon"></i>
 			</div>
 		</div>
 
 		<div class="large-4 columns">
-			<div class="panel login-panel">	
+			<div class="panel">	
 				<p>Log in via</p>
-				<a href="#" class="button"><i class="fi-social-facebook large"></i> Facebook</a>
-				<a href="#" class="button alert"><i class="fi-social-google-plus large"></i> Google+</a>
+
+				<div class="row">
+					<div class="large-6 columns">
+						<a href="#" class="button"><!-- <i class="fi-social-facebook large"></i> -->Facebook</a>
+					</div>
+					<div class="large-6 columns">
+						<a href="#" class="button alert"><!-- <i class="fi-social-google-plus large"></i> -->Google+</a>
+					</div>
+				</div>
 
 				<p>Log in</p>
 				<form>
@@ -77,139 +78,15 @@
 					<input type="text" placeholder="Password" />
 					<input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
 				</form>
-				<a href="#" class="button">Log in</a>
 
-				<div class="row">
-					<div class="large-6 medium-12 columns">
-						<p><a href="#">Create an account</a></p>
-					</div>
-					<div class="large-6 medium-12 columns">
-						<p><a href="#">Forgot password?</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="large-8 medium-8 columns">
-			<h5>Here&rsquo;s your basic grid:</h5>
-			<!-- Grid Example -->
-
-			<div class="row">
-				<div class="large-12 columns">
-					<div class="callout panel">
-						<p><strong>This is a twelve column section in a row.</strong> Each of these includes a div.panel element so you can see where the columns are - it's not required at all for the grid.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="large-6 medium-6 columns">
-					<div class="callout panel">
-						<p>Six columns</p>
-					</div>
-				</div>
-				<div class="large-6 medium-6 columns">
-					<div class="callout panel">
-						<p>Six columns</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="large-4 medium-4 small-4 columns">
-					<div class="callout panel">
-						<p>Four columns</p>
-					</div>
-				</div>
-				<div class="large-4 medium-4 small-4 columns">
-					<div class="callout panel">
-						<p>Four columns</p>
-					</div>
-				</div>
-				<div class="large-4 medium-4 small-4 columns">
-					<div class="callout panel">
-						<p>Four columns</p>
-					</div>
-				</div>
-			</div>
-
-			<hr />
-
-			<h5>We bet you&rsquo;ll need a form somewhere:</h5>
-			<form>
 				<div class="row">
 					<div class="large-12 columns">
-						<label>Input Label</label>
-						<input type="text" placeholder="large-12.columns" />
+						<a href="#" class="button large-12">Log in</a>
 					</div>
 				</div>
-				<div class="row">
-					<div class="large-4 medium-4 columns">
-						<label>Input Label</label>
-						<input type="text" placeholder="large-4.columns" />
-					</div>
-					<div class="large-4 medium-4 columns">
-						<label>Input Label</label>
-						<input type="text" placeholder="large-4.columns" />
-					</div>
-					<div class="large-4 medium-4 columns">
-						<div class="row collapse">
-							<label>Input Label</label>
-							<div class="small-9 columns">
-								<input type="text" placeholder="small-9.columns" />
-							</div>
-							<div class="small-3 columns">
-								<span class="postfix">.com</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<label>Select Box</label>
-						<select>
-							<option value="husker">Husker</option>
-							<option value="starbuck">Starbuck</option>
-							<option value="hotdog">Hot Dog</option>
-							<option value="apollo">Apollo</option>
-						</select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-6 medium-6 columns">
-						<label>Choose Your Favorite</label>
-						<input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Radio 1</label>
-						<input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Radio 2</label>
-					</div>
-					<div class="large-6 medium-6 columns">
-						<label>Check these out</label>
-						<input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-						<input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<label>Textarea Label</label>
-						<textarea placeholder="small-12.columns"></textarea>
-					</div>
-				</div>
-			</form>
-		</div>     
 
-		<div class="large-4 medium-4 columns">
-			<h5>Try one of these buttons:</h5>
-			<p>
-				<a href="#" class="small button">Simple Button</a><br/>
-				<a href="#" class="small radius button">Radius Button</a><br/>
-				<a href="#" class="small round button">Round Button</a><br/>            
-				<a href="#" class="medium success button">Success Btn</a><br/>
-				<a href="#" class="medium alert button">Alert Btn</a><br/>
-				<a href="#" class="medium secondary button">Secondary Btn</a>
-			</p>
-			<div class="panel">
-				<h5>So many components, girl!</h5>
-				<p>A whole kitchen sink of goodies comes with Foundation. Checkout the docs to see them all, along with details on making them your own.</p>
-				<a href="http://foundation.zurb.com/docs/" class="small button">Go to Foundation Docs</a>          
+				<p><a href="#">Create an account</a></p>
+				<p><a href="#">Forgot password?</a></p>
 			</div>
 		</div>
 	</div>
