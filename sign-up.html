@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>AskFEUP</title>
+	<link rel="stylesheet" href="foundation/css/foundation.css" />
+	<link rel="stylesheet" href="foundation/icons/foundation-icons.css" />
+	<link rel="stylesheet" href="assets/css/sign-up.css" />
+	<script src="jquery-1.11.2.min.js"></script>
+
+</head>
+<body>
+	<div class="panel sign-up-intro">
+		<h2 class="sign-up">Sign Up</h2>
+		<div>
+			<h5>Already have an account?</h5>
+			<a href="">Log In</a>
+		</div>
+	</div>
+
+	<form>
+		<div class="large-3 columns centered">
+			<div class="panel"> 
+				<div class="row">
+					<div class="columns">
+						<label>Username
+							<input type="text" placeholder="Insert Username" />
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="columns">
+						<label>Password
+							<input type="text" placeholder="Insert Password" />
+						</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="columns">
+						<label>Confirm Password
+							<input type="text" placeholder="Confirm Password" />
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="columns">
+						<label>E-mail
+							<input type="text" placeholder="example@eee.com" />
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="columns">
+						<input type="checkbox">I agree to the 
+						<a href="#" data-reveal-id="myModal">Terms and Conditions</a>.
+					</input>
+				</div>    
+			</div>
+			<div class="row">
+				<div class="columns create-account">
+					<a href="#" class="button">Create Account</a>
+				</div>    
+			</div>
+
+		</div>
+	</div>
+</form>
+<div id="myModal" class="reveal-modal tiny" data-reveal>
+	<h2>Terms and Conditions</h2>
+	<p>I am at least 13 years old.</p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+<script src="foundation/js/vendor/modernizr.js"></script>
+<script src="foundation/js/vendor/jquery.js"></script>
+<script src="foundation/js/foundation/foundation.js"></script>
+<script src="foundation/js/foundation/foundation.reveal.js"></script>
+<script type="text/javascript"> 
+$(document).foundation();
+</script>
+</body>
