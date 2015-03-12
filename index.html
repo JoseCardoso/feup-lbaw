@@ -10,81 +10,46 @@
 	<script src="foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
-	<nav class="top-bar" data-topbar="" role="navigation">
-		<ul class="title-area">
-			<li class="name">
-				<img src="http://placehold.it/50x50&text=logo">
-				<h1><a href="#">AskFEUP</a></h1>
-			</li>
-
-			<!-- Mobile Menu Toggle -->
-			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-		</ul>
-
-		<!-- Top Bar Section -->
-		<section class="top-bar-section">
-
-			<!-- Top Bar Left Nav Elements -->
-			<ul class="left">
-
-				<!-- Search | has-form wrapper -->
-				<li class="has-form">
-					<div class="row collapse">
-						<div class="large-8 small-9 columns">
-							<input type="text" placeholder="Search">
-						</div>
-						<div class="large-4 small-3 columns">
-							<a href="#" class="alert button expand"><i class="fi-magnifying-glass"></i></a>
-						</div>
-					</div>
-				</li>
-			</ul>
-
-			<!-- Top Bar Right Nav Elements -->
-			<ul class="right button-group has-form">
-				<li><a href="#" class="button"><i class="fi-torso"></i> Profile</a></li>
-				<li><a href="#" class="button"><i class="fi-compass"></i> Explore</a></li>
-				<li><a href="#" class="button"><b>?</b> FAQ</a></li>
-			</ul>
-		</section>
-	</nav>
-
 	<div class="row">
-		<div class="large-12 columns search-box">
+		<!-- search box panel -->
+		<div class="small-12 large-8 columns">
 			<div class="panel search-box-panel">
-				<input class="large-10 columns" type="text" placeholder="This shows the text you write on search">
-				<i class="large-2 columns fi-magnifying-glass large search-box-panel-icon"></i>
+				<div class="row">
+					<div class="large-11 columns">
+						<input type="text" placeholder="This shows the text you write on search">
+					</div>
+					<div class="large-1 columns">
+						<i class="fi-magnifying-glass"></i>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div class="large-4 columns">
+		<!-- log in panel -->
+		<div class="small-12 large-4 columns">
 			<div class="panel">
 				<p>Log in via</p>
+				<ul class="button-group even-2">
+					<li><a href="#" class="button facebook-button">Facebook</a></li>
+					<li><a href="#" class="button google-plus-button">Google+</a></li>
+				</ul>
 
-				<div class="row">
-					<div class="large-6 columns">
-						<a href="#" class="button"><!-- <i class="fi-social-facebook large"></i> -->Facebook</a>
-					</div>
-					<div class="large-6 columns">
-						<a href="#" class="button alert"><!-- <i class="fi-social-google-plus large"></i> -->Google+</a>
-					</div>
-				</div>
-
-				<p>Log in</p>
+				<p class="left">Log in</p>
+				<p class="right"><a href="#">Forgot password?</a></p>
 				<form>
 					<input type="text" placeholder="Username or Email" />
 					<input type="password" placeholder="Password" />
 					<input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
 				</form>
 
+				<!-- log in button -->
 				<div class="row">
 					<div class="large-12 columns">
-						<a href="#" class="button large-12">Log in</a>
+						<a href="#" class="button large expand">Log in</a>
 					</div>
 				</div>
 
-				<p><a href="sign-up.html">Create an account</a></p>
-				<p><a href="#">Forgot password?</a></p>
+				<p class="text-center"><a href="sign-up.html">Create an account</a></p>
 			</div>
 		</div>
 	</div>
