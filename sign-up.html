@@ -6,60 +6,53 @@
 	<title>AskFEUP</title>
 	<link rel="stylesheet" href="foundation/css/foundation.css" />
 	<link rel="stylesheet" href="foundation/icons/foundation-icons.css" />
-	<link rel="stylesheet" href="assets/css/sign-up.css" />
+	<link rel="stylesheet" href="assets/css/styles.css" />
+	<script src="foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
 	<div class="row">
-		<div class="large-6 large-offset-3 columns">
-			<div class="panel">
-				<h2 class="sign-up">Sign Up</h2>
-				<h5>Already have an account?</h5>
-				<a href="">Log In</a>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="large-4 large-offset-4 columns">
+		<div class="small-12 medium-8 large-6 medium-offset-2 large-offset-3 columns">
 			<div class="panel">
 				<form>
+					<h2 class="sign-up">Sign Up</h2>
+					<p>Already have an account? <a href="index.html">Log In</a></p>
 					<div class="row">
-						<div class="large-12 columns">
+						<div class="small-12 columns">
 							<label>Username
 								<input type="text" placeholder="Insert Username" />
 							</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="large-12 columns">
+						<div class="small-12 columns">
 							<label>Password
-								<input type="text" placeholder="Insert Password" />
+								<input type="password" placeholder="Insert Password" />
 							</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="large-12 columns">
+						<div class="small-12 columns">
 							<label>Confirm Password
-								<input type="text" placeholder="Confirm Password" />
+								<input type="password" placeholder="Confirm Password" />
 							</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="large-12 columns">
+						<div class="small-12 columns">
 							<label>E-mail
-								<input type="text" placeholder="example@eee.com" />
+								<input type="email" placeholder="user@gmail.com" />
 							</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="large-12 columns">
-							<p>By clicking Sign Up, you agree to our <a href="#" data-reveal-id="myModal">Terms</a> and that you have read our <a href="/about/privacy" target="_blank" rel="nofollow">Data Policy</a>, including our <a href="/help/cookies" target="_blank" rel="nofollow">Cookie Use</a>.
+						<div class="small-12 columns">
+							<p>By clicking Sign Up, you agree to our <a href="#" data-reveal-id="termsModal">Terms</a> and that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use</a>.
 							</p>
 						</div>
 					</div>
 					<div class="row">
-						<div class="large-12 columns">
-							<a href="#" class="button large-12">Sign up</a>
+						<div class="small-12 columns">
+							<a href="#" class="button small-12">Sign up</a>
 						</div>
 					</div>
 				</form>
@@ -67,7 +60,7 @@
 		</div>
 	</div>
 
-	<div id="myModal" class="reveal-modal small" data-reveal>
+	<div id="termsModal" class="reveal-modal small" data-reveal>
 		<h2>Terms and Conditions</h2>
 		<p>I am at least 13 years old.</p>
 		<a class="close-reveal-modal">&#215;</a>
@@ -75,8 +68,6 @@
 
 	<script src="foundation/js/vendor/jquery.js"></script>
 	<script src="foundation/js/foundation.min.js"></script>
-	<script>
-		$(document).foundation();
-	</script>
+	<script>$(document).foundation();</script>
 </body>
 </html>
