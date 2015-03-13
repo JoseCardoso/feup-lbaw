@@ -9,7 +9,7 @@
 			<div class="panel search-box-panel">
 				<div class="row">
 					<div class="small-10 columns">
-						<input type="text" placeholder="This shows the text you write on search">
+						<input type="text" placeholder="Ask something">
 					</div>
 					<div class="small-2 columns">
 						<i class="fi-magnifying-glass"></i>
