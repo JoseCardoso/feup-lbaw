@@ -7,15 +7,6 @@ body {
 	background: #fff;
 }
 
-/* sign in page */
-.facebook-button {
-	background-color: #3b5998;
-}
-
-.google-plus-button {
-	background-color: #d34836;
-}
-
 /*
 .top-bar {
 	border-top:0.4rem solid #8c2d19;
@@ -36,18 +27,3 @@ body .search-box-panel {
 	margin: 0;
 }
 */
-
-.search-box-panel input[type="text"] {
-	/*width: 80%;
-	height: 120%;
-	*/
-	background-color: white;
-	border: none;
-	box-shadow: none;
-	font-size: 150%;
-	margin: 0;
-}
-
-.search-box-panel i {
-	font-size: 150%;
-}

@@ -1,24 +1,17 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>AskFEUP</title>
-	<link rel="stylesheet" href="foundation/css/foundation.css" />
-	<link rel="stylesheet" href="foundation/icons/foundation-icons.css" />
-	<link rel="stylesheet" href="assets/css/styles.css" />
-	<script src="foundation/js/vendor/modernizr.js"></script>
+	<link rel="stylesheet" href="assets/css/sign-in.css" />
 </head>
 <body>
+	<?php include 'navbar.php'; ?>
+
 	<div class="row">
 		<!-- search box panel -->
-		<div class="small-12 large-8 columns">
+		<div class="small-12 medium-6 large-8 columns">
 			<div class="panel search-box-panel">
 				<div class="row">
-					<div class="large-11 columns">
+					<div class="small-10 columns">
 						<input type="text" placeholder="This shows the text you write on search">
 					</div>
-					<div class="large-1 columns">
+					<div class="small-2 columns">
 						<i class="fi-magnifying-glass"></i>
 					</div>
 				</div>
@@ -26,7 +19,7 @@
 		</div>
 
 		<!-- log in panel -->
-		<div class="small-12 large-4 columns">
+		<div class="small-12 medium-6 large-4 columns">
 			<div class="panel">
 				<p>Log in via</p>
 				<ul class="button-group even-2">
@@ -44,18 +37,12 @@
 
 				<!-- log in button -->
 				<div class="row">
-					<div class="large-12 columns">
+					<div class="small-12 columns">
 						<a href="#" class="button large expand">Log in</a>
 					</div>
 				</div>
 
-				<p class="text-center"><a href="sign-up.html">Create an account</a></p>
+				<p class="text-center"><a href="?page=signUp">Create an account</a></p>
 			</div>
 		</div>
 	</div>
-
-	<script src="foundation/js/vendor/jquery.js"></script>
-	<script src="foundation/js/foundation.min.js"></script>
-	<script>$(document).foundation();</script>
-</body>
-</html>

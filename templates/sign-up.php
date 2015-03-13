@@ -1,21 +1,14 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>AskFEUP</title>
-	<link rel="stylesheet" href="foundation/css/foundation.css" />
-	<link rel="stylesheet" href="foundation/icons/foundation-icons.css" />
-	<link rel="stylesheet" href="assets/css/styles.css" />
-	<script src="foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
+	<?php include 'navbar.php'; ?>
+
 	<div class="row">
+		<!-- sign up panel -->
 		<div class="small-12 medium-8 large-6 medium-offset-2 large-offset-3 columns">
 			<div class="panel">
 				<form>
 					<h2 class="sign-up">Sign Up</h2>
-					<p>Already have an account? <a href="index.html">Log In</a></p>
+					<p>Already have an account? <a href="index.php">Log In</a></p>
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Username
@@ -65,9 +58,3 @@
 		<p>I am at least 13 years old.</p>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
-
-	<script src="foundation/js/vendor/jquery.js"></script>
-	<script src="foundation/js/foundation.min.js"></script>
-	<script>$(document).foundation();</script>
-</body>
-</html>
