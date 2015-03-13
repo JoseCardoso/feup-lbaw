@@ -7,13 +7,10 @@ body {
 	background: #fff;
 }
 
-/*
-.top-bar {
-	border-top:0.4rem solid #8c2d19;
-	padding: 5px 5px 5px 5px;
-	background-color: #333;
+/* navigation bar */
+.feup-color-stripe {
+	border-top: 0.4rem solid #8c2d19;
 }
-*/
 
 /* big search box */
 /*

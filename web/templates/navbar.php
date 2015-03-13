@@ -1,4 +1,4 @@
-<div class="contain-to-grid fixed">
+<div class="contain-to-grid fixed feup-color-stripe">
 	<nav class="top-bar" data-topbar role="navigation">
 		<ul class="title-area">
 			<li class="name">
@@ -27,6 +27,9 @@
 
 			<!-- Right Nav Section -->
 			<ul class="right">
+				<li><a href="#" style="color: yellow;">
+					<i class="fi-alert"></i> UNDER CONSTRUCTION <i class="fi-alert"></i>
+				</a></li>
 				<li class="divider"></li>
 				<li><a href="#"><i class="fi-torso"></i> Profile</a></li>
 				<li class="divider"></li>
