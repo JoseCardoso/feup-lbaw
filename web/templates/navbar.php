@@ -31,9 +31,9 @@
 					<i class="fi-alert"></i> UNDER CONSTRUCTION <i class="fi-alert"></i>
 				</a></li>
 				<li class="divider"></li>
-				<li><a href="#"><i class="fi-torso nav-bar-icon"></i>Profile</a></li>
-				<li class="divider"></li>
 				<li><a href="#"><i class="fi-compass nav-bar-icon"></i>Explore</a></li>
+				<li class="divider"></li>
+				<li><a href="#"><i class="fi-torso nav-bar-icon"></i>Profile</a></li>
 				<li class="divider"></li>
 				<li><a href="#"><b class="nav-bar-icon">?</b>FAQ</a></li>
 				<li class="divider"></li>
