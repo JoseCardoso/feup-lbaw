@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="small-12 medium-6 large-8 columns">
 			<!-- orbit -->
-			<ul class="orbit" data-orbit>
+			<ul class="orbit" data-orbit data-options="pause_on_hover: false;">
 				<li>
 					<img src="<?php echo IMAGES_PATH . "feup-garden.jpg";?>" alt="slide 1" />
 					<div class="orbit-caption">

@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<!-- sign up panel -->
-		<div class="small-12 medium-8 large-6 medium-offset-2 large-offset-3 columns">
+		<div class="small-12 medium-8 large-6 small-centered columns">
 			<div class="panel">
 				<form>
 					<h2 class="sign-up">Sign Up</h2>
