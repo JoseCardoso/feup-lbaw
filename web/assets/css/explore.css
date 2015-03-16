@@ -4,7 +4,7 @@
 }
 
 .question:hover {
-	box-shadow: 0px 0px 1em #bbb;
+	box-shadow: 0px 0px 1em #ccc;
 	transform: scale(1.01);
 }
 
