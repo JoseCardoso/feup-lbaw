@@ -4,8 +4,24 @@
 	<?php include 'navbar.php'; ?>
 
 	<div class="row">
-		<!-- search box panel -->
 		<div class="small-12 medium-6 large-8 columns">
+			<!-- orbit -->
+			<ul class="orbit" data-orbit>
+				<li>
+					<img src="<?php echo IMAGES_PATH . "feup-garden.jpg";?>" alt="slide 1" />
+					<div class="orbit-caption">
+						FEUP
+					</div>
+				</li>
+				<li>
+					<img src="<?php echo IMAGES_PATH . "feup-biblio.jpg";?>" alt="slide 2" />
+				</li>
+				<li>
+					<img src="<?php echo IMAGES_PATH . "feup-sunset.jpg";?>" alt="slide 3" />
+				</li>
+			</ul>
+
+			<!-- search box panel -->
 			<div class="panel search-box-panel">
 				<div class="row">
 					<div class="small-10 columns">
