@@ -31,11 +31,22 @@
 					<i class="fi-alert"></i> UNDER CONSTRUCTION <i class="fi-alert"></i>
 				</a></li>
 				<li class="divider"></li>
-				<li><a href="#"><i class="fi-compass nav-bar-icon"></i>Explore</a></li>
+				<li class="has-dropdown">
+					<a href="?page=explore"><i class="fi-compass nav-bar-icon"></i>Explore</a>
+					<ul class="dropdown">
+						<li><a href="?page=contacts"><i class="fi-address-book nav-bar-icon"></i>Contact us</a></li>
+						<li><a href="?page=about"><i class="fi-torsos-all nav-bar-icon"></i>About us</a></li>
+					</ul>
+				</li>
 				<li class="divider"></li>
-				<li><a href="#"><i class="fi-torso nav-bar-icon"></i>Profile</a></li>
+				<li class="has-dropdown">
+					<a href="?page=profile"><i class="fi-torso nav-bar-icon"></i>Profile</a>
+					<ul class="dropdown">
+						<li><a href="?page=signIn"><i class="fi-lock nav-bar-icon"></i>Sign out</a></li>
+					</ul>
+				</li>
 				<li class="divider"></li>
-				<li><a href="#"><b class="nav-bar-icon">?</b>FAQ</a></li>
+				<li><a href="?page=faq"><b class="nav-bar-icon">?</b>FAQ</a></li>
 				<li class="divider"></li>
 			</ul>
 		</section>

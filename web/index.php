@@ -7,13 +7,7 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 'signIn';
 
 /*
 $pagesWithMandatoryLogin = array(
-	'feed',
-	'myPolls',
-	'profile',
-	'signOut',
-	'viewPoll',
-	'viewPollResults',
-	'search'
+	'profile'
 	);
 
 // if the current page is one of the pages with mandatory login
@@ -42,6 +36,26 @@ switch ($currentPage) {
 
 	case 'signUp':
 	include 'templates/sign-up.php';
+	break;
+
+	case 'explore':
+	include 'templates/explore.php';
+	break;
+
+	case 'contacts':
+	include 'templates/contacts.php';
+	break;
+
+	case 'about':
+	include 'templates/about.php';
+	break;
+
+	case 'profile':
+	include 'templates/profile.php';
+	break;
+
+	case 'faq':
+	include 'templates/faq.php';
 	break;
 }
 
