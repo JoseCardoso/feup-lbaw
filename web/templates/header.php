@@ -7,3 +7,6 @@
 	<link rel="stylesheet" href="foundation/css/foundation.css" />
 	<link rel="stylesheet" href="foundation/icons/foundation-icons.css" />
 	<link rel="stylesheet" href="assets/css/styles.css" />
+	<script src="foundation/js/vendor/modernizr.js"></script>
+	<script src="foundation/js/vendor/jquery.js"></script>
+	<script src="foundation/js/foundation.min.js"></script>

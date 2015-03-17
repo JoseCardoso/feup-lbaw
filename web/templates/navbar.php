@@ -30,7 +30,6 @@
 				<li><a href="#" style="color: yellow;">
 					<i class="fi-alert"></i> UNDER CONSTRUCTION <i class="fi-alert"></i>
 				</a></li>
-				<li class="divider"></li>
 				<li class="has-dropdown">
 					<a href="?page=explore"><i class="fi-compass nav-bar-icon"></i>Explore</a>
 					<ul class="dropdown">
@@ -38,16 +37,13 @@
 						<li><a href="?page=about"><i class="fi-torsos-all nav-bar-icon"></i>About us</a></li>
 					</ul>
 				</li>
-				<li class="divider"></li>
 				<li class="has-dropdown">
 					<a href="?page=profile"><i class="fi-torso nav-bar-icon"></i>Profile</a>
 					<ul class="dropdown">
 						<li><a href="?page=signIn"><i class="fi-lock nav-bar-icon"></i>Sign out</a></li>
 					</ul>
 				</li>
-				<li class="divider"></li>
 				<li><a href="?page=faq"><b class="nav-bar-icon">?</b>FAQ</a></li>
-				<li class="divider"></li>
 			</ul>
 		</section>
 	</nav>

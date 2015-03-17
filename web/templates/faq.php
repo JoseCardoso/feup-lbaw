@@ -1,3 +1,4 @@
+	<link rel="stylesheet" href="assets/css/faq.css" />
 </head>
 <body>
 	<?php include 'navbar.php'; ?>
