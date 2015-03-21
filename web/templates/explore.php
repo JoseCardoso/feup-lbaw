@@ -143,6 +143,12 @@
 				<p class="text-right question-author"><a href="#">@ferrolho</a></p>
 				<p class="text-right question-date">00h15 - 15 Jan 2015</p>
 			</div>
+
+			<div>
+				<p class="question-text">Marshmallows e aquelas gomas ácidas.</p>
+				<p class="text-right question-author"><a href="#">@botas</a></p>
+				<p class="text-right question-date">00h30 - 15 Jan 2015</p>
+			</div>	
 		</div>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
