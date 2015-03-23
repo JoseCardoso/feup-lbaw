@@ -155,3 +155,12 @@
 		<?php include 'question.php'; ?>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
+
+	<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function(event) {
+		var id = window.location.hash.substring(1); // remove the #
+		var element = document.querySelector('[data-reveal-id="' + id + '"]');
+
+		element.click();
+	});
+	</script>

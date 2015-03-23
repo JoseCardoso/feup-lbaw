@@ -1,4 +1,5 @@
 	<link rel="stylesheet" href="assets/css/explore.css" />
+	<link rel="stylesheet" href="assets/css/profile.css" />
 </head>
 <body>
 	<?php include 'navbar.php'; ?>
@@ -11,25 +12,41 @@
 
 	<div class="row">
 		<div class="small-12 medium-3 medium-offset-2 columns">
-			<img src="http://placehold.it/200x200&amp;text=[img]">
+			<img src="http://placehold.it/400x400&amp;text=[img]">
 		</div>
 
 		<div class="small-12 medium-6 end columns">
 			<div class="row">
 				<div class="small-12 medium-6 end columns">
-					<h2 class="text-right">Info</h2>
+					<h2 class="show-for-medium-up text-right">Info</h2>
+
+					<hr class="show-for-small-only">
+					<h2 class="show-for-small-only text-center">Info</h2>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="small-12 medium-6 columns">
+			<div class="row show-for-medium-up">
+				<div class="medium-6 columns">
 					<p class="text-right"><strong>Username</strong></p>
 					<p class="text-right"><strong>Email</strong></p>
 					<p class="text-right"><strong>Bio</strong></p>
 				</div>
-				<div class="small-12 medium-6 columns">
+				<div class="medium-6 columns">
 					<p>ferrolho</p>
 					<p>henriqueferrolho@gmail.com</p>
+					<p>MIEIC student</p>
+				</div>
+			</div>
+
+			<div class="row show-for-small-only">
+				<div class="small-12 columns text-center">
+					<p class="info-label"><strong>Username</strong></p>
+					<p>ferrolho</p>
+
+					<p class="info-label"><strong>Email</strong></p>
+					<p>henriqueferrolho@gmail.com</p>
+
+					<p class="info-label"><strong>Bio</strong></p>
 					<p>MIEIC student</p>
 				</div>
 			</div>
@@ -44,10 +61,15 @@
 
 	<div class="row">
 		<div class="small-12 columns">
-			<ul class="tabs" data-tab>
+			<ul class="tabs show-for-medium-up" data-tab>
 				<li class="tab-title active"><a href="#panel1">Questions</a></li>
 				<li class="tab-title"><a href="#panel2">Answers</a></li>
 				<li class="tab-title"><a href="#panel3">Favorites</a></li>
+			</ul>
+			<ul class="tabs show-for-small-only vertical" data-tab>
+				<li class="tab-title text-center active"><a href="#panel1">Questions</a></li>
+				<li class="tab-title text-center"><a href="#panel2">Answers</a></li>
+				<li class="tab-title text-center"><a href="#panel3">Favorites</a></li>
 			</ul>
 
 			<div class="tabs-content">
