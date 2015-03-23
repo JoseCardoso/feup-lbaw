@@ -72,13 +72,6 @@
 			<p class="text-right question-author"><a href="#">@botas</a></p>
 			<p class="text-right question-date">00h30 - 15 Jan 2015</p>
 		</div>
-
-		<div class="small-10 columns comments">
-			<hr>
-			<p>exactamente :) <a href="#">@mariamir</a></p>
-			<hr class="dashed">
-			<p>nem mais <a href="#">@ferrolho</a></p>
-		</div>
 	</div>
 
 	<hr class="dashed">
