@@ -112,4 +112,23 @@
 			<p>rime <a href="#">@ferrolho</a></p>
 		</div>
 	</div>
+
+	<hr class="dashed">
+
+	<form>
+		<div class="row">
+			<div class="small-12 columns">
+				<label>Add answer
+					<textarea placeholder="Your answer"></textarea>
+				</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-12 columns">
+				<a href="#" class="button small success">Post answer</a>
+			</div>
+		</div>
+	</form>
+
 </div>

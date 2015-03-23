@@ -2,6 +2,28 @@
 </head>
 <body>
 	<?php include 'navbar.php'; ?>
+
+	<div class="row">
+		<div class="small-12 medium-2 columns">
+			<a href="#" class="button small secondary expand"><i class="fi-filter nav-bar-icon"></i>Filter</a>
+		</div>
+
+		<div class="small-12 medium-8 columns">
+			<div class="row">
+				<div class="small-12 medium-8 small-centered columns">
+					<ul class="button-group even-3">
+						<li><a href="#" class="button small secondary">Most Recent</a></li>
+						<li><a href="#" class="button small secondary">Most Popular</a></li>
+						<li><a href="#" class="button small secondary">Most Viewed</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="small-12 medium-2 columns">
+			<a href="#" class="button success small expand"><i class="fi-plus nav-bar-icon"></i>Add new</a>
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="small-12 columns">
