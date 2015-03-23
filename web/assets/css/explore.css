@@ -35,3 +35,39 @@
 .question-date {
 	font-size: 0.8em;
 }
+
+/*
+* question modal css
+*/
+.question-modal-content i {
+	color: lightgray;
+	font-size: 130%;
+}
+
+.upvote .fi-like {
+	color: green;
+}
+
+.downvote .fi-dislike {
+	color: red;
+}
+
+.score {
+	margin: 0;
+}
+
+.negative-score {
+	color: red;
+}
+
+.favorite .fi-star {
+	color: gold;
+}
+
+.checked-answer .fi-check {
+	color: limegreen;
+}
+
+hr.dashed {
+	border-style: dashed;
+}

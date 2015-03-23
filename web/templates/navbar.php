@@ -27,9 +27,6 @@
 
 			<!-- Right Nav Section -->
 			<ul class="right">
-				<li><a href="#" style="color: yellow;">
-					<i class="fi-alert"></i> UNDER CONSTRUCTION <i class="fi-alert"></i>
-				</a></li>
 				<li class="has-dropdown">
 					<a href="?page=explore"><i class="fi-compass nav-bar-icon"></i>Explore</a>
 					<ul class="dropdown">

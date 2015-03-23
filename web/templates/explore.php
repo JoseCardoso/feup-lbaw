@@ -130,44 +130,6 @@
 	</div>
 
 	<div id="questionModal" class="reveal-modal large" data-reveal>
-		<div class="row">
-			<div class="small-2 columns">
-				<i class="fi-like"></i>
-				<p>50</p>
-				<i class="fi-dislike"></i>
-				<i class="fi-star"></i>
-			</div>
-
-			<div class="small-10 columns question-content">
-				<p class="question-text">Que tipo de gomas são vendidas na D. Beatriz?</p>
-				<p class="text-right question-author"><a href="#">@ferrolho</a></p>
-				<p class="text-right question-date">00h15 - 15 Jan 2015</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-2 columns">
-				<i class="fi-like"></i>
-				<p>2</p>
-				<i class="fi-dislike"></i>
-				<i class="fi-check"></i>
-			</div>
-			<div>
-				<p class="question-text">Marshmallows e aquelas gomas ácidas.</p>
-				<p class="text-right question-author"><a href="#">@botas</a></p>
-				<p class="text-right question-date">00h30 - 15 Jan 2015</p>
-			</div>	
-		</div>
-		<div class="row">
-			<div class="small-2 columns">
-				<i class="fi-like"></i>
-				<p>1</p>
-				<i class="fi-dislike"></i>
-			</div>
-			<div>
-				<p class="question-text">Chocolates, marshmallows e finnibons.</p>
-				<p class="text-right question-author"><a href="#">@vecton</a></p>
-				<p class="text-right question-date">00h36 - 15 Jan 2015</p>
-			</div>	
-		</div>
+		<?php include 'question.php'; ?>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>

@@ -5,6 +5,14 @@
 
 	<div class="row">
 		<div class="small-12 medium-6 large-8 columns">
+			<div data-alert class="alert-box warning radius">
+				<h5 style="color: yellow;">
+					<i class="fi-alert"></i>
+					This is still under construction!
+				</h5>
+				<a href="#" class="close">&times;</a>
+			</div>
+
 			<!-- orbit -->
 			<ul class="orbit" data-orbit data-options="pause_on_hover: false;">
 				<li>
