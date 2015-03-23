@@ -2,10 +2,10 @@
 session_start();
 
 defined("HOME_URL")
-or define("HOME_URL", dirname("http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']));
+or define("HOME_URL", "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
 
 defined("ASSETS_PATH")
-or define("ASSETS_PATH", HOME_URL . '/assets');
+or define("ASSETS_PATH", HOME_URL . 'assets');
 
 defined("IMAGES_PATH")
 or define("IMAGES_PATH", ASSETS_PATH . "/img/");
