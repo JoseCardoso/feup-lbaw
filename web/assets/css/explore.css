@@ -39,6 +39,10 @@
 /*
 * question modal css
 */
+hr.dashed {
+	border-style: dashed;
+}
+
 .question-modal-content i {
 	color: lightgray;
 	font-size: 130%;
@@ -68,6 +72,10 @@
 	color: limegreen;
 }
 
-hr.dashed {
-	border-style: dashed;
+.comments hr {
+	margin: 0;
+}
+
+.comments p {
+	margin: 0.4rem;
 }
