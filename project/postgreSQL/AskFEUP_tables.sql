@@ -1,3 +1,25 @@
+/** AskFEUP **/
+/** Tables **/
+
+.headers ON
+.mode columns
+
+
+CREATE TABLE Contribuição (
+	contribuiçãoID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	data timestamp(0),
+	/diferençaVotos int,
+	votosNegativos int,
+	votosPositivos int
+);
+
+CREATE TABLE Pergunta ( 
+	perguntaID integer NOT NULL REFERENCES Contribuição(contribuiçãoID),
+	descricao varchar(50),
+	texto varchar(50),
+	categoriaID integer
+);
+
 CREATE TABLE Administrador ( 
 	administradorID integer NOT NULL
 )
@@ -29,15 +51,6 @@ CREATE TABLE Comentário (
 	comentárioID integer NOT NULL,
 	contribuiçãoID integer,
 	membroID integer
-)
-;
-
-CREATE TABLE Contribuição ( 
-	/diferençaVotos int,
-	data timestamp(0),
-	votosNegativos int,
-	votosPositivos int,
-	contribuiçãoID integer NOT NULL
 )
 ;
 
@@ -75,14 +88,6 @@ CREATE TABLE Notificação (
 	notificaçãoID integer NOT NULL,
 	membroID integer,
 	contribuiçãoID integer
-)
-;
-
-CREATE TABLE Pergunta ( 
-	descricao varchar(50),
-	texto varchar(50),
-	perguntaID integer NOT NULL,
-	categoriaID integer
 )
 ;
 
