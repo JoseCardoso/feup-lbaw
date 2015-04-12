@@ -6,11 +6,17 @@
 
 CREATE TRIGGER rightAnswer INSTEAD OF UPDATE OF "correcta"
 	ON "Resposta"
-	WHEN ((New.correcta = true) AND ((SELECT COUNT(*) FROM 
-		(SELECT "correcta" FROM Resposta 
-			WHERE "correcta"=true			) AS bools > 0 ) ));
+	WHEN (
+			New."correcta" = TRUE
+		AND 
+			(SELECT COUNT(*) FROM (
+				SELECT "correcta" FROM Resposta 
+					WHERE "correcta" = TRUE
+					AND "Resposta"."perguntaID" = New."perguntaID")
+			) AS "bools" > 0
+		);
 	BEGIN
-	END;
+END;
 
 /*CREATE TRIGGER GeneratePack
 AFTER INSERT ON RecomendacaoInstrumentoAcessorio

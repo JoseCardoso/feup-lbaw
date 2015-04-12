@@ -10,7 +10,8 @@
  		"Membro"."primeiroNome" AS "Membro",
  		"Contribuicao"."diferencaVotos" AS "Pontuacao"
  	FROM "Pergunta", "Contribuicao", "Membro"
- 	WHERE "Pergunta"."perguntaID" = "Contribuicao"."contribuicaoID" AND "Contribuicao"."membroID" = "Membro"."membroID"
+ 	WHERE "Pergunta"."perguntaID" = "Contribuicao"."contribuicaoID"
+ 	AND "Contribuicao"."membroID" = "Membro"."membroID"
  	ORDER BY "Contribuicao"."diferencaVotos" DESC;
 
  /** 2. Lista de perguntas por utilizador (em que tenha actividade e não só as próprias) **/
@@ -18,9 +19,9 @@
  		"Pergunta".texto AS "Conteudo",
  		"Utilizador".username AS "User"
  	FROM "Pergunta", "Membro", "Comentario", "Resposta", "Contribuicao",
- 	WHERE "Resposta"."respostaID" = "Contribuicao"."contribuicaoID"
+ 	WHERE "Resposta"."perguntaID" = "Pergunta"."perguntaID"
  	AND "Membro"."membroID" = "Contribuicao"."membroID"
- 	AND "Pergunta"."perguntaID" = "Resposta"."perguntaID"
+ 	AND "Pergunta"."perguntaID" = "Contribuicao"."contribuicaoID"
  	GROUP BY "Pergunta"."perguntaID";
 
 /** 8. Lista de respostas a uma pergunta **/
