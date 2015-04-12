@@ -4,131 +4,135 @@
 .headers ON
 .mode columns
 
-
-CREATE TABLE Contribuição (
-	contribuiçãoID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	data timestamp(0),
-	/diferençaVotos int,
-	votosNegativos int,
-	votosPositivos int
+DROP TABLE IF EXISTS Utilizador;
+CREATE TABLE IF NOT EXISTS Utilizador (
+	utilizadorID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	username text,
+	password text
 );
 
-CREATE TABLE Pergunta ( 
-	perguntaID integer NOT NULL REFERENCES Contribuição(contribuiçãoID),
-	descricao varchar(50),
-	texto varchar(50),
-	categoriaID integer
+DROP TABLE IF EXISTS Administrador;
+CREATE TABLE IF NOT EXISTS Administrador ( 
+	administradorID integer NOT NULL REFERENCES Utilizador(utilizadorID),
 );
 
-CREATE TABLE Administrador ( 
-	administradorID integer NOT NULL
-)
-;
+DROP TABLE IF EXISTS Contribuicao;
+CREATE TABLE IF NOT EXISTS Contribuicao (
+	contribuicaoID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	data timestamp,
+	diferençaVotos integer,
+	votosNegativos integer,
+	votosPositivos integer
+);
 
-CREATE TABLE Badge ( 
-	descricao varchar(50),
-	nome varchar(50),
-	badgeID integer NOT NULL
-)
-;
+DROP TABLE IF EXISTS Categoria;
+CREATE TABLE IF NOT EXISTS Categoria (
+	categoriaID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	tipo varchar(20),
+);
 
-CREATE TABLE Categoria ( 
-	tipo varchar(50),
-	categoriaID integer NOT NULL
-)
-;
+DROP TABLE IF EXISTS Pergunta;
+CREATE TABLE IF NOT EXISTS Pergunta ( 
+	perguntaID integer NOT NULL REFERENCES Contribuição(contribuicaoID),
+	texto text,
+	descricao text,
+	categoriaID integer NOT NULL REFERENCES Categoria(categoriaID)
+);
 
-CREATE TABLE Cidade ( 
-	codigoPostal int,
-	nome varchar(50),
-	cidadeID integer NOT NULL
-)
-;
+DROP TABLE IF EXISTS Tag;
+CREATE TABLE IF NOT EXISTS Tag (
+	tagID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	nome varchar(20),
+);
 
-CREATE TABLE Comentário ( 
-	data timestamp(0),
-	descricao varchar(50),
-	comentárioID integer NOT NULL,
-	contribuiçãoID integer,
-	membroID integer
-)
-;
+DROP TABLE IF EXISTS Badge;
+CREATE TABLE IF NOT EXISTS Badge (
+	badgeID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	nome varchar(20),
+	descricao text
+);
 
-CREATE TABLE Favorita ( 
-	favoritaID integer NOT NULL,
-	membroID integer,
-	perguntaID integer
-)
-;
+DROP TABLE IF EXISTS Cidade;
+CREATE TABLE IF NOT EXISTS Cidade (
+	cidadeID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	nome varchar(20),
+	codigoPostal int
+);
 
-CREATE TABLE JoinBadgeToMembro ( 
-	membroID integer,
-	badgeID integer
-)
-;
-
-CREATE TABLE JoinPerguntaToTag ( 
-	tagID integer,
-	perguntaID integer
-)
-;
-
-CREATE TABLE Membro ( 
+DROP TABLE IF EXISTS Membro;
+CREATE TABLE IF NOT EXISTS Membro (
 	activo boolean,
+	primeiroNome varchar(20) NOT NULL,
+	ultimoNome varchar(20) NOT NULL,
 	email varchar(50),
 	pontos int,
-	registo timestamp(0),
-	ultimoLogin timestamp(0),
-	membroID integer NOT NULL,
+	registo timestamp,
+	ultimoLogin timestamp,
+	membroID integer NOT NULL REFERENCES Membro(membroID),
 	cidadeID integer
+);
+
+DROP TABLE IF EXISTS Comentario;
+CREATE TABLE IF NOT EXISTS Comentario (
+	comentarioID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	data timestamp,
+	descricao text NOT NULL,
+	contribuicaoID integer NOT NULL REFERENCES Contribuicao(contribuicaoID),
+	membroID integer NOT NULL REFERENCES Membro(utilizadorID)
+);
+
+DROP TABLE IF EXISTS Favorita;
+CREATE TABLE IF NOT EXISTS Favorita ( 
+	favoritaID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	membroID integer NOT NULL REFERENCES Membro(membroID),
+	perguntaID integer NOT NULL REFERENCES Pergunta(perguntaID)
 )
 ;
 
-CREATE TABLE Notificação ( 
-	notificaçãoID integer NOT NULL,
-	membroID integer,
-	contribuiçãoID integer
-)
-;
+DROP TABLE IF EXISTS BadgeMembro;
+CREATE TABLE IF NOT EXISTS BadgeMembro (
+	membroID integer NOT NULL REFERENCES Membro(membroID),
+	badgeID integer NOT NULL REFERENCES Badge(badgeID)
+);
 
-CREATE TABLE Recuperação de password ( 
+DROP TABLE IF EXISTS PerguntaTag;
+CREATE TABLE IF NOR EXISTS PerguntaTag (
+	tagID integer NOT NULL REFERENCES Tag(tagID),
+	perguntaID integer NOT NULL REFERENCES Pergunta(perguntaID)
+);
+
+DROP TABLE IF EXISTS Notificacao;
+CREATE TABLE IF NOT EXISTS Notificacao (
+	notificacaoID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	contribuicaoID integer NOT NULL REFERENCES Contribuicao(contribuicaoID),
+	membroID integer NOT NULL REFERENCES Membro(membroID)
+);
+
+DROP TABLE IF EXISTS RecuperacaoDePassword;
+CREATE TABLE IF NOT EXISTS RecuperacaoDePassword (
+	recuperacaoDePasswordID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	codigoValidacao varchar(50),
-	data timestamp(0),
-	recuperação de passwordID integer NOT NULL,
-	membroID integer
-)
-;
+	data timestamp,
+	membroID integer NOT NULL REFERENCES Membro(membroID)
+);
 
-CREATE TABLE Resposta ( 
+DROP TABLE IF EXISTS Resposta;
+CREATE TABLE IF NOT EXISTS Resposta (
+	respostaID integer NOT NULL REFERENCES Contribuicao(contribuicaoID),
 	correcta boolean,
-	descricao varchar(50),
-	respostaID integer NOT NULL,
-	perguntaID integer
-)
-;
+	descricao text,
+	perguntaID integer NOT NULL REFERENCES Pergunta(perguntaID)
+);
 
-CREATE TABLE Tag ( 
-	nome varchar(50),
-	tagID integer NOT NULL
-)
-;
-
-CREATE TABLE Utilizador ( 
-	nome varchar(50),
-	password varchar(50),
-	utilizadorID integer NOT NULL
-)
-;
-
-CREATE TABLE Voto ( 
+DROP TABLE IF EXISTS Voto;
+CREATE TABLE IF NOT EXISTS Voto (
+	votoID integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	positivo boolean,
-	votoID integer NOT NULL,
-	membroID integer,
-	contribuiçãoID integer
-)
-;
+	membroID integer NOT NULL REFERENCES Membro(membroID),
+	contribuicaoID integer NOT NULL REFERENCES Contribuicao(contribuicaoID)
+);
 
-
+/**
 ALTER TABLE Administrador ADD CONSTRAINT PK_Administrador 
 	PRIMARY KEY (administradorID)
 ;
@@ -285,3 +289,5 @@ ALTER TABLE Voto ADD CONSTRAINT FK_Voto_Membro
 ALTER TABLE Voto ADD CONSTRAINT FK_Voto_Contribuição 
 	FOREIGN KEY (contribuiçãoID) REFERENCES Contribuição (contribuiçãoID)
 ;
+
+**/
