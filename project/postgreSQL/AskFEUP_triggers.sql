@@ -4,12 +4,11 @@
 .headers ON
 .mode columns
 
-CREATE TRIGGER rightAnswer INSTEAD OF UPDATE OF correcta
-	ON Resposta
+CREATE TRIGGER rightAnswer INSTEAD OF UPDATE OF "correcta"
+	ON "Resposta"
 	WHEN ((New.correcta = true) AND ((SELECT COUNT(*) FROM 
-		(	SELECT correcta FROM Resposta 
-			WHERE correcta=true			)
-		) > 0 ) );
+		(SELECT "correcta" FROM Resposta 
+			WHERE "correcta"=true			) AS bools > 0 ) ));
 	BEGIN
 	END;
 
@@ -32,12 +31,6 @@ DELETE FROM Membro
 	WHERE Utilizador.utilizadorID = Membro.membroID;
 END;
 
-CREATE TRIGGER DeleteContribuicaoFromMembro
-AFTER DELETE ON Membro
-BEGIN
-DELETE FROM Contribuicao
-	WHERE Contribuicao.membroID = Membro.membroID;
-END;
 
 CREATE TRIGGER DeleteContribuicao
 AFTER DELETE ON Contribuicao
