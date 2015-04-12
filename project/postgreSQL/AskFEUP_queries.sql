@@ -13,6 +13,16 @@
  	WHERE "Pergunta"."perguntaID" = "Contribuicao"."contribuicaoID" AND "Contribuicao"."membroID" = "Membro"."membroID"
  	ORDER BY "Contribuicao"."diferencaVotos" DESC;
 
+ /** 2. Lista de perguntas por utilizador (em que tenha actividade e não só as próprias) **/
+ SELECT "Pergunta"."perguntaID" AS "ID",
+ 		"Pergunta".texto AS "Conteudo",
+ 		"Utilizador".username AS "User"
+ 	FROM "Pergunta", "Membro", "Comentario", "Resposta", "Contribuicao",
+ 	WHERE "Resposta"."respostaID" = "Contribuicao"."contribuicaoID"
+ 	AND "Membro"."membroID" = "Contribuicao"."membroID"
+ 	AND "Pergunta"."perguntaID" = "Resposta"."perguntaID"
+ 	GROUP BY "Pergunta"."perguntaID";
+
 /** 8. Lista de respostas a uma pergunta **/
 DROP VIEW IF EXISTS respostasAPerguntas;
 CREATE VIEW IF NOT EXISTS respostasAPerguntas AS

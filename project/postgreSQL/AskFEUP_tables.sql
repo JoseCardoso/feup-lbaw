@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS Contribuicao (
 	data timestamp,
 	diferençaVotos integer,
 	votosNegativos integer,
-	votosPositivos integer
+	votosPositivos integer,
+	membroID integer NOT NULL REFERENCES Membro(membroID)
 );
 
 DROP TABLE IF EXISTS Categoria;
