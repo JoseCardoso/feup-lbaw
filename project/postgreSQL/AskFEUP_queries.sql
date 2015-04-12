@@ -1,28 +1,17 @@
 /** AskFEUP **/
 /** Queries **/
 
-.print \n
-.width 8 30
+/**.print \n
+.width 8 30 **/
+
 /** 1. Lista de perguntas ordenadas por pontuação **/
-DROP VIEW IF EXISTS ordenacaoPorVotos;
-CREATE VIEW IF NOT EXISTS ordenacaoPorVotos AS
-SELECT Pergunta.texto
-FROM Pergunta, Contribuição
-WHERE Pergunta.perguntaID = Categoria.categoriaID
-ORDER BY Contribuição.diferençaVotos DESC;
-
-
-
-
-/*DROP VIEW IF EXISTS sortByDifficulty;
-CREATE VIEW  IF NOT EXISTS sortByDifficulty AS
-SELECT Instrumento.idArtigo, Artigo.nome, Marca.nome 'Marca', dificuldade FROM Instrumento
-INNER JOIN Artigo, Marca, Modelo 
-ON Instrumento.idArtigo = Artigo.idArtigo AND Artigo.idmodelo = Modelo.idmodelo AND Modelo.idmarca = Marca.idmarca
-ORDER BY dificuldade;
-select * from sortByDifficulty;
-*/
-
+ SELECT "Pergunta"."perguntaID" AS "ID",
+ 		"Pergunta".texto AS "Conteudo",
+ 		"Membro"."primeiroNome" AS "Membro",
+ 		"Contribuicao"."diferencaVotos" AS "Pontuacao"
+ 	FROM "Pergunta", "Contribuicao", "Membro"
+ 	WHERE "Pergunta"."perguntaID" = "Contribuicao"."contribuicaoID" AND "Contribuicao"."membroID" = "Membro"."membroID"
+ 	ORDER BY "Contribuicao"."diferencaVotos" DESC;
 
 /** 8. Lista de respostas a uma pergunta **/
 DROP VIEW IF EXISTS respostasAPerguntas;
