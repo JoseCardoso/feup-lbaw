@@ -4,7 +4,7 @@
 /**.print \n
 .width 8 30 **/
 
-/** 1. Lista de perguntas ordenadas por pontuação **/
+/** 1. Lista de perguntas ordenadas por pontuação (Testado) **/
  SELECT "Pergunta"."perguntaID" AS "ID",
  		"Pergunta".texto AS "Conteudo",
  		"Membro"."primeiroNome" AS "Membro",
