@@ -4,11 +4,12 @@
 .headers ON
 .mode columns
 
-CREATE TRIGGER rightAnswer INSTEAD OF UPDATE OF "correcta"
-	ON "Resposta"
+CREATE TRIGGER rightAnswer INSTEAD OF UPDATE OF correcta
+	ON Resposta
 	WHEN ((New.correcta = true) AND ((SELECT COUNT(*) FROM 
-		(SELECT "correcta" FROM Resposta 
-			WHERE "correcta"=true			) AS bools > 0 ) ));
+		(	SELECT correcta FROM Resposta 
+			WHERE correcta=true			)
+		) > 0 ) );
 	BEGIN
 	END;
 
@@ -22,26 +23,39 @@ INSERT INTO ArtigoPack(idArtigo,idPack) VALUES (NEW.idArtigo2,(SELECT MAX(idPack
 END;
 */
 
-
-
-CREATE TRIGGER DeleteMembro
-AFTER DELETE ON Utilizador
+CREATE TRIGGER DeleteUtilizador
+BEFORE DELETE ON Utilizador
 BEGIN
-DELETE FROM Membro
-	WHERE Utilizador.utilizadorID = Membro.membroID;
+DELETE FROM Membro , Administrador
+	WHERE Utilizador.utilizadorID = Membro.membroID || Utilizador.utilizadorID = Administrador.administradorID;
 END;
-
 
 CREATE TRIGGER DeleteContribuicao
-AFTER DELETE ON Contribuicao
+BEFORE DELETE ON Contribuicao
 BEGIN
-DELETE FROM Comentario
-	WHERE Contribuicao.contribuicaoID = Comentario.comentarioID;
 DELETE FROM Pergunta
 	WHERE Contribuicao.contribuicaoID = Pergunta.perguntaID;
-DELETE FROM Resposta
-	WHERE Contribuicao.contribuicaoID = Resposta.respostaID;
 END;
+
+CREATE TRIGGER DeletePergunta
+BEFORE DELETE ON Pergunta
+BEGIN
+DELETE FROM Comentario
+	WHERE Pergunta.perguntaID = Comentario.contribuicaoID;
+DELETE FROM Resposta
+	WHERE Pergunta.perguntaID = Resposta.perguntaID;
+END;
+
+
+CREATE TRIGGER DeleteResposta
+BEFORE DELETE ON Resposta
+BEGIN
+DELETE FROM Comentario
+	WHERE Resposta.respostaID = Comentario.contribuicaoID;
+END;
+
+
+
 
 
 
