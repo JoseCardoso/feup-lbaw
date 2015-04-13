@@ -56,3 +56,24 @@ INSERT INTO askfeup.PerguntaTag	VALUES (1,2);
 INSERT INTO askfeup.PerguntaTag	VALUES (2,3);
 INSERT INTO askfeup.PerguntaTag	VALUES (3,1);
 INSERT INTO askfeup.PerguntaTag	VALUES (3,3);
+
+INSERT INTO askfeup.tag(tagid, nome)
+	VALUES (1,'D.Beatriz');
+INSERT INTO askfeup.tag(tagid, nome)
+	VALUES (2,'Gomas');
+INSERT INTO askfeup.tag(tagid, nome)
+	VALUES (3,'Horário');
+
+
+INSERT INTO askfeup.categoria(categoriaid,tipo)
+	VALUES (1,'Lazer');
+INSERT INTO askfeup.categoria(categoriaid,tipo)
+	VALUES (2,'Culinária');
+INSERT INTO askfeup.categoria(categoriaid,tipo)
+	VALUES (3,'Emprego');
+
+
+INSERT INTO askfeup.badge(badgeid,nome,descricao)
+	VALUES (1,'First Doubt', 'Ask a Question!');
+INSERT INTO askfeup.badge(badgeid,nome,descricao)
+	VALUES (2,'Wise Crack', 'Give an Answer!');
