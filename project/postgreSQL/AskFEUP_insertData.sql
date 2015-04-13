@@ -28,14 +28,20 @@ INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt
 
 /** Contribuições **/
 INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-15 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-15 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-15 22:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-16 22:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-17 22:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-18 22:32:00', 0, 0, 0, 1);
 
 
-INSERT INTO	askfeup.Contribuicao VALUES (5, '2015-04-15 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-15 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-15 22:32:00', 0, 0, 0, 1);
+INSERT INTO	askfeup.Contribuicao VALUES (5, '2015-04-16 23:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-17 23:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-18 23:32:00', 0, 0, 0, 1);
+
+/** Categorias **/
+INSERT INTO askfeup.Categoria VALUES ();
+
+/** Perguntas **/
+INSERT INTO askfeup.Pergunta VALUES ()
 
 /** BadgeMembro **/
 INSERT INTO askfeup.BadgeMembro	VALUES (1,1);
