@@ -233,14 +233,14 @@ ALTER TABLE askfeup.Voto ADD CONSTRAINT FK_Voto_Contribuicao
 DROP TABLE IF EXISTS askfeup.Visualizacao;
 CREATE TABLE IF NOT EXISTS askfeup.Visualizacao (
 	membroID integer NOT NULL,
-	contribuicaoID integer NOT NULL
+	PerguntaID integer NOT NULL
 );
 
-ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT PK_Visualizacao PRIMARY KEY (membroID, contribuicaoID);
+ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT PK_Visualizacao PRIMARY KEY (membroID, perguntaID);
 
 
 ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Membro 
 	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
 
-ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Contribuicao 
-	FOREIGN KEY (contribuicaoID) REFERENCES askfeup.Contribuicao (contribuicaoID);
+ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Pergunta 
+	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID);
