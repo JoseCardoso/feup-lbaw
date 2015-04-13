@@ -71,10 +71,33 @@ INSERT INTO askfeup.Tag VALUES (2, 'Gomas');
 INSERT INTO askfeup.Tag VALUES (3, 'Horário');
 
 /** PerguntaTag **/
-INSERT INTO askfeup.PerguntaTag	VALUES (1,1);
-INSERT INTO askfeup.PerguntaTag	VALUES (1,2);
-INSERT INTO askfeup.PerguntaTag	VALUES (2,3);
-INSERT INTO askfeup.PerguntaTag	VALUES (3,1);
-INSERT INTO askfeup.PerguntaTag	VALUES (3,3);
+INSERT INTO askfeup.PerguntaTag	VALUES (1, 1);
+INSERT INTO askfeup.PerguntaTag	VALUES (1, 2);
+INSERT INTO askfeup.PerguntaTag	VALUES (2, 3);
+INSERT INTO askfeup.PerguntaTag	VALUES (3, 1);
+INSERT INTO askfeup.PerguntaTag	VALUES (3, 3);
 
+/** Favoritas **/
+INSERT INTO askfeup.Favorita VALUES (1, 1);
+INSERT INTO askfeup.Favorita VALUES (1, 2);
+INSERT INTO askfeup.Favorita VALUES (2, 2);
 
+/** Notificações **/
+INSERT INTO askfeup.Notificacao(1, 1, 1);
+INSERT INTO askfeup.Notificacao(2, 1, 2);
+
+/** Votos **/
+INSERT INTO askfeup.Voto('true', 3, 1);
+INSERT INTO askfeup.Voto('true', 4, 2);
+
+/** Recup+erações de Password **/
+INSERT INTO askfeup.RecuperacaoDePassword VALUES (1, 'umastringdepass', '2015-04-15 22:32:00', 1);
+INSERT INTO askfeup.RecuperacaoDePassword VALUES (2, 'umastringdepass', '2015-04-15 22:32:00', 2);
+
+/** Comemtários **/
+INSERT INTO askfeup.Comentario VALUES (1, '2015-04-15 22:32:00', 'Tens um bom ponto!', 1, 4);
+INSERT INTO askfeup.Comentario VALUES (2, '2015-04-15 22:32:00', 'Tens de melhorar a tua pontuação!', 2, 5);
+
+/** Visualizações **/
+INSERT INTO askfeup.Visualizacao VALUES (3, 1);
+INSERT INTO askfeup.Visualizacao VALUES (4, 2);
