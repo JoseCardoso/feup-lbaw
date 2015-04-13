@@ -71,3 +71,19 @@ INSERT INTO askfeup.badge(badgeid,nome,descricao)
 	VALUES (1,'First Doubt', 'Ask a Question!');
 INSERT INTO askfeup.badge(badgeid,nome,descricao)
 	VALUES (2,'Wise Crack', 'Give an Answer!');
+
+INSERT INTO askfeup.favorita VALUES (1,1);
+INSERT INTO askfeup.favorita VALUES (1,2);
+INSERT INTO askfeup.favorita VALUES (2,2);
+
+INSERT INTO askfeup.notificacao(1,1,1);
+INSERT INTO askfeup.notificacao(2,1,2);
+
+
+INSERT INTO askfeup.voto('true',3,1);
+INSERT INTO askfeup.voto('true',4,2);
+
+INSERT INTO askfeup.recuperacaodepassword VALUES (1,'umastringdepass','2015-04-15 22:32:00',1);
+INSERT INTO askfeup.recuperacaodepassword VALUES (2,'umastringdepass','2015-04-15 22:32:00',2);
+
+
