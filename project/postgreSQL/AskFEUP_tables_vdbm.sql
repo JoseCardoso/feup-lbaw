@@ -1,8 +1,3 @@
-/** AskFEUP **/
-/** Tables **/
-
-/*-------------- Utilizador --------------*/
-
 DROP TABLE IF EXISTS askFEUP.Utilizador;
 CREATE TABLE IF NOT EXISTS askFEUP.Utilizador (
 	utilizadorID serial NOT NULL,
@@ -12,8 +7,6 @@ CREATE TABLE IF NOT EXISTS askFEUP.Utilizador (
 );
 
 ALTER TABLE askFEUP.Utilizador ADD CONSTRAINT PK_Utilizador PRIMARY KEY (utilizadorID);
-
-/*-------------- Administrador --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Administrador;
 CREATE TABLE IF NOT EXISTS askFEUP.Administrador ( 
@@ -25,21 +18,17 @@ ALTER TABLE askFEUP.Administrador ADD CONSTRAINT PK_Administrador PRIMARY KEY (a
 ALTER TABLE askFEUP.Administrador ADD CONSTRAINT FK_Administrador_Utilizador
 	FOREIGN KEY (administradorID) REFERENCES askFEUP.Utilizador (utilizadorID);
 
-/*-------------- Contribuicao --------------*/
-
 DROP TABLE IF EXISTS askFEUP.Contribuicao;
 CREATE TABLE IF NOT EXISTS askFEUP.Contribuicao (
 	contribuicaoID serial NOT NULL,
 	data timestamp DEFAULT current_timestamp,
-	diferençaVotos integer,
+	diferenÃ§aVotos integer,
 	votosNegativos integer,
 	votosPositivos integer,
-	membroID integer NOT NULL,
+	membroID integer NOT NULL
 );
 
 ALTER TABLE askFEUP.Contribuicao ADD CONSTRAINT PK_Contribuicao PRIMARY KEY (contribuicaoID);
-
-/*-------------- Categoria --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Categoria;
 CREATE TABLE IF NOT EXISTS askFEUP.Categoria (
@@ -49,8 +38,6 @@ CREATE TABLE IF NOT EXISTS askFEUP.Categoria (
 );
 
 ALTER TABLE askFEUP.Categoria ADD CONSTRAINT PK_Categoria PRIMARY KEY (categoriaID);
-
-/*-------------- Pergunta --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Pergunta;
 CREATE TABLE IF NOT EXISTS askFEUP.Pergunta ( 
@@ -68,8 +55,6 @@ ALTER TABLE askFEUP.Pergunta ADD CONSTRAINT FK_Pergunta_Categoria
 ALTER TABLE askFEUP.Pergunta ADD CONSTRAINT FK_Pergunta_Contribuicao 
 	FOREIGN KEY (perguntaID) REFERENCES askFEUP.Contribuicao (contribuicaoID);
 
-/*-------------- Tag --------------*/
-
 DROP TABLE IF EXISTS askFEUP.Tag;
 CREATE TABLE IF NOT EXISTS askFEUP.Tag (
 	tagID serial NOT NULL,
@@ -78,8 +63,6 @@ CREATE TABLE IF NOT EXISTS askFEUP.Tag (
 );
 
 ALTER TABLE askFEUP.Tag ADD CONSTRAINT PK_Tag PRIMARY KEY (tagID);
-
-/*-------------- Badge --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Badge;
 CREATE TABLE IF NOT EXISTS askFEUP.Badge (
@@ -91,8 +74,6 @@ CREATE TABLE IF NOT EXISTS askFEUP.Badge (
 
 ALTER TABLE askFEUP.Badge ADD CONSTRAINT PK_Badge PRIMARY KEY (badgeID);
 
-/*-------------- Cidade --------------*/
-
 DROP TABLE IF EXISTS askFEUP.Cidade;
 CREATE TABLE IF NOT EXISTS askFEUP.Cidade (
 	cidadeID serial NOT NULL,
@@ -102,8 +83,6 @@ CREATE TABLE IF NOT EXISTS askFEUP.Cidade (
 );
 
 ALTER TABLE askFEUP.Cidade ADD CONSTRAINT PK_Cidade PRIMARY KEY (cidadeID);
-
-/*-------------- Membro --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Membro;
 CREATE TABLE IF NOT EXISTS askFEUP.Membro (
@@ -127,8 +106,6 @@ ALTER TABLE askFEUP.Membro ADD CONSTRAINT FK_Membro_Cidade
 ALTER TABLE askFEUP.Membro ADD CONSTRAINT FK_Membro_Utilizador 
 	FOREIGN KEY (membroID) REFERENCES askFEUP.Utilizador (utilizadorID);
 
-/*-------------- Comentario --------------*/
-
 DROP TABLE IF EXISTS askFEUP.Comentario;
 CREATE TABLE IF NOT EXISTS Comentario (
 	comentarioID serial NOT NULL,
@@ -146,8 +123,6 @@ ALTER TABLE askFEUP.Comentario ADD CONSTRAINT FK_Comentario_Contribuicao
 ALTER TABLE askFEUP.Comentario ADD CONSTRAINT FK_Comentario_Membro 
 	FOREIGN KEY (membroID) REFERENCES askFEUP.Membro (membroID);
 
-/*-------------- Favorita --------------*/
-
 DROP TABLE IF EXISTS askFEUP.Favorita;
 CREATE TABLE IF NOT EXISTS askFEUP.Favorita (
 	membroID integer NOT NULL,
@@ -161,8 +136,6 @@ ALTER TABLE askFEUP.Favorita ADD CONSTRAINT FK_Favorita_Membro
 
 ALTER TABLE askFEUP.Favorita ADD CONSTRAINT FK_Favorita_Pergunta 
 	FOREIGN KEY (perguntaID) REFERENCES askFEUP.Pergunta (perguntaID);
-
-/*-------------- BadgeMembro --------------*/
 
 DROP TABLE IF EXISTS askFEUP.BadgeMembro;
 CREATE TABLE IF NOT EXISTS askFEUP.BadgeMembro (
@@ -178,23 +151,19 @@ ALTER TABLE askFEUP.BadgeMembro ADD CONSTRAINT Membro
 ALTER TABLE askFEUP.BadgeMembro ADD CONSTRAINT Badge 
 	FOREIGN KEY (badgeID) REFERENCES askFEUP.Badge (badgeID);
 
-/*-------------- PerguntaTag --------------*/
-
 DROP TABLE IF EXISTS askFEUP.PerguntaTag;
-CREATE TABLE IF NOR EXISTS askFEUP.PerguntaTag (
+CREATE TABLE IF NOT EXISTS askFEUP.PerguntaTag (
 	tagID integer NOT NULL,
 	perguntaID integer NOT NULL
 );
 
 ALTER TABLE askFEUP.PerguntaTag ADD CONSTRAINT PK_PerguntaTag PRIMARY KEY (perguntaID, tagID);
 
-ALTER TABLE askFEUP.PerguntaTag ADD CONSTRAINT askFEUP.Tag 
-	FOREIGN KEY (tagID) REFERENCES Tag (tagID);
+ALTER TABLE askFEUP.PerguntaTag ADD CONSTRAINT FK_PerguntaTag_Tag
+	FOREIGN KEY (tagID) REFERENCES askFEUP.Tag (tagID);
 
-ALTER TABLE askFEUP.PerguntaTag ADD CONSTRAINT askFEUP.Pergunta 
+ALTER TABLE askFEUP.PerguntaTag ADD CONSTRAINT FK_PerguntaTag_Pergunta 
 	FOREIGN KEY (perguntaID) REFERENCES askFEUP.Pergunta (perguntaID);
-
-/*-------------- Notificacao --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Notificacao;
 CREATE TABLE IF NOT EXISTS askFEUP.Notificacao (
@@ -211,8 +180,6 @@ ALTER TABLE askFEUP.Notificacao ADD CONSTRAINT FK_Notificacao_Membro
 ALTER TABLE askFEUP.Notificacao ADD CONSTRAINT FK_Notificacao_Contribuicao 
 	FOREIGN KEY (contribuicaoID) REFERENCES askFEUP.Contribuicao (contribuicaoID);
 
-/*-------------- RecuperacaoDePassword --------------*/
-
 DROP TABLE IF EXISTS askFEUP.RecuperacaoDePassword;
 CREATE TABLE IF NOT EXISTS askFEUP.RecuperacaoDePassword (
 	recuperacaoDePasswordID serial NOT NULL,
@@ -226,8 +193,6 @@ ALTER TABLE askFEUP.RecuperacaoDePassword ADD CONSTRAINT PK_RecuperacaoDePasswor
 
 ALTER TABLE PK_RecuperacaoDePassword ADD CONSTRAINT FK_RecuperacaoDePassword_Membro 
 	FOREIGN KEY (membroID) REFERENCES askFEUP.Membro (membroID);
-
-/*-------------- Resposta --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Resposta;
 CREATE TABLE IF NOT EXISTS askFEUP.Resposta (
@@ -245,8 +210,6 @@ ALTER TABLE askFEUP.Resposta ADD CONSTRAINT FK_Resposta_Contribuicao
 ALTER TABLE askFEUP.Resposta ADD CONSTRAINT FK_Resposta_Pergunta 
 	FOREIGN KEY (perguntaID) REFERENCES askFEUP.Pergunta (perguntaID);
 
-/*-------------- Voto --------------*/
-
 DROP TABLE IF EXISTS askFEUP.Voto;
 CREATE TABLE IF NOT EXISTS askFEUP.Voto (
 	positivo boolean,
@@ -262,8 +225,6 @@ ALTER TABLE askFEUP.Voto ADD CONSTRAINT FK_Voto_Membro
 
 ALTER TABLE askFEUP.Voto ADD CONSTRAINT FK_Voto_Contribuicao 
 	FOREIGN KEY (contribuicaoID) REFERENCES askFEUP.Contribuicao (contribuicaoID);
-
-/*-------------- Visualizacao --------------*/
 
 DROP TABLE IF EXISTS askFEUP.Visualizacao;
 CREATE TABLE IF NOT EXISTS askFEUP.Visualizacao (
