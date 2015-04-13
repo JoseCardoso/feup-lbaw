@@ -27,28 +27,48 @@ INSERT INTO askfeup.Membro VALUES ('true', 'José', 'Cardoso', 'ei12027@fe.up.pt
 INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt', 0, '2015-04-14 20:14:00', '2015-04-20 04:15:00', 4, 1);
 
 /** Contribuições **/
-INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-16 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-17 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-18 22:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-16 22:32:00', 0, 0, 0, 4);
+INSERT INTO askfeup.Contribuicao VALUES (5, '2015-04-17 22:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-18 22:32:00', 0, 0, 0, 3);
 
 
-INSERT INTO	askfeup.Contribuicao VALUES (5, '2015-04-16 23:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-17 23:32:00', 0, 0, 0, 1);
+INSERT INTO	askfeup.Contribuicao VALUES (3, '2015-04-16 23:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-17 23:32:00', 0, 0, 0, 1);
 INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-18 23:32:00', 0, 0, 0, 1);
 
 /** Categorias **/
-INSERT INTO askfeup.Categoria VALUES ();
+INSERT INTO askfeup.Categoria VALUES (1, 'Lazer');
+INSERT INTO askfeup.Categoria VALUES (2, 'Desporto');
+INSERT INTO askfeup.Categoria VALUES (3, 'Emprego');
+INSERT INTO askfeup.Categoria VALUES (4, 'Comida');
 
 /** Perguntas **/
-INSERT INTO askfeup.Pergunta VALUES ()
+INSERT INTO askfeup.Pergunta VALUES (1, 'A D. Beatriz vende gomas?', '', 4);
+INSERT INTO askfeup.Pergunta VALUES (3, 'Sabem se podemos alugar o pavilhão Luís de Falcão?', 'Lá não tem informações.', 2);
+
+/** Respostas **/
+INSERT INTO askfeup.Resposta VALUES (2, 'false', 'Nao vende.', 1);
+INSERT INTO askfeup.Resposta VALUES (4, 'false', 'Nao, é proibido.', 3);
+INSERT INTO askfeup.Resposta VALUES (5, 'true', 'LOL. Vende sim.', 1);
+INSERT INTO askfeup.Resposta VALUES (6, 'true', 'Podes sim, mas tens de marcar.', 3);
+INSERT INTO askfeup.Resposta VALUES (7, 'false', 'Olha que acho que não, só no Campus.', 1);
+
+/** Badges **/
+INSERT INTO askfeup.Badge VALUES (1, 'First Doubt', 'Ask a Question!');
+INSERT INTO askfeup.Badge VALUES (2, 'Wise Crack', 'Give an Answer!');
 
 /** BadgeMembro **/
-INSERT INTO askfeup.BadgeMembro	VALUES (1,1);
-INSERT INTO askfeup.BadgeMembro	VALUES (2,1);
-INSERT INTO askfeup.BadgeMembro	VALUES (5,1);
-INSERT INTO askfeup.BadgeMembro	VALUES (1,2);
-INSERT INTO askfeup.BadgeMembro	VALUES (3,2);
+INSERT INTO askfeup.BadgeMembro	VALUES (1, 1);
+INSERT INTO askfeup.BadgeMembro	VALUES (2, 1);
+INSERT INTO askfeup.BadgeMembro	VALUES (5, 1);
+INSERT INTO askfeup.BadgeMembro	VALUES (1, 2);
+INSERT INTO askfeup.BadgeMembro	VALUES (3, 2);
+
+/** Tags **/
+INSERT INTO askfeup.Tag VALUES (1, 'D.Beatriz');
+INSERT INTO askfeup.Tag VALUES (2, 'Gomas');
+INSERT INTO askfeup.Tag VALUES (3, 'Horário');
 
 /** PerguntaTag **/
 INSERT INTO askfeup.PerguntaTag	VALUES (1,1);
@@ -57,23 +77,4 @@ INSERT INTO askfeup.PerguntaTag	VALUES (2,3);
 INSERT INTO askfeup.PerguntaTag	VALUES (3,1);
 INSERT INTO askfeup.PerguntaTag	VALUES (3,3);
 
-INSERT INTO askfeup.tag(tagid, nome)
-	VALUES (1,'D.Beatriz');
-INSERT INTO askfeup.tag(tagid, nome)
-	VALUES (2,'Gomas');
-INSERT INTO askfeup.tag(tagid, nome)
-	VALUES (3,'Horário');
 
-
-INSERT INTO askfeup.categoria(categoriaid,tipo)
-	VALUES (1,'Lazer');
-INSERT INTO askfeup.categoria(categoriaid,tipo)
-	VALUES (2,'Culinária');
-INSERT INTO askfeup.categoria(categoriaid,tipo)
-	VALUES (3,'Emprego');
-
-
-INSERT INTO askfeup.badge(badgeid,nome,descricao)
-	VALUES (1,'First Doubt', 'Ask a Question!');
-INSERT INTO askfeup.badge(badgeid,nome,descricao)
-	VALUES (2,'Wise Crack', 'Give an Answer!');
