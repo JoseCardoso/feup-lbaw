@@ -92,3 +92,8 @@ INSERT INTO askfeup.voto('true',4,2);
 INSERT INTO askfeup.recuperacaodepassword VALUES (1,'umastringdepass','2015-04-15 22:32:00',1);
 INSERT INTO askfeup.recuperacaodepassword VALUES (2,'umastringdepass','2015-04-15 22:32:00',2);
 
+INSERT INTO askfeup.comentario VALUES (1, '2015-04-15 22:32:00', 'Tens um bom ponto!', 1, 4);
+INSERT INTO askfeup.comentario VALUES (2, '2015-04-15 22:32:00', 'Tens de melhorar a tua pontuação!', 2, 5);
+
+INSERT INTO askfeup.visualizacao VALUES (3, 1 );
+INSERT INTO askfeup.visualizacao VALUES (4,2);
