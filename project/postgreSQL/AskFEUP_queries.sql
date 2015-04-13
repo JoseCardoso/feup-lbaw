@@ -5,20 +5,16 @@
 .width 8 30 **/
 
 /** 1. Lista de perguntas ordenadas por pontuação (Testado) **/
- /**not working**/
+
 create view askfeup.perguntasporpontuacao as
 select "askfeup"."pergunta"."perguntaid" as "id",
  		"askfeup"."pergunta".texto as "conteudo",
  		"askfeup"."membro"."primeironome" as "membro",
- 		"askfeup"."contribuicao"."diferencavotos" as "pontuacao";
-
- /**not working**/
-/*perguntas por pontos do utilizador*/
-create view askfeup.perguntasporpontosdoutilizador as 		
-from "askfeup"."pergunta", "askfeup"."contribuicao", "askfeup"."membro"
-where "askfeup"."pergunta"."perguntaid" = "askfeup"."contribuicao"."contribuicaoid"
-and "askfeup"."contribuicao"."membroid" = "askfeup"."membro"."membroid"
-order by "askfeup"."contribuicao"."diferencavotos" desc;
+ 		"askfeup"."contribuicao"."diferencavotos" as "pontuacao"		
+	from "askfeup"."pergunta", "askfeup"."contribuicao", "askfeup"."membro"
+	where "askfeup"."pergunta"."perguntaid" = "askfeup"."contribuicao"."contribuicaoid"
+	and "askfeup"."contribuicao"."membroid" = "askfeup"."membro"."membroid"
+	order by "askfeup"."contribuicao"."diferencavotos" desc;
 
  /** 2. Lista de perguntas por utilizador (em que tenha actividade e não só as próprias) **/
  /**not working**/
@@ -26,11 +22,11 @@ create view askfeup.perguntasporutilizador as
 select "askfeup"."utilizador"."username" as "user",
            "askfeup"."pergunta"."perguntaid" as "id",
  		"askfeup"."pergunta"."texto" as "conteudo"
- 	from "askfeup"."pergunta", "askfeup"."membro", "askfeup"."comentario", "askfeup"."resposta", "askfeup"."contribuicao"
+ 	from "askfeup"."utilizador", "askfeup"."pergunta", "askfeup"."membro", "askfeup"."comentario", "askfeup"."resposta", "askfeup"."contribuicao"
  	where "askfeup"."resposta"."perguntaid" = "askfeup"."pergunta"."perguntaid"
- 	and "askfeup"."membro"."membroid" = "askfeup"."contribuicao"."membroid"
+ 	and "askfeup"."utilizador"."utilizadorid" = "askfeup"."contribuicao"."membroid"
  	and "askfeup"."pergunta"."perguntaid" = "askfeup"."contribuicao"."contribuicaoid"
- 	group by "askfeup"."pergunta"."perguntaid";
+ 	order by "user";
 
 
 /** 8. Lista de respostas a uma pergunta **/
