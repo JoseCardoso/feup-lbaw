@@ -1,6 +1,9 @@
 /** AskFEUP **/
 /** Tables **/
 
+DROP SCHEMA IF EXISTS askfeup;
+CREATE SCHEMA askfeup;
+
 /*-------------- Utilizador --------------*/
 
 DROP TABLE IF EXISTS askfeup.Utilizador;

@@ -1,5 +1,4 @@
 DROP SCHEMA IF EXISTS askfeup;
-
 CREATE SCHEMA askfeup;
 
 DROP TABLE IF EXISTS askfeup.Utilizador;
@@ -196,7 +195,7 @@ CREATE TABLE IF NOT EXISTS askfeup.RecuperacaoDePassword (
 
 ALTER TABLE askfeup.RecuperacaoDePassword ADD CONSTRAINT PK_RecuperacaoDePassword PRIMARY KEY (recuperacaoDePasswordID);
 
-ALTER TABLE PK_RecuperacaoDePassword ADD CONSTRAINT FK_RecuperacaoDePassword_Membro 
+ALTER TABLE askfeup.RecuperacaoDePassword ADD CONSTRAINT FK_RecuperacaoDePassword_Membro 
 	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
 
 DROP TABLE IF EXISTS askfeup.Resposta;
