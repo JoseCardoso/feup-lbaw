@@ -17,16 +17,15 @@ select "askfeup"."pergunta"."perguntaid" as "id",
 	order by "askfeup"."contribuicao"."diferencavotos" desc;
 
  /** 2. Lista de perguntas por utilizador (em que tenha actividade e não só as próprias) **/
- /**not working**/
 create view askfeup.perguntasporutilizador as
 select "askfeup"."utilizador"."username" as "user",
-           "askfeup"."pergunta"."perguntaid" as "id",
+        "askfeup"."pergunta"."perguntaid" as "id",
  		"askfeup"."pergunta"."texto" as "conteudo"
  	from "askfeup"."utilizador", "askfeup"."pergunta", "askfeup"."membro", "askfeup"."comentario", "askfeup"."resposta", "askfeup"."contribuicao"
  	where "askfeup"."resposta"."perguntaid" = "askfeup"."pergunta"."perguntaid"
  	and "askfeup"."utilizador"."utilizadorid" = "askfeup"."contribuicao"."membroid"
  	and "askfeup"."pergunta"."perguntaid" = "askfeup"."contribuicao"."contribuicaoid"
- 	order by "user";
+ 	order by "askfeup"."utilizador"."username";
 
 
 /** 8. Lista de respostas a uma pergunta **/

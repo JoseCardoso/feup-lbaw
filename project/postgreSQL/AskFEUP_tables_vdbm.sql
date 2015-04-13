@@ -61,7 +61,8 @@ CREATE TABLE IF NOT EXISTS askfeup.Contribuicao (
 	diferencaVotos integer,
 	votosNegativos integer,
 	votosPositivos integer,
-	membroID integer NOT NULL
+	membroID integer NOT NULL,
+	CONSTRAINT CK_grater_than CHECK (votosPositivos >= 0 AND votosNegativos >= 0)
 );
 
 ALTER TABLE askfeup.Contribuicao ADD CONSTRAINT PK_Contribuicao PRIMARY KEY (contribuicaoID);
