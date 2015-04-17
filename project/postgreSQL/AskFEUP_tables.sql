@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS askfeup.Administrador (
 ALTER TABLE askfeup.Administrador ADD CONSTRAINT PK_Administrador PRIMARY KEY (administradorID);
 
 ALTER TABLE askfeup.Administrador ADD CONSTRAINT FK_Administrador_Utilizador
-	FOREIGN KEY (administradorID) REFERENCES askfeup.Utilizador (utilizadorID);
+	FOREIGN KEY (administradorID) REFERENCES askfeup.Utilizador (utilizadorID) ON DELETE CASCADE;
 
 /*-------------- Cidade --------------*/
 
@@ -62,7 +62,7 @@ ALTER TABLE askfeup.Membro ADD CONSTRAINT FK_Membro_Cidade
 	FOREIGN KEY (cidadeID) REFERENCES askfeup.Cidade (cidadeID);
 
 ALTER TABLE askfeup.Membro ADD CONSTRAINT FK_Membro_Utilizador 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Utilizador (utilizadorID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Utilizador (utilizadorID) ON DELETE CASCADE;
 
 /*-------------- Contribuicao --------------*/
 
@@ -105,7 +105,7 @@ ALTER TABLE askfeup.Pergunta ADD CONSTRAINT FK_Pergunta_Categoria
 	FOREIGN KEY (categoriaID) REFERENCES askfeup.Categoria (categoriaID);
 
 ALTER TABLE askfeup.Pergunta ADD CONSTRAINT FK_Pergunta_Contribuicao 
-	FOREIGN KEY (perguntaID) REFERENCES askfeup.Contribuicao (contribuicaoID);
+	FOREIGN KEY (perguntaID) REFERENCES askfeup.Contribuicao (contribuicaoID) ON DELETE CASCADE;
 
 /*-------------- Tag --------------*/
 
@@ -160,10 +160,10 @@ CREATE TABLE IF NOT EXISTS askfeup.Favorita (
 ALTER TABLE askfeup.Favorita ADD CONSTRAINT PK_Favorita PRIMARY KEY (membroID, perguntaID);
 
 ALTER TABLE askfeup.Favorita ADD CONSTRAINT FK_Favorita_Membro 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID) ON DELETE CASCADE;
 
 ALTER TABLE askfeup.Favorita ADD CONSTRAINT FK_Favorita_Pergunta 
-	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID);
+	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID) ON DELETE CASCADE;
 
 /*-------------- BadgeMembro --------------*/
 
@@ -176,10 +176,10 @@ CREATE TABLE IF NOT EXISTS askfeup.BadgeMembro (
 ALTER TABLE askfeup.BadgeMembro ADD CONSTRAINT PK_BadgeMembro PRIMARY KEY (membroID, badgeID);
 
 ALTER TABLE askfeup.BadgeMembro ADD CONSTRAINT Membro 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID) ON DELETE CASCADE;
 
 ALTER TABLE askfeup.BadgeMembro ADD CONSTRAINT Badge 
-	FOREIGN KEY (badgeID) REFERENCES askfeup.Badge (badgeID);
+	FOREIGN KEY (badgeID) REFERENCES askfeup.Badge (badgeID) ON DELETE CASCADE;
 
 /*-------------- PerguntaTag --------------*/
 
@@ -192,10 +192,10 @@ CREATE TABLE IF NOT EXISTS askfeup.PerguntaTag (
 ALTER TABLE askfeup.PerguntaTag ADD CONSTRAINT PK_PerguntaTag PRIMARY KEY (perguntaID, tagID);
 
 ALTER TABLE askfeup.PerguntaTag ADD CONSTRAINT FK_PerguntaTag_Tag
-	FOREIGN KEY (tagID) REFERENCES askfeup.Tag (tagID);
+	FOREIGN KEY (tagID) REFERENCES askfeup.Tag (tagID) ON DELETE CASCADE;
 
 ALTER TABLE askfeup.PerguntaTag ADD CONSTRAINT FK_PerguntaTag_Pergunta 
-	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID);
+	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID) ON DELETE CASCADE;
 
 /*-------------- Notificacao --------------*/
 
@@ -209,10 +209,10 @@ CREATE TABLE IF NOT EXISTS askfeup.Notificacao (
 ALTER TABLE askfeup.Notificacao ADD CONSTRAINT PK_Notificacao PRIMARY KEY (notificacaoID);
 
 ALTER TABLE askfeup.Notificacao ADD CONSTRAINT FK_Notificacao_Membro 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID) ON DELETE CASCADE;
 
 ALTER TABLE askfeup.Notificacao ADD CONSTRAINT FK_Notificacao_Contribuicao 
-	FOREIGN KEY (contribuicaoID) REFERENCES askfeup.Contribuicao (contribuicaoID);
+	FOREIGN KEY (contribuicaoID) REFERENCES askfeup.Contribuicao (contribuicaoID) ON DELETE CASCADE;
 
 /*-------------- RecuperacaoDePassword --------------*/
 
@@ -228,7 +228,7 @@ CREATE TABLE IF NOT EXISTS askfeup.RecuperacaoDePassword (
 ALTER TABLE askfeup.RecuperacaoDePassword ADD CONSTRAINT PK_RecuperacaoDePassword PRIMARY KEY (recuperacaoDePasswordID);
 
 ALTER TABLE askfeup.RecuperacaoDePassword ADD CONSTRAINT FK_RecuperacaoDePassword_Membro 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID) ON DELETE CASCADE;
 
 /*-------------- Resposta --------------*/
 
@@ -243,10 +243,10 @@ CREATE TABLE IF NOT EXISTS askfeup.Resposta (
 ALTER TABLE askfeup.Resposta ADD CONSTRAINT PK_Resposta PRIMARY KEY (respostaID);
 
 ALTER TABLE askfeup.Resposta ADD CONSTRAINT FK_Resposta_Contribuicao 
-	FOREIGN KEY (respostaID) REFERENCES askfeup.Contribuicao (contribuicaoID);
+	FOREIGN KEY (respostaID) REFERENCES askfeup.Contribuicao (contribuicaoID) ON DELETE CASCADE;
 
 ALTER TABLE askfeup.Resposta ADD CONSTRAINT FK_Resposta_Pergunta 
-	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID);
+	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID) ON DELETE CASCADE;
 
 /*-------------- Voto --------------*/
 
@@ -261,10 +261,10 @@ ALTER TABLE askfeup.Voto ADD CONSTRAINT PK_Voto PRIMARY KEY (membroID, contribui
 
 
 ALTER TABLE askfeup.Voto ADD CONSTRAINT FK_Voto_Membro 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID) ON DELETE CASCADE;
 
 ALTER TABLE askfeup.Voto ADD CONSTRAINT FK_Voto_Contribuicao 
-	FOREIGN KEY (contribuicaoID) REFERENCES askfeup.Contribuicao (contribuicaoID);
+	FOREIGN KEY (contribuicaoID) REFERENCES askfeup.Contribuicao (contribuicaoID) ON DELETE CASCADE;
 
 /*-------------- Visualizacao --------------*/
 
@@ -281,4 +281,4 @@ ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Membro
 	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
 
 ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Pergunta 
-	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID);
+	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID) ON DELETE CASCADE;
