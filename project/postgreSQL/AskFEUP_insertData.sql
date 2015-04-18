@@ -2,61 +2,182 @@
 /** Insert Data **/
 
 /** Utilizadores **/
-
+/* (id, username, password) */
 INSERT INTO askfeup.Utilizador VALUES (1, 'botas', 'lbaw');
 INSERT INTO askfeup.Utilizador VALUES (2, 'ferrolho', 'lbaw');
 INSERT INTO askfeup.Utilizador VALUES (3, 'betao', 'lbaw');
 INSERT INTO askfeup.Utilizador VALUES (4, 'zoid', 'lbaw');
 INSERT INTO askfeup.Utilizador VALUES (5, 'olamundo', 'admin1234');
 INSERT INTO askfeup.Utilizador VALUES (6, 'lbaw1424', 'olamundo');
+INSERT INTO askfeup.Utilizador VALUES (7, 'okapa', 'hashtag');
+INSERT INTO askfeup.Utilizador VALUES (8, 'blackwoman', 'codefever');
+INSERT INTO askfeup.Utilizador VALUES (9, 'joker', 'batmanisdead');
+INSERT INTO askfeup.Utilizador VALUES (10, 'vanillagirl', 'loveicecream');
 
 /** Administradores **/
+/* (idUtilizador) */
 INSERT INTO askfeup.Administrador VALUES (5);
 INSERT INTO askfeup.Administrador VALUES (6);
 
 /** Cidades **/
-INSERT INTO askfeup.Cidade VALUES (1, 'Porto', 4200);
-INSERT INTO askfeup.Cidade VALUES (2, 'Barcelos', 4750);
-INSERT INTO askfeup.Cidade VALUES (3, 'Braga', 4705);
-INSERT INTO askfeup.Cidade VALUES (4, 'Viseu', 3500);
+/* (id, nome, codigo-postal) */
+INSERT INTO askfeup.Cidade VALUES (1, 'Lisboa', 1000);
+INSERT INTO askfeup.Cidade VALUES (2, 'Lisboa', 1050);
+INSERT INTO askfeup.Cidade VALUES (3, 'Lisboa', 1070);
+INSERT INTO askfeup.Cidade VALUES (4, 'Lisboa', 1100);
+INSERT INTO askfeup.Cidade VALUES (5, 'Lisboa', 1150);
+INSERT INTO askfeup.Cidade VALUES (6, 'Lisboa', 1170);
+INSERT INTO askfeup.Cidade VALUES (7, 'Lisboa', 1200);
+INSERT INTO askfeup.Cidade VALUES (8, 'Lisboa', 1250);
+INSERT INTO askfeup.Cidade VALUES (9, 'Lisboa', 1300);
+INSERT INTO askfeup.Cidade VALUES (10, 'Lisboa', 1400);
+INSERT INTO askfeup.Cidade VALUES (11, 'Lisboa', 1500);
+INSERT INTO askfeup.Cidade VALUES (12, 'Lisboa', 1600);
+INSERT INTO askfeup.Cidade VALUES (13, 'Lisboa', 1700);
+INSERT INTO askfeup.Cidade VALUES (14, 'Lisboa', 1750);
+INSERT INTO askfeup.Cidade VALUES (15, 'Lisboa', 1800);
+INSERT INTO askfeup.Cidade VALUES (16, 'Lisboa', 1900);
+INSERT INTO askfeup.Cidade VALUES (17, 'Lisboa', 1990);
+INSERT INTO askfeup.Cidade VALUES (18, 'Porto', 4000);
+INSERT INTO askfeup.Cidade VALUES (19, 'Porto', 4050);
+INSERT INTO askfeup.Cidade VALUES (20, 'Porto', 4100);
+INSERT INTO askfeup.Cidade VALUES (21, 'Porto', 4150);
+INSERT INTO askfeup.Cidade VALUES (22, 'Porto', 4200);
+INSERT INTO askfeup.Cidade VALUES (23, 'Porto', 4250);
+INSERT INTO askfeup.Cidade VALUES (24, 'Porto', 4300);
+INSERT INTO askfeup.Cidade VALUES (25, 'Porto', 4350);
+INSERT INTO askfeup.Cidade VALUES (26, 'Aveiro', 3800);
+INSERT INTO askfeup.Cidade VALUES (27, 'Aveiro', 3810);
+INSERT INTO askfeup.Cidade VALUES (28, 'Beja', 7800);
+INSERT INTO askfeup.Cidade VALUES (29, 'Braga', 4700);
+INSERT INTO askfeup.Cidade VALUES (30, 'Braga', 4705);
+INSERT INTO askfeup.Cidade VALUES (31, 'Braga', 4710);
+INSERT INTO askfeup.Cidade VALUES (32, 'Braga', 4715);
+INSERT INTO askfeup.Cidade VALUES (33, 'Bragança', 5300);
+INSERT INTO askfeup.Cidade VALUES (34, 'Castelo Branco', 6000);
+INSERT INTO askfeup.Cidade VALUES (35, 'Coimbra', 3000);
+INSERT INTO askfeup.Cidade VALUES (36, 'Coimbra', 3020);
+INSERT INTO askfeup.Cidade VALUES (37, 'Coimbra', 3025);
+INSERT INTO askfeup.Cidade VALUES (38, 'Coimbra', 3030);
+INSERT INTO askfeup.Cidade VALUES (39, 'Coimbra', 3040);
+INSERT INTO askfeup.Cidade VALUES (40, 'Coimbra', 3045);
+INSERT INTO askfeup.Cidade VALUES (41, 'Évora', 7000);
+INSERT INTO askfeup.Cidade VALUES (42, 'Évora', 7005);
+INSERT INTO askfeup.Cidade VALUES (43, 'Faro', 8000);
+INSERT INTO askfeup.Cidade VALUES (44, 'Faro', 8805);
+INSERT INTO askfeup.Cidade VALUES (45, 'Funchal', 9000);
+INSERT INTO askfeup.Cidade VALUES (46, 'Funchal', 9020);
+INSERT INTO askfeup.Cidade VALUES (47, 'Funchal', 9030);
+INSERT INTO askfeup.Cidade VALUES (48, 'Funchal', 9050);
+INSERT INTO askfeup.Cidade VALUES (48, 'Funchal', 9050);
+INSERT INTO askfeup.Cidade VALUES (49, 'Guarda', 6300);
+INSERT INTO askfeup.Cidade VALUES (50, 'Leiria', 2400);
+INSERT INTO askfeup.Cidade VALUES (51, 'Leiria', 2405);
+INSERT INTO askfeup.Cidade VALUES (52, 'Leiria', 2410);
+INSERT INTO askfeup.Cidade VALUES (53, 'Leiria', 2415);
+INSERT INTO askfeup.Cidade VALUES (54, 'Leiria', 2420);
+INSERT INTO askfeup.Cidade VALUES (55, 'Ponte Delgada', 9500);
+INSERT INTO askfeup.Cidade VALUES (56, 'Portalegre', 7300);
+INSERT INTO askfeup.Cidade VALUES (57, 'Santarém', 2000);
+INSERT INTO askfeup.Cidade VALUES (58, 'Santarém', 2005);
+INSERT INTO askfeup.Cidade VALUES (59, 'Setúbal', 2900);
+INSERT INTO askfeup.Cidade VALUES (60, 'Setúbal', 2910);
+INSERT INTO askfeup.Cidade VALUES (61, 'Viana do Castelo', 4900);
+INSERT INTO askfeup.Cidade VALUES (62, 'Vila Real', 5000);
+INSERT INTO askfeup.Cidade VALUES (63, 'Viseu', 3500);
+INSERT INTO askfeup.Cidade VALUES (64, 'Viseu', 3505);
+INSERT INTO askfeup.Cidade VALUES (65, 'Viseu', 3510);
+INSERT INTO askfeup.Cidade VALUES (66, 'Viseu', 3515);
+INSERT INTO askfeup.Cidade VALUES (67, 'Porto Santo', 9400);
 
 /** Membros **/
-INSERT INTO askfeup.Membro VALUES ('true', 'João', 'Pereira', 'ei12023@fe.up.pt', 0, '2015-04-13 04:14:00', '2015-04-13 04:15:00', 1, 2);
-INSERT INTO askfeup.Membro VALUES ('true', 'Henrique', 'Ferrolho', 'ei12079@fe.up.pt', 0, '2015-04-14 12:05:00', '2015-04-16 00:01:00', 2, 4);
-INSERT INTO askfeup.Membro VALUES ('true', 'José', 'Cardoso', 'ei12027@fe.up.pt', 0, '2015-04-14 15:14:00', '2015-04-17 04:18:00', 3, 1);
-INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt', 0, '2015-04-14 20:14:00', '2015-04-20 04:15:00', 4, 1);
-
-/** Contribuições **/
-INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 0, 0, 0, 2);
-INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-16 22:32:00', 0, 0, 0, 4);
-INSERT INTO askfeup.Contribuicao VALUES (5, '2015-04-17 22:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-18 22:32:00', 0, 0, 0, 3);
-
-
-INSERT INTO	askfeup.Contribuicao VALUES (3, '2015-04-16 23:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-17 23:32:00', 0, 0, 0, 1);
-INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-18 23:32:00', 0, 0, 0, 1);
+/* (activo, primeiroNome, ultimoNome, email, pontos, registo, ultimoLogin, utilizadorID, cidadeID) */
+INSERT INTO askfeup.Membro VALUES ('true', 'João', 'Pereira', 'ei12023@fe.up.pt', 0, '2015-04-13 04:14:00', '2015-04-18 04:15:00', 1, 2);
+INSERT INTO askfeup.Membro VALUES ('true', 'Henrique', 'Ferrolho', 'ei12079@fe.up.pt', 0, '2015-04-14 12:05:00', '2015-04-18 00:01:00', 2, 4);
+INSERT INTO askfeup.Membro VALUES ('true', 'José', 'Cardoso', 'ei12027@fe.up.pt', 0, '2015-04-14 15:14:00', '2015-04-18 04:18:00', 3, 1);
+INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt', 0, '2015-04-14 20:14:00', '2015-04-08 04:15:00', 4, 1);
+INSERT INTO askfeup.Membro VALUES ('true', 'Tiago', 'Negro', 'okapaman@gmail.com', 0, '2015-04-16 05:00:21', '2015-04-21 18:33:12', 7, 67);
+INSERT INTO askfeup.Membro VALUES ('true', 'Gisela', 'Tosta', 'manteigascompao@hotmail.com', 0, '2015-04-17 15:02:03', '2015-04-22 00:00:57', 8, 61);
+INSERT INTO askfeup.Membro VALUES ('true', 'Jorge', 'Castro', 'jorgecastro4@sapo.pt', 0, '2015-04-18 12:13:43', '2015-04-18 12:13:43', 9, 55);
+INSERT INTO askfeup.Membro VALUES ('true', 'Alice', 'Correia', 'lice_correia94@gmail.com', 0, '2015-04-18 14:13:43', '2015-04-18 19:13:43', 10, 38);
 
 /** Categorias **/
+/* (id, tipo) */
 INSERT INTO askfeup.Categoria VALUES (1, 'Lazer');
 INSERT INTO askfeup.Categoria VALUES (2, 'Desporto');
 INSERT INTO askfeup.Categoria VALUES (3, 'Emprego');
 INSERT INTO askfeup.Categoria VALUES (4, 'Comida');
+INSERT INTO askfeup.Categoria VALUES (5, 'Informática');
+INSERT INTO askfeup.Categoria VALUES (6, 'Programação');
+INSERT INTO askfeup.Categoria VALUES (7, 'Metalúrgica');
+INSERT INTO askfeup.Categoria VALUES (8, 'Cívil');
+INSERT INTO askfeup.Categoria VALUES (9, 'Eletro');
+INSERT INTO askfeup.Categoria VALUES (10, 'Associação de Estudantes');
+INSERT INTO askfeup.Categoria VALUES (11, 'Mestrados');
+INSERT INTO askfeup.Categoria VALUES (12, 'Doutoramentos');
+INSERT INTO askfeup.Categoria VALUES (13, 'Gestão');
+INSERT INTO askfeup.Categoria VALUES (14, 'Indústra');
+INSERT INTO askfeup.Categoria VALUES (15, 'Diversão Nocturna');
+
+/** Contribuições **/
+/* (id, data, diferancaVotos, votosNegativos, votosPositivos, membroID) */
+INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 2, 1, 3, 1);
+INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-15 22:33:40', -3, 3, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-15 22:34:10', 0, 1, 1, 3);
+
+INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-16 23:34:30', 6, 2, 8, 4);
+INSERT INTO askfeup.Contribuicao VALUES (5, '2015-04-16 23:39:03', -1, 3, 2, 1);
+INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-16 23:45:12', 5, 0, 5, 3);
+INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-16 23:50:46', 0, 1, 1, 2);
+
+INSERT INTO askfeup.Contribuicao VALUES (8, '2015-04-16 23:51:00', 8, 0, 8, 10);
+INSERT INTO askfeup.Contribuicao VALUES (9, '2015-04-16 23:59:12', 4, 0, 4, 9);
+INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 7, 1, 8, 2);
 
 /** Perguntas **/
-INSERT INTO askfeup.Pergunta VALUES (1, 'A D. Beatriz vende gomas?', '', 4);
-INSERT INTO askfeup.Pergunta VALUES (3, 'Sabem se podemos alugar o pavilhão Luís de Falcão?', 'Lá não tem informações.', 2);
+/* (contribuicaoID, texto, descrição, categoriaID) */
+INSERT INTO askfeup.Pergunta VALUES (1, 'A Dª. Beatriz vende gomas?', 'Apetecia-me bastante comer gomas mas os únicos sítios que sei estão longe.', 4);
+
+INSERT INTO askfeup.Pergunta VALUES (4, 'O Pavilhão Luís de Falcão dá para reservar?', 'Tenho um grupo de amigos e queriamos jogar à bola.', 2);
+
+INSERT INTO askfeup.Pergunta VALUES (8, 'Quando é o próximo FEUPCaffe?', 'Ouvi dizer que vai um Dj famoso :D', 15);
+
 
 /** Respostas **/
+/* (contribuicaoID, correcta, descricao, perguntaID) */
 INSERT INTO askfeup.Resposta VALUES (2, 'false', 'Nao vende.', 1);
-INSERT INTO askfeup.Resposta VALUES (4, 'false', 'Nao, é proibido.', 3);
-INSERT INTO askfeup.Resposta VALUES (5, 'true', 'LOL. Vende sim.', 1);
-INSERT INTO askfeup.Resposta VALUES (6, 'true', 'Podes sim, mas tens de marcar.', 3);
-INSERT INTO askfeup.Resposta VALUES (7, 'false', 'Olha que acho que não, só no Campus.', 1);
+INSERT INTO askfeup.Resposta VALUES (3, 'true', 'LOL. Vende sim. Abre das 9:00h ao 12:00h e das 13:30h às 19:00h', 1);
+
+INSERT INTO askfeup.Resposta VALUES (5, 'false', 'Acho que não dá para reservar @zoid', 4);
+INSERT INTO askfeup.Resposta VALUES (6, 'true', 'Dá para reservares mas tens de pagar. Aqui tens o link http://sigarra.up.pt/cdup/pt/web_base.gera_pagina?P_pagina=1026026', 4);
+INSERT INTO askfeup.Resposta VALUES (7, 'false', '@zoid precisas de pessoas para jogar? Tou a precisar de fazer desporto, tou gordo.', 4);
+
+INSERT INTO askfeup.Resposta VALUES (9, 'false', 'Acho que não va haver mais este ano.', 'ta a chegar a queima e nao devem fazer mais para se organizarem', 8);
+INSERT INTO askfeup.Resposta VALUES (10, 'true', '@vanillagirl é esta Quinta-feira que vem, dia 23, o Mega FEUPCaffe, vai ser a despedida', 8);
+
+/** Comentários **/
+/* (id, data, decricao, contribuicaoID, membroID) */
+INSERT INTO askfeup.Comentario VALUES (1, '2015-04-15 22:35:10', 'o @ferrolho tem razão, mas acho que é às 19:30h que fecha.', 3, 4);
+
+INSERT INTO askfeup.Comentario VALUES (2, '2015-04-16 23:44:33', '@botas tem de dar, todos os pavilhoes permitem isso.', 5, 3);
+INSERT INTO askfeup.Comentario VALUES (3, '2015-04-16 23:50:10', 'obrigado @betao já reservei :)', 6, 4);
+INSERT INTO askfeup.Comentario VALUES (4, '2015-04-16 23:59:50', '@ferrolho podes vir :)', 7, 4);
+
+INSERT INTO askfeup.Comentario VALUES (5, '2015-04-17 00:05:01', '@joker estas errado, ha sempre um para a despedida', 9, 2);
+INSERT INTO askfeup.Comentario VALUES (6, '2015-04-17 00:11:41', '@ferrolho obrigado pela informaçao. É que eu este ano ainda não pude ir nenhuma vez e ia ficar triste se não houvesse mais :(', 10, 10);
+INSERT INTO askfeup.Comentario VALUES (7, '2015-04-17 00:12:12', '@vanillagirl de nada sempre as ordens. Diverte te na quinta :D', 10, 2);
+INSERT INTO askfeup.Comentario VALUES (8, '2015-04-17 01:03:45', 'vamos partir tudo !!! :D FEUPCaffe <3', 10, 7);
+
+
 
 /** Badges **/
-INSERT INTO askfeup.Badge VALUES (1, 'First Doubt', 'Ask a Question!');
-INSERT INTO askfeup.Badge VALUES (2, 'Wise Crack', 'Give an Answer!');
+INSERT INTO askfeup.Badge VALUES (1, 'Primeira Dúvida', 'Faz uma pergunta!');
+INSERT INTO askfeup.Badge VALUES (2, 'Curioso', 'Fizeste 10 perguntas!');
+INSERT INTO askfeup.Badge VALUES (3, 'Questionador', 'Fizeste 50 perguntas!');
+INSERT INTO askfeup.Badge VALUES (4, 'Rei das Perguntas', 'Fizeste 100 perguntas!');
+INSERT INTO askfeup.Badge VALUES (5, 'Primeira Dúvida', 'Faz uma pergunta!');
+INSERT INTO askfeup.Badge VALUES (6, 'Primeira Dúvida', 'Faz uma pergunta!');
+INSERT INTO askfeup.Badge VALUES (2, 'Boa Resposta', 'Deste uma resposta correcta!');
 
 /** BadgeMembro **/
 INSERT INTO askfeup.BadgeMembro	VALUES (1, 1);
@@ -93,10 +214,6 @@ INSERT INTO askfeup.Voto VALUES ('true', 4, 2);
 /** Recup+erações de Password **/
 INSERT INTO askfeup.RecuperacaoDePassword VALUES (1, 'umastringdepass', '2015-04-15 22:32:00', 1);
 INSERT INTO askfeup.RecuperacaoDePassword VALUES (2, 'blablabla', '2015-04-15 22:32:00', 2);
-
-/** Comemtários **/
-INSERT INTO askfeup.Comentario VALUES (1, '2015-04-15 22:32:00', 'Tens um bom ponto!', 1, 4);
-INSERT INTO askfeup.Comentario VALUES (2, '2015-04-15 22:32:00', 'Tens de melhorar a tua pontuação!', 2, 2);
 
 /** Visualizações **/
 INSERT INTO askfeup.Visualizacao VALUES (3, 1);
