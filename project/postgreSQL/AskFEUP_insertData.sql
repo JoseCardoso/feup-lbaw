@@ -111,7 +111,7 @@ INSERT INTO askfeup.Categoria VALUES (5, 'Informática');
 INSERT INTO askfeup.Categoria VALUES (6, 'Programação');
 INSERT INTO askfeup.Categoria VALUES (7, 'Metalúrgica');
 INSERT INTO askfeup.Categoria VALUES (8, 'Cívil');
-INSERT INTO askfeup.Categoria VALUES (9, 'Eletro');
+INSERT INTO askfeup.Categoria VALUES (9, 'Eletrotécnica');
 INSERT INTO askfeup.Categoria VALUES (10, 'Associação de Estudantes');
 INSERT INTO askfeup.Categoria VALUES (11, 'Mestrados');
 INSERT INTO askfeup.Categoria VALUES (12, 'Doutoramentos');
@@ -134,6 +134,13 @@ INSERT INTO askfeup.Contribuicao VALUES (8, '2015-04-16 23:51:00', 8, 0, 8, 10);
 INSERT INTO askfeup.Contribuicao VALUES (9, '2015-04-16 23:59:12', 4, 0, 4, 9);
 INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 7, 1, 8, 2);
 
+INSERT INTO askfeup.Contribuicao VALUES (11, '2015-04-18 15:11:02', 2, 2, 4, 2);
+INSERT INTO askfeup.Contribuicao VALUES (12, '2015-04-18 14:10:22', -3, 3, 0, 8);
+INSERT INTO askfeup.Contribuicao VALUES (13, '2015-04-18 16:30:45', 4, 0, 4, 3);
+
+INSERT INTO askfeup.Contribuicao VALUES (14, '2015-04-18 17:01:12', 2, 0, 2, 7);
+INSERT INTO askfeup.Contribuicao VALUES (15, '2015-04-18 18:31:47', 3, 0, 3, 9);
+
 /** Perguntas **/
 /* (contribuicaoID, texto, descrição, categoriaID) */
 INSERT INTO askfeup.Pergunta VALUES (1, 'A Dª. Beatriz vende gomas?', 'Apetecia-me bastante comer gomas mas os únicos sítios que sei estão longe.', 4);
@@ -142,6 +149,11 @@ INSERT INTO askfeup.Pergunta VALUES (4, 'O Pavilhão Luís de Falcão dá para r
 
 INSERT INTO askfeup.Pergunta VALUES (8, 'Quando é o próximo FEUPCaffe?', 'Ouvi dizer que vai um Dj famoso :D', 15);
 
+INSERT INTO askfeup.Pergunta VALUES (11, 'Alguém já usou Laravel?', 'Queria saber se é bom ou não utilizar esta framework.', 6);
+
+INSERT INTO askfeup.Pergunta VALUES (8, 'Quando é o próximo FEUPCaffe?', 'Ouvi dizer que vai um Dj famoso :D', 15);
+
+INSERT INTO askfeup.Pergunta VALUES (14, 'Quando é o próximo teste de Betão?', 'Não consigo entrar no sigarra, deve estar em baixo o sistema.', 8);
 
 /** Respostas **/
 /* (contribuicaoID, correcta, descricao, perguntaID) */
@@ -154,6 +166,11 @@ INSERT INTO askfeup.Resposta VALUES (7, 'false', '@zoid precisas de pessoas para
 
 INSERT INTO askfeup.Resposta VALUES (9, 'false', 'Acho que não va haver mais este ano.', 'ta a chegar a queima e nao devem fazer mais para se organizarem', 8);
 INSERT INTO askfeup.Resposta VALUES (10, 'true', '@vanillagirl é esta Quinta-feira que vem, dia 23, o Mega FEUPCaffe, vai ser a despedida', 8);
+
+INSERT INTO askfeup.Resposta VALUES (12, 'false', 'Sim, eu não gostei, faz tudo por ti.', 11);
+INSERT INTO askfeup.Resposta VALUES (13, 'false', 'Sim já usei, laravel é muito bom, poupas imenso tempo a fazer coisas que sem a framework demoravas horas. Podes dipensar mais tempo a melhorar outras componentes.', 11);
+
+INSERT INTO askfeup.Resposta VALUES (15, 'true', 'Dia 28 de Abril, às 9:00h nas salas B232, B208 e B104', 14);
 
 /** Comentários **/
 /* (id, data, decricao, contribuicaoID, membroID) */
@@ -168,6 +185,8 @@ INSERT INTO askfeup.Comentario VALUES (6, '2015-04-17 00:11:41', '@ferrolho obri
 INSERT INTO askfeup.Comentario VALUES (7, '2015-04-17 00:12:12', '@vanillagirl de nada sempre as ordens. Diverte te na quinta :D', 10, 2);
 INSERT INTO askfeup.Comentario VALUES (8, '2015-04-17 01:03:45', 'vamos partir tudo !!! :D FEUPCaffe <3', 10, 7);
 
+INSERT INTO askfeup.Comentario VALUES (9, '2015-04-18 16:25:00', 'Nao respondeste à questao colocada. E vale muito a pena, tu é que não das valor ou nao a sabes usar :p', 12, 3);
+
 
 
 /** Badges **/
@@ -175,9 +194,18 @@ INSERT INTO askfeup.Badge VALUES (1, 'Primeira Dúvida', 'Faz uma pergunta!');
 INSERT INTO askfeup.Badge VALUES (2, 'Curioso', 'Fizeste 10 perguntas!');
 INSERT INTO askfeup.Badge VALUES (3, 'Questionador', 'Fizeste 50 perguntas!');
 INSERT INTO askfeup.Badge VALUES (4, 'Rei das Perguntas', 'Fizeste 100 perguntas!');
-INSERT INTO askfeup.Badge VALUES (5, 'Primeira Dúvida', 'Faz uma pergunta!');
-INSERT INTO askfeup.Badge VALUES (6, 'Primeira Dúvida', 'Faz uma pergunta!');
-INSERT INTO askfeup.Badge VALUES (2, 'Boa Resposta', 'Deste uma resposta correcta!');
+INSERT INTO askfeup.Badge VALUES (5, 'Boa resposta', 'Respondeste correctamente a uma pergunta!');
+INSERT INTO askfeup.Badge VALUES (6, 'Atencioso', 'Respondeste correctamente a 10 perguntas!');
+INSERT INTO askfeup.Badge VALUES (7, 'Culto', 'Respondeste correctamente a 50 perguntas!');
+INSERT INTO askfeup.Badge VALUES (8, 'Sábio', 'Respondeste correctamente a 100 perguntas!');
+INSERT INTO askfeup.Badge VALUES (9, 'Primeiro Comentário', 'Fizeste um comentário!');
+INSERT INTO askfeup.Badge VALUES (10, 'Crítico', 'Fizeste 10 comentários!');
+INSERT INTO askfeup.Badge VALUES (11, 'Chato', 'Fizeste 50 comentários!');
+INSERT INTO askfeup.Badge VALUES (12, 'Morre', 'Fizeste 100 comentários!');
+INSERT INTO askfeup.Badge VALUES (13, 'Primeiro Voto', 'Boa, votaste!');
+INSERT INTO askfeup.Badge VALUES (14, 'Participativo', 'Fizeste 10 votos!');
+INSERT INTO askfeup.Badge VALUES (15, 'Avaliador', 'Fizeste 50 votos!');
+INSERT INTO askfeup.Badge VALUES (16, 'Eleitor', 'Fizeste 100 votos!');
 
 /** BadgeMembro **/
 INSERT INTO askfeup.BadgeMembro	VALUES (1, 1);
