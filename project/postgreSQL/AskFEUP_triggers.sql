@@ -80,16 +80,16 @@ CREATE TRIGGER perguntaDiferentID
   FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferentID();
 
 
- CREATE FUNCTION singleVote() RETURNS trigger AS $singleVote$
+ CREATE FUNCTION notSelfVote() RETURNS trigger AS $notSelfVote$
       begin
    			IF NEW.voteid IS NOT NULL THEN 
-   				new.utilizadorid AND new.contribuicaoid NOT IN (SELECT vote.utilizadorid,vote.contribuicaoid from vote);
+   				new.utilizadorid AND new.contribuicaoid NOT IN (SELECT contribuicao.utilizadorid from contribuicao WHERE new.utilizadorid = contribuicao.utilizadorid AND new.contribuicaoid = contribuicao.contribuicaoid);
    				END IF;
         return new;
     end;
-$singleVote$ LANGUAGE plpgsql;
+$notSelfVote$ LANGUAGE plpgsql;
 
- CREATE TRIGGER singleVote 
- BEFORE INSERT OR UPDATE ON "askfeup"."vote"
- FOR EACH ROW EXECUTE PROCEDURE askfeup.singleVote();
+ CREATE TRIGGER notSelfVote 
+ BEFORE INSERT OR UPDATE ON "askfeup"."voto"
+ FOR EACH ROW EXECUTE PROCEDURE askfeup.singlnotSelfVoteeVote();
 
