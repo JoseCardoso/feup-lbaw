@@ -20,7 +20,7 @@ WHERE askfeup.PErgunta.perguntaID = $idQuestion;
 /* Editar uma resposta */
 UPDATE askfeup.Resposta
 SET askfeup.Resposta.descricao = $newAnswerDescription
-WHERE askfeup.Resposta.respostaID = $idResposta;
+WHERE askfeup.Resposta.respostaID = $idAnswer;
 
 /* Editar comentário */
 UPDATE askfeup.Comentario
@@ -35,12 +35,12 @@ WHERE askfeup.Utilizador.utilizadorID = $idUser;
 
 /* Apagar uma pergunta */
 DELETE FROM askfeup.Pergunta
-WHERE askfeup.Pergunta.perguntaID = $idPergunta;
+WHERE askfeup.Pergunta.perguntaID = $idQuestion;
 
 /* Apagar uma respostas */
 DELETE FROM askfeup.Resposta
-WHERE askfeup.Resposta.respostaID = $idResposta;
+WHERE askfeup.Resposta.respostaID = $idAnswer;
 
 /* Apagar um comentário */
 DELETE FROM askfeup.Comentario
-WHERE askfeup.Comentario.comentarioID = $idComentario;
+WHERE askfeup.Comentario.comentarioID = $idComment;
