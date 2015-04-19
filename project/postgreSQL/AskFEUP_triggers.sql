@@ -53,3 +53,43 @@ BEGIN
 DELETE FROM Comentario
 	WHERE Resposta.respostaID = Comentario.contribuicaoID;
 END;
+
+
+
+  CREATE FUNCTION perguntaRespostaDiferentID() RETURNS trigger AS $perguntaRespostaDiferentID$
+      begin
+   			IF NEW.perguntaid IS NOT NULL where(
+   				new.perguntaid NOT IN ( SELECT contribuicao.contribuicaoid FROM contribuicao)
+   				) THEN RAISE EXCEPTION 'id for pergunta already in use';
+        	END IF;
+        	IF NEW.respostaid IS NOT NULL where(
+   				new.respostaid NOT IN ( SELECT contribuicao.contribuicaoid FROM contribuicao)
+   				) THEN RAISE EXCEPTION 'id for resposta already in use';
+        	END IF;
+        return new;
+    end;
+$perguntaRespostaDiferentID$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER perguntaDiferentID 
+  BEFORE INSERT OR UPDATE ON "askfeup"."pergunta"
+  FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferentID();
+
+  CREATE TRIGGER respostaDiferentID 
+  BEFORE INSERT OR UPDATE ON "askfeup"."resposta"
+  FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferentID();
+
+
+ CREATE FUNCTION singleVote() RETURNS trigger AS $singleVote$
+      begin
+   			IF NEW.voteid IS NOT NULL THEN 
+   				new.utilizadorid AND new.contribuicaoid NOT IN (SELECT vote.utilizadorid,vote.contribuicaoid from vote);
+   				END IF;
+        return new;
+    end;
+$singleVote$ LANGUAGE plpgsql;
+
+ CREATE TRIGGER singleVote 
+ BEFORE INSERT OR UPDATE ON "askfeup"."vote"
+ FOR EACH ROW EXECUTE PROCEDURE askfeup.singleVote();
+
