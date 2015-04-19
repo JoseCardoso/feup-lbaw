@@ -132,7 +132,7 @@ INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-16 23:50:46', 0, 1, 1, 2);
 
 INSERT INTO askfeup.Contribuicao VALUES (8, '2015-04-16 23:51:00', 6, 0, 6, 10);
 INSERT INTO askfeup.Contribuicao VALUES (9, '2015-04-16 23:59:12', 4, 0, 4, 9);
-INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 6, 1, 7, 2);
+INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 5, 1, 6, 2);
 
 INSERT INTO askfeup.Contribuicao VALUES (11, '2015-04-18 15:11:02', 2, 2, 4, 2);
 INSERT INTO askfeup.Contribuicao VALUES (12, '2015-04-18 14:10:22', -3, 3, 0, 8);
@@ -144,7 +144,7 @@ INSERT INTO askfeup.Contribuicao VALUES (15, '2015-04-18 18:31:47', 3, 0, 3, 9);
 INSERT INTO askfeup.Contribuicao VALUES (16, '2015-04-18 19:41:23', 4, 1, 5, 8);
 INSERT INTO askfeup.Contribuicao VALUES (17, '2015-04-18 19:46:32', -3, 4, 1, 2);
 INSERT INTO askfeup.Contribuicao VALUES (18, '2015-04-18 19:48:11', -4, 4, 0, 3);
-INSERT INTO askfeup.Contribuicao VALUES (19, '2015-04-18 19:50:22', -2, 5, 3, 4);
+INSERT INTO askfeup.Contribuicao VALUES (19, '2015-04-18 19:50:22', -3, 5, 2, 4);
 INSERT INTO askfeup.Contribuicao VALUES (20, '2015-04-18 19:55:55', 5, 0, 5, 1);
 
 INSERT INTO askfeup.Contribuicao VALUES (21, '2015-04-19 08:41:23', 5, 0, 5, 4);
@@ -193,7 +193,7 @@ INSERT INTO askfeup.Pergunta VALUES (29, 'Como faço para entrar para a AE?', '�
 
 INSERT INTO askfeup.Pergunta VALUES (32, 'Tenho um website que preciso de fazer, alguem interessado?', 'Há remunerações de 200 € :)', 6);
 
-INSERT INTO askfeup.Pergunta VALUES (36, 'Existe transporte para o queimódromo a arrancar da FEUP?', 'Já agora que paragens perto do Campus existem...', 15);
+INSERT INTO askfeup.Pergunta VALUES (37, 'Existe transporte para o queimódromo a arrancar da FEUP?', 'Já agora que paragens perto do Campus existem...', 15);
 
 /** Respostas **/
 /* (contribuicaoID, correcta, descricao, perguntaID) */
@@ -233,8 +233,8 @@ INSERT INTO askfeup.Resposta VALUES (34, 'false', 'Faço por 150€ :D', 32);
 INSERT INTO askfeup.Resposta VALUES (35, 'false', 'Faço por 150€ também e ainda te pago um bolo na cafetaria xD', 32);
 INSERT INTO askfeup.Resposta VALUES (36, 'true', 'Faço te de borla e em uma semana :)', 32);
 
-INSERT INTO askfeup.Resposta VALUES (38, 'true', 'Sim há, fica na entrada que la passam autocarros', 36);
-INSERT INTO askfeup.Resposta VALUES (39, 'false', 'Na estrada da circunvalaçao passam em várias paragens, nao te sei agora é dizer quais mas são as que ficam paralelas ao campus', 36);
+INSERT INTO askfeup.Resposta VALUES (38, 'true', 'Sim há, fica na entrada que la passam autocarros', 37);
+INSERT INTO askfeup.Resposta VALUES (39, 'false', 'Na estrada da circunvalaçao passam em várias paragens, nao te sei agora é dizer quais mas são as que ficam paralelas ao campus', 37);
 
 /** Comentários **/
 /* (id, data, decricao, contribuicaoID, membroID) */
@@ -341,8 +341,8 @@ INSERT INTO askfeup.PerguntaTag	VALUES (22, 32);
 INSERT INTO askfeup.PerguntaTag	VALUES (23, 32);
 INSERT INTO askfeup.PerguntaTag	VALUES (24, 32);
 
-INSERT INTO askfeup.PerguntaTag	VALUES (25, 36);
-INSERT INTO askfeup.PerguntaTag	VALUES (26, 36);
+INSERT INTO askfeup.PerguntaTag	VALUES (25, 37);
+INSERT INTO askfeup.PerguntaTag	VALUES (26, 37);
 
 /** Badges **/
 INSERT INTO askfeup.Badge VALUES (1, 'Primeira Dúvida', 'Faz uma pergunta!');
@@ -375,7 +375,7 @@ INSERT INTO askfeup.Favorita VALUES (2, 29);
 INSERT INTO askfeup.Favorita VALUES (2, 1);
 INSERT INTO askfeup.Favorita VALUES (2, 8);
 INSERT INTO askfeup.Favorita VALUES (2, 16);
-INSERT INTO askfeup.Favorita VALUES (2, 36);
+INSERT INTO askfeup.Favorita VALUES (2, 37);
 
 INSERT INTO askfeup.Favorita VALUES (3, 11);
 INSERT INTO askfeup.Favorita VALUES (3, 26);
@@ -385,7 +385,7 @@ INSERT INTO askfeup.Favorita VALUES (4, 1);
 INSERT INTO askfeup.Favorita VALUES (4, 8);
 INSERT INTO askfeup.Favorita VALUES (4, 29);
 
-INSERT INTO askfeup.Favorita VALUES (7, 36);
+INSERT INTO askfeup.Favorita VALUES (7, 37);
 
 INSERT INTO askfeup.Favorita VALUES (8, 26);
 
@@ -442,180 +442,257 @@ INSERT INTO askfeup.Voto VALUES ('true', 1, 7);
 INSERT INTO askfeup.Voto VALUES ('false', 4, 7);
 
 /* Pergunta 3 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 8);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 8);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 8);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 8);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 8);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 8);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 9);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 9);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 9);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 9);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 10);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 10);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 10);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 10);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 10);
+INSERT INTO askfeup.Voto VALUES ('true', 9, 10);
+INSERT INTO askfeup.Voto VALUES ('false', 10, 10);
 
 /* Pergunta 4 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 11);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 11);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 11);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 11);
+INSERT INTO askfeup.Voto VALUES ('false', 8, 11);
+INSERT INTO askfeup.Voto VALUES ('false', 9, 11);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('false', 10, 12);
+INSERT INTO askfeup.Voto VALUES ('false', 9, 12);
+INSERT INTO askfeup.Voto VALUES ('false', 1, 12);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 13);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 13);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 13);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 13);
 
 /* Pergunta 5 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 14);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 14);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 7, 15);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 15);
+INSERT INTO askfeup.Voto VALUES ('true', 10, 15);
 
 /* Pergunta 6 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 16);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 16);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 16);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 16);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 16);
+INSERT INTO askfeup.Voto VALUES ('false', 10, 16);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('false', 1, 17);
+INSERT INTO askfeup.Voto VALUES ('false', 3, 17);
+INSERT INTO askfeup.Voto VALUES ('false', 4, 17);
+INSERT INTO askfeup.Voto VALUES ('false', 8, 17);
+INSERT INTO askfeup.Voto VALUES ('true', 9, 17);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('false', 1, 18);
+INSERT INTO askfeup.Voto VALUES ('false', 2, 18);
+INSERT INTO askfeup.Voto VALUES ('false', 4, 18);
+INSERT INTO askfeup.Voto VALUES ('false', 7, 18);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 19);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 19);
+INSERT INTO askfeup.Voto VALUES ('false', 3, 19);
+INSERT INTO askfeup.Voto VALUES ('false', 7, 19);
+INSERT INTO askfeup.Voto VALUES ('false', 8, 19);
+INSERT INTO askfeup.Voto VALUES ('false', 9, 19);
+INSERT INTO askfeup.Voto VALUES ('false', 10, 19);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 2, 20);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 20);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 20);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 20);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 20);
 
 /* Pergunta 7 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 21);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 21);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 21);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 21);
+INSERT INTO askfeup.Voto VALUES ('true', 9, 21);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 22);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 22);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 22);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 23);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 23);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 8, 24);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 25);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 25);
+INSERT INTO askfeup.Voto VALUES ('false', 8, 25);
+INSERT INTO askfeup.Voto VALUES ('false', 9, 25);
+INSERT INTO askfeup.Voto VALUES ('false', 10, 25);
 
 /* Pergunta 8 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 26);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 26);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 26);
+INSERT INTO askfeup.Voto VALUES ('false', 9, 26);
+INSERT INTO askfeup.Voto VALUES ('false', 10, 26);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('false', 1, 27);
+INSERT INTO askfeup.Voto VALUES ('true', 9, 27);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 27);
+INSERT INTO askfeup.Voto VALUES ('true', 10, 27);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 27);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 28);
+INSERT INTO askfeup.Voto VALUES ('false', 2, 28);
 
 /* Pergunta 9 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 29);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 29);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 29);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 30);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 30);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 30);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 2, 31);
+INSERT INTO askfeup.Voto VALUES ('false', 3, 31);
 
 /* Pergunta 10 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 32);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 32);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 32);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 32);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 32);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 32);
+INSERT INTO askfeup.Voto VALUES ('false', 10, 32);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 9, 33);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 9, 34);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 9, 35);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 9, 36);
+INSERT INTO askfeup.Voto VALUES ('false', 1, 36);
+INSERT INTO askfeup.Voto VALUES ('false', 2, 36);
+INSERT INTO askfeup.Voto VALUES ('false', 3, 36);
 
 /* Pergunta 11 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 2, 37);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 37);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 37);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 38);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 38);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 38);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 39);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 39);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 39);
 
 /** Recuperações de Password **/
-INSERT INTO askfeup.RecuperacaoDePassword VALUES (1, 'umastringdepass', '2015-04-15 22:32:00', 1);
-INSERT INTO askfeup.RecuperacaoDePassword VALUES (2, 'blablabla', '2015-04-15 22:32:00', 2);
+/* (id, codigo, data, membro) */
+INSERT INTO askfeup.RecuperacaoDePassword VALUES (1, 'umastringdepass', '2015-04-29 22:32:00', 1);
+INSERT INTO askfeup.RecuperacaoDePassword VALUES (2, 'blablabla', '2015-04-30 01:54:00', 2);
 
 /** Visualizações **/
 /* (membroID, perguntaID) */
+/* Pergunta 1 */
+INSERT INTO askfeup.Visualizacao VALUES (2, 1);
 INSERT INTO askfeup.Visualizacao VALUES (3, 1);
-INSERT INTO askfeup.Visualizacao VALUES (4, 3);
+INSERT INTO askfeup.Visualizacao VALUES (4, 1);
+INSERT INTO askfeup.Visualizacao VALUES (8, 1);
+
+/* Pergunta 2 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 4);
+INSERT INTO askfeup.Visualizacao VALUES (2, 4);
+INSERT INTO askfeup.Visualizacao VALUES (3, 4);
+INSERT INTO askfeup.Visualizacao VALUES (7, 4);
+INSERT INTO askfeup.Visualizacao VALUES (8, 4);
+INSERT INTO askfeup.Visualizacao VALUES (9, 4);
+INSERT INTO askfeup.Visualizacao VALUES (10, 4);
+
+/* Pergunta 3 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 8);
+INSERT INTO askfeup.Visualizacao VALUES (2, 8);
+INSERT INTO askfeup.Visualizacao VALUES (3, 8);
+INSERT INTO askfeup.Visualizacao VALUES (4, 8);
+INSERT INTO askfeup.Visualizacao VALUES (7, 8);
+INSERT INTO askfeup.Visualizacao VALUES (8, 8);
+INSERT INTO askfeup.Visualizacao VALUES (9, 8);
+
+/* Pergunta 4 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 11);
+INSERT INTO askfeup.Visualizacao VALUES (3, 11);
+INSERT INTO askfeup.Visualizacao VALUES (4, 11);
+INSERT INTO askfeup.Visualizacao VALUES (7, 11);
+INSERT INTO askfeup.Visualizacao VALUES (8, 11);
+INSERT INTO askfeup.Visualizacao VALUES (9, 11);
+INSERT INTO askfeup.Visualizacao VALUES (10, 11);
+
+/* Pergunta 5 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 14);
+INSERT INTO askfeup.Visualizacao VALUES (2, 14);
+INSERT INTO askfeup.Visualizacao VALUES (8, 14);
+INSERT INTO askfeup.Visualizacao VALUES (9, 14);
+INSERT INTO askfeup.Visualizacao VALUES (10, 14);
+
+/* Pergunta 6 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 16);
+INSERT INTO askfeup.Visualizacao VALUES (2, 16);
+INSERT INTO askfeup.Visualizacao VALUES (3, 16);
+INSERT INTO askfeup.Visualizacao VALUES (4, 16);
+INSERT INTO askfeup.Visualizacao VALUES (7, 16);
+INSERT INTO askfeup.Visualizacao VALUES (9, 16);
+INSERT INTO askfeup.Visualizacao VALUES (10, 16);
+
+/* Pergunta 7 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 21);
+INSERT INTO askfeup.Visualizacao VALUES (2, 21);
+INSERT INTO askfeup.Visualizacao VALUES (3, 21);
+INSERT INTO askfeup.Visualizacao VALUES (7, 21);
+INSERT INTO askfeup.Visualizacao VALUES (8, 21);
+INSERT INTO askfeup.Visualizacao VALUES (9, 21);
+INSERT INTO askfeup.Visualizacao VALUES (10, 21);
+
+/* Pergunta 8 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 26);
+INSERT INTO askfeup.Visualizacao VALUES (2, 26);
+INSERT INTO askfeup.Visualizacao VALUES (4, 26);
+INSERT INTO askfeup.Visualizacao VALUES (7, 26);
+INSERT INTO askfeup.Visualizacao VALUES (8, 26);
+INSERT INTO askfeup.Visualizacao VALUES (9, 26);
+INSERT INTO askfeup.Visualizacao VALUES (10, 26);
+
+/* Pergunta 9 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 29);
+INSERT INTO askfeup.Visualizacao VALUES (2, 29);
+INSERT INTO askfeup.Visualizacao VALUES (3, 29);
+INSERT INTO askfeup.Visualizacao VALUES (4, 29);
+
+/* Pergunta 10 */
+INSERT INTO askfeup.Visualizacao VALUES (1, 32);
+INSERT INTO askfeup.Visualizacao VALUES (2, 32);
+INSERT INTO askfeup.Visualizacao VALUES (3, 32);
+INSERT INTO askfeup.Visualizacao VALUES (4, 32);
+INSERT INTO askfeup.Visualizacao VALUES (7, 32);
+INSERT INTO askfeup.Visualizacao VALUES (8, 32);
+INSERT INTO askfeup.Visualizacao VALUES (10, 32);
+
+/* Pergunta 11 */
+INSERT INTO askfeup.Visualizacao VALUES (2, 37);
+INSERT INTO askfeup.Visualizacao VALUES (3, 37);
+INSERT INTO askfeup.Visualizacao VALUES (4, 37);
