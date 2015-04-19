@@ -83,7 +83,7 @@ ALTER TABLE askfeup.Contribuicao ADD CONSTRAINT PK_Contribuicao PRIMARY KEY (con
 DROP TABLE IF EXISTS askfeup.Categoria;
 CREATE TABLE IF NOT EXISTS askfeup.Categoria (
 	categoriaID serial NOT NULL,
-	tipo varchar(20) NOT NULL,
+	tipo varchar(50) NOT NULL,
 	CONSTRAINT UK_Categoria_tipo UNIQUE (tipo)
 );
 
@@ -123,7 +123,7 @@ ALTER TABLE askfeup.Tag ADD CONSTRAINT PK_Tag PRIMARY KEY (tagID);
 DROP TABLE IF EXISTS askfeup.Badge;
 CREATE TABLE IF NOT EXISTS askfeup.Badge (
 	badgeID serial NOT NULL,
-	nome varchar(20) NOT NULL,
+	nome varchar(50) NOT NULL,
 	descricao text,
 	CONSTRAINT UK_Badge_nome UNIQUE (nome)
 );
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS askfeup.Comentario (
 	data timestamp DEFAULT current_timestamp,
 	descricao text NOT NULL,
 	contribuicaoID integer NOT NULL,
-	membroID integer NOT NULL
+	membroID integer NULL
 );
 
 ALTER TABLE askfeup.Comentario ADD CONSTRAINT PK_Comentario PRIMARY KEY (comentarioID);
@@ -147,7 +147,7 @@ ALTER TABLE askfeup.Comentario ADD CONSTRAINT FK_Comentario_Contribuicao
 	FOREIGN KEY (contribuicaoID) REFERENCES askfeup.Contribuicao (contribuicaoID);
 
 ALTER TABLE askfeup.Comentario ADD CONSTRAINT FK_Comentario_Membro 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID) ON DELETE SET NULL;
 
 /*-------------- Favorita --------------*/
 
@@ -278,7 +278,7 @@ ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT PK_Visualizacao PRIMARY KEY (mem
 
 
 ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Membro 
-	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID);
+	FOREIGN KEY (membroID) REFERENCES askfeup.Membro (membroID) ON DELETE CASCADE;
 
 ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Pergunta 
 	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID) ON DELETE CASCADE;

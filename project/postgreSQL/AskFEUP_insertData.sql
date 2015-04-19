@@ -69,7 +69,6 @@ INSERT INTO askfeup.Cidade VALUES (45, 'Funchal', 9000);
 INSERT INTO askfeup.Cidade VALUES (46, 'Funchal', 9020);
 INSERT INTO askfeup.Cidade VALUES (47, 'Funchal', 9030);
 INSERT INTO askfeup.Cidade VALUES (48, 'Funchal', 9050);
-INSERT INTO askfeup.Cidade VALUES (48, 'Funchal', 9050);
 INSERT INTO askfeup.Cidade VALUES (49, 'Guarda', 6300);
 INSERT INTO askfeup.Cidade VALUES (50, 'Leiria', 2400);
 INSERT INTO askfeup.Cidade VALUES (51, 'Leiria', 2405);
@@ -92,10 +91,10 @@ INSERT INTO askfeup.Cidade VALUES (67, 'Porto Santo', 9400);
 
 /** Membros **/
 /* (activo, primeiroNome, ultimoNome, email, pontos, registo, ultimoLogin, utilizadorID, cidadeID) */
-INSERT INTO askfeup.Membro VALUES ('true', 'João', 'Pereira', 'ei12023@fe.up.pt', 0, '2015-04-13 04:14:00', '2015-04-18 04:15:00', 1, 2);
-INSERT INTO askfeup.Membro VALUES ('true', 'Henrique', 'Ferrolho', 'ei12079@fe.up.pt', 0, '2015-04-14 12:05:00', '2015-04-18 00:01:00', 2, 4);
-INSERT INTO askfeup.Membro VALUES ('true', 'José', 'Cardoso', 'ei12027@fe.up.pt', 0, '2015-04-14 15:14:00', '2015-04-18 04:18:00', 3, 1);
-INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt', 0, '2015-04-14 20:14:00', '2015-04-08 04:15:00', 4, 1);
+INSERT INTO askfeup.Membro VALUES ('true', 'João', 'Pereira', 'ei12023@fe.up.pt', 0, '2015-04-13 04:14:00', '2015-04-18 04:15:00', 1, 22);
+INSERT INTO askfeup.Membro VALUES ('true', 'Henrique', 'Ferrolho', 'ei12079@fe.up.pt', 0, '2015-04-14 12:05:00', '2015-04-18 00:01:00', 2, 63);
+INSERT INTO askfeup.Membro VALUES ('true', 'José', 'Cardoso', 'ei12027@fe.up.pt', 0, '2015-04-14 15:14:00', '2015-04-18 04:18:00', 3, 18);
+INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt', 0, '2015-04-14 20:14:00', '2015-04-08 04:15:00', 4, 18);
 INSERT INTO askfeup.Membro VALUES ('true', 'Tiago', 'Negro', 'okapaman@gmail.com', 0, '2015-04-16 05:00:21', '2015-04-21 18:33:12', 7, 67);
 INSERT INTO askfeup.Membro VALUES ('true', 'Gisela', 'Tosta', 'manteigascompao@hotmail.com', 0, '2015-04-17 15:02:03', '2015-04-22 00:00:57', 8, 61);
 INSERT INTO askfeup.Membro VALUES ('true', 'Jorge', 'Castro', 'jorgecastro4@sapo.pt', 0, '2015-04-18 12:13:43', '2015-04-18 12:13:43', 9, 55);
@@ -126,7 +125,7 @@ INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 2, 1, 3, 1);
 INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-15 22:33:40', -3, 3, 0, 2);
 INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-15 22:34:10', 0, 1, 1, 3);
 
-INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-16 23:34:30', 4, 2, 6, 4);
+INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-16 23:34:30', 3, 2, 5, 4);
 INSERT INTO askfeup.Contribuicao VALUES (5, '2015-04-16 23:39:03', -1, 3, 2, 1);
 INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-16 23:45:12', 5, 0, 5, 3);
 INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-16 23:50:46', 0, 1, 1, 2);
@@ -205,7 +204,7 @@ INSERT INTO askfeup.Resposta VALUES (5, 'false', 'Acho que não dá para reserva
 INSERT INTO askfeup.Resposta VALUES (6, 'true', 'Dá para reservares mas tens de pagar. Aqui tens o link http://sigarra.up.pt/cdup/pt/web_base.gera_pagina?P_pagina=1026026', 4);
 INSERT INTO askfeup.Resposta VALUES (7, 'false', '@zoid precisas de pessoas para jogar? Tou a precisar de fazer desporto, tou gordo.', 4);
 
-INSERT INTO askfeup.Resposta VALUES (9, 'false', 'Acho que não va haver mais este ano.', 'ta a chegar a queima e nao devem fazer mais para se organizarem', 8);
+INSERT INTO askfeup.Resposta VALUES (9, 'false', 'Acho que não va haver mais este ano. Ta a chegar a queima e nao devem fazer mais para se organizarem', 8);
 INSERT INTO askfeup.Resposta VALUES (10, 'true', '@vanillagirl é esta Quinta-feira que vem, dia 23, o Mega FEUPCaffe, vai ser a despedida', 8);
 
 INSERT INTO askfeup.Resposta VALUES (12, 'false', 'Sim, eu não gostei, faz tudo por ti.', 11);
@@ -234,8 +233,8 @@ INSERT INTO askfeup.Resposta VALUES (34, 'false', 'Faço por 150€ :D', 32);
 INSERT INTO askfeup.Resposta VALUES (35, 'false', 'Faço por 150€ também e ainda te pago um bolo na cafetaria xD', 32);
 INSERT INTO askfeup.Resposta VALUES (36, 'true', 'Faço te de borla e em uma semana :)', 32);
 
-INSERT INTO askfeup.Resposta VALUES (38, 'true', 'Sim há, fica na entrada que la passam autocarros', 37);
-INSERT INTO askfeup.Resposta VALUES (39, 'false', 'Na estrada da circunvalaçao passam em várias paragens, nao te sei agora é dizer quais mas são as que ficam paralelas ao campus', 37);
+INSERT INTO askfeup.Resposta VALUES (38, 'true', 'Sim há, fica na entrada que la passam autocarros', 36);
+INSERT INTO askfeup.Resposta VALUES (39, 'false', 'Na estrada da circunvalaçao passam em várias paragens, nao te sei agora é dizer quais mas são as que ficam paralelas ao campus', 36);
 
 /** Comentários **/
 /* (id, data, decricao, contribuicaoID, membroID) */
@@ -419,29 +418,28 @@ INSERT INTO askfeup.Voto VALUES ('true', 1, 3);
 INSERT INTO askfeup.Voto VALUES ('false', 4, 3);
 
 /* Pergunta 2 */
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 4);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 4);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 4);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 4);
+INSERT INTO askfeup.Voto VALUES ('true', 8, 4);
+INSERT INTO askfeup.Voto VALUES ('false', 9, 4);
+INSERT INTO askfeup.Voto VALUES ('false', 10, 4);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 2, 5);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 5);
+INSERT INTO askfeup.Voto VALUES ('false', 4, 5);
+INSERT INTO askfeup.Voto VALUES ('false', 7, 5);
+INSERT INTO askfeup.Voto VALUES ('false', 8, 5);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 6);
+INSERT INTO askfeup.Voto VALUES ('true', 2, 6);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 6);
+INSERT INTO askfeup.Voto VALUES ('true', 7, 6);
+INSERT INTO askfeup.Voto VALUES ('true', 10, 6);
 
-INSERT INTO askfeup.Voto VALUES ('', , );
-INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('true', 1, 7);
+INSERT INTO askfeup.Voto VALUES ('false', 4, 7);
 
 /* Pergunta 3 */
 INSERT INTO askfeup.Voto VALUES ('', , );
@@ -618,5 +616,6 @@ INSERT INTO askfeup.RecuperacaoDePassword VALUES (1, 'umastringdepass', '2015-04
 INSERT INTO askfeup.RecuperacaoDePassword VALUES (2, 'blablabla', '2015-04-15 22:32:00', 2);
 
 /** Visualizações **/
+/* (membroID, perguntaID) */
 INSERT INTO askfeup.Visualizacao VALUES (3, 1);
 INSERT INTO askfeup.Visualizacao VALUES (4, 3);

@@ -82,14 +82,14 @@ CREATE TRIGGER perguntaDiferentID
 
  CREATE FUNCTION singleVote() RETURNS trigger AS $singleVote$
       begin
-   			IF NEW.voteid IS NOT NULL THEN 
-   				new.utilizadorid AND new.contribuicaoid NOT IN (SELECT vote.utilizadorid,vote.contribuicaoid from vote);
+   			IF NEW.votoid IS NOT NULL THEN 
+   				new.utilizadorid AND new.contribuicaoid NOT IN (SELECT voto.utilizadorid,voto.contribuicaoid from askfeup.Voto);
    				END IF;
         return new;
     end;
 $singleVote$ LANGUAGE plpgsql;
 
  CREATE TRIGGER singleVote 
- BEFORE INSERT OR UPDATE ON "askfeup"."vote"
+ BEFORE INSERT OR UPDATE ON askfeup.Voto
  FOR EACH ROW EXECUTE PROCEDURE askfeup.singleVote();
 
