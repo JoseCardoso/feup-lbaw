@@ -118,6 +118,7 @@ INSERT INTO askfeup.Categoria VALUES (12, 'Doutoramentos');
 INSERT INTO askfeup.Categoria VALUES (13, 'Gestão');
 INSERT INTO askfeup.Categoria VALUES (14, 'Indústra');
 INSERT INTO askfeup.Categoria VALUES (15, 'Diversão Nocturna');
+INSERT INTO askfeup.Categoria VALUES (16, 'Localizações');
 
 /** Contribuições **/
 /* (id, data, diferancaVotos, votosNegativos, votosPositivos, membroID) */
@@ -125,14 +126,14 @@ INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 2, 1, 3, 1);
 INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-15 22:33:40', -3, 3, 0, 2);
 INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-15 22:34:10', 0, 1, 1, 3);
 
-INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-16 23:34:30', 6, 2, 8, 4);
+INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-16 23:34:30', 4, 2, 6, 4);
 INSERT INTO askfeup.Contribuicao VALUES (5, '2015-04-16 23:39:03', -1, 3, 2, 1);
 INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-16 23:45:12', 5, 0, 5, 3);
 INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-16 23:50:46', 0, 1, 1, 2);
 
-INSERT INTO askfeup.Contribuicao VALUES (8, '2015-04-16 23:51:00', 8, 0, 8, 10);
+INSERT INTO askfeup.Contribuicao VALUES (8, '2015-04-16 23:51:00', 6, 0, 6, 10);
 INSERT INTO askfeup.Contribuicao VALUES (9, '2015-04-16 23:59:12', 4, 0, 4, 9);
-INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 7, 1, 8, 2);
+INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 6, 1, 7, 2);
 
 INSERT INTO askfeup.Contribuicao VALUES (11, '2015-04-18 15:11:02', 2, 2, 4, 2);
 INSERT INTO askfeup.Contribuicao VALUES (12, '2015-04-18 14:10:22', -3, 3, 0, 8);
@@ -140,6 +141,36 @@ INSERT INTO askfeup.Contribuicao VALUES (13, '2015-04-18 16:30:45', 4, 0, 4, 3);
 
 INSERT INTO askfeup.Contribuicao VALUES (14, '2015-04-18 17:01:12', 2, 0, 2, 7);
 INSERT INTO askfeup.Contribuicao VALUES (15, '2015-04-18 18:31:47', 3, 0, 3, 9);
+
+INSERT INTO askfeup.Contribuicao VALUES (16, '2015-04-18 19:41:23', 4, 1, 5, 8);
+INSERT INTO askfeup.Contribuicao VALUES (17, '2015-04-18 19:46:32', -3, 4, 1, 2);
+INSERT INTO askfeup.Contribuicao VALUES (18, '2015-04-18 19:48:11', -4, 4, 0, 3);
+INSERT INTO askfeup.Contribuicao VALUES (19, '2015-04-18 19:50:22', -2, 5, 3, 4);
+INSERT INTO askfeup.Contribuicao VALUES (20, '2015-04-18 19:55:55', 5, 0, 5, 1);
+
+INSERT INTO askfeup.Contribuicao VALUES (21, '2015-04-19 08:41:23', 5, 0, 5, 4);
+INSERT INTO askfeup.Contribuicao VALUES (22, '2015-04-19 09:10:32', 3, 0, 3, 2);
+INSERT INTO askfeup.Contribuicao VALUES (23, '2015-04-19 10:48:11', 2, 0, 2, 3);
+INSERT INTO askfeup.Contribuicao VALUES (24, '2015-04-19 10:50:22', 1, 0, 1, 1);
+INSERT INTO askfeup.Contribuicao VALUES (25, '2015-04-19 11:55:55', -1, 3, 2, 7);
+
+INSERT INTO askfeup.Contribuicao VALUES (26, '2015-04-19 14:05:32', 1, 2, 3, 3);
+INSERT INTO askfeup.Contribuicao VALUES (27, '2015-04-19 15:45:21', 3, 1, 4, 2);
+INSERT INTO askfeup.Contribuicao VALUES (28, '2015-04-19 15:56:02', 0, 1, 1, 10);
+
+INSERT INTO askfeup.Contribuicao VALUES (29, '2015-04-20 10:12:32', 3, 0, 3, 10);
+INSERT INTO askfeup.Contribuicao VALUES (30, '2015-04-20 10:14:38', 3, 0, 3, 2);
+INSERT INTO askfeup.Contribuicao VALUES (31, '2015-04-20 10:15:32', 0, 1, 1, 1);
+
+INSERT INTO askfeup.Contribuicao VALUES (32, '2015-04-20 12:00:01', 5, 1, 6, 9);
+INSERT INTO askfeup.Contribuicao VALUES (33, '2015-04-20 12:02:45', 1, 0, 1, 1);
+INSERT INTO askfeup.Contribuicao VALUES (34, '2015-04-20 12:02:46', 1, 0, 1, 2);
+INSERT INTO askfeup.Contribuicao VALUES (35, '2015-04-20 13:03:57', 1, 0, 1, 3);
+INSERT INTO askfeup.Contribuicao VALUES (36, '2015-04-20 13:06:00', -2, 3, 1, 4);
+
+INSERT INTO askfeup.Contribuicao VALUES (37, '2015-04-22 11:45:23', 3, 0, 3, 1);
+INSERT INTO askfeup.Contribuicao VALUES (38, '2015-04-22 13:56:12', 3, 0, 3, 2);
+INSERT INTO askfeup.Contribuicao VALUES (39, '2015-04-22 14:33:03', 3, 0, 3, 4);
 
 /** Perguntas **/
 /* (contribuicaoID, texto, descrição, categoriaID) */
@@ -151,9 +182,19 @@ INSERT INTO askfeup.Pergunta VALUES (8, 'Quando é o próximo FEUPCaffe?', 'Ouvi
 
 INSERT INTO askfeup.Pergunta VALUES (11, 'Alguém já usou Laravel?', 'Queria saber se é bom ou não utilizar esta framework.', 6);
 
-INSERT INTO askfeup.Pergunta VALUES (8, 'Quando é o próximo FEUPCaffe?', 'Ouvi dizer que vai um Dj famoso :D', 15);
-
 INSERT INTO askfeup.Pergunta VALUES (14, 'Quando é o próximo teste de Betão?', 'Não consigo entrar no sigarra, deve estar em baixo o sistema.', 8);
+
+INSERT INTO askfeup.Pergunta VALUES (16, 'Alguém me pode dizer refeições rápidas para trazer para a faculdade para poupar dinheiro?', 'Quero poupar dinheiro para a Queima das Fitas :)', 4);
+
+INSERT INTO askfeup.Pergunta VALUES (21, 'Quais os eventos que decorreram na feup nos próximos dias?', 'Gostaria de participar em pelo menos num.', 1);
+
+INSERT INTO askfeup.Pergunta VALUES (26, 'Olá, onde posso actualizar o ano no meu cartao da FEUP?', '', 16);
+
+INSERT INTO askfeup.Pergunta VALUES (29, 'Como faço para entrar para a AE?', 'É preciso convite?', 10);
+
+INSERT INTO askfeup.Pergunta VALUES (32, 'Tenho um website que preciso de fazer, alguem interessado?', 'Há remunerações de 200 € :)', 6);
+
+INSERT INTO askfeup.Pergunta VALUES (36, 'Existe transporte para o queimódromo a arrancar da FEUP?', 'Já agora que paragens perto do Campus existem...', 15);
 
 /** Respostas **/
 /* (contribuicaoID, correcta, descricao, perguntaID) */
@@ -172,6 +213,30 @@ INSERT INTO askfeup.Resposta VALUES (13, 'false', 'Sim já usei, laravel é muit
 
 INSERT INTO askfeup.Resposta VALUES (15, 'true', 'Dia 28 de Abril, às 9:00h nas salas B232, B208 e B104', 14);
 
+INSERT INTO askfeup.Resposta VALUES (17, 'false', 'Cozido à Portuguesa e eu como também :)', 16);
+INSERT INTO askfeup.Resposta VALUES (18, 'false', 'whisky-cola ? kkkk', 16);
+INSERT INTO askfeup.Resposta VALUES (19, 'false', 'torta de morango, eu gosto xD', 16);
+INSERT INTO askfeup.Resposta VALUES (20, 'true', 'Panados com arroz é fácil, uma batata cozida com atum. Tens muita coisa desta na net.', 16);
+
+INSERT INTO askfeup.Resposta VALUES (22, 'false', 'Palestra de Limpeza no NI aka Núcleo de Informática', 21);
+INSERT INTO askfeup.Resposta VALUES (23, 'false', 'jobIT15 nos Queijos', 21);
+INSERT INTO askfeup.Resposta VALUES (24, 'true', 'Desmarca-te da JuniFEUP', 21);
+INSERT INTO askfeup.Resposta VALUES (25, 'false', 'Corrida de carros de rolamentos na descida do INESC', 21);
+
+INSERT INTO askfeup.Resposta VALUES (27, 'true', 'No CICA, ao lado do DEI (Departamento de Informática) :)', 26);
+INSERT INTO askfeup.Resposta VALUES (28, 'false', 'Penso que vale mais a pena fazeres a transição para o cartao da UP agora que estão em indicios de mudança.', 26);
+
+INSERT INTO askfeup.Resposta VALUES (30, 'true', 'Não apenas tens de pertencer a uma lista :)', 29);
+INSERT INTO askfeup.Resposta VALUES (31, 'false', 'Fazendo uma lista xD lol', 29);
+
+INSERT INTO askfeup.Resposta VALUES (33, 'false', 'Eu ! :D', 32);
+INSERT INTO askfeup.Resposta VALUES (34, 'false', 'Faço por 150€ :D', 32);
+INSERT INTO askfeup.Resposta VALUES (35, 'false', 'Faço por 150€ também e ainda te pago um bolo na cafetaria xD', 32);
+INSERT INTO askfeup.Resposta VALUES (36, 'true', 'Faço te de borla e em uma semana :)', 32);
+
+INSERT INTO askfeup.Resposta VALUES (38, 'true', 'Sim há, fica na entrada que la passam autocarros', 37);
+INSERT INTO askfeup.Resposta VALUES (39, 'false', 'Na estrada da circunvalaçao passam em várias paragens, nao te sei agora é dizer quais mas são as que ficam paralelas ao campus', 37);
+
 /** Comentários **/
 /* (id, data, decricao, contribuicaoID, membroID) */
 INSERT INTO askfeup.Comentario VALUES (1, '2015-04-15 22:35:10', 'o @ferrolho tem razão, mas acho que é às 19:30h que fecha.', 3, 4);
@@ -187,7 +252,98 @@ INSERT INTO askfeup.Comentario VALUES (8, '2015-04-17 01:03:45', 'vamos partir t
 
 INSERT INTO askfeup.Comentario VALUES (9, '2015-04-18 16:25:00', 'Nao respondeste à questao colocada. E vale muito a pena, tu é que não das valor ou nao a sabes usar :p', 12, 3);
 
+INSERT INTO askfeup.Comentario VALUES (10, '2015-04-18 19:49:31', 'LOL @betao, eu quero comer nao beber xD', 18, 8);
+INSERT INTO askfeup.Comentario VALUES (11, '2015-04-18 19:55:31', '@zoid deixa de ser goloso. Alem de que isso dá muito trabalho :D', 19, 8);
+INSERT INTO askfeup.Comentario VALUES (12, '2015-04-18 19:57:50', 'obrigado @botas, vou pesquisar, mas estava com muita preguiça xD', 20, 8);
 
+INSERT INTO askfeup.Comentario VALUES (13, '2015-04-19 11:00:00', 'vou optar por esta, obrigado', 24, 4);
+INSERT INTO askfeup.Comentario VALUES (14, '2015-04-19 11:05:46', 'LOL vou vos acusar malandros kkkkk', 25, 1);
+
+INSERT INTO askfeup.Comentario VALUES (15, '2015-04-19 11:00:00', 'obrigado @ferrolho', 27, 3);
+INSERT INTO askfeup.Comentario VALUES (16, '2015-04-19 11:05:46', 'tambem já ouvi falar nisso mas foram so rumores', 28, 3);
+INSERT INTO askfeup.Comentario VALUES (17, '2015-04-19 11:06:59', 'vai a secretaria da FEUP e fala lá :)', 28, 10);
+INSERT INTO askfeup.Comentario VALUES (18, '2015-04-19 11:07:30', 'vou fazer isso depois entao @vanillagirl :)', 28, 3);
+
+INSERT INTO askfeup.Comentario VALUES (19, '2015-04-20 10:15:15', 'envia me email que eu vou fazer uma lista, se quiseres entrar :)', 29, 2);
+INSERT INTO askfeup.Comentario VALUES (20, '2015-04-20 10:15:50', 'e ganhando as eleiçoes nao xD ?', 31, 2);
+INSERT INTO askfeup.Comentario VALUES (21, '2015-04-20 10:16:43', 'obvio né xD ?', 31, 1);
+
+INSERT INTO askfeup.Comentario VALUES (22, '2015-04-20 12:03:43', 'Isso não vale @ferrolho, baixando o preço obvio que ficas com o trabalho', 34, 1);
+INSERT INTO askfeup.Comentario VALUES (23, '2015-04-20 12:04:34', 'Na guerra vale tudo sorry!', 34, 2);
+INSERT INTO askfeup.Comentario VALUES (24, '2015-04-20 12:05:02', 'Fico-me pelos 150€ tambem @joker', 34, 1);
+INSERT INTO askfeup.Comentario VALUES (25, '2015-04-20 13:04:54', '@betao a oferecer bolos tambem eu!', 35, 2);
+INSERT INTO askfeup.Comentario VALUES (26, '2015-04-20 13:05:43', '@ferrolho podes falar!', 35, 1);
+INSERT INTO askfeup.Comentario VALUES (27, '2015-04-20 13:06:43', 'rime @zoid', 36, 1);
+INSERT INTO askfeup.Comentario VALUES (28, '2015-04-20 13:07:12', '@zoid da te um tiro', 36, 2);
+INSERT INTO askfeup.Comentario VALUES (29, '2015-04-20 13:07:56', 'FOI MARA', 36, 3);
+INSERT INTO askfeup.Comentario VALUES (30, '2015-04-20 13:07:56', 'Cada um faz aquilo que pode @botas, @ferrolho e @betao', 36, 4);
+
+/** Tags **/
+INSERT INTO askfeup.Tag VALUES (1, 'd.beatriz');
+INSERT INTO askfeup.Tag VALUES (2, 'gomas');
+INSERT INTO askfeup.Tag VALUES (3, 'fome');
+INSERT INTO askfeup.Tag VALUES (4, 'pavilhao');
+INSERT INTO askfeup.Tag VALUES (5, 'horario');
+INSERT INTO askfeup.Tag VALUES (6, 'futebol');
+INSERT INTO askfeup.Tag VALUES (7, 'musica');
+INSERT INTO askfeup.Tag VALUES (8, 'noite');
+INSERT INTO askfeup.Tag VALUES (9, 'diversao');
+INSERT INTO askfeup.Tag VALUES (10, 'php');
+INSERT INTO askfeup.Tag VALUES (11, 'web');
+INSERT INTO askfeup.Tag VALUES (12, 'laravel');
+INSERT INTO askfeup.Tag VALUES (13, 'facil');
+INSERT INTO askfeup.Tag VALUES (14, 'comida');
+INSERT INTO askfeup.Tag VALUES (15, 'poupança');
+INSERT INTO askfeup.Tag VALUES (16, 'palestras');
+INSERT INTO askfeup.Tag VALUES (17, 'conhecimento');
+INSERT INTO askfeup.Tag VALUES (18, 'aprender');
+INSERT INTO askfeup.Tag VALUES (19, 'cartaofeup');
+INSERT INTO askfeup.Tag VALUES (20, 'actualizar');
+INSERT INTO askfeup.Tag VALUES (21, 'ae');
+INSERT INTO askfeup.Tag VALUES (22, 'website');
+INSERT INTO askfeup.Tag VALUES (23, 'trabalho');
+INSERT INTO askfeup.Tag VALUES (24, 'dinheiro');
+INSERT INTO askfeup.Tag VALUES (25, 'transporte');
+INSERT INTO askfeup.Tag VALUES (26, 'queima');
+
+/** PerguntaTag **/
+/* (idTag, idPergunta) */
+INSERT INTO askfeup.PerguntaTag	VALUES (1, 1);
+INSERT INTO askfeup.PerguntaTag	VALUES (2, 1);
+INSERT INTO askfeup.PerguntaTag	VALUES (3, 1);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (4, 4);
+INSERT INTO askfeup.PerguntaTag	VALUES (5, 4);
+INSERT INTO askfeup.PerguntaTag	VALUES (6, 4);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (7, 8);
+INSERT INTO askfeup.PerguntaTag	VALUES (8, 8);
+INSERT INTO askfeup.PerguntaTag	VALUES (9, 8);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (10, 11);
+INSERT INTO askfeup.PerguntaTag	VALUES (11, 11);
+INSERT INTO askfeup.PerguntaTag	VALUES (12, 11);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (3, 16);
+INSERT INTO askfeup.PerguntaTag	VALUES (13, 16);
+INSERT INTO askfeup.PerguntaTag	VALUES (14, 16);
+INSERT INTO askfeup.PerguntaTag	VALUES (15, 16);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (16, 21);
+INSERT INTO askfeup.PerguntaTag	VALUES (17, 21);
+INSERT INTO askfeup.PerguntaTag	VALUES (18, 21);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (19, 26);
+INSERT INTO askfeup.PerguntaTag	VALUES (20, 26);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (21, 29);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (22, 32);
+INSERT INTO askfeup.PerguntaTag	VALUES (23, 32);
+INSERT INTO askfeup.PerguntaTag	VALUES (24, 32);
+
+INSERT INTO askfeup.PerguntaTag	VALUES (25, 36);
+INSERT INTO askfeup.PerguntaTag	VALUES (26, 36);
 
 /** Badges **/
 INSERT INTO askfeup.Badge VALUES (1, 'Primeira Dúvida', 'Faz uma pergunta!');
@@ -208,38 +364,256 @@ INSERT INTO askfeup.Badge VALUES (15, 'Avaliador', 'Fizeste 50 votos!');
 INSERT INTO askfeup.Badge VALUES (16, 'Eleitor', 'Fizeste 100 votos!');
 
 /** BadgeMembro **/
-INSERT INTO askfeup.BadgeMembro	VALUES (1, 1);
-INSERT INTO askfeup.BadgeMembro	VALUES (2, 1);
-INSERT INTO askfeup.BadgeMembro	VALUES (3, 1);
-INSERT INTO askfeup.BadgeMembro	VALUES (1, 2);
-INSERT INTO askfeup.BadgeMembro	VALUES (3, 2);
-
-/** Tags **/
-INSERT INTO askfeup.Tag VALUES (1, 'D.Beatriz');
-INSERT INTO askfeup.Tag VALUES (2, 'Gomas');
-INSERT INTO askfeup.Tag VALUES (3, 'Horário');
-
-/** PerguntaTag **/
-INSERT INTO askfeup.PerguntaTag	VALUES (1, 1);
-INSERT INTO askfeup.PerguntaTag	VALUES (1, 3);
-INSERT INTO askfeup.PerguntaTag	VALUES (2, 1);
-INSERT INTO askfeup.PerguntaTag	VALUES (3, 1);
-INSERT INTO askfeup.PerguntaTag	VALUES (3, 3);
+/* (membroID, badgeID) */
 
 /** Favoritas **/
-INSERT INTO askfeup.Favorita VALUES (1, 1);
-INSERT INTO askfeup.Favorita VALUES (1, 3);
-INSERT INTO askfeup.Favorita VALUES (2, 3);
+/* (membroid, perguntaid) */
+INSERT INTO askfeup.Favorita VALUES (1, 4);
+INSERT INTO askfeup.Favorita VALUES (1, 8);
+INSERT INTO askfeup.Favorita VALUES (2, 11);
+INSERT INTO askfeup.Favorita VALUES (2, 29);
+
+INSERT INTO askfeup.Favorita VALUES (2, 1);
+INSERT INTO askfeup.Favorita VALUES (2, 8);
+INSERT INTO askfeup.Favorita VALUES (2, 16);
+INSERT INTO askfeup.Favorita VALUES (2, 36);
+
+INSERT INTO askfeup.Favorita VALUES (3, 11);
+INSERT INTO askfeup.Favorita VALUES (3, 26);
+INSERT INTO askfeup.Favorita VALUES (3, 29);
+
+INSERT INTO askfeup.Favorita VALUES (4, 1);
+INSERT INTO askfeup.Favorita VALUES (4, 8);
+INSERT INTO askfeup.Favorita VALUES (4, 29);
+
+INSERT INTO askfeup.Favorita VALUES (7, 36);
+
+INSERT INTO askfeup.Favorita VALUES (8, 26);
+
+INSERT INTO askfeup.Favorita VALUES (9, 4);
+INSERT INTO askfeup.Favorita VALUES (9, 16);
+
+INSERT INTO askfeup.Favorita VALUES (10, 1);
+INSERT INTO askfeup.Favorita VALUES (10, 4);
+INSERT INTO askfeup.Favorita VALUES (10, 8);
+INSERT INTO askfeup.Favorita VALUES (10, 11);
 
 /** Notificações **/
 INSERT INTO askfeup.Notificacao VALUES (1, 1, 1);
 INSERT INTO askfeup.Notificacao VALUES (2, 1, 2);
 
 /** Votos **/
-INSERT INTO askfeup.Voto VALUES ('true', 3, 1);
-INSERT INTO askfeup.Voto VALUES ('true', 4, 2);
+/* (positivo, idMembro, idContribuiçao */
 
-/** Recup+erações de Password **/
+/* Pergunta 1 */
+INSERT INTO askfeup.Voto VALUES ('true', 2, 1);
+INSERT INTO askfeup.Voto VALUES ('true', 3, 1);
+INSERT INTO askfeup.Voto VALUES ('true', 4, 1);
+INSERT INTO askfeup.Voto VALUES ('false', 8, 1);
+
+INSERT INTO askfeup.Voto VALUES ('false', 1, 2);
+INSERT INTO askfeup.Voto VALUES ('false', 3, 2);
+INSERT INTO askfeup.Voto VALUES ('false', 4, 2);
+
+INSERT INTO askfeup.Voto VALUES ('true', 1, 3);
+INSERT INTO askfeup.Voto VALUES ('false', 4, 3);
+
+/* Pergunta 2 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 3 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 4 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 5 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 6 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 7 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 8 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 9 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 10 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/* Pergunta 11 */
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+INSERT INTO askfeup.Voto VALUES ('', , );
+
+/** Recuperações de Password **/
 INSERT INTO askfeup.RecuperacaoDePassword VALUES (1, 'umastringdepass', '2015-04-15 22:32:00', 1);
 INSERT INTO askfeup.RecuperacaoDePassword VALUES (2, 'blablabla', '2015-04-15 22:32:00', 2);
 
