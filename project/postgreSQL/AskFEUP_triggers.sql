@@ -2,14 +2,14 @@
 /** Triggers **/
 
 /** ID Independente entre Contribuição e Pergunta/Resposta **/
-CREATE FUNCTION askfeup.perguntaRespostaDiferenteID() RETURNS trigger AS $perguntaRespostaDiferenteID$
+/**CREATE FUNCTION askfeup.perguntaRespostaDiferenteID() RETURNS trigger AS $perguntaRespostaDiferenteID$
   begin
     IF NEW.perguntaid IS NOT NULL where(
-      new.perguntaid NOT IN ( SELECT contribuicao.contribuicaoid FROM contribuicao)
+      new.perguntaid NOT IN ( SELECT contribuicao.contribuicaoid FROM askfeup.contribuicao)
    	) THEN RAISE EXCEPTION 'id for pergunta already in use';
     END IF;
     IF NEW.respostaid IS NOT NULL where(
-   	  new.respostaid NOT IN ( SELECT contribuicao.contribuicaoid FROM contribuicao)
+   	  new.respostaid NOT IN ( SELECT contribuicao.contribuicaoid FROM askfeup.contribuicao)
    	) THEN RAISE EXCEPTION 'id for resposta already in use';
     END IF;
     return new;
@@ -23,8 +23,7 @@ FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferenteID();
 
 CREATE TRIGGER respostaDiferenteID 
 BEFORE INSERT OR UPDATE ON askfeup.resposta
-FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferenteID();
-
+FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferenteID();**/
 
 /** Um utilizador não poder votar na sua contribuição (Pergunta/Resposta) **/
 /*CREATE FUNCTION askfeup.notSelfVote() RETURNS trigger AS $notSelfVote$
