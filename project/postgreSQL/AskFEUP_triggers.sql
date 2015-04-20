@@ -89,7 +89,7 @@ CREATE FUNCTION askFeup.perguntaRespostaDiferentID() RETURNS trigger AS $pergunt
     end;
 $perguntaRespostaDiferentID$ LANGUAGE plpgsql;
 
-CREATE TRIGGER askfeupperguntaDiferentID 
+CREATE TRIGGER perguntaDiferentID 
   BEFORE INSERT OR UPDATE ON "askfeup"."pergunta"
   FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferentID();
 
