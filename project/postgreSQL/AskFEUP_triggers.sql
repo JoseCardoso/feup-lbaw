@@ -73,3 +73,29 @@ FOR EACH ROW EXECUTE PROCEDURE askfeup.incrementVotes();
 CREATE TRIGGER decVotes 
 BEFORE DELETE ON askfeup.voto
 FOR EACH ROW EXECUTE PROCEDURE askfeup.decrementVotes();
+
+
+
+
+CREATE TRIGGER perguntaDiferentID 
+  BEFORE INSERT OR UPDATE ON "askfeup"."pergunta"
+  FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferentID();
+
+  CREATE TRIGGER respostaDiferentID 
+  BEFORE INSERT OR UPDATE ON "askfeup"."resposta"
+  FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferentID();
+
+
+CREATE FUNCTION notSelfVote() RETURNS trigger AS $notSelfVote$
+    begin
+   		IF NEW.voteid IS NOT NULL THEN 
+   			new.utilizadorid AND new.contribuicaoid NOT IN (SELECT contribuicao.utilizadorid from contribuicao WHERE new.utilizadorid = contribuicao.utilizadorid AND new.contribuicaoid = contribuicao.contribuicaoid);
+   			END IF;
+        return new;
+    end;
+$notSelfVote$ LANGUAGE plpgsql;
+
+CREATE TRIGGER notSelfVote 
+BEFORE INSERT OR UPDATE ON "askfeup"."voto"
+FOR EACH ROW EXECUTE PROCEDURE askfeup.singlnotSelfVoteeVote();
+
