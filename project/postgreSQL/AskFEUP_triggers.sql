@@ -75,9 +75,21 @@ BEFORE DELETE ON askfeup.voto
 FOR EACH ROW EXECUTE PROCEDURE askfeup.decrementVotes();
 
 
+CREATE FUNCTION askFeup.perguntaRespostaDiferentID() RETURNS trigger AS $perguntaRespostaDiferentID$
+      begin
+   			IF NEW.perguntaid IS NOT NULL where(
+   				new.perguntaid NOT IN ( SELECT contribuicao.contribuicaoid FROM contribuicao)
+   				) THEN RAISE EXCEPTION 'id for pergunta already in use';
+        	END IF;
+        	IF NEW.respostaid IS NOT NULL where(
+   				new.respostaid NOT IN ( SELECT contribuicao.contribuicaoid FROM contribuicao)
+   				) THEN RAISE EXCEPTION 'id for resposta already in use';
+        	END IF;
+        return new;
+    end;
+$perguntaRespostaDiferentID$ LANGUAGE plpgsql;
 
-
-CREATE TRIGGER perguntaDiferentID 
+CREATE TRIGGER askfeupperguntaDiferentID 
   BEFORE INSERT OR UPDATE ON "askfeup"."pergunta"
   FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferentID();
 
