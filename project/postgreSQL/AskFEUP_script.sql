@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS askfeup.Membro (
 	primeiroNome varchar(20) NOT NULL,
 	ultimoNome varchar(20) NOT NULL,
 	email varchar(50) NOT NULL,
-	pontos int,
+	pontos int NULL,
 	registo timestamp DEFAULT current_timestamp,
 	ultimoLogin timestamp NOT NULL,
 	membroID integer NOT NULL,
@@ -73,9 +73,9 @@ DROP TABLE IF EXISTS askfeup.Contribuicao;
 CREATE TABLE IF NOT EXISTS askfeup.Contribuicao (
 	contribuicaoID serial NOT NULL,
 	data timestamp DEFAULT current_timestamp,
-	diferencaVotos integer,
-	votosNegativos integer,
-	votosPositivos integer,
+	diferencaVotos integer NULL,
+	votosNegativos integer NULL,
+	votosPositivos integer NULL,
 	membroID integer NOT NULL
 );
 
@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS askfeup.Pergunta;
 CREATE TABLE IF NOT EXISTS askfeup.Pergunta ( 
 	perguntaID integer NOT NULL,
 	texto text NOT NULL,
-	descricao text,
+	descricao text NULL,
 	categoriaID integer NOT NULL
 );
 
@@ -285,12 +285,11 @@ ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Membro
 
 ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Pergunta 
 	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID) ON DELETE CASCADE;
-  
-
-
 
 /** AskFEUP **/
 /** Indexes **/
+/*CREATE INDEX pergunta_fti_texto_idx
+ON askfeup.Pergunta USING gin(to_tsvector(texto));*/ /* Full text search */
 
 CREATE INDEX membro_primeironome 
 ON askfeup.membro USING btree (primeironome);
@@ -310,13 +309,200 @@ CLUSTER askfeup.tag USING pk_tag;
 
 CLUSTER askfeup.categoria USING pk_categoria;
 
+/** AskFEUP **/
+/** Triggers **/
+
+/** ID Independente entre Contribuição e Pergunta/Resposta **/
+CREATE FUNCTION askfeup.independentQuestion() RETURNS trigger AS $independentQuestion$
+  begin
+    IF new.perguntaid NOT IN
+    	(SELECT respostaid
+    	FROM askfeup.resposta
+    	WHERE new.perguntaid = respostaid)
+    	THEN return new;
+    END IF;
+    RAISE EXCEPTION 'id % for this type of contribuition is already in use', new.perguntaid;
+  end;
+$independentQuestion$ LANGUAGE plpgsql;
+
+CREATE FUNCTION askfeup.independentAnswer() RETURNS trigger AS $independentAnswer$
+  begin
+   IF new.respostaid NOT IN
+    	(SELECT perguntaid
+    	FROM askfeup.pergunta
+    	WHERE perguntaid = new.respostaid)
+    	THEN return new;
+    END IF;
+    RAISE EXCEPTION 'id % for this type of contribuition is already in use', new.respostaid;
+  end;
+$independentAnswer$ LANGUAGE plpgsql;
+
+CREATE TRIGGER independentQuestion 
+BEFORE INSERT OR UPDATE ON askfeup.pergunta
+FOR EACH ROW EXECUTE PROCEDURE askfeup.independentQuestion();
+
+CREATE TRIGGER independentAnswer 
+BEFORE INSERT OR UPDATE ON askfeup.resposta
+FOR EACH ROW EXECUTE PROCEDURE askfeup.independentAnswer();
 
 
+/** Um utilizador não poder votar na sua contribuição (Pergunta/Resposta) **/
+CREATE FUNCTION askfeup.notSelfVote() RETURNS trigger AS $notSelfVote$
+  BEGIN
+    IF new.membroid NOT IN
+        (SELECT membroid
+        FROM askfeup.contribuicao
+        WHERE new.membroid = contribuicao.membroid
+        AND new.contribuicaoid = contribuicao.contribuicaoid)
+        THEN return new;
+    END IF;
+    RAISE EXCEPTION 'user with id % cannot vote in his own contribuition %', new.membroid, new.contribuicaoid;
+  end;
+$notSelfVote$ LANGUAGE plpgsql;
 
+CREATE TRIGGER notSelfVote
+BEFORE INSERT OR UPDATE ON askfeup.voto
+FOR EACH ROW EXECUTE PROCEDURE askfeup.notSelfVote();
 
+/** Actualizar votos**/
+CREATE FUNCTION askfeup.incrementVotes() RETURNS trigger AS $incrementVotes$
+  BEGIN
+    IF new.positivo = 'true'
+      THEN UPDATE askfeup.Contribuicao SET votosPositivos = votosPositivos + 1, diferencavotos = diferencavotos + 1
+      WHERE new.contribuicaoID = contribuicaoID;
+    ELSE
+      UPDATE askfeup.Contribuicao SET votosNegativos = votosNegativos + 1, diferencavotos = diferencavotos - 1
+      WHERE new.contribuicaoID = contribuicaoID;
+    END IF;
+    return new;
+  END;
+$incrementVotes$ LANGUAGE plpgsql;
 
+CREATE FUNCTION askfeup.decrementVotes() RETURNS trigger AS $decrementVotes$
+  BEGIN
+    IF new.positivo = 'true'
+      THEN UPDATE askfeup.Contribuicao SET votosPositivos = votosPositivos - 1, diferencavotos = diferencavotos - 1
+      WHERE new.contribuicaoID = contribuicaoID;
+    ELSE
+      UPDATE askfeup.Contribuicao SET votosNegativos = votosNegativos - 1, diferencavotos = diferencavotos + 1
+      WHERE new.contribuicaoID = contribuicaoID;
+    END IF;
+    return new;
+  END;
+$decrementVotes$ LANGUAGE plpgsql;
 
+CREATE TRIGGER incVotes
+AFTER INSERT ON askfeup.voto
+FOR EACH ROW EXECUTE PROCEDURE askfeup.incrementVotes();
 
+CREATE TRIGGER decVotes 
+BEFORE DELETE ON askfeup.voto
+FOR EACH ROW EXECUTE PROCEDURE askfeup.decrementVotes();
+
+/** AskFEUP **/
+/** Queries **/
+
+/** 1. Lista de perguntas ordenadas por pontuação (Testado) **/
+drop view if exists askfeup.perguntasporpontuacao;
+create view askfeup.perguntasporpontuacao as
+SELECT pergunta.perguntaid AS id, pergunta.texto AS conteudo, membro.primeironome AS membro, contribuicao.diferencavotos AS pontuacao
+   FROM askfeup.pergunta, askfeup.contribuicao, askfeup.membro
+  WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND contribuicao.membroid = membro.membroid
+  ORDER BY contribuicao.diferencavotos DESC;
+
+/** 2. Lista de perguntas por utilizador (em que tenha actividade e não só as próprias) **/
+drop view if exists askfeup.perguntasporutilizador;
+create view askfeup.perguntasporutilizador as
+SELECT utilizador.username AS "user", pergunta.perguntaid AS id, pergunta.texto AS conteudo
+   FROM askfeup.utilizador, askfeup.pergunta, askfeup.membro, askfeup.comentario, askfeup.resposta, askfeup.contribuicao
+  WHERE resposta.perguntaid = pergunta.perguntaid AND utilizador.utilizadorid = contribuicao.membroid AND pergunta.perguntaid = contribuicao.contribuicaoid
+  ORDER BY utilizador.username;
+
+/** 3. Lista de Pergunta Favoritas por Utilizador **/
+drop view if exists askfeup.favoritasporutilizador;
+create view askfeup.favoritasporutilizador as
+ SELECT membro.ultimonome, membro.primeironome, pergunta.texto, pergunta.descricao
+   FROM askfeup.membro
+   JOIN askfeup.favorita ON membro.membroid = favorita.membroid
+   JOIN askfeup.pergunta ON favorita.perguntaid = pergunta.perguntaid;
+
+/** 4. Lista de Perguntas por Categoria **/
+drop view if exists askfeup.perguntasporcategoria;
+create view askfeup.perguntasporcategoria as
+SELECT pergunta.perguntaid, pergunta.categoriaid, pergunta.texto, pergunta.descricao, categoria.tipo
+   FROM askfeup.pergunta
+   JOIN askfeup.categoria ON pergunta.categoriaid = categoria.categoriaid;
+
+/** 5. Lista de Perguntas por Tags**/
+drop view if exists askfeup.perguntasportags;
+CREATE VIEW askfeup.perguntasportags AS
+SELECT tag.nome, pergunta.texto
+   FROM askfeup.perguntatag
+   JOIN askfeup.tag ON perguntatag.tagid = tag.tagid
+   JOIN askfeup.pergunta ON perguntatag.perguntaid = pergunta.perguntaid;
+
+/** 6. Lista de Respostas assinaladas como Correctas**/
+drop view if exists askfeup.respostascorrectas;
+create view askfeup.respostascorrectas as
+SELECT pergunta.texto, resposta.correcta, resposta.descricao
+   FROM askfeup.pergunta
+   JOIN askfeup.resposta ON pergunta.perguntaid = resposta.perguntaid
+  WHERE resposta.correcta = true;
+
+/** 7. Lista de Respostas dadas por um membro**/
+drop view if exists askfeup.respostaspormembro;
+CREATE VIEW askfeup.respostaspormembro AS
+SELECT resposta.correcta, resposta.descricao
+   FROM askfeup.membro
+   JOIN askfeup.contribuicao ON membro.membroid = contribuicao.membroid
+   JOIN askfeup.resposta ON contribuicao.contribuicaoid = resposta.respostaid;
+
+/** 8. Lista de respostas a uma pergunta **/
+drop view if exists askfeup.respostasapergunta;
+create view askfeup.respostasapergunta as
+SELECT resposta.respostaid
+   FROM askfeup.resposta, askfeup.pergunta
+  WHERE pergunta.perguntaid = resposta.perguntaid;
+
+/** 9. Lista de comentários a uma contribuição **/
+drop view if exists askfeup.comentariosdecontribuicao;
+create view askfeup.comentariosdecontribuicao as
+SELECT comentario.comentarioid
+   FROM askfeup.contribuicao, askfeup.comentario
+  WHERE comentario.contribuicaoid = comentario.comentarioid;
+
+/** 10. Lista de utilizadores que possuem um determinado Badge (vice-versa) (testado) **/
+drop view if exists askfeup.utilizadoresbadge;
+create view askfeup.utilizadoresbadge as
+SELECT badge.nome, membro.primeironome AS membro
+   FROM askfeup.membro, askfeup.badge, askfeup.badgemembro
+  WHERE membro.membroid = badgemembro.membroid AND badge.badgeid = badgemembro.badgeid;
+
+/** 11. Lista de perguntas ordenadas por data de criação **/
+drop view if exists askfeup.perguntaspordatadecriacao;
+CREATE VIEW askfeup.perguntaspordatadecriacao AS
+ SELECT pergunta.perguntaid, pergunta.texto
+   FROM askfeup.pergunta, askfeup.contribuicao
+  WHERE pergunta.perguntaid = contribuicao.contribuicaoid
+  ORDER BY contribuicao.data;
+
+/** 12. Lista de perguntas mais populares (votos) **/
+drop view if exists askfeup.perguntaspopulares;
+create view askfeup.perguntaspopulares as
+SELECT pergunta.perguntaid
+   FROM askfeup.pergunta, askfeup.contribuicao
+  WHERE pergunta.perguntaid = contribuicao.contribuicaoid
+  ORDER BY contribuicao.votospositivos + contribuicao.votosnegativos DESC;
+
+/** 13. Lista de perguntas mais vistas **/
+drop view if exists askfeup.perguntasmaisvistas;
+CREATE VIEW askfeup.perguntasmaisvistas AS
+SELECT pergunta.perguntaid, pergunta.texto, subquery1.views
+   FROM askfeup.pergunta, askfeup.contribuicao, ( SELECT visualizacao.perguntaid, count(*) AS views
+           FROM askfeup.visualizacao
+          GROUP BY visualizacao.perguntaid) subquery1
+  WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND subquery1.perguntaid = pergunta.perguntaid
+  ORDER BY subquery1.views DESC;
 
   /** AskFEUP **/
 /** Insert Data **/
@@ -411,14 +597,14 @@ INSERT INTO askfeup.Cidade VALUES (67, 'Porto Santo', 9400);
 
 /** Membros **/
 /* (activo, primeiroNome, ultimoNome, email, pontos, registo, ultimoLogin, utilizadorID, cidadeID) */
-INSERT INTO askfeup.Membro VALUES ('true', 'João', 'Pereira', 'ei12023@fe.up.pt', 0, '2015-04-13 04:14:00', '2015-04-18 04:15:00', 1, 22);
-INSERT INTO askfeup.Membro VALUES ('true', 'Henrique', 'Ferrolho', 'ei12079@fe.up.pt', 0, '2015-04-14 12:05:00', '2015-04-18 00:01:00', 2, 63);
-INSERT INTO askfeup.Membro VALUES ('true', 'José', 'Cardoso', 'ei12027@fe.up.pt', 0, '2015-04-14 15:14:00', '2015-04-18 04:18:00', 3, 18);
-INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt', 0, '2015-04-14 20:14:00', '2015-04-08 04:15:00', 4, 18);
-INSERT INTO askfeup.Membro VALUES ('true', 'Tiago', 'Negro', 'okapaman@gmail.com', 0, '2015-04-16 05:00:21', '2015-04-21 18:33:12', 7, 67);
-INSERT INTO askfeup.Membro VALUES ('true', 'Gisela', 'Tosta', 'manteigascompao@hotmail.com', 0, '2015-04-17 15:02:03', '2015-04-22 00:00:57', 8, 61);
-INSERT INTO askfeup.Membro VALUES ('true', 'Jorge', 'Castro', 'jorgecastro4@sapo.pt', 0, '2015-04-18 12:13:43', '2015-04-18 12:13:43', 9, 55);
-INSERT INTO askfeup.Membro VALUES ('true', 'Alice', 'Correia', 'lice_correia94@gmail.com', 0, '2015-04-18 14:13:43', '2015-04-18 19:13:43', 10, 38);
+INSERT INTO askfeup.Membro VALUES ('true', 'João', 'Pereira', 'ei12023@fe.up.pt', DEFAULT, '2015-04-13 04:14:00', '2015-04-18 04:15:00', 1, 22);
+INSERT INTO askfeup.Membro VALUES ('true', 'Henrique', 'Ferrolho', 'ei12079@fe.up.pt', DEFAULT, '2015-04-14 12:05:00', '2015-04-18 00:01:00', 2, 63);
+INSERT INTO askfeup.Membro VALUES ('true', 'José', 'Cardoso', 'ei12027@fe.up.pt', DEFAULT, '2015-04-14 15:14:00', '2015-04-18 04:18:00', 3, 18);
+INSERT INTO askfeup.Membro VALUES ('true', 'Gabriel', 'Souto', 'ei12087@fe.up.pt', DEFAULT, '2015-04-14 20:14:00', '2015-04-08 04:15:00', 4, 18);
+INSERT INTO askfeup.Membro VALUES ('true', 'Tiago', 'Negro', 'okapaman@gmail.com', DEFAULT, '2015-04-16 05:00:21', '2015-04-21 18:33:12', 7, 67);
+INSERT INTO askfeup.Membro VALUES ('true', 'Gisela', 'Tosta', 'manteigascompao@hotmail.com', DEFAULT, '2015-04-17 15:02:03', '2015-04-22 00:00:57', 8, 61);
+INSERT INTO askfeup.Membro VALUES ('true', 'Jorge', 'Castro', 'jorgecastro4@sapo.pt', DEFAULT, '2015-04-18 12:13:43', '2015-04-18 12:13:43', 9, 55);
+INSERT INTO askfeup.Membro VALUES ('true', 'Alice', 'Correia', 'lice_correia94@gmail.com', DEFAULT, '2015-04-18 14:13:43', '2015-04-18 19:13:43', 10, 38);
 
 /** Categorias **/
 /* (id, tipo) */
@@ -441,55 +627,55 @@ INSERT INTO askfeup.Categoria VALUES (16, 'Localizações');
 
 /** Contribuições **/
 /* (id, data, diferancaVotos, votosNegativos, votosPositivos, membroID) */
-INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 2, 1, 3, 1);
-INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-15 22:33:40', -3, 3, 0, 2);
-INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-15 22:34:10', 0, 1, 1, 3);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-15 22:32:00', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-15 22:33:40', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-15 22:34:10', 0, 0, 0, 3);
 
-INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-16 23:34:30', 3, 2, 5, 4);
-INSERT INTO askfeup.Contribuicao VALUES (5, '2015-04-16 23:39:03', -1, 3, 2, 1);
-INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-16 23:45:12', 5, 0, 5, 3);
-INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-16 23:50:46', 0, 1, 1, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-16 23:34:30', 0, 0, 0, 4);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-16 23:39:03', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-16 23:45:12', 0, 0, 0, 3);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-16 23:50:46', 0, 0, 0, 2);
 
-INSERT INTO askfeup.Contribuicao VALUES (8, '2015-04-16 23:51:00', 6, 0, 6, 10);
-INSERT INTO askfeup.Contribuicao VALUES (9, '2015-04-16 23:59:12', 4, 0, 4, 9);
-INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 5, 1, 6, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-16 23:51:00', 0, 0, 0, 10);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-16 23:59:12', 0, 0, 0, 9);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-17 00:10:56', 0, 0, 0, 2);
 
-INSERT INTO askfeup.Contribuicao VALUES (11, '2015-04-18 15:11:02', 2, 2, 4, 2);
-INSERT INTO askfeup.Contribuicao VALUES (12, '2015-04-18 14:10:22', -3, 3, 0, 8);
-INSERT INTO askfeup.Contribuicao VALUES (13, '2015-04-18 16:30:45', 4, 0, 4, 3);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 15:11:02', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 14:10:22', 0, 0, 0, 8);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 16:30:45', 0, 0, 0, 3);
 
-INSERT INTO askfeup.Contribuicao VALUES (14, '2015-04-18 17:01:12', 2, 0, 2, 7);
-INSERT INTO askfeup.Contribuicao VALUES (15, '2015-04-18 18:31:47', 3, 0, 3, 9);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 17:01:12', 0, 0, 0, 7);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 18:31:47', 0, 0, 0, 9);
 
-INSERT INTO askfeup.Contribuicao VALUES (16, '2015-04-18 19:41:23', 4, 1, 5, 8);
-INSERT INTO askfeup.Contribuicao VALUES (17, '2015-04-18 19:46:32', -3, 4, 1, 2);
-INSERT INTO askfeup.Contribuicao VALUES (18, '2015-04-18 19:48:11', -4, 4, 0, 3);
-INSERT INTO askfeup.Contribuicao VALUES (19, '2015-04-18 19:50:22', -3, 5, 2, 4);
-INSERT INTO askfeup.Contribuicao VALUES (20, '2015-04-18 19:55:55', 5, 0, 5, 1);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 19:41:23', 0, 0, 0, 8);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 19:46:32', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 19:48:11', 0, 0, 0, 3);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 19:50:22', 0, 0, 0, 4);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-18 19:55:55', 0, 0, 0, 1);
 
-INSERT INTO askfeup.Contribuicao VALUES (21, '2015-04-19 08:41:23', 5, 0, 5, 4);
-INSERT INTO askfeup.Contribuicao VALUES (22, '2015-04-19 09:10:32', 3, 0, 3, 2);
-INSERT INTO askfeup.Contribuicao VALUES (23, '2015-04-19 10:48:11', 2, 0, 2, 3);
-INSERT INTO askfeup.Contribuicao VALUES (24, '2015-04-19 10:50:22', 1, 0, 1, 1);
-INSERT INTO askfeup.Contribuicao VALUES (25, '2015-04-19 11:55:55', -1, 3, 2, 7);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 08:41:23', 0, 0, 0, 4);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 09:10:32', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 10:48:11', 0, 0, 0, 3);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 10:50:22', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 11:55:55', 0, 0, 0, 7);
 
-INSERT INTO askfeup.Contribuicao VALUES (26, '2015-04-19 14:05:32', 1, 2, 3, 3);
-INSERT INTO askfeup.Contribuicao VALUES (27, '2015-04-19 15:45:21', 3, 1, 4, 2);
-INSERT INTO askfeup.Contribuicao VALUES (28, '2015-04-19 15:56:02', 0, 1, 1, 10);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 14:05:32', 0, 0, 0, 3);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 15:45:21', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-19 15:56:02', 0, 0, 0, 10);
 
-INSERT INTO askfeup.Contribuicao VALUES (29, '2015-04-20 10:12:32', 3, 0, 3, 10);
-INSERT INTO askfeup.Contribuicao VALUES (30, '2015-04-20 10:14:38', 3, 0, 3, 2);
-INSERT INTO askfeup.Contribuicao VALUES (31, '2015-04-20 10:15:32', 0, 1, 1, 1);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 10:12:32', 0, 0, 0, 10);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 10:14:38', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 10:15:32', 0, 0, 0, 1);
 
-INSERT INTO askfeup.Contribuicao VALUES (32, '2015-04-20 12:00:01', 5, 1, 6, 9);
-INSERT INTO askfeup.Contribuicao VALUES (33, '2015-04-20 12:02:45', 1, 0, 1, 1);
-INSERT INTO askfeup.Contribuicao VALUES (34, '2015-04-20 12:02:46', 1, 0, 1, 2);
-INSERT INTO askfeup.Contribuicao VALUES (35, '2015-04-20 13:03:57', 1, 0, 1, 3);
-INSERT INTO askfeup.Contribuicao VALUES (36, '2015-04-20 13:06:00', -2, 3, 1, 4);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 12:00:01', 0, 0, 0, 9);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 12:02:45', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 12:02:46', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 13:03:57', 0, 0, 0, 3);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 13:06:00', 0, 0, 0, 4);
 
-INSERT INTO askfeup.Contribuicao VALUES (37, '2015-04-22 11:45:23', 3, 0, 3, 1);
-INSERT INTO askfeup.Contribuicao VALUES (38, '2015-04-22 13:56:12', 3, 0, 3, 2);
-INSERT INTO askfeup.Contribuicao VALUES (39, '2015-04-22 14:33:03', 3, 0, 3, 4);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 11:45:23', 0, 0, 0, 1);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 13:56:12', 0, 0, 0, 2);
+INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 14:33:03', 0, 0, 0, 4);
 
 /** Perguntas **/
 /* (contribuicaoID, texto, descrição, categoriaID) */
@@ -1016,185 +1202,3 @@ INSERT INTO askfeup.Visualizacao VALUES (10, 32);
 INSERT INTO askfeup.Visualizacao VALUES (2, 37);
 INSERT INTO askfeup.Visualizacao VALUES (3, 37);
 INSERT INTO askfeup.Visualizacao VALUES (4, 37);
-
-/** AskFEUP **/
-/** Triggers **/
-
-/** ID Independente entre Contribuição e Pergunta/Resposta **/
-CREATE FUNCTION askfeup.perguntaRespostaDiferenteID() RETURNS trigger AS $perguntaRespostaDiferenteID$
-  begin
-    IF NEW.perguntaid IS NOT NULL where(
-      new.perguntaid NOT IN ( SELECT contribuicao.contribuicaoid FROM askfeup.contribuicao)
-   	) THEN RAISE EXCEPTION 'id for pergunta already in use';
-    END IF;
-    IF NEW.respostaid IS NOT NULL where(
-   	  new.respostaid NOT IN ( SELECT contribuicao.contribuicaoid FROM askfeup.contribuicao)
-   	) THEN RAISE EXCEPTION 'id for resposta already in use';
-    END IF;
-    return new;
-  end;
-$perguntaRespostaDiferenteID$ LANGUAGE plpgsql;
-
-
-CREATE TRIGGER perguntaDiferenteID 
-BEFORE INSERT OR UPDATE ON askfeup.pergunta
-FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferenteID();
-
-CREATE TRIGGER respostaDiferenteID 
-BEFORE INSERT OR UPDATE ON askfeup.resposta
-FOR EACH ROW EXECUTE PROCEDURE askfeup.perguntaRespostaDiferenteID();
-
-
-/** Um utilizador não poder votar na sua contribuição (Pergunta/Resposta) **/
-/*CREATE FUNCTION askfeup.notSelfVote() RETURNS trigger AS $notSelfVote$
-  begin
-    IF NEW.voteid IS NOT NULL THEN 
-      new.utilizadorid AND new.contribuicaoid NOT IN (SELECT contribuicao.utilizadorid from contribuicao WHERE new.utilizadorid = contribuicao.utilizadorid AND new.contribuicaoid = contribuicao.contribuicaoid);
-    END IF;
-    return new;
-  end;
-$notSelfVote$ LANGUAGE plpgsql;
-
-CREATE TRIGGER notSelfVote 
-BEFORE INSERT OR UPDATE ON askfeup.voto
-FOR EACH ROW EXECUTE PROCEDURE askfeup.notSelfVote();*/
-
-/** Actualizar votos**/
-CREATE FUNCTION askfeup.incrementVotes() RETURNS trigger AS $incrementVotes$
-  BEGIN
-    IF new.positivo = 'true'
-      THEN UPDATE Contribuicao SET votosPositivos = votosPositivos + 1, diferencavotos = diferencavotos + 1
-      WHERE new.contribuicaoID = contribuicaoID;
-    ELSE
-      UPDATE Contribuicao SET votosNegativos = votosNegativos + 1, diferencavotos = diferencavotos - 1
-      WHERE new.contribuicaoID = contribuicaoID;
-    END IF;
-    return new;
-  END;
-$incrementVotes$ LANGUAGE plpgsql;
-
-CREATE FUNCTION askfeup.decrementVotes() RETURNS trigger AS $decrementVotes$
-  BEGIN
-    IF new.positivo = 'true'
-      THEN UPDATE Contribuicao SET votosPositivos = votosPositivos - 1, diferencavotos = diferencavotos - 1
-      WHERE new.contribuicaoID = contribuicaoID;
-    ELSE
-      UPDATE Contribuicao SET votosNegativos = votosNegativos - 1, diferencavotos = diferencavotos + 1
-      WHERE new.contribuicaoID = contribuicaoID;
-    END IF;
-    return new;
-  END;
-$decrementVotes$ LANGUAGE plpgsql;
-
-CREATE TRIGGER incVotes
-BEFORE INSERT ON askfeup.voto
-FOR EACH ROW EXECUTE PROCEDURE askfeup.incrementVotes();
-
-CREATE TRIGGER decVotes 
-BEFORE DELETE ON askfeup.voto
-FOR EACH ROW EXECUTE PROCEDURE askfeup.decrementVotes();
-
-/** AskFEUP **/
-/** Queries **/
-
-/** 1. Lista de perguntas ordenadas por pontuação (Testado) **/
-drop view if exists askfeup.perguntasporpontuacao;
-create view askfeup.perguntasporpontuacao as
-SELECT pergunta.perguntaid AS id, pergunta.texto AS conteudo, membro.primeironome AS membro, contribuicao.diferencavotos AS pontuacao
-   FROM askfeup.pergunta, askfeup.contribuicao, askfeup.membro
-  WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND contribuicao.membroid = membro.membroid
-  ORDER BY contribuicao.diferencavotos DESC;
-
-/** 2. Lista de perguntas por utilizador (em que tenha actividade e não só as próprias) **/
-drop view if exists askfeup.perguntasporutilizador;
-create view askfeup.perguntasporutilizador as
-SELECT utilizador.username AS "user", pergunta.perguntaid AS id, pergunta.texto AS conteudo
-   FROM askfeup.utilizador, askfeup.pergunta, askfeup.membro, askfeup.comentario, askfeup.resposta, askfeup.contribuicao
-  WHERE resposta.perguntaid = pergunta.perguntaid AND utilizador.utilizadorid = contribuicao.membroid AND pergunta.perguntaid = contribuicao.contribuicaoid
-  ORDER BY utilizador.username;
-
-/** 3. Lista de Pergunta Favoritas por Utilizador **/
-drop view if exists askfeup.favoritasporutilizador;
-create view askfeup.favoritasporutilizador as
- SELECT membro.ultimonome, membro.primeironome, pergunta.texto, pergunta.descricao
-   FROM askfeup.membro
-   JOIN askfeup.favorita ON membro.membroid = favorita.membroid
-   JOIN askfeup.pergunta ON favorita.perguntaid = pergunta.perguntaid;
-
-/** 4. Lista de Perguntas por Categoria **/
-drop view if exists askfeup.perguntasporcategoria;
-create view askfeup.perguntasporcategoria as
-SELECT pergunta.perguntaid, pergunta.categoriaid, pergunta.texto, pergunta.descricao, categoria.tipo
-   FROM askfeup.pergunta
-   JOIN askfeup.categoria ON pergunta.categoriaid = categoria.categoriaid;
-
-/** 5. Lista de Perguntas por Tags**/
-drop view if exists askfeup.perguntasportags;
-CREATE VIEW askfeup.perguntasportags AS
-SELECT tag.nome, pergunta.texto
-   FROM askfeup.perguntatag
-   JOIN askfeup.tag ON perguntatag.tagid = tag.tagid
-   JOIN askfeup.pergunta ON perguntatag.perguntaid = pergunta.perguntaid;
-
-/** 6. Lista de Respostas assinaladas como Correctas**/
-drop view if exists askfeup.respostascorrectas;
-create view askfeup.respostascorrectas as
-SELECT pergunta.texto, resposta.correcta, resposta.descricao
-   FROM askfeup.pergunta
-   JOIN askfeup.resposta ON pergunta.perguntaid = resposta.perguntaid
-  WHERE resposta.correcta = true;
-
-/** 7. Lista de Respostas dadas por um membro**/
-drop view if exists askfeup.respostaspormembro;
-CREATE VIEW askfeup.respostaspormembro AS
-SELECT resposta.correcta, resposta.descricao
-   FROM askfeup.membro
-   JOIN askfeup.contribuicao ON membro.membroid = contribuicao.membroid
-   JOIN askfeup.resposta ON contribuicao.contribuicaoid = resposta.respostaid;
-
-/** 8. Lista de respostas a uma pergunta **/
-drop view if exists askfeup.respostasapergunta;
-create view askfeup.respostasapergunta as
-SELECT resposta.respostaid
-   FROM askfeup.resposta, askfeup.pergunta
-  WHERE pergunta.perguntaid = resposta.perguntaid;
-
-/** 9. Lista de comentários a uma contribuição **/
-drop view if exists askfeup.comentariosdecontribuicao;
-create view askfeup.comentariosdecontribuicao as
-SELECT comentario.comentarioid
-   FROM askfeup.contribuicao, askfeup.comentario
-  WHERE comentario.contribuicaoid = comentario.comentarioid;
-
-/** 10. Lista de utilizadores que possuem um determinado Badge (vice-versa) (testado) **/
-drop view if exists askfeup.utilizadoresbadge;
-create view askfeup.utilizadoresbadge as
-SELECT badge.nome, membro.primeironome AS membro
-   FROM askfeup.membro, askfeup.badge, askfeup.badgemembro
-  WHERE membro.membroid = badgemembro.membroid AND badge.badgeid = badgemembro.badgeid;
-
-/** 11. Lista de perguntas ordenadas por data de criação **/
-drop view if exists askfeup.perguntaspordatadecriacao;
-CREATE VIEW askfeup.perguntaspordatadecriacao AS
- SELECT pergunta.perguntaid, pergunta.texto
-   FROM askfeup.pergunta, askfeup.contribuicao
-  WHERE pergunta.perguntaid = contribuicao.contribuicaoid
-  ORDER BY contribuicao.data;
-
-/** 12. Lista de perguntas mais populares (votos) **/
-drop view if exists askfeup.perguntaspopulares;
-create view askfeup.perguntaspopulares as
-SELECT pergunta.perguntaid
-   FROM askfeup.pergunta, askfeup.contribuicao
-  WHERE pergunta.perguntaid = contribuicao.contribuicaoid
-  ORDER BY contribuicao.votospositivos + contribuicao.votosnegativos DESC;
-
-/** 13. Lista de perguntas mais vistas **/
-drop view if exists askfeup.perguntasmaisvistas;
-CREATE VIEW askfeup.perguntasmaisvistas AS
-SELECT pergunta.perguntaid, pergunta.texto, subquery1.views
-   FROM askfeup.pergunta, askfeup.contribuicao, ( SELECT visualizacao.perguntaid, count(*) AS views
-           FROM askfeup.visualizacao
-          GROUP BY visualizacao.perguntaid) subquery1
-  WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND subquery1.perguntaid = pergunta.perguntaid
-  ORDER BY subquery1.views DESC;
