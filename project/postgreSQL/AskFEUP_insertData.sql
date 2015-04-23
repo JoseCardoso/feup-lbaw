@@ -170,56 +170,6 @@ INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-20 13:06:00', 0, 0, 0
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 11:45:23', 0, 0, 0, 1);
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 13:56:12', 0, 0, 0, 2);
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 14:33:03', 0, 0, 0, 4);
-=======
-INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 2, 1, 3, 1);
-INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-15 22:33:40', -3, 3, 0, 2);
-INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-15 22:34:10', 0, 1, 1, 3);
-
-INSERT INTO askfeup.Contribuicao VALUES (4, '2015-04-16 23:34:30', 3, 2, 5, 4);
-INSERT INTO askfeup.Contribuicao VALUES (5, '2015-04-16 23:39:03', -1, 3, 2, 1);
-INSERT INTO askfeup.Contribuicao VALUES (6, '2015-04-16 23:45:12', 5, 0, 5, 3);
-INSERT INTO askfeup.Contribuicao VALUES (7, '2015-04-16 23:50:46', 0, 1, 1, 2);
-
-INSERT INTO askfeup.Contribuicao VALUES (8, '2015-04-16 23:51:00', 6, 0, 6, 10);
-INSERT INTO askfeup.Contribuicao VALUES (9, '2015-04-16 23:59:12', 4, 0, 4, 9);
-INSERT INTO askfeup.Contribuicao VALUES (10, '2015-04-17 00:10:56', 5, 1, 6, 2);
-
-INSERT INTO askfeup.Contribuicao VALUES (11, '2015-04-18 15:11:02', 2, 2, 4, 2);
-INSERT INTO askfeup.Contribuicao VALUES (12, '2015-04-18 14:10:22', -3, 3, 0, 8);
-INSERT INTO askfeup.Contribuicao VALUES (13, '2015-04-18 16:30:45', 4, 0, 4, 3);
-
-INSERT INTO askfeup.Contribuicao VALUES (14, '2015-04-18 17:01:12', 2, 0, 2, 7);
-INSERT INTO askfeup.Contribuicao VALUES (15, '2015-04-18 18:31:47', 3, 0, 3, 9);
-
-INSERT INTO askfeup.Contribuicao VALUES (16, '2015-04-18 19:41:23', 4, 1, 5, 8);
-INSERT INTO askfeup.Contribuicao VALUES (17, '2015-04-18 19:46:32', -3, 4, 1, 2);
-INSERT INTO askfeup.Contribuicao VALUES (18, '2015-04-18 19:48:11', -4, 4, 0, 3);
-INSERT INTO askfeup.Contribuicao VALUES (19, '2015-04-18 19:50:22', -3, 5, 2, 4);
-INSERT INTO askfeup.Contribuicao VALUES (20, '2015-04-18 19:55:55', 5, 0, 5, 1);
-
-INSERT INTO askfeup.Contribuicao VALUES (21, '2015-04-19 08:41:23', 5, 0, 5, 4);
-INSERT INTO askfeup.Contribuicao VALUES (22, '2015-04-19 09:10:32', 3, 0, 3, 2);
-INSERT INTO askfeup.Contribuicao VALUES (23, '2015-04-19 10:48:11', 2, 0, 2, 3);
-INSERT INTO askfeup.Contribuicao VALUES (24, '2015-04-19 10:50:22', 1, 0, 1, 1);
-INSERT INTO askfeup.Contribuicao VALUES (25, '2015-04-19 11:55:55', -1, 3, 2, 7);
-
-INSERT INTO askfeup.Contribuicao VALUES (26, '2015-04-19 14:05:32', 1, 2, 3, 3);
-INSERT INTO askfeup.Contribuicao VALUES (27, '2015-04-19 15:45:21', 3, 1, 4, 2);
-INSERT INTO askfeup.Contribuicao VALUES (28, '2015-04-19 15:56:02', 0, 1, 1, 10);
-
-INSERT INTO askfeup.Contribuicao VALUES (29, '2015-04-20 10:12:32', 3, 0, 3, 10);
-INSERT INTO askfeup.Contribuicao VALUES (30, '2015-04-20 10:14:38', 3, 0, 3, 2);
-INSERT INTO askfeup.Contribuicao VALUES (31, '2015-04-20 10:15:32', 0, 1, 1, 1);
-
-INSERT INTO askfeup.Contribuicao VALUES (32, '2015-04-20 12:00:01', 5, 1, 6, 9);
-INSERT INTO askfeup.Contribuicao VALUES (33, '2015-04-20 12:02:45', 1, 0, 1, 1);
-INSERT INTO askfeup.Contribuicao VALUES (34, '2015-04-20 12:02:46', 1, 0, 1, 2);
-INSERT INTO askfeup.Contribuicao VALUES (35, '2015-04-20 13:03:57', 1, 0, 1, 3);
-INSERT INTO askfeup.Contribuicao VALUES (36, '2015-04-20 13:06:00', -2, 3, 1, 4);
-
-INSERT INTO askfeup.Contribuicao VALUES (37, '2015-04-22 11:45:23', 3, 0, 3, 1);
-INSERT INTO askfeup.Contribuicao VALUES (38, '2015-04-22 13:56:12', 3, 0, 3, 2);
-INSERT INTO askfeup.Contribuicao VALUES (39, '2015-04-22 14:33:03', 3, 0, 3, 4);
 
 /** Perguntas **/
 /* (contribuicaoID, texto, descrição, categoriaID) */
