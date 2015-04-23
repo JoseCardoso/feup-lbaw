@@ -1,3 +1,2 @@
 <?php
-  header('Location: pages/tweets/list_all.php');
-?>
+header('Location: pages/test.php');

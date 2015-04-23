@@ -1,7 +1,7 @@
-	<link rel="stylesheet" href="assets/css/sign-in.css" />
+	<link rel="stylesheet" href="css/askfeup/sign-in.css" />
 </head>
 <body>
-	<?php include 'navbar.php'; ?>
+	{include file = 'common/navbar.php'}
 
 	<div class="row">
 		<div class="small-12 medium-6 large-8 columns">
