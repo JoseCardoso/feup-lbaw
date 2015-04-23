@@ -122,6 +122,7 @@ INSERT INTO askfeup.Categoria VALUES (16, 'Localizações');
 /** Contribuições **/
 /* (id, data, diferancaVotos, votosNegativos, votosPositivos, membroID) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-15 22:32:00', 0, 0, 0, 1);
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-15 22:33:40', 0, 0, 0, 2);
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-15 22:34:10', 0, 0, 0, 3);
@@ -172,6 +173,8 @@ INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 11:45:23', 0, 0, 0
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 13:56:12', 0, 0, 0, 2);
 INSERT INTO askfeup.Contribuicao VALUES (DEFAULT, '2015-04-22 14:33:03', 0, 0, 0, 4);
 =======
+=======
+>>>>>>> parent of f04e9d2... 2nd review of a7 and a8 almost done; time to gym
 INSERT INTO askfeup.Contribuicao VALUES (1, '2015-04-15 22:32:00', 2, 1, 3, 1);
 INSERT INTO askfeup.Contribuicao VALUES (2, '2015-04-15 22:33:40', -3, 3, 0, 2);
 INSERT INTO askfeup.Contribuicao VALUES (3, '2015-04-15 22:34:10', 0, 1, 1, 3);
@@ -221,6 +224,9 @@ INSERT INTO askfeup.Contribuicao VALUES (36, '2015-04-20 13:06:00', -2, 3, 1, 4)
 INSERT INTO askfeup.Contribuicao VALUES (37, '2015-04-22 11:45:23', 3, 0, 3, 1);
 INSERT INTO askfeup.Contribuicao VALUES (38, '2015-04-22 13:56:12', 3, 0, 3, 2);
 INSERT INTO askfeup.Contribuicao VALUES (39, '2015-04-22 14:33:03', 3, 0, 3, 4);
+<<<<<<< HEAD
+>>>>>>> parent of f04e9d2... 2nd review of a7 and a8 almost done; time to gym
+=======
 >>>>>>> parent of f04e9d2... 2nd review of a7 and a8 almost done; time to gym
 
 /** Perguntas **/

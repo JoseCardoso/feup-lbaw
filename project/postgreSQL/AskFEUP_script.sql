@@ -310,13 +310,20 @@ CLUSTER askfeup.tag USING pk_tag;
 
 CLUSTER askfeup.categoria USING pk_categoria;
 
+<<<<<<< HEAD
+
+
+
+=======
+
+
+
+>>>>>>> parent of f04e9d2... 2nd review of a7 and a8 almost done; time to gym
 
 
 
 
-
-
-
+<<<<<<< HEAD
 <<<<<<< HEAD
 /** Actualizar votos**/
 CREATE FUNCTION askfeup.incrementVotes() RETURNS trigger AS $incrementVotes$
@@ -467,6 +474,8 @@ SELECT pergunta.perguntaid, pergunta.texto, subquery1.views
           GROUP BY visualizacao.perguntaid) subquery1
   WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND subquery1.perguntaid = pergunta.perguntaid
   ORDER BY subquery1.views DESC;
+=======
+>>>>>>> parent of f04e9d2... 2nd review of a7 and a8 almost done; time to gym
 =======
 >>>>>>> parent of f04e9d2... 2nd review of a7 and a8 almost done; time to gym
 
@@ -1349,4 +1358,8 @@ SELECT pergunta.perguntaid, pergunta.texto, subquery1.views
            FROM askfeup.visualizacao
           GROUP BY visualizacao.perguntaid) subquery1
   WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND subquery1.perguntaid = pergunta.perguntaid
+<<<<<<< HEAD
   ORDER BY subquery1.views DESC;
+=======
+  ORDER BY subquery1.views DESC;
+>>>>>>> parent of f04e9d2... 2nd review of a7 and a8 almost done; time to gym
