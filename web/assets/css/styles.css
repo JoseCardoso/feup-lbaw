@@ -1,0 +1,36 @@
+body {
+	background: #eee;
+}
+
+.nav-bar-border-top {
+	border-top: 0.4rem solid #8c2d19;
+}
+
+.search-bar {
+	min-width: 18rem;
+}
+
+.nav-bar-icon {
+	margin-right: 1em;
+}
+
+.nav-bar-margin-bottom {
+	margin-bottom: 1.25rem;
+}
+
+.panel {
+	background: #fff;
+}
+
+/* big search box */
+/*
+body .search-box {
+	top: 300px;
+}
+
+body .search-box-panel {
+	width: 650px;
+	height: 100px;
+	margin: 0;
+}
+*/
