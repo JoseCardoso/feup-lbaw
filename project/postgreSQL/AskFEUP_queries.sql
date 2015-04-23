@@ -14,10 +14,7 @@ drop view if exists askfeup.perguntasporutilizador;
 create view askfeup.perguntasporutilizador as
 SELECT utilizador.username AS "user", pergunta.perguntaid AS id, pergunta.texto AS conteudo
    FROM askfeup.utilizador, askfeup.pergunta, askfeup.membro, askfeup.comentario, askfeup.resposta, askfeup.contribuicao
-  WHERE (pergunta.perguntaid = contribuicao.contribuicaoid AND contribuicao.membroid = utilizador.utilizadorid)
-    OR
-        (resposta.perguntaid = pergunta.perguntaid AND resposta.respostaid = contribuicao.contribuicaoid AND contribuicao.membroid = utilizador.utilizadorid)
-  GROUP BY pergunta.perguntaid, utilizador.utilizadorid, pergunta.texto
+  WHERE resposta.perguntaid = pergunta.perguntaid AND utilizador.utilizadorid = contribuicao.membroid AND pergunta.perguntaid = contribuicao.contribuicaoid
   ORDER BY utilizador.username;
 
 /** 3. Lista de Pergunta Favoritas por Utilizador **/
@@ -31,10 +28,9 @@ create view askfeup.favoritasporutilizador as
 /** 4. Lista de Perguntas por Categoria **/
 drop view if exists askfeup.perguntasporcategoria;
 create view askfeup.perguntasporcategoria as
-SELECT pergunta.categoriaid, pergunta.texto, categoria.tipo
+SELECT pergunta.perguntaid, pergunta.categoriaid, pergunta.texto, pergunta.descricao, categoria.tipo
    FROM askfeup.pergunta
-   JOIN askfeup.categoria ON pergunta.categoriaid = categoria.categoriaid
-   ORDER BY pergunta.categoriaid;
+   JOIN askfeup.categoria ON pergunta.categoriaid = categoria.categoriaid;
 
 /** 5. Lista de Perguntas por Tags**/
 drop view if exists askfeup.perguntasportags;
@@ -42,17 +38,15 @@ CREATE VIEW askfeup.perguntasportags AS
 SELECT tag.nome, pergunta.texto
    FROM askfeup.perguntatag
    JOIN askfeup.tag ON perguntatag.tagid = tag.tagid
-   JOIN askfeup.pergunta ON perguntatag.perguntaid = pergunta.perguntaid
-   ORDER BY pergunta.texto;
+   JOIN askfeup.pergunta ON perguntatag.perguntaid = pergunta.perguntaid;
 
 /** 6. Lista de Respostas assinaladas como Correctas**/
 drop view if exists askfeup.respostascorrectas;
 create view askfeup.respostascorrectas as
-SELECT pergunta.perguntaid, pergunta.texto
+SELECT pergunta.texto, resposta.correcta, resposta.descricao
    FROM askfeup.pergunta
    JOIN askfeup.resposta ON pergunta.perguntaid = resposta.perguntaid
-  WHERE resposta.correcta = true
-  ORDER BY pergunta.perguntaid;
+  WHERE resposta.correcta = true;
 
 /** 7. Lista de Respostas dadas por um membro**/
 drop view if exists askfeup.respostaspormembro;
@@ -65,20 +59,16 @@ SELECT resposta.correcta, resposta.descricao
 /** 8. Lista de respostas a uma pergunta **/
 drop view if exists askfeup.respostasapergunta;
 create view askfeup.respostasapergunta as
-SELECT resposta.respostaid as ID, utilizador.username as User, resposta.descricao as Resposta, pergunta.texto as Pergunta
-   FROM askfeup.resposta, askfeup.pergunta, askfeup.utilizador, askfeup.contribuicao
-  WHERE pergunta.perguntaid = resposta.perguntaid
-  AND resposta.respostaid = contribuicao.contribuicaoid
-  AND contribuicao.membroid = utilizador.utilizadorid
-  ORDER BY pergunta.texto;
+SELECT resposta.respostaid
+   FROM askfeup.resposta, askfeup.pergunta
+  WHERE pergunta.perguntaid = resposta.perguntaid;
 
 /** 9. Lista de comentários a uma contribuição **/
 drop view if exists askfeup.comentariosdecontribuicao;
 create view askfeup.comentariosdecontribuicao as
-SELECT contribuicao.contribuicaoid, comentario.comentarioid, comentario.descricao
+SELECT comentario.comentarioid
    FROM askfeup.contribuicao, askfeup.comentario
-  WHERE comentario.contribuicaoid = contribuicao.contribuicaoid
-  ORDER BY contribuicao.contribuicaoid;
+  WHERE comentario.contribuicaoid = comentario.comentarioid;
 
 /** 10. Lista de utilizadores que possuem um determinado Badge (vice-versa) (testado) **/
 drop view if exists askfeup.utilizadoresbadge;
@@ -98,7 +88,7 @@ CREATE VIEW askfeup.perguntaspordatadecriacao AS
 /** 12. Lista de perguntas mais populares (votos) **/
 drop view if exists askfeup.perguntaspopulares;
 create view askfeup.perguntaspopulares as
-SELECT pergunta.perguntaid, pergunta.texto, (contribuicao.votospositivos + contribuicao.votosnegativos) as popularidade
+SELECT pergunta.perguntaid
    FROM askfeup.pergunta, askfeup.contribuicao
   WHERE pergunta.perguntaid = contribuicao.contribuicaoid
   ORDER BY contribuicao.votospositivos + contribuicao.votosnegativos DESC;

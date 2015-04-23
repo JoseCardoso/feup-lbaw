@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS askfeup.Membro (
 	primeiroNome varchar(20) NOT NULL,
 	ultimoNome varchar(20) NOT NULL,
 	email varchar(50) NOT NULL,
-	pontos int,
+	pontos int NULL,
 	registo timestamp DEFAULT current_timestamp,
 	ultimoLogin timestamp NOT NULL,
 	membroID integer NOT NULL,
@@ -73,9 +73,9 @@ DROP TABLE IF EXISTS askfeup.Contribuicao;
 CREATE TABLE IF NOT EXISTS askfeup.Contribuicao (
 	contribuicaoID serial NOT NULL,
 	data timestamp DEFAULT current_timestamp,
-	diferencaVotos integer,
-	votosNegativos integer,
-	votosPositivos integer,
+	diferencaVotos integer NULL,
+	votosNegativos integer NULL,
+	votosPositivos integer NULL,
 	membroID integer NOT NULL
 );
 
@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS askfeup.Pergunta;
 CREATE TABLE IF NOT EXISTS askfeup.Pergunta ( 
 	perguntaID integer NOT NULL,
 	texto text NOT NULL,
-	descricao text,
+	descricao text NULL,
 	categoriaID integer NOT NULL
 );
 
@@ -285,12 +285,11 @@ ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Membro
 
 ALTER TABLE askfeup.Visualizacao ADD CONSTRAINT FK_Visualizacao_Pergunta 
 	FOREIGN KEY (perguntaID) REFERENCES askfeup.Pergunta (perguntaID) ON DELETE CASCADE;
-  
-
-
 
 /** AskFEUP **/
 /** Indexes **/
+/*CREATE INDEX pergunta_fti_texto_idx
+ON askfeup.Pergunta USING gin(to_tsvector(texto));*/ /* Full text search */
 
 CREATE INDEX membro_primeironome 
 ON askfeup.membro USING btree (primeironome);
@@ -309,6 +308,61 @@ CLUSTER askfeup.utilizador USING pk_utilizador;
 CLUSTER askfeup.tag USING pk_tag;
 
 CLUSTER askfeup.categoria USING pk_categoria;
+
+/** AskFEUP **/
+/** Triggers **/
+
+/** ID Independente entre Contribuição e Pergunta/Resposta **/
+CREATE FUNCTION askfeup.independentQuestion() RETURNS trigger AS $independentQuestion$
+  begin
+    IF new.perguntaid NOT IN
+    	(SELECT respostaid
+    	FROM askfeup.resposta
+    	WHERE new.perguntaid = respostaid)
+    	THEN return new;
+    END IF;
+    RAISE EXCEPTION 'id % for this type of contribuition is already in use', new.perguntaid;
+  end;
+$independentQuestion$ LANGUAGE plpgsql;
+
+CREATE FUNCTION askfeup.independentAnswer() RETURNS trigger AS $independentAnswer$
+  begin
+   IF new.respostaid NOT IN
+    	(SELECT perguntaid
+    	FROM askfeup.pergunta
+    	WHERE perguntaid = new.respostaid)
+    	THEN return new;
+    END IF;
+    RAISE EXCEPTION 'id % for this type of contribuition is already in use', new.respostaid;
+  end;
+$independentAnswer$ LANGUAGE plpgsql;
+
+CREATE TRIGGER independentQuestion 
+BEFORE INSERT OR UPDATE ON askfeup.pergunta
+FOR EACH ROW EXECUTE PROCEDURE askfeup.independentQuestion();
+
+CREATE TRIGGER independentAnswer 
+BEFORE INSERT OR UPDATE ON askfeup.resposta
+FOR EACH ROW EXECUTE PROCEDURE askfeup.independentAnswer();
+
+
+/** Um utilizador não poder votar na sua contribuição (Pergunta/Resposta) **/
+CREATE FUNCTION askfeup.notSelfVote() RETURNS trigger AS $notSelfVote$
+  BEGIN
+    IF new.membroid NOT IN
+        (SELECT membroid
+        FROM askfeup.contribuicao
+        WHERE new.membroid = contribuicao.membroid
+        AND new.contribuicaoid = contribuicao.contribuicaoid)
+        THEN return new;
+    END IF;
+    RAISE EXCEPTION 'user with id % cannot vote in his own contribuition %', new.membroid, new.contribuicaoid;
+  end;
+$notSelfVote$ LANGUAGE plpgsql;
+
+CREATE TRIGGER notSelfVote
+BEFORE INSERT OR UPDATE ON askfeup.voto
+FOR EACH ROW EXECUTE PROCEDURE askfeup.notSelfVote();
 
 /** Actualizar votos**/
 CREATE FUNCTION askfeup.incrementVotes() RETURNS trigger AS $incrementVotes$
@@ -361,10 +415,7 @@ drop view if exists askfeup.perguntasporutilizador;
 create view askfeup.perguntasporutilizador as
 SELECT utilizador.username AS "user", pergunta.perguntaid AS id, pergunta.texto AS conteudo
    FROM askfeup.utilizador, askfeup.pergunta, askfeup.membro, askfeup.comentario, askfeup.resposta, askfeup.contribuicao
-  WHERE (pergunta.perguntaid = contribuicao.contribuicaoid AND contribuicao.membroid = utilizador.utilizadorid)
-    OR
-        (resposta.perguntaid = pergunta.perguntaid AND resposta.respostaid = contribuicao.contribuicaoid AND contribuicao.membroid = utilizador.utilizadorid)
-  GROUP BY pergunta.perguntaid, utilizador.utilizadorid, pergunta.texto
+  WHERE resposta.perguntaid = pergunta.perguntaid AND utilizador.utilizadorid = contribuicao.membroid AND pergunta.perguntaid = contribuicao.contribuicaoid
   ORDER BY utilizador.username;
 
 /** 3. Lista de Pergunta Favoritas por Utilizador **/
@@ -378,10 +429,9 @@ create view askfeup.favoritasporutilizador as
 /** 4. Lista de Perguntas por Categoria **/
 drop view if exists askfeup.perguntasporcategoria;
 create view askfeup.perguntasporcategoria as
-SELECT pergunta.categoriaid, pergunta.texto, categoria.tipo
+SELECT pergunta.perguntaid, pergunta.categoriaid, pergunta.texto, pergunta.descricao, categoria.tipo
    FROM askfeup.pergunta
-   JOIN askfeup.categoria ON pergunta.categoriaid = categoria.categoriaid
-   ORDER BY pergunta.categoriaid;
+   JOIN askfeup.categoria ON pergunta.categoriaid = categoria.categoriaid;
 
 /** 5. Lista de Perguntas por Tags**/
 drop view if exists askfeup.perguntasportags;
@@ -389,17 +439,15 @@ CREATE VIEW askfeup.perguntasportags AS
 SELECT tag.nome, pergunta.texto
    FROM askfeup.perguntatag
    JOIN askfeup.tag ON perguntatag.tagid = tag.tagid
-   JOIN askfeup.pergunta ON perguntatag.perguntaid = pergunta.perguntaid
-   ORDER BY pergunta.texto;
+   JOIN askfeup.pergunta ON perguntatag.perguntaid = pergunta.perguntaid;
 
 /** 6. Lista de Respostas assinaladas como Correctas**/
 drop view if exists askfeup.respostascorrectas;
 create view askfeup.respostascorrectas as
-SELECT pergunta.perguntaid, pergunta.texto
+SELECT pergunta.texto, resposta.correcta, resposta.descricao
    FROM askfeup.pergunta
    JOIN askfeup.resposta ON pergunta.perguntaid = resposta.perguntaid
-  WHERE resposta.correcta = true
-  ORDER BY pergunta.perguntaid;
+  WHERE resposta.correcta = true;
 
 /** 7. Lista de Respostas dadas por um membro**/
 drop view if exists askfeup.respostaspormembro;
@@ -412,20 +460,16 @@ SELECT resposta.correcta, resposta.descricao
 /** 8. Lista de respostas a uma pergunta **/
 drop view if exists askfeup.respostasapergunta;
 create view askfeup.respostasapergunta as
-SELECT resposta.respostaid as ID, utilizador.username as User, resposta.descricao as Resposta, pergunta.texto as Pergunta
-   FROM askfeup.resposta, askfeup.pergunta, askfeup.utilizador, askfeup.contribuicao
-  WHERE pergunta.perguntaid = resposta.perguntaid
-  AND resposta.respostaid = contribuicao.contribuicaoid
-  AND contribuicao.membroid = utilizador.utilizadorid
-  ORDER BY pergunta.texto;
+SELECT resposta.respostaid
+   FROM askfeup.resposta, askfeup.pergunta
+  WHERE pergunta.perguntaid = resposta.perguntaid;
 
 /** 9. Lista de comentários a uma contribuição **/
 drop view if exists askfeup.comentariosdecontribuicao;
 create view askfeup.comentariosdecontribuicao as
-SELECT contribuicao.contribuicaoid, comentario.comentarioid, comentario.descricao
+SELECT comentario.comentarioid
    FROM askfeup.contribuicao, askfeup.comentario
-  WHERE comentario.contribuicaoid = contribuicao.contribuicaoid
-  ORDER BY contribuicao.contribuicaoid;
+  WHERE comentario.contribuicaoid = comentario.comentarioid;
 
 /** 10. Lista de utilizadores que possuem um determinado Badge (vice-versa) (testado) **/
 drop view if exists askfeup.utilizadoresbadge;
@@ -445,7 +489,7 @@ CREATE VIEW askfeup.perguntaspordatadecriacao AS
 /** 12. Lista de perguntas mais populares (votos) **/
 drop view if exists askfeup.perguntaspopulares;
 create view askfeup.perguntaspopulares as
-SELECT pergunta.perguntaid, pergunta.texto, (contribuicao.votospositivos + contribuicao.votosnegativos) as popularidade
+SELECT pergunta.perguntaid
    FROM askfeup.pergunta, askfeup.contribuicao
   WHERE pergunta.perguntaid = contribuicao.contribuicaoid
   ORDER BY contribuicao.votospositivos + contribuicao.votosnegativos DESC;
@@ -460,7 +504,7 @@ SELECT pergunta.perguntaid, pergunta.texto, subquery1.views
   WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND subquery1.perguntaid = pergunta.perguntaid
   ORDER BY subquery1.views DESC;
 
-   /** AskFEUP **/
+  /** AskFEUP **/
 /** Insert Data **/
 
 /** Utilizadores **/
