@@ -459,6 +459,7 @@ SELECT pergunta.perguntaid, pergunta.texto, subquery1.views
           GROUP BY visualizacao.perguntaid) subquery1
   WHERE pergunta.perguntaid = contribuicao.contribuicaoid AND subquery1.perguntaid = pergunta.perguntaid
   ORDER BY subquery1.views DESC;
+  
 
   /** AskFEUP **/
 /** Insert Data **/
