@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS askfeup.Membro (
 	primeiroNome varchar(20) NOT NULL,
 	ultimoNome varchar(20) NOT NULL,
 	email varchar(50) NOT NULL,
-	pontos int NULL,
+	pontos int,
 	registo timestamp DEFAULT current_timestamp,
 	ultimoLogin timestamp NOT NULL,
 	membroID integer NOT NULL,
@@ -70,9 +70,9 @@ DROP TABLE IF EXISTS askfeup.Contribuicao;
 CREATE TABLE IF NOT EXISTS askfeup.Contribuicao (
 	contribuicaoID serial NOT NULL,
 	data timestamp DEFAULT current_timestamp,
-	diferencaVotos integer NULL,
-	votosNegativos integer NULL,
-	votosPositivos integer NULL,
+	diferencaVotos integer,
+	votosNegativos integer,
+	votosPositivos integer,
 	membroID integer NOT NULL
 );
 
@@ -95,7 +95,7 @@ DROP TABLE IF EXISTS askfeup.Pergunta;
 CREATE TABLE IF NOT EXISTS askfeup.Pergunta ( 
 	perguntaID integer NOT NULL,
 	texto text NOT NULL,
-	descricao text NULL,
+	descricao text,
 	categoriaID integer NOT NULL
 );
 
