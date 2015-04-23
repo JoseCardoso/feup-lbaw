@@ -1,30 +1,10 @@
-# [AskFEUP](http://bit.ly/askfeup)
+# FEUP-LBAW
 
-## Project structure
+[AskFEUP](http://bit.ly/askfeup)
 
-```
-askfeup/
-├── assets/
-│   │── css/
-│   │── img/
-│   └── js/
-├── data/
-│   └── database.sql
-├── foundation/
-│   │── css/
-│   └── js/
-├── logic/
-│   |── signIn.php
-│   └── ...
-├── server/
-│   |── files/
-│   |   └── ...
-│   └── ...
-├── templates/
-│   └── signIn.php
-│── humans.txt
-│── index.html
-└── robots.txt
-```
+##Grupo 24
 
-Copyright (c) 2015 Ask, inc.
+- [Gabriel Souto](https://github.com/Inframan)
+- [Henrique Ferrolho](https://github.com/ferrolho)
+- [João Pereira](https://github.com/joaoffpereira)
+- [José Cardoso](https://github.com/JoseCardoso)
