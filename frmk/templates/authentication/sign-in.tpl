@@ -1,7 +1,8 @@
-	<link rel="stylesheet" href="css/askfeup/sign-in.css" />
+	<link rel="stylesheet" href="../../css/askfeup/sign-in.css" />
 </head>
 <body>
-	{include file = 'common/navbar.php'}
+    {include file='../common/navbar.tpl'}
+    {include file='../common/header.tpl'}
 
 	<div class="row">
 		<div class="small-12 medium-6 large-8 columns">
@@ -16,16 +17,16 @@
 			<!-- orbit -->
 			<ul class="orbit" data-orbit data-options="pause_on_hover: false;">
 				<li>
-					<img src="<?php echo IMAGES_PATH . "feup-garden.jpg";?>" alt="slide 1" />
+					<img src="../../images/main-page/feup-garden.jpg" alt="slide 1" />
 					<div class="orbit-caption">
 						FEUP
 					</div>
 				</li>
 				<li>
-					<img src="<?php echo IMAGES_PATH . "feup-biblio.jpg";?>" alt="slide 2" />
+					<img src="../../images/main-page/feup-biblio.jpg" alt="slide 2" />
 				</li>
 				<li>
-					<img src="<?php echo IMAGES_PATH . "feup-sunset.jpg";?>" alt="slide 3" />
+					<img src="../../images/main-page/feup-sunset.jpg" alt="slide 3" />
 				</li>
 			</ul>
 
@@ -70,3 +71,5 @@
 			</div>
 		</div>
 	</div>
+
+    {include file='../common/footer.tpl'}

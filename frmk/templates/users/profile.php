@@ -2,7 +2,7 @@
 	<link rel="stylesheet" href="assets/css/profile.css" />
 </head>
 <body>
-	<?php include 'navbar.php'; ?>
+	<?php include 'navbar.tpl'; ?>
 	
 	<div class="row">
 		<div class="small-12 columns">

@@ -1,6 +1,6 @@
 </head>
 <body>
-	<?php include 'navbar.php'; ?>
+	<?php include 'navbar.tpl'; ?>
 
 	<div class="row">
 		<!-- sign up panel -->

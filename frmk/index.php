@@ -1,2 +1,2 @@
 <?php
-header('Location: pages/test.php');
+header('Location: pages/sign-in.php');
