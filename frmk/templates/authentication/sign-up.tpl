@@ -6,7 +6,7 @@
 		<!-- sign up panel -->
 		<div class="small-12 medium-8 large-6 small-centered columns">
 			<div class="panel">
-				<form>
+				<form action="{$BASE_URL}actions/authentication/sign-up-php" method="post" enctype="multipart/form-data">
 					<h2 class="sign-up">Sign Up</h2>
 					<p>Already have an account? <a href="{$BASE_URL}index.php">Log In</a></p>
 					<div class="row">

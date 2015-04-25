@@ -4,7 +4,7 @@
 
   error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
-  $BASE_DIR = 'C:\wamp\www\feup-lbaw\frmk\\';
+  $BASE_DIR = '../../';
   $BASE_URL = 'http://askfeup.dev/';
   $BASE_TEMPLATES = $BASE_DIR . 'templates\\';
   $BASE_CONFIG = $BASE_DIR . 'config/';
