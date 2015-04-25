@@ -1,9 +1,6 @@
-	<link rel="stylesheet" href="../../css/askfeup/sign-in.css" />
+	<link rel="stylesheet" href="{$CSS_PATH}askfeup/sign-in.css" />
 </head>
 <body>
-    {include file='../common/navbar.tpl'}
-    {include file='../common/header.tpl'}
-
 	<div class="row">
 		<div class="small-12 medium-6 large-8 columns">
 			<div data-alert class="alert-box warning radius">
@@ -17,16 +14,16 @@
 			<!-- orbit -->
 			<ul class="orbit" data-orbit data-options="pause_on_hover: false;">
 				<li>
-					<img src="../../images/main-page/feup-garden.jpg" alt="slide 1" />
+					<img src="{$IMAGE_PATH}main-page/feup-garden.jpg" alt="slide 1" />
 					<div class="orbit-caption">
 						FEUP
 					</div>
 				</li>
 				<li>
-					<img src="../../images/main-page/feup-biblio.jpg" alt="slide 2" />
+					<img src="{$IMAGE_PATH}main-page/feup-biblio.jpg" alt="slide 2" />
 				</li>
 				<li>
-					<img src="../../images/main-page/feup-sunset.jpg" alt="slide 3" />
+					<img src="{$IMAGE_PATH}main-page/feup-sunset.jpg" alt="slide 3" />
 				</li>
 			</ul>
 
@@ -67,9 +64,7 @@
 					</div>
 				</div>
 
-				<p class="text-center"><a href="?page=signUp">Create an account</a></p>
+				<p class="text-center"><a href="{$BASE_URL}pages/authentication/sign-up.php">Create an account</a></p>
 			</div>
 		</div>
 	</div>
-
-    {include file='../common/footer.tpl'}

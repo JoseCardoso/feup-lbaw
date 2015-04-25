@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-04-24 20:35:10
+<?php /* Smarty version Smarty-3.1.15, created on 2015-04-24 21:09:19
          compiled from "C:\wamp\www\feup-lbaw\frmk\templates\common\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2147555393bddc5ef53-08163508%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '06db6563f4c0bcd930ffa653ca4cd0c0e016b0d6' => 
     array (
       0 => 'C:\\wamp\\www\\feup-lbaw\\frmk\\templates\\common\\footer.tpl',
-      1 => 1429900509,
+      1 => 1429902552,
       2 => 'file',
     ),
   ),
@@ -23,10 +23,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<p class="text-center">Copyright © 2015 Ask, inc.</p>
 	</footer>
 
-    <script src="../../css/foundation/js/vendor/modernizr.js"></script>
-    <script src="../../css/foundation/js/vendor/jquery.js"></script>
-    <script src="../../css/foundation/js/foundation.min.js"></script>
-	<script>$(document).foundation();</script>
+    
+    <script language="JavaScript" type="text/javascript">
+            $(document).foundation();
+    </script>
+    
+
 </body>
 </html>
 <?php }} ?>

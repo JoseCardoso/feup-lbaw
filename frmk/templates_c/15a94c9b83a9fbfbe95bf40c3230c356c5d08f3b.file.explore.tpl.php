@@ -1,8 +1,32 @@
-	<link rel="stylesheet" href="assets/css/explore.css" />
+<?php /* Smarty version Smarty-3.1.15, created on 2015-04-25 19:12:05
+         compiled from "C:\wamp\www\feup-lbaw\frmk\templates\menus\explore.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:26203553bc7f3e4b907-27434633%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '15a94c9b83a9fbfbe95bf40c3230c356c5d08f3b' => 
+    array (
+      0 => 'C:\\wamp\\www\\feup-lbaw\\frmk\\templates\\menus\\explore.tpl',
+      1 => 1429981885,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '26203553bc7f3e4b907-27434633',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_553bc7f4058993_68737857',
+  'variables' => 
+  array (
+    'CSS_PATH' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_553bc7f4058993_68737857')) {function content_553bc7f4058993_68737857($_smarty_tpl) {?>	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['CSS_PATH']->value;?>
+askfeup/explore.css" />
 </head>
 <body>
-	<?php include 'navbar.tpl'; ?>
-
 	<div class="row">
 		<div class="small-12 medium-2 columns">
 			<a href="#" class="button small secondary expand"><i class="fi-filter nav-bar-icon"></i>Filter</a>
@@ -152,7 +176,8 @@
 	</div>
 
 	<div id="questionModal" class="reveal-modal large" data-reveal>
-		<?php include 'question.tpl'; ?>
+		<?php echo $_smarty_tpl->getSubTemplate ('../questions/question.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
 
@@ -164,3 +189,4 @@
 		element.click();
 	});
 	</script>
+<?php }} ?>

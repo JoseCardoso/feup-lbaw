@@ -1,9 +1,7 @@
-	<link rel="stylesheet" href="assets/css/explore.css" />
-	<link rel="stylesheet" href="assets/css/profile.css" />
+	<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css" />
+	<link rel="stylesheet" href="{$CSS_PATH}askfeup/profile.css" />
 </head>
 <body>
-	<?php include 'navbar.tpl'; ?>
-	
 	<div class="row">
 		<div class="small-12 columns">
 			<h1>Profile</h1>
@@ -185,6 +183,6 @@
 	</div>
 
 	<div id="questionModal" class="reveal-modal large" data-reveal>
-		<?php include 'question.tpl'; ?>
+		{include file = '../questions/question.tpl'}
 		<a class="close-reveal-modal">&#215;</a>
 	</div>

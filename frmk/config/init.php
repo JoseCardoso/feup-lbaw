@@ -6,6 +6,11 @@
 
   $BASE_DIR = 'C:\wamp\www\feup-lbaw\frmk\\';
   $BASE_URL = 'http://askfeup.dev/';
+  $BASE_TEMPLATES = $BASE_DIR . 'templates\\';
+  $BASE_CONFIG = $BASE_DIR . 'config/';
+
+  $CSS_PATH = "http://askfeup.dev/css/";
+  $IMAGE_PATH = "http://askfeup.dev/images/";
 
   $conn = new PDO('pgsql:host=vdbm.fe.up.pt;dbname=lbaw1424', 'lbaw1424', 'gF576kv0');
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -16,9 +21,14 @@
   include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
 
   $smarty = new Smarty;
+
   $smarty->setTemplateDir($BASE_DIR . 'templates\\');
   $smarty->setCompileDir($BASE_DIR . 'templates_c\\');
+  $smarty->setConfigDir($BASE_DIR . 'config\\');
+
   $smarty->assign('BASE_URL', $BASE_URL);
+  $smarty->assign('CSS_PATH', $CSS_PATH);
+  $smarty->assign('IMAGE_PATH', $IMAGE_PATH);
   
   $smarty->assign('ERROR_MESSAGES', $_SESSION['error_messages']);  
   $smarty->assign('FIELD_ERRORS', $_SESSION['field_errors']);
@@ -30,4 +40,4 @@
   unset($_SESSION['error_messages']);  
   unset($_SESSION['field_errors']);
   unset($_SESSION['form_values']);
-?>
+
