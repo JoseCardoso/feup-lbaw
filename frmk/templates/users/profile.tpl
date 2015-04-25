@@ -1,7 +1,11 @@
+	{include file = 'common/header.tpl'}
+
 	<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css" />
 	<link rel="stylesheet" href="{$CSS_PATH}askfeup/profile.css" />
 </head>
 <body>
+	{include file = 'common/navbar.tpl'}
+	
 	<div class="row">
 		<div class="small-12 columns">
 			<h1>Profile</h1>
@@ -186,3 +190,5 @@
 		{include file = '../questions/question.tpl'}
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
+
+	{include file = 'common/footer.tpl'}

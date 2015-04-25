@@ -1,3 +1,6 @@
+	{include file = 'common/header.tpl'}
+	{include file = 'common/navbar.tpl'}
+
 </head>
 <body>
 	<div class="row">
@@ -5,3 +8,5 @@
 			<h1>About us</h1>
 		</div>
 	</div>
+
+	{include file = 'common/footer.tpl'}

@@ -1,6 +1,7 @@
+	{include file = 'common/header.tpl'}
 </head>
 <body>
-	<?php include 'navbar.tpl'; ?>
+	{include file = 'common/navbar.tpl'}
 
 	<div class="row">
 		<!-- sign up panel -->
@@ -8,7 +9,7 @@
 			<div class="panel">
 				<form action="{$BASE_URL}actions/authentication/sign-up-php" method="post" enctype="multipart/form-data">
 					<h2 class="sign-up">Sign Up</h2>
-					<p>Already have an account? <a href="{$BASE_URL}index.php">Log In</a></p>
+					<p>Already have an account? <a href="?page=signIn">Log In</a></p>
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Username
@@ -58,3 +59,5 @@
 		<p>I am at least 13 years old.</p>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
+
+	{include file = 'common/footer.tpl'}

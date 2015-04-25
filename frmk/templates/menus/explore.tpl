@@ -1,6 +1,10 @@
+	{include file = 'common/header.tpl'}
+	
 	<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css" />
 </head>
 <body>
+	{include file = 'common/navbar.tpl'}
+
 	<div class="row">
 		<div class="small-12 medium-2 columns">
 			<a href="#" class="button small secondary expand"><i class="fi-filter nav-bar-icon"></i>Filter</a>
@@ -153,6 +157,8 @@
 		{include '../questions/question.tpl'}
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
+
+	{include file = 'common/footer.tpl'}
 
 	<script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function(event) {

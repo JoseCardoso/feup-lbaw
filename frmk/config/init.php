@@ -1,43 +1,34 @@
 <?php
-  session_set_cookie_params(3600, '/~lbaw1424');
-  session_start();
+session_set_cookie_params(3600, '/~lbaw1424');
+session_start();
 
-  error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
+error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
-  $BASE_DIR = '../../';
-  $BASE_URL = 'http://askfeup.dev/';
-  $BASE_TEMPLATES = $BASE_DIR . 'templates\\';
-  $BASE_CONFIG = $BASE_DIR . 'config/';
+$conn = new PDO('pgsql:host=vdbm.fe.up.pt;dbname=lbaw1424', 'lbaw1424', 'gF576kv0');
+$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $CSS_PATH = "http://askfeup.dev/css/";
-  $IMAGE_PATH = "http://askfeup.dev/images/";
+$conn->exec('SET SCHEMA \'askfeup\'');
 
-  $conn = new PDO('pgsql:host=vdbm.fe.up.pt;dbname=lbaw1424', 'lbaw1424', 'gF576kv0');
-  $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include_once($BASE_DIR . '/lib/smarty/Smarty.class.php');
 
-  $conn->exec('SET SCHEMA \'askfeup\'');
+$smarty = new Smarty;
 
-  include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
+$smarty->setTemplateDir($BASE_DIR . '/templates/');
+$smarty->setCompileDir($BASE_DIR . '/templates_c/');
+$smarty->setConfigDir($BASE_DIR . '/config/');
 
-  $smarty = new Smarty;
+$smarty->assign('BASE_URL', $BASE_URL);
+$smarty->assign('CSS_PATH', $CSS_PATH);
+$smarty->assign('IMAGE_PATH', $IMAGE_PATH);
 
-  $smarty->setTemplateDir($BASE_DIR . 'templates\\');
-  $smarty->setCompileDir($BASE_DIR . 'templates_c\\');
-  $smarty->setConfigDir($BASE_DIR . 'config\\');
+$smarty->assign('ERROR_MESSAGES', $_SESSION['error_messages']);  
+$smarty->assign('FIELD_ERRORS', $_SESSION['field_errors']);
+$smarty->assign('SUCCESS_MESSAGES', $_SESSION['success_messages']);
+$smarty->assign('FORM_VALUES', $_SESSION['form_values']);
+$smarty->assign('USERNAME', $_SESSION['username']);
 
-  $smarty->assign('BASE_URL', $BASE_URL);
-  $smarty->assign('CSS_PATH', $CSS_PATH);
-  $smarty->assign('IMAGE_PATH', $IMAGE_PATH);
-  
-  $smarty->assign('ERROR_MESSAGES', $_SESSION['error_messages']);  
-  $smarty->assign('FIELD_ERRORS', $_SESSION['field_errors']);
-  $smarty->assign('SUCCESS_MESSAGES', $_SESSION['success_messages']);
-  $smarty->assign('FORM_VALUES', $_SESSION['form_values']);
-  $smarty->assign('USERNAME', $_SESSION['username']);
-  
-  unset($_SESSION['success_messages']);
-  unset($_SESSION['error_messages']);  
-  unset($_SESSION['field_errors']);
-  unset($_SESSION['form_values']);
-
+unset($_SESSION['success_messages']);
+unset($_SESSION['error_messages']);  
+unset($_SESSION['field_errors']);
+unset($_SESSION['form_values']);

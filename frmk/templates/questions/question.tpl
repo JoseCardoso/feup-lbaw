@@ -1,5 +1,3 @@
-{include file='common/header.tpl'}
-
 <div class="question-modal-content favorite">
 	<div class="row">
 		<div class="small-4 large-2 columns">
@@ -134,5 +132,3 @@
 	</form>
 
 </div>
-
-{include file='common/footer.tpl'}

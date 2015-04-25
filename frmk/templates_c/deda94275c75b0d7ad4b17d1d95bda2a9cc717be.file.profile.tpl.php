@@ -1,34 +1,40 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-04-25 19:19:08
-         compiled from "C:\wamp\www\feup-lbaw\frmk\templates\users\profile.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:15989553bcc8c15c920-98440437%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.15, created on 2015-04-26 00:51:49
+         compiled from "/home/henrique/git/feup-lbaw/frmk/templates/users/profile.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:888373024553c145ed910e0-44763459%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '6d3582cde1becf338ccac2a47b4caef7c867eb16' => 
+    'deda94275c75b0d7ad4b17d1d95bda2a9cc717be' => 
     array (
-      0 => 'C:\\wamp\\www\\feup-lbaw\\frmk\\templates\\users\\profile.tpl',
-      1 => 1429982244,
+      0 => '/home/henrique/git/feup-lbaw/frmk/templates/users/profile.tpl',
+      1 => 1430002307,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '15989553bcc8c15c920-98440437',
+  'nocache_hash' => '888373024553c145ed910e0-44763459',
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_553c145ede9338_50234610',
   'variables' => 
   array (
     'CSS_PATH' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_553bcc8c1e7335_04681526',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_553bcc8c1e7335_04681526')) {function content_553bcc8c1e7335_04681526($_smarty_tpl) {?>	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['CSS_PATH']->value;?>
+<?php if ($_valid && !is_callable('content_553c145ede9338_50234610')) {function content_553c145ede9338_50234610($_smarty_tpl) {?>	<?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+
+	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['CSS_PATH']->value;?>
 askfeup/explore.css" />
 	<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['CSS_PATH']->value;?>
 askfeup/profile.css" />
 </head>
 <body>
+	<?php echo $_smarty_tpl->getSubTemplate ('common/navbar.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+	
 	<div class="row">
 		<div class="small-12 columns">
 			<h1>Profile</h1>
@@ -214,4 +220,7 @@ askfeup/profile.css" />
 
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
+
+	<?php echo $_smarty_tpl->getSubTemplate ('common/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <?php }} ?>

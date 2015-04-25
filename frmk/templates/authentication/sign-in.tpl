@@ -1,6 +1,10 @@
+	{include file = 'common/header.tpl'}
+
 	<link rel="stylesheet" href="{$CSS_PATH}askfeup/sign-in.css" />
 </head>
 <body>
+	{include file = 'common/navbar.tpl'}
+	
 	<div class="row">
 		<div class="small-12 medium-6 large-8 columns">
 			<div data-alert class="alert-box warning radius">
@@ -64,7 +68,9 @@
 					</div>
 				</div>
 
-				<p class="text-center"><a href="{$BASE_URL}pages/authentication/sign-up.php">Create an account</a></p>
+				<p class="text-center"><a href="?page=signUp">Create an account</a></p>
 			</div>
 		</div>
 	</div>
+
+	{include file = 'common/footer.tpl'}

@@ -1,28 +1,25 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-04-23 20:37:17
-         compiled from "C:\wamp\www\feup-lbaw\frmk\templates\questions\question.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2140555393bddaad5a9-09103332%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.15, created on 2015-04-26 00:52:13
+         compiled from "/home/henrique/git/feup-lbaw/frmk/templates/questions/question.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:747890040553c0bf4a4f3e8-04309409%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '6f626f1d39b68b9d49542024ce4c47eabac08384' => 
+    'f9b9796da26949d758b5336abef282cb594af5f8' => 
     array (
-      0 => 'C:\\wamp\\www\\feup-lbaw\\frmk\\templates\\questions\\question.tpl',
-      1 => 1429814230,
+      0 => '/home/henrique/git/feup-lbaw/frmk/templates/questions/question.tpl',
+      1 => 1430002325,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2140555393bddaad5a9-09103332',
+  'nocache_hash' => '747890040553c0bf4a4f3e8-04309409',
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_55393bddbcfb77_18106751',
+  'unifunc' => 'content_553c0bf4a56fd0_89007564',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55393bddbcfb77_18106751')) {function content_55393bddbcfb77_18106751($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
-
-
-<div class="question-modal-content favorite">
+<?php if ($_valid && !is_callable('content_553c0bf4a56fd0_89007564')) {function content_553c0bf4a56fd0_89007564($_smarty_tpl) {?><div class="question-modal-content favorite">
 	<div class="row">
 		<div class="small-4 large-2 columns">
 			<div class="row">
@@ -156,6 +153,4 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	</form>
 
 </div>
-
-<?php echo $_smarty_tpl->getSubTemplate ('common/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 <?php }} ?>

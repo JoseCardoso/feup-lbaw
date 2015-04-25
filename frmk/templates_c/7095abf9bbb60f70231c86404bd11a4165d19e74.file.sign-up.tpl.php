@@ -1,40 +1,43 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-04-25 19:22:31
-         compiled from "C:\wamp\www\feup-lbaw\frmk\templates\authentication\sign-up.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:9055553bc359448b04-90199142%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.15, created on 2015-04-26 00:55:42
+         compiled from "/home/henrique/git/feup-lbaw/frmk/templates/authentication/sign-up.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1268569966553c1b39674bb7-28374624%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'f1f3d93b86d3307c426075136a3e9445300a11b0' => 
+    '7095abf9bbb60f70231c86404bd11a4165d19e74' => 
     array (
-      0 => 'C:\\wamp\\www\\feup-lbaw\\frmk\\templates\\authentication\\sign-up.tpl',
-      1 => 1429982545,
+      0 => '/home/henrique/git/feup-lbaw/frmk/templates/authentication/sign-up.tpl',
+      1 => 1430002539,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9055553bc359448b04-90199142',
+  'nocache_hash' => '1268569966553c1b39674bb7-28374624',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_553bc35954dfa3_62380665',
+  'unifunc' => 'content_553c1b3969e143_09296941',
   'variables' => 
   array (
     'BASE_URL' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_553bc35954dfa3_62380665')) {function content_553bc35954dfa3_62380665($_smarty_tpl) {?></head>
+<?php if ($_valid && !is_callable('content_553c1b3969e143_09296941')) {function content_553c1b3969e143_09296941($_smarty_tpl) {?>	<?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+</head>
 <body>
-	<<?php ?>?php include 'navbar.tpl'; ?<?php ?>>
+	<?php echo $_smarty_tpl->getSubTemplate ('common/navbar.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 
 	<div class="row">
 		<!-- sign up panel -->
 		<div class="small-12 medium-8 large-6 small-centered columns">
 			<div class="panel">
-				<form>
+				<form action="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+actions/authentication/sign-up-php" method="post" enctype="multipart/form-data">
 					<h2 class="sign-up">Sign Up</h2>
-					<p>Already have an account? <a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-index.php">Log In</a></p>
+					<p>Already have an account? <a href="?page=signIn">Log In</a></p>
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Username
@@ -84,4 +87,7 @@ index.php">Log In</a></p>
 		<p>I am at least 13 years old.</p>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
+
+	<?php echo $_smarty_tpl->getSubTemplate ('common/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <?php }} ?>
