@@ -53,7 +53,7 @@
 					<li><a href="#" class="button google-plus-button">Google+</a></li>
 				</ul>
 
-				<p class="right"><a href="#">Forgot password?</a></p>
+				<p class="right"><a href="?page=passwordRecovery">Forgot password?</a></p>
 				<p>Log in</p>
 				<form>
 					<input type="text" placeholder="Username or Email" />
