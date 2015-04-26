@@ -15,9 +15,11 @@ $username = strip_tags($_POST['username']);
 $password = $_POST['password'];
 
 try {
-    isLoginCorrect($username, $password);
+    if(isLoginCorrect($username, $password))
+        var_dump('Login correcto');
+    else
+        var_dump('Login Incorrecto');
     //header("Location: index.php?page=signUp");
-    var_dump('Login correcto');
 } catch (PDOException $e) {
 
     /*if (strpos($e->getMessage(), 'users_pkey') !== false) {

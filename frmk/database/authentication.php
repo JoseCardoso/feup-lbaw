@@ -30,7 +30,7 @@ function createMember($firstName, $lastName, $email, $idUser, $idCity) {
 
 function isLoginCorrect($username, $password) {
 	global $connection;
-	$stmt = $connection->prepare("SELECT username, password FROM utilizador	WHERE username = ? AND password = ?");
+	$stmt = $connection->prepare("SELECT utilizadorid FROM utilizador WHERE username = ? AND password = ?");
 	$stmt->execute(array($username, sha1($password)));
 
 	return $stmt->fetch() == true;
