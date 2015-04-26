@@ -25,11 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="init.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/init.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.22185971" vertical-offset="0" max-vertical-offset="680">
+              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="sign-up.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/actions/authentication/sign-up.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="646">
-              <caret line="5" column="139" selection-start-line="5" selection-start-column="139" selection-end-line="5" selection-end-column="139" />
+            <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="663">
+              <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -38,13 +48,13 @@
       <file leaf-file-name="authentication.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/authentication.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="629">
-              <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+            <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="629">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
-                <marker date="1430059953413" expanded="true" signature="151:189" placeholder="INSERT INTO ..." />
-                <marker date="1430059953413" expanded="true" signature="421:463" placeholder="SELECT cidad..cidade..." />
-                <marker date="1430059953413" expanded="true" signature="723:776" placeholder="INSERT INTO ..." />
-                <marker date="1430059953413" expanded="true" signature="1018:1136" placeholder="SELECT * FRO..utilizadores..." />
+                <marker date="1430062875979" expanded="true" signature="151:187" placeholder="INSERT INTO ..." />
+                <marker date="1430062875979" expanded="true" signature="445:487" placeholder="SELECT cidad..cidade..." />
+                <marker date="1430062875979" expanded="true" signature="747:800" placeholder="INSERT INTO ..." />
+                <marker date="1430062875979" expanded="true" signature="1042:1160" placeholder="SELECT * FRO..utilizadores..." />
               </folding>
             </state>
           </provider>
@@ -60,12 +70,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sign-up.tpl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sign-up.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/authentication/sign-up.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.785" vertical-offset="0" max-vertical-offset="1785">
-              <caret line="63" column="65" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="65" />
+            <state vertical-scroll-proportion="4.576923" vertical-offset="459" max-vertical-offset="1785">
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loadCities.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/loadCities.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="357">
+              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding>
+                <marker date="1430063076871" expanded="true" signature="83:134" placeholder="SELECT nome ..cidade..." />
+                <marker date="1430063076871" expanded="true" signature="272:346" placeholder="SELECT codig..cidade..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -109,10 +132,10 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/pages/authentication/sign-up.php" />
         <option value="$PROJECT_DIR$/css/askfeup/styles.css" />
-        <option value="$PROJECT_DIR$/database/loadCities.php" />
-        <option value="$PROJECT_DIR$/database/authentication.php" />
-        <option value="$PROJECT_DIR$/actions/authentication/sign-up.php" />
         <option value="$PROJECT_DIR$/templates/authentication/sign-up.tpl" />
+        <option value="$PROJECT_DIR$/actions/authentication/sign-up.php" />
+        <option value="$PROJECT_DIR$/database/authentication.php" />
+        <option value="$PROJECT_DIR$/database/loadCities.php" />
       </list>
     </option>
   </component>
@@ -599,9 +622,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="357">
           <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="60" />
           <folding>
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT nome,..cidade..." />
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT nome ..cidade..." />
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT codig..cidade..." />
+            <marker date="1430063076871" expanded="true" signature="83:134" placeholder="SELECT nome ..cidade..." />
+            <marker date="1430063076871" expanded="true" signature="272:346" placeholder="SELECT codig..cidade..." />
           </folding>
         </state>
       </provider>
@@ -667,9 +689,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="357">
           <caret line="6" column="60" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="60" />
           <folding>
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT nome,..cidade..." />
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT nome ..cidade..." />
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT codig..cidade..." />
+            <marker date="1430063076871" expanded="true" signature="83:134" placeholder="SELECT nome ..cidade..." />
+            <marker date="1430063076871" expanded="true" signature="272:346" placeholder="SELECT codig..cidade..." />
           </folding>
         </state>
       </provider>
@@ -888,14 +909,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/init.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="680">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/authentication/sign-in.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1394">
@@ -928,26 +941,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/loadCities.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22185971" vertical-offset="0" max-vertical-offset="613">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding>
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT nome,..cidade..." />
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT nome ..cidade..." />
-            <marker date="1430058621219" expanded="true" signature="-1:-1" placeholder="SELECT codig..cidade..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actions/authentication/sign-up.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="646">
-          <caret line="5" column="139" selection-start-line="5" selection-start-column="139" selection-end-line="5" selection-end-column="139" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/paths-init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="306">
@@ -956,23 +949,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/authentication.php">
+    <entry file="file://$PROJECT_DIR$/templates/authentication/sign-up.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="629">
-          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        <state vertical-scroll-proportion="4.576923" vertical-offset="459" max-vertical-offset="1785">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/authentication/sign-up.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="663">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/loadCities.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="357">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding>
-            <marker date="1430059953413" expanded="true" signature="151:189" placeholder="INSERT INTO ..." />
-            <marker date="1430059953413" expanded="true" signature="421:463" placeholder="SELECT cidad..cidade..." />
-            <marker date="1430059953413" expanded="true" signature="723:776" placeholder="INSERT INTO ..." />
-            <marker date="1430059953413" expanded="true" signature="1018:1136" placeholder="SELECT * FRO..utilizadores..." />
+            <marker date="1430063076871" expanded="true" signature="83:134" placeholder="SELECT nome ..cidade..." />
+            <marker date="1430063076871" expanded="true" signature="272:346" placeholder="SELECT codig..cidade..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/authentication/sign-up.tpl">
+    <entry file="file://$PROJECT_DIR$/database/authentication.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.785" vertical-offset="0" max-vertical-offset="1785">
-          <caret line="63" column="65" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="65" />
+        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="629">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <marker date="1430062875979" expanded="true" signature="151:187" placeholder="INSERT INTO ..." />
+            <marker date="1430062875979" expanded="true" signature="445:487" placeholder="SELECT cidad..cidade..." />
+            <marker date="1430062875979" expanded="true" signature="747:800" placeholder="INSERT INTO ..." />
+            <marker date="1430062875979" expanded="true" signature="1042:1160" placeholder="SELECT * FRO..utilizadores..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/init.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22185971" vertical-offset="0" max-vertical-offset="680">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
           <folding />
         </state>
       </provider>
