@@ -22,8 +22,8 @@ body {
 	background: #fff;
 }
 
-option.selectPlaceholder {
-    display:none;
+option.hiddenDropdownItem {
+    display: none;
 }
 
 /* big search box */
