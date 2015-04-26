@@ -1,13 +1,15 @@
 <?php
-include_once('../../config/paths-init.php');
 
-include_once($BASE_DIR .'/database/authentication.php');
+include $BASE_DB . '/authentication.php';
 
 if (!$_POST['username'] || !$_POST['password'] || !$_POST['firstName'] || !$_POST['lastName'] || !$_POST['email'] || !$_POST['cityName']) {
-    $_SESSION['error_messages'][] = 'All fields are mandatory';
-    $_SESSION['form_values'] = $_POST;
-    include $BASE_DIR . 'pages/authentication/sign-up.php';
-    exit;
+	var_dump('Missing data!');
+
+	$_SESSION['error_messages'][] = 'All fields are mandatory';
+	$_SESSION['form_values'] = $_POST;
+
+	//header("Location: index.php?page=signUp");
+	exit;
 }
 
 $username = strip_tags($_POST['username']);
@@ -18,17 +20,26 @@ $email = strip_tags($_POST['email']);
 $cityName = strip_tags($_POST['cityName']);
 
 try {
-    createUser($username, $password, $firstName, $lastName, $email, $cityName);
+	createUser($username, $password, $firstName, $lastName, $email, $cityName);
+	var_dump('create OK');
 } catch (PDOException $e) {
-    if (strpos($e->getMessage(), 'users_pkey') !== false) {
-        $_SESSION['error_messages'][] = 'Duplicate username';
-        $_SESSION['field_errors']['username'] = 'Username already exists';
-    }
-    else $_SESSION['error_messages'][] = 'Error creating user';
+	var_dump('PDOException');
 
-    $_SESSION['form_values'] = $_POST;
-    header("Location: $BASE_URL" . 'pages/users/register.php');
-    exit;
+	/*
+	if (strpos($e->getMessage(), 'users_pkey') !== false) {
+		$_SESSION['error_messages'][] = 'Duplicate username';
+		$_SESSION['field_errors']['username'] = 'Username already exists';
+	} else {
+		$_SESSION['error_messages'][] = 'Error creating user';
+	}
+
+	$_SESSION['form_values'] = $_POST;
+	header("Location: index.php?page=signUp");
+	exit;
+	*/
 }
-  $_SESSION['success_messages'][] = 'User registered successfully';
-  header("Location: $BASE_URL");
+
+/*
+$_SESSION['success_messages'][] = 'User registered successfully';
+header("Location: $BASE_URL");
+*/

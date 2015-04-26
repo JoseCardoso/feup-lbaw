@@ -2,15 +2,14 @@
 
 include $BASE_DB . 'loadCities.php';
 
+$smarty->assign('BASE_ACTIONS', $BASE_ACTIONS);
+
 try {
 	$cities = loadCities();
 } catch (PDOException $e) {
 	echo $e->getMessage();
     die();
 }
-
-// var_dump($cities); exit();
-
 
 $smarty->assign('cities', $cities);
 

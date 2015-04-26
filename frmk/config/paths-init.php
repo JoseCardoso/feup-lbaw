@@ -7,6 +7,7 @@ $BASE_CONFIG = $BASE_DIR . '/config/';
 $BASE_DB = $BASE_DIR . '/database/';
 $BASE_TEMPLATES = $BASE_DIR . '/templates/';
 
+$BASE_ACTIONS = $BASE_URL . '/actions/';
 $CSS_PATH = $BASE_URL . "/css/";
 $JS_PATH = $BASE_URL . "/javascript/";
 $IMAGE_PATH = $BASE_URL . "/images/";
