@@ -5,6 +5,15 @@ include_once('config/init.php');
 
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 'signIn';
 
+include_once($BASE_DIR .'/database/loadCities.php');
+try {
+    $cities = loadCities();
+    var_dump($cities);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+
+
 /*
 $pagesWithMandatoryLogin = array(
 	'profile'

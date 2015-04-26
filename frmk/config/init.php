@@ -4,11 +4,11 @@ session_start();
 
 error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
-$conn = new PDO('pgsql:host=vdbm.fe.up.pt;dbname=lbaw1424', 'lbaw1424', 'gF576kv0');
-$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$connection = new PDO('pgsql:host=vdbm.fe.up.pt;dbname=lbaw1424', 'lbaw1424', 'gF576kv0');
+$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$conn->exec('SET SCHEMA \'askfeup\'');
+$connection->exec('SET SCHEMA \'askfeup\'');
 
 include_once($BASE_DIR . '/lib/smarty/Smarty.class.php');
 

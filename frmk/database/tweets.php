@@ -1,8 +1,8 @@
 <?php
   
   function getAllTweets() {
-    global $conn;
-    $stmt = $conn->prepare("SELECT * 
+    global $connection;
+    $stmt = $connection->prepare("SELECT *
                             FROM tweets JOIN 
                                  users USING(username) 
                             ORDER BY time DESC");
@@ -11,8 +11,8 @@
   }
   
   function getUserTweets($username) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT * 
+    global $connection;
+    $stmt = $connection->prepare("SELECT *
                             FROM tweets JOIN 
                                  users USING(username) 
                             WHERE username = ? 
@@ -22,15 +22,15 @@
   }
 
   function createTweet($username, $tweet) {
-    global $conn;
-    $stmt = $conn->prepare("INSERT INTO tweets 
+    global $connection;
+    $stmt = $connection->prepare("INSERT INTO tweets
                             VALUES (DEFAULT, ?, ?, ?)");
     $stmt->execute(array(date('Y-m-d H:i:s'), $username, $tweet));
   }
   
   function getTweetCountAfter($id) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT COUNT(*) AS count
+    global $connection;
+    $stmt = $connection->prepare("SELECT COUNT(*) AS count
                             FROM tweets 
                             WHERE id > ?");
     $stmt->execute(array($id));
@@ -39,8 +39,8 @@
   }
 
   function getTweetsAfter($id) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT * 
+    global $connection;
+    $stmt = $connection->prepare("SELECT *
                             FROM tweets JOIN 
                                  users USING(username) 
                             WHERE id > ?

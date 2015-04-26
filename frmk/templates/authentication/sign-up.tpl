@@ -13,7 +13,7 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Username
-								<input type="text" placeholder="Insert Username" />
+								<input type="text" placeholder="Insert Username"/>
 							</label>
 						</div>
 					</div>

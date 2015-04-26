@@ -1,14 +1,14 @@
 <?php
 
 function createUser($username, $password) {
-    global $conn;
-    $stmt = $conn->prepare("INSERT INTO utilizadores VALUES (?, ?)");
+    global $connection;
+    $stmt = $connection->prepare("INSERT INTO utilizadores VALUES (?, ?)");
     $stmt->execute(array($username, sha1($password)));
 
-    $idUserQuery = $conn->prepare("SELECT ´CURRVAL(utilizadores_utilizadorid_seq)");
+    $idUserQuery = $connection->prepare("SELECT ´CURRVAL(utilizadores_utilizadorid_seq)");
     $idUser = $idUserQuery->fetchAll();
 
-    createMember($conn, $firstName, $lastName, $email, $idUser, $idCity);
+    createMember($connection, $firstName, $lastName, $email, $idUser, $idCity);
 }
 
 function createMember($conn, $firstName, $lastName, $email, $idUser, $idCity) {
@@ -17,8 +17,8 @@ function createMember($conn, $firstName, $lastName, $email, $idUser, $idCity) {
 }
 
 function isLoginCorrect($username, $password) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT *
+    global $connection;
+    $stmt = $connection->prepare("SELECT *
                             FROM utilizadores
                             WHERE username = ? AND password = ?");
     $stmt->execute(array($username, sha1($password)));
