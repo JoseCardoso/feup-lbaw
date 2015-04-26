@@ -55,7 +55,7 @@
 
 				<p class="right"><a href="?page=passwordRecovery">Forgot password?</a></p>
 				<p>Log in</p>
-				<form id="sign-in" action="{$BASE_DIR}/actions/authentication/sign-in.php" method="post" enctype="multipart/form-data">
+				<form id="sign-in" action="actions.php?action=signIn" method="post" enctype="multipart/form-data">
 					<input type="text" name="username"  placeholder="Username or Email" />
 					<input type="password" name="password"  placeholder="Password" />
 					<input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
