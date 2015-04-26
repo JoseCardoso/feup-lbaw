@@ -2,7 +2,6 @@
 </head>
 <body>
 	{include file = 'common/navbar.tpl'}
-	<?php include 'logic/classes/getMyPolls.php'; ?>
 
 	<div class="row">
 		<!-- sign up panel -->
@@ -48,9 +47,11 @@
 						<div class="small-12 columns">
 							<label>City
 								<select>
-									<?php foreach ($cities as $city) { ?>
-									<option value=<?= $city['value']; ?>><?= $city['name']; ?></option>
-									<?php } ?>
+									<option value="">Choose a city</option>
+
+									{foreach from=$cities item=city}
+									<option value={$city['nome']}>{$city['nome']}</option>
+									{/foreach}
 								</select>
 							</label>
 						</div>
