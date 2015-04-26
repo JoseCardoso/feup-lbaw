@@ -2,7 +2,7 @@
 include_once('../../config/init.php');
 include_once($BASE_DIR .'database/authentication.php');
 
-if (!$_POST['username'] || !$_POST['password'] || !$_POST['primeiroNome'] || !$_POST['ultimoNome']) || !$_POST['email'] {
+if (!$_POST['username'] || !$_POST['password'] || !$_POST['primeiroNome'] || !$_POST['ultimoNome'] || !$_POST['email']) {
     $_SESSION['error_messages'][] = 'All fields are mandatory';
     $_SESSION['form_values'] = $_POST;
     header("Location: $BASE_URL" . 'pages/authentication/sign-up.php');

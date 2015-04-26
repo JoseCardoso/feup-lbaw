@@ -22,6 +22,10 @@ body {
 	background: #fff;
 }
 
+option.selectPlaceholder {
+    display:none;
+}
+
 /* big search box */
 /*
 body .search-box {

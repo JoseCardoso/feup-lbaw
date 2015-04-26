@@ -2,9 +2,9 @@
 
 function loadCities() {
 	global $connection;
-	$stmt = $connection->prepare("SELECT nome FROM cidade GROUP BY nome ORDER BY nome");
+	$stmt = $connection->prepare("SELECT nome, codigopostal FROM cidade ORDER BY nome");
 	$stmt->execute();
-	return $stmt->fetchAll();
+	return $stmt->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC);
 }
 function loadZIPByCity() {
     global $connection;

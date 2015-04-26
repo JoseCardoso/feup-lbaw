@@ -6,9 +6,11 @@ try {
 	$cities = loadCities();
 } catch (PDOException $e) {
 	echo $e->getMessage();
+    die();
 }
 
-//var_dump($cities);
+// var_dump($cities); exit();
+
 
 $smarty->assign('cities', $cities);
 

@@ -8,4 +8,5 @@ $BASE_DB = $BASE_DIR . '/database/';
 $BASE_TEMPLATES = $BASE_DIR . '/templates/';
 
 $CSS_PATH = $BASE_URL . "/css/";
+$JS_PATH = $BASE_URL . "/javascript/";
 $IMAGE_PATH = $BASE_URL . "/images/";
