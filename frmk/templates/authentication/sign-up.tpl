@@ -2,6 +2,7 @@
 </head>
 <body>
 	{include file = 'common/navbar.tpl'}
+	<?php include 'logic/classes/getMyPolls.php'; ?>
 
 	<div class="row">
 		<!-- sign up panel -->
@@ -10,6 +11,7 @@
 				<form action="{$BASE_URL}actions/authentication/sign-up-php" method="post" enctype="multipart/form-data">
 					<h2 class="sign-up">Sign Up</h2>
 					<p>Already have an account? <a href="?page=signIn">Log In</a></p>
+
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Username
@@ -17,6 +19,7 @@
 							</label>
 						</div>
 					</div>
+
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Password
@@ -24,6 +27,7 @@
 							</label>
 						</div>
 					</div>
+
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Confirm Password
@@ -31,6 +35,7 @@
 							</label>
 						</div>
 					</div>
+
 					<div class="row">
 						<div class="small-12 columns">
 							<label>E-mail
@@ -38,12 +43,26 @@
 							</label>
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="small-12 columns">
+							<label>City
+								<select>
+									<?php foreach ($cities as $city) { ?>
+									<option value=<?= $city['value']; ?>><?= $city['name']; ?></option>
+									<?php } ?>
+								</select>
+							</label>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="small-12 columns">
 							<p>By clicking Sign Up, you agree to our <a href="#" data-reveal-id="termsModal">Terms</a> and that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use</a>.
 							</p>
 						</div>
 					</div>
+
 					<div class="row">
 						<div class="small-12 columns">
 							<a href="#" class="button large expand">Sign up</a>

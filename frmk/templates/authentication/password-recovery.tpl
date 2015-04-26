@@ -8,7 +8,7 @@
     <div class="small-12 medium-8 large-6 small-centered columns">
         <div class="panel">
             <form action="{$BASE_URL}actions/authentication/sign-up-php" method="post" enctype="multipart/form-data">
-                <h2 class="sign-up">Password Recory</h2>
+                <h2 class="sign-up">Password Recovery</h2>
                 <p>Enter the validation code that you've received in your email adress.</p>
                 <div class="row">
                     <div class="small-12 columns">

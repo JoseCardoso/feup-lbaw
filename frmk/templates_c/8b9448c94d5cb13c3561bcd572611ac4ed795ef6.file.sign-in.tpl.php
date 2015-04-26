@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2015-04-26 00:54:47
+<?php /* Smarty version Smarty-3.1.15, created on 2015-04-26 02:40:58
          compiled from "/home/henrique/git/feup-lbaw/frmk/templates/authentication/sign-in.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:194207068553c00392b7271-71669453%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b9448c94d5cb13c3561bcd572611ac4ed795ef6' => 
     array (
       0 => '/home/henrique/git/feup-lbaw/frmk/templates/authentication/sign-in.tpl',
-      1 => 1430002485,
+      1 => 1430008812,
       2 => 'file',
     ),
   ),
@@ -85,7 +85,7 @@ main-page/feup-sunset.jpg" alt="slide 3" />
 					<li><a href="#" class="button google-plus-button">Google+</a></li>
 				</ul>
 
-				<p class="right"><a href="#">Forgot password?</a></p>
+				<p class="right"><a href="?page=passwordRecovery">Forgot password?</a></p>
 				<p>Log in</p>
 				<form>
 					<input type="text" placeholder="Username or Email" />
