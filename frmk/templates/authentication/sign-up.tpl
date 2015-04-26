@@ -49,14 +49,9 @@
                         <label>City
                             <select>
                                 <option class="selectPlaceholder" value="" disabled selected>Choose a city</option>
-                                {foreach from=$cities item=zipCodes key=name}
-                                <optgroup label="{$name}">
-                                    {foreach from=$zipCodes item=zipCode}
-                                        <option value="{$zipCode}">{$zipCode['codigopostal']}</option>
-                                    {/foreach}
-                                </optgroup>
+                                {foreach from=$cities item=city key=name}
+                                    <option value="{$city}">{$city['nome']}</option>
                                 {/foreach}
-
                             </select>
                         </label>
                     </div>
