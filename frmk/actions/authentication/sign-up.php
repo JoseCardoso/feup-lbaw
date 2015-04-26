@@ -14,6 +14,7 @@ $username = strip_tags($_POST['username']);
 $password = $_POST['password'];
 $firstName = strip_tags($_POST['firstName']);
 $lastName = strip_tags($_POST['lastName']);
+$email = strip_tags($_POST['email']);
 $cityName = strip_tags($_POST['cityName']);
 
 try {

@@ -2,10 +2,10 @@
 
 function createUser($username, $password, $firstName, $lastName, $email, $cityName) {
     global $connection;
-    $stmt = $connection->prepare("INSERT INTO utilizadores VALUES (?, ?)");
+    $stmt = $connection->prepare("INSERT INTO utilizador VALUES (?, ?)");
     $stmt->execute(array($username, sha1($password)));
 
-    $idUserQuery = $connection->prepare("SELECT CURRVAL(utilizadores_utilizadorid_seq)");
+    $idUserQuery = $connection->prepare(" SELECT currval(pg_get_serial_sequence('utilizadores','utilizadorid'));");
     $idUser = $idUserQuery->fetchAll();
 
     $idCityQuery = $connection->prepare("SELECT cidadeid FROM cidade WHERE nome = ?");
@@ -29,4 +29,3 @@ function isLoginCorrect($username, $password) {
     $stmt->execute(array($username, sha1($password)));
     return $stmt->fetch() == true;
 }
-?>
