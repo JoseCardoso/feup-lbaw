@@ -30,10 +30,16 @@ function createMember($firstName, $lastName, $email, $idUser, $idCity) {
 }
 
 function isLoginCorrect($username, $password) {
-	global $connection;
-	$stmt = $connection->prepare("SELECT *
-		FROM utilizadores
-		WHERE username = ? AND password = ?");
+/*	global $connection;
+	$stmt = $connection->prepare("SELECT username, password FROM utilizador	WHERE username = ? AND password = ?",$username, $password);
+	$stmt->execute(array($username, sha1($password)));
+	*/
+	$penis = new PDO('pgsql:host=vdbm.fe.up.pt;dbname=lbaw1424', 'lbaw1424', 'gF576kv0');
+$penis->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+$penis->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$penis->exec('SET SCHEMA \'askfeup\'');
+	$stmt = $penis->prepare("SELECT username, password FROM utilizador	WHERE username = ? AND password = ?");
 	$stmt->execute(array($username, sha1($password)));
 	return $stmt->fetch() == true;
 }
