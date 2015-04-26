@@ -7,7 +7,7 @@
     <!-- sign up panel -->
     <div class="small-12 medium-8 large-6 small-centered columns">
         <div class="panel">
-            <form action="{$BASE_URL}actions/authentication/sign-up-php" method="post" enctype="multipart/form-data">
+            <form id="sign-up" action="{$BASE_DIR}/actions/authentication/sign-up.php" method="post" enctype="multipart/form-data">
                 <h2 class="sign-up">Sign Up</h2>
 
                 <p>Already have an account? <a href="?page=signIn">Log In</a></p>
@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <label>Username
-                            <input type="text" placeholder="Insert Username"/>
+                            <input type="text" name="username" placeholder="Insert Username"/>
                         </label>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <label>Password
-                            <input type="password" placeholder="Insert Password"/>
+                            <input type="password" name="password" placeholder="Insert Password"/>
                         </label>
                     </div>
                 </div>
@@ -39,7 +39,21 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <label>E-mail
-                            <input type="email" placeholder="user@gmail.com"/>
+                            <input type="email" name="email" placeholder="user@gmail.com"/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-6 columns">
+                        <label>Primeiro Nome
+                            <input type="text" name="firstName" placeholder="Primeiro Nome"/>
+                        </label>
+                    </div>
+
+                    <div class="small-6 columns">
+                        <label>Último Nome
+                            <input type="text" name="lastName" placeholder="Último Nome"/>
                         </label>
                     </div>
                 </div>
@@ -47,10 +61,10 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <label>City
-                            <select>
+                            <select name="cityName" form="sign-up">
                                 <option class="selectPlaceholder" value="" disabled selected>Choose a city</option>
                                 {foreach from=$cities item=city key=name}
-                                    <option value="{$city}">{$city['nome']}</option>
+                                    <option value="{$city['nome']}">{$city['nome']}</option>
                                 {/foreach}
                             </select>
                         </label>
@@ -67,7 +81,7 @@
 
                 <div class="row">
                     <div class="small-12 columns">
-                        <a href="#" class="button large expand">Sign up</a>
+                        <button type="submit" class="button large expand">Sign up</button>
                     </div>
                 </div>
             </form>
