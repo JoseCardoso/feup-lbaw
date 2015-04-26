@@ -4,6 +4,8 @@ session_start();
 
 error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
+date_default_timezone_set('Europe/Lisbon');
+
 $connection = new PDO('pgsql:host=vdbm.fe.up.pt;dbname=lbaw1424', 'lbaw1424', 'gF576kv0');
 $connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

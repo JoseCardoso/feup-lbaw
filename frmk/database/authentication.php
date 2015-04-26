@@ -2,7 +2,6 @@
 
 function createUser($username, $password, $firstName, $lastName, $email, $cityName) {
 	global $connection;
-	var_dump($connection);
 	$stmt = $connection->prepare("INSERT INTO utilizador(username, password) VALUES (?, ?)");
 	//$stmt->debugDumpParams();
 	$stmt->execute(array($username, $password));
@@ -11,21 +10,23 @@ function createUser($username, $password, $firstName, $lastName, $email, $cityNa
     $idUserQuery->execute();
 	$idUser = $idUserQuery->fetch()['utilizadorid'];
 
-    var_dump($connection);
-    var_dump($cityName);
-
 	$idCityQuery = $connection->prepare("SELECT cidadeid FROM cidade WHERE nome = ?");
     $idCityQuery->execute(array($cityName));
-	$idCity = $idCityQuery->fetchAll();
+	$idCity = $idCityQuery->fetch()['cidadeid'];
 
-	var_dump($idCity);
+    var_dump('ID do Utilizador: ' . $idUser);
+    var_dump('ID do Cidade: ' . $idCity);
 
-	createMember($connection, $firstName, $lastName, $email, $idUser, $idCity);
+	createMember($firstName, $lastName, $email, $idUser, $idCity);
 }
 
-function createMember($conn, $firstName, $lastName, $email, $idUser, $idCity) {
-	$stmt = $conn->prepare("INSERT INTO membro VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-	$stmt->execute(array('true', $firstName, $lastName, $email, 0, 'current_timestamp', 'current_timestamp'), $idUser, $idCity);
+function createMember($firstName, $lastName, $email, $idUser, $idCity) {
+    global $connection;
+    $stmt = $connection->prepare("INSERT INTO membro VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $timestamp = date('Y-m-d G:i:s');
+    $stmt->execute(array(1, $firstName, $lastName, $email, NULL, $timestamp, $timestamp, $idUser, $idCity));
+
 }
 
 function isLoginCorrect($username, $password) {

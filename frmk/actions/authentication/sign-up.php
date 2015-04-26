@@ -21,6 +21,7 @@ $cityName = strip_tags($_POST['cityName']);
 
 try {
 	createUser($username, $password, $firstName, $lastName, $email, $cityName);
+    header("Location: index.php?page=signIn");
 } catch (PDOException $e) {
 	var_dump('PDOException');
 
