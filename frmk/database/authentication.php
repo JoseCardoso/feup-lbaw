@@ -1,16 +1,14 @@
 <?php
 
 function createUser($username, $password, $firstName, $lastName, $email, $cityName) {
-	var_dump('creating user');
-	
 	global $connection;
-	$stmt = $connection->prepare("INSERT INTO askfeup.utilizador VALUES (?, ?, ?)");
-	$stmt->execute(array('default', $username, $password));
-	var_dump('test2');
+	var_dump($connection);
+	$stmt = $connection->prepare("INSERT INTO utilizador(username, password) VALUES (?, ?)");
+	//$stmt->debugDumpParams();
+	$stmt->execute(array($username, $password));
 
-	var_dump('test1');
-
-	$idUserQuery = $connection->prepare(" SELECT currval(pg_get_serial_sequence('utilizadores','utilizadorid'));");
+	/*
+	$idUserQuery = $connection->prepare("SELECT nextval(pg_get_serial_sequence('utilizador','utilizadorid'))");
 	$idUser = $idUserQuery->fetchAll();
 
 	$idCityQuery = $connection->prepare("SELECT cidadeid FROM cidade WHERE nome = ?");
@@ -19,6 +17,7 @@ function createUser($username, $password, $firstName, $lastName, $email, $cityNa
 	var_dump($idCity);
 
 	createMember($connection, $firstName, $lastName, $email, $idUser, $idCity);
+	*/
 }
 
 function createMember($conn, $firstName, $lastName, $email, $idUser, $idCity) {

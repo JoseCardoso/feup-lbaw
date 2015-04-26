@@ -2,7 +2,7 @@
 
 include $BASE_DB . '/authentication.php';
 
-if (!$_POST['username'] || !$_POST['password'] || !$_POST['firstName'] || !$_POST['lastName'] || !$_POST['email'] || !$_POST['cityName']) {
+if (!$_POST['username'] || !$_POST['password'] || !$_POST['passwordConfirm'] || !$_POST['firstName'] || !$_POST['lastName'] || !$_POST['email'] || !$_POST['cityName']) {
 	var_dump('Missing data!');
 
 	$_SESSION['error_messages'][] = 'All fields are mandatory';
@@ -21,9 +21,16 @@ $cityName = strip_tags($_POST['cityName']);
 
 try {
 	createUser($username, $password, $firstName, $lastName, $email, $cityName);
-	var_dump('create OK');
 } catch (PDOException $e) {
 	var_dump('PDOException');
+
+	var_dump('errorInfo: ' . $e->errorInfo[1]);
+	if ($e->errorInfo[1] == 7) {
+		var_dump('username already taken');
+	} else {
+		var_dump('unknown exception');
+		var_dump($e->getTraceAsString());
+	}
 
 	/*
 	if (strpos($e->getMessage(), 'users_pkey') !== false) {

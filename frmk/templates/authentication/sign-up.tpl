@@ -65,7 +65,7 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label>Confirm Password
-								<input type="password" placeholder="Confirm Password"/>
+								<input type="password" name="passwordConfirm" placeholder="Confirm Password"/>
 							</label>
 						</div>
 					</div>
