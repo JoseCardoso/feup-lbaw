@@ -8,7 +8,7 @@ if (!$_POST['username'] || !$_POST['password'] || !$_POST['passwordConfirm'] || 
 	$_SESSION['error_messages'][] = 'All fields are mandatory';
 	$_SESSION['form_values'] = $_POST;
 
-	//header("Location: index.php?page=signUp");
+	header("Location: index.php?page=signUp");
 	exit;
 }
 

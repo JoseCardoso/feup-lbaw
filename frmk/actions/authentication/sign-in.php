@@ -1,21 +1,26 @@
 <?php
-include_once('../../config/paths-init.php');
 
-include_once($BASE_DIR .'/database/authentication.php');
+include $BASE_DB . '/authentication.php';
 
 if (!$_POST['username'] || !$_POST['password'] ) {
+
     $_SESSION['error_messages'][] = 'All fields are mandatory';
     $_SESSION['form_values'] = $_POST;
-    include $BASE_DIR . 'pages/authentication/sign-in.php';
+
+    header("Location: index.php?page=signIn");
     exit;
 }
 
 $username = strip_tags($_POST['username']);
 $password = $_POST['password'];
+
 try {
     isLoginCorrect($username, $password);
+    //header("Location: index.php?page=signUp");
+    var_dump('Login correcto');
 } catch (PDOException $e) {
-    if (strpos($e->getMessage(), 'users_pkey') !== false) {
+
+    /*if (strpos($e->getMessage(), 'users_pkey') !== false) {
         $_SESSION['error_messages'][] = 'Duplicate username';
         $_SESSION['field_errors']['username'] = 'Username already exists';
     }
@@ -23,7 +28,8 @@ try {
 
     $_SESSION['form_values'] = $_POST;
     header("Location: $BASE_URL" . 'pages/users/register.php');
-    exit;
+    exit;*/
 }
-  $_SESSION['success_messages'][] = 'User registered successfully';
-  header("Location: $BASE_URL");
+
+  /*$_SESSION['success_messages'][] = 'User registered successfully';
+  header("Location: $BASE_URL");*7

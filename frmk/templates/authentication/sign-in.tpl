@@ -64,7 +64,7 @@
 				<!-- log in button -->
 					<div class="row">
 						<div class="small-12 columns">
-							<button type="submit" class="button large expand">	Log in</a>
+							<button type="submit" class="button large expand">Log in</a>
 						</div>
 					</div>
 				</form>	
