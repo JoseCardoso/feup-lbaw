@@ -7,17 +7,20 @@ function createUser($username, $password, $firstName, $lastName, $email, $cityNa
 	//$stmt->debugDumpParams();
 	$stmt->execute(array($username, $password));
 
-	/*
-	$idUserQuery = $connection->prepare("SELECT nextval(pg_get_serial_sequence('utilizador','utilizadorid'))");
-	$idUser = $idUserQuery->fetchAll();
+	$idUserQuery = $connection->prepare("SELECT utilizadorid FROM utilizador ORDER BY utilizadorid DESC LIMIT 1");
+    $idUserQuery->execute();
+	$idUser = $idUserQuery->fetch()['utilizadorid'];
+
+    var_dump($connection);
+    var_dump($cityName);
 
 	$idCityQuery = $connection->prepare("SELECT cidadeid FROM cidade WHERE nome = ?");
+    $idCityQuery->execute(array($cityName));
 	$idCity = $idCityQuery->fetchAll();
 
 	var_dump($idCity);
 
 	createMember($connection, $firstName, $lastName, $email, $idUser, $idCity);
-	*/
 }
 
 function createMember($conn, $firstName, $lastName, $email, $idUser, $idCity) {
