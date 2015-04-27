@@ -35,3 +35,29 @@ function correctLogin($username, $password) {
 
 	return $stmt->fetch() == true;
 }
+
+function sentValidationCode($email) {
+    global $connection;
+    $stmt = $connection->prepare("SELECT membroid FROM membro WHERE email = ?");
+    $stmt->execute(array($email));
+    $idMember = $stmt->fetch()['membroid'];
+
+    if(!isset($idMember))
+        return false;
+    else {
+        $code = rand(0, 10) . uniqid() . rand(0, 10);
+        $timestamp = date('Y-m-d G:i:s');
+        var_dump('Código: ' . $code);
+
+        $to = $email;
+        $subject = "Recuperação de password - AskFEUP"
+        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=&code=" . $code;
+        $headers = "From: askfeup@fe.up.pt" . phpversion();
+
+        mail($to, $subject, $message, $headers);
+
+        $stmt = $connection->prepare("INSERT INTO recuracaodepassword VALUES (?, ?, ?)");
+        $stmt->execute(array($code, $timestamp, $idMember));
+        return true;
+    }
+}
