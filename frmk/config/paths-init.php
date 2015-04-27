@@ -1,5 +1,4 @@
 <?php
-
 $BASE_DIR = realpath(dirname(__FILE__) . '/..');
 $BASE_URL = dirname("http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
 

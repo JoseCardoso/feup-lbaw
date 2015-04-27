@@ -1,23 +1,24 @@
 <?php
 
 include $BASE_DB . '/authentication.php';
-require $BASE_CONFIG . '/phpmailer/class.phpmailer.php';
 
-if (!$_POST['email']) {
+if (!$_POST['password'] || !$_POST['code']) {
     var_dump('Missing data!');
 
     $_SESSION['error_messages'][] = 'All fields are mandatory';
     $_SESSION['form_values'] = $_POST;
 
-    header("Location: index.php?page=passwordRecovery");
+    header("Location: index.php?page=recoverPassword");
     exit;
 }
 
-$email = strip_tags($_POST['email']);
+$password = $_POST['password'];
+$code = $_POST['code'];
 
 try {
-    if (sentValidationCode($BASE_URL, $email))
-        var_dump('Email has been sent');
+    if (changePassword($code, $password)) {
+        header("Location: index.php?page=signIn");
+    }
     else
         var_dump('Failed');
 

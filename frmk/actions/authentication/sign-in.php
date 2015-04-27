@@ -14,7 +14,9 @@ try {
 		exit;
 	}
 
-	if(!correctLogin($username, $password)) {
+    list($logged, $userId) = correctLogin($username, $password);
+
+	if(!$logged) {
 		$_SESSION['error_messages'][] = 'Invalid username or password';
 		$_SESSION['form_values'] = $_POST;
 
@@ -22,12 +24,10 @@ try {
 		exit;
 	}
 
-	$_SESSION['username'] = $username;
+	$_SESSION['user'] = $userId;
 } catch (PDOException $e) {
 	die($e->getMessage());
 }
 
 header("Location: index.php?page=profile");
 exit;
-
-?>

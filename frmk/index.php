@@ -2,6 +2,7 @@
 
 include_once('config/paths-init.php');
 include_once('config/init.php');
+include_once('config/phpmailer.php');
 
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 'signIn';
 

@@ -34,8 +34,8 @@
 					<p class="text-right"><strong>Bio</strong></p>
 				</div>
 				<div class="medium-6 columns">
-					<p>ferrolho</p>
-					<p>henriqueferrolho@gmail.com</p>
+					<p>{$profile['username']}</p>
+					<p>{$profile['email']}</p>
 					<p>MIEIC student</p>
 				</div>
 			</div>

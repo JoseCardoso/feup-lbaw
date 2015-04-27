@@ -12,6 +12,8 @@
 
 					<p>TEMP - request id debug: <b>{$recoveryRequestId}</b></p>
 
+                    <input type="hidden" name="code" value="{$recoveryRequestId}">
+
 					<div class="row">
 						<div class="small-12 columns">
 							<label>New password
@@ -30,7 +32,7 @@
 
 					<div class="row">
 						<div class="small-12 columns">
-							<button type="submit" class="button large expand">Submit</button>
+							<button type="submit" class="button large expand">Change password</button>
 						</div>
 					</div>
 				</form>

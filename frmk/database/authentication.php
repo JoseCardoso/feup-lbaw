@@ -32,8 +32,12 @@ function correctLogin($username, $password) {
 	global $connection;
 	$stmt = $connection->prepare("SELECT utilizadorid FROM utilizador WHERE username = ? AND password = ?");
 	$stmt->execute(array($username, hash('sha256', $password)));
+    $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
 
-	return $stmt->fetch() == true;
+    if($fetch)
+	    return array(true, $fetch['utilizadorid']);
+    else
+        return array(false, 0);
 }
 
 function sentValidationCode($BASE_URL, $email) {
@@ -42,32 +46,36 @@ function sentValidationCode($BASE_URL, $email) {
     $stmt->execute(array($email));
     $idMember = $stmt->fetch()['membroid'];
 
-    var_dump("Aqui");
-    var_dump($email);
+    /* check if user already has a request */
+    $stmt = $connection->prepare("SELECT recuperacaodepasswordid, data FROM recuperacaodepassword WHERE membroid = $idMember");
+    $stmt->execute();
+    $idRecovery = $stmt->fetch()['recuperacaodepasswordid'];
+
+    //$requestDate = strtotime($stmt->fetch()['data']);
+    //$now = time();
+    //var_dump('RequestDate: ' . $requestDate);
+    //var_dump('CurrentDate: ' . $now);
+
+    $diff = (time() - strtotime($stmt->fetch()['data'])) / 3600;
+
+    //var_dump('DifferenceDates: ' . (($now - $requestDate) / 3600));
+
+    /* if request exists or was processed at least an hour then failed */
+    if($idRecovery != NULL && $diff < 1) {
+        return false;
+    }
 
     if(!isset($idMember))
         return false;
     else {
         $code = rand(0, 10) . uniqid() . rand(0, 10);
-        $timestamp = date('Y-m-d G:i:s');
-        var_dump('Codigo: ' . $code);
 
         $subject = "Recuperação de password - AskFEUP";
         $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=recoverPassword&id=" . $code;
 
 
-        /***********/
-        global $error;
-        $mail = new PHPMailer;
-
-        $mail->IsSMTP();                                      // Set mailer to use SMTP
-        $mail->SMTPDebug = 0;                                 // debugging: 1 = errors and messages, 2 = messages only
-        $mail->SMTPAuth = true;                               // authentication enabled
-        $mail->SMTPSecure = 'tls';                            // secure transfer enabled REQUIRED for GMail
-        $mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
-        $mail->Port = 587;
-        $mail->Username = 'pereiraffjoao1993@gmail.com';      // SMTP username
-        $mail->Password = '2Jo25ao1993FPereira';              // SMTP password
+        /******Sent email to user******/
+        global $error; global $mail;
         $mail->SetFrom('pereiraffjoao1993@gmail.com', 'Joao Pereira');
         $mail->Subject = $subject;
         $mail->Body = $message;
@@ -80,11 +88,22 @@ function sentValidationCode($BASE_URL, $email) {
         } else {
             $error = 'Message sent!';
         }
-        var_dump($error);
-        /************/
+        /******End of code******/
 
-        $stmt = $connection->prepare("INSERT INTO recuracaodepassword VALUES (?, ?, ?)");
-        $stmt->execute(array($code, $timestamp, $idMember));
+        $stmt = $connection->prepare("INSERT INTO recuperacaodepassword(codigovalidacao, membroid) VALUES (?, ?)");
+        $stmt->execute(array($code, $idMember));
+
         return true;
     }
+}
+
+function changePassword($code, $password) {
+    global $connection;
+    $stmt = $connection->prepare("UPDATE utilizador SET password=? WHERE utilizadorid=
+        (SELECT membroid FROM recuperacaodepassword WHERE codigovalidacao=?)");
+
+    $success = $stmt->execute(array(hash('sha256', $password), $code));
+
+    $stmt = $connection->prepare("DELETE FROM recuperacaodepassword WHERE codigovalidacao=?");
+    return $success && $stmt->execute(array($code));
 }
