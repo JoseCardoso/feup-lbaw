@@ -2,36 +2,32 @@
 
 include $BASE_DB . '/authentication.php';
 
-if (!$_POST['username'] || !$_POST['password'] ) {
-
-    $_SESSION['error_messages'][] = 'All fields are mandatory';
-    $_SESSION['form_values'] = $_POST;
-
-    header("Location: index.php?page=signIn");
-    exit;
-}
-
-$username = strip_tags($_POST['username']);
-$password = $_POST['password'];
-
 try {
-    if(isLoginCorrect($username, $password))
-        var_dump('Login correcto');
-    else
-        var_dump('Login Incorrecto');
-    //header("Location: index.php?page=signUp");
+	$username = strip_tags($_POST['username']);
+	$password = $_POST['password'];
+
+	if (!$username || !$password) {
+		$_SESSION['error_messages'][] = 'All fields are mandatory';
+		$_SESSION['form_values'] = $_POST;
+
+		header("Location: index.php?page=signIn");
+		exit;
+	}
+
+	if(!correctLogin($username, $password)) {
+		$_SESSION['error_messages'][] = 'Invalid username or password';
+		$_SESSION['form_values'] = $_POST;
+
+		header("Location: index.php?page=signIn");
+		exit;
+	}
+
+	$_SESSION['username'] = $username;
 } catch (PDOException $e) {
-
-    /*if (strpos($e->getMessage(), 'users_pkey') !== false) {
-        $_SESSION['error_messages'][] = 'Duplicate username';
-        $_SESSION['field_errors']['username'] = 'Username already exists';
-    }
-    else $_SESSION['error_messages'][] = 'Error creating user';
-
-    $_SESSION['form_values'] = $_POST;
-    header("Location: $BASE_URL" . 'pages/users/register.php');
-    exit;*/
+	die($e->getMessage());
 }
 
-  /*$_SESSION['success_messages'][] = 'User registered successfully';
-  header("Location: $BASE_URL");*7
+header("Location: index.php?page=profile");
+exit;
+
+?>
