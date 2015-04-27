@@ -28,7 +28,7 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label>E-mail
-								<input type="email" name="email" placeholder="user@gmail.com"/>
+								<input type="email" name="email" placeholder="user@fe.up.pt.com"/>
 							</label>
 						</div>
 					</div>

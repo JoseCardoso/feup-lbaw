@@ -35,3 +35,40 @@ function isLoginCorrect($username, $password) {
 
 	return $stmt->fetch() == true;
 }
+
+function sentValidationCode($email) {
+    global $connection;
+    $stmt = $connection->prepare("SELECT membroid FROM membro WHERE email = ?");
+    $stmt->execute(array($email));
+    $idMember = $stmt->fetch()['membroid'];
+
+    if(!isset($idMember))
+        return false;
+    else {
+        $stmt = $connection->prepare("SELECT primeiroNome, ultimoNome FROM membro WHERE membroid = $idMember");
+        $stmt->execute();
+        $firstName = $stmt->fetch()['primeironome'];
+        $lastName = $stmt->fetch()['ultimonome'];
+
+
+
+        $message = "";
+    }
+}
+
+function createRandomPassword() {
+
+    $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+    srand((double)microtime()*1000000);
+    $i = 0;
+    $pass = '' ;
+
+    while ($i <= 7) {
+        $num = rand() % 33;
+        $tmp = substr($chars, $num, 1);
+        $pass = $pass . $tmp;
+        $i++;
+    }
+
+    return $pass;
+}
