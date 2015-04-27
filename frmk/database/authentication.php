@@ -4,7 +4,7 @@ function createUser($username, $password, $firstName, $lastName, $email, $cityNa
 	global $connection;
 	$stmt = $connection->prepare("INSERT INTO utilizador(username, password) VALUES (?, ?)");
 	//$stmt->debugDumpParams();
-	$stmt->execute(array($username, sha1($password)));
+	$stmt->execute(array($username, hash('sha256', $password)));
 
 	$idUserQuery = $connection->prepare("SELECT utilizadorid FROM utilizador ORDER BY utilizadorid DESC LIMIT 1");
     $idUserQuery->execute();
@@ -28,10 +28,10 @@ function createMember($firstName, $lastName, $email, $idUser, $idCity) {
     $stmt->execute(array(1, $firstName, $lastName, $email, NULL, $timestamp, $timestamp, $idUser, $idCity));
 }
 
-function isLoginCorrect($username, $password) {
+function correctLogin($username, $password) {
 	global $connection;
 	$stmt = $connection->prepare("SELECT utilizadorid FROM utilizador WHERE username = ? AND password = ?");
-	$stmt->execute(array($username, sha1($password)));
+	$stmt->execute(array($username, hash('sha256', $password)));
 
 	return $stmt->fetch() == true;
 }

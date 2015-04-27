@@ -53,7 +53,7 @@
 					<li><a href="#" class="button google-plus-button">Google+</a></li>
 				</ul>
 
-				<p class="right"><a href="?page=passwordRecovery">Forgot password?</a></p>
+				<p class="right"><a href="?page=requestPasswordRecovery">Forgot password?</a></p>
 				<p>Log in</p>
 				<form id="sign-in" action="actions.php?action=signIn" method="post" enctype="multipart/form-data">
 					<input type="text" name="username"  placeholder="Username or Email" />
