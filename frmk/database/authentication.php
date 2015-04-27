@@ -36,25 +36,52 @@ function isLoginCorrect($username, $password) {
 	return $stmt->fetch() == true;
 }
 
-function sentValidationCode($email) {
+function sentValidationCode($BASE_URL, $email) {
     global $connection;
     $stmt = $connection->prepare("SELECT membroid FROM membro WHERE email = ?");
     $stmt->execute(array($email));
     $idMember = $stmt->fetch()['membroid'];
+
+    var_dump("Aqui");
+    var_dump($email);
 
     if(!isset($idMember))
         return false;
     else {
         $code = rand(0, 10) . uniqid() . rand(0, 10);
         $timestamp = date('Y-m-d G:i:s');
-        var_dump('Código: ' . $code);
+        var_dump('Codigo: ' . $code);
 
-        $to = $email;
-        $subject = "Recuperação de password - AskFEUP"
-        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=&code=" . $code;
-        $headers = "From: askfeup@fe.up.pt" . phpversion();
+        $subject = "Recuperação de password - AskFEUP";
+        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=recoveryPassword&id=" . $code;
 
-        mail($to, $subject, $message, $headers);
+
+        /***********/
+        global $error;
+        $mail = new PHPMailer;
+
+        $mail->IsSMTP();                                      // Set mailer to use SMTP
+        $mail->SMTPDebug = 0;                                 // debugging: 1 = errors and messages, 2 = messages only
+        $mail->SMTPAuth = true;                               // authentication enabled
+        $mail->SMTPSecure = 'tls';                            // secure transfer enabled REQUIRED for GMail
+        $mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
+        $mail->Port = 587;
+        $mail->Username = 'pereiraffjoao1993@gmail.com';      // SMTP username
+        $mail->Password = 'yourpassword';              // SMTP password
+        $mail->SetFrom('pereiraffjoao1993@gmail.com', 'Joao Pereira');
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->AddAddress($email);
+
+        if(!$mail->Send()) {
+            $error = 'Mail error: '.$mail->ErrorInfo;
+            var_dump($error);
+            return false;
+        } else {
+            $error = 'Message sent!';
+        }
+        var_dump($error);
+        /************/
 
         $stmt = $connection->prepare("INSERT INTO recuracaodepassword VALUES (?, ?, ?)");
         $stmt->execute(array($code, $timestamp, $idMember));

@@ -1,6 +1,7 @@
 <?php
 
 include $BASE_DB . '/authentication.php';
+require $BASE_CONFIG . '/phpmailer/class.phpmailer.php';
 
 if (!$_POST['email']) {
     var_dump('Missing data!');
@@ -15,7 +16,10 @@ if (!$_POST['email']) {
 $email = strip_tags($_POST['email']);
 
 try {
-    sentValidationCode($email);
+    if (sentValidationCode($BASE_URL, $email))
+        var_dump('Email has been sent');
+    else
+        var_dump('Failed');
 
 } catch (PDOException $e) {
 
