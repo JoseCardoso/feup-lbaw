@@ -53,7 +53,7 @@ function sentValidationCode($BASE_URL, $email) {
         var_dump('Codigo: ' . $code);
 
         $subject = "Recuperação de password - AskFEUP";
-        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=recoveryPassword&id=" . $code;
+        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=recoverPassword&id=" . $code;
 
 
         /***********/
@@ -67,7 +67,7 @@ function sentValidationCode($BASE_URL, $email) {
         $mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
         $mail->Port = 587;
         $mail->Username = 'pereiraffjoao1993@gmail.com';      // SMTP username
-        $mail->Password = 'yourpassword';              // SMTP password
+        $mail->Password = '2Jo25ao1993FPereira';              // SMTP password
         $mail->SetFrom('pereiraffjoao1993@gmail.com', 'Joao Pereira');
         $mail->Subject = $subject;
         $mail->Body = $message;
