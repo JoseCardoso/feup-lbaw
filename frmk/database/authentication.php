@@ -45,30 +45,19 @@ function sentValidationCode($email) {
     if(!isset($idMember))
         return false;
     else {
-        $stmt = $connection->prepare("SELECT primeiroNome, ultimoNome FROM membro WHERE membroid = $idMember");
-        $stmt->execute();
-        $firstName = $stmt->fetch()['primeironome'];
-        $lastName = $stmt->fetch()['ultimonome'];
+        $code = rand(0, 10) . uniqid() . rand(0, 10);
+        $timestamp = date('Y-m-d G:i:s');
+        var_dump('Código: ' . $code);
 
+        $to = $email;
+        $subject = "Recuperação de password - AskFEUP"
+        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=&code=" . $code;
+        $headers = "From: askfeup@fe.up.pt" . phpversion();
 
+        mail($to, $subject, $message, $headers);
 
-        $message = "";
+        $stmt = $connection->prepare("INSERT INTO recuracaodepassword VALUES (?, ?, ?)");
+        $stmt->execute(array($code, $timestamp, $idMember));
+        return true;
     }
-}
-
-function createRandomPassword() {
-
-    $chars = "abcdefghijkmnopqrstuvwxyz023456789";
-    srand((double)microtime()*1000000);
-    $i = 0;
-    $pass = '' ;
-
-    while ($i <= 7) {
-        $num = rand() % 33;
-        $tmp = substr($chars, $num, 1);
-        $pass = $pass . $tmp;
-        $i++;
-    }
-
-    return $pass;
 }
