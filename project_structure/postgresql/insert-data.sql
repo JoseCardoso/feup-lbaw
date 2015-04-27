@@ -3,16 +3,16 @@
 
 /** Utilizadores **/
 /* (id, username, password) */
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'botas', 'lbaw');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'ferrolho', 'lbaw');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'betao', 'lbaw');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'zoid', 'lbaw');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'olamundo', 'admin1234');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'lbaw1424', 'olamundo');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'okapa', 'hashtag');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'blackwoman', 'codefever');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'joker', 'batmanisdead');
-INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'vanillagirl', 'loveicecream');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'botas', '7d9187aec886a65a920d3b4a2e3eb66c771510255de4f02a1b0c67a1be856c33');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'henrique', '7d9187aec886a65a920d3b4a2e3eb66c771510255de4f02a1b0c67a1be856c33');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'betao', '7d9187aec886a65a920d3b4a2e3eb66c771510255de4f02a1b0c67a1be856c33');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'zoid', '7d9187aec886a65a920d3b4a2e3eb66c771510255de4f02a1b0c67a1be856c33');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'olamundo', 'ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'lbaw1424', '27944092732df96af0311e3e374b751a584e331c2fcf36c24e5b96dd79741c30');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'okapa', '7f835ed0fb65ec1bed9028a601df8afc902166fd6146b0142ebdb3e4f9508a99');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'blackwoman', 'ba5e06efa10045ea235eb7e31778c557f44860068d2696c42faeac591670b845');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'joker', '2002ef78f20c52f749fc58788ffcf230978adc7c25385355110fd68ac484c1d3');
+INSERT INTO askfeup.Utilizador VALUES (DEFAULT, 'vanillagirl', 'b932a7b6748b6335e3d4bf6c3bc1ba1e1e94b49a6eea09691f3071a6ef2d7803');
 
 /** Administradores **/
 /* (idUtilizador) */
@@ -238,14 +238,14 @@ INSERT INTO askfeup.Resposta VALUES (39, 'false', 'Na estrada da circunvalaçao 
 
 /** Comentários **/
 /* (id, data, decricao, contribuicaoID, membroID) */
-INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-15 22:35:10', 'o @ferrolho tem razão, mas acho que é às 19:30h que fecha.', 3, 4);
+INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-15 22:35:10', 'o @henrique tem razão, mas acho que é às 19:30h que fecha.', 3, 4);
 
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-16 23:44:33', '@botas tem de dar, todos os pavilhoes permitem isso.', 5, 3);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-16 23:50:10', 'obrigado @betao já reservei :)', 6, 4);
-INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-16 23:59:50', '@ferrolho podes vir :)', 7, 4);
+INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-16 23:59:50', '@henrique podes vir :)', 7, 4);
 
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-17 00:05:01', '@joker estas errado, ha sempre um para a despedida', 9, 2);
-INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-17 00:11:41', '@ferrolho obrigado pela informaçao. É que eu este ano ainda não pude ir nenhuma vez e ia ficar triste se não houvesse mais :(', 10, 10);
+INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-17 00:11:41', '@henrique obrigado pela informaçao. É que eu este ano ainda não pude ir nenhuma vez e ia ficar triste se não houvesse mais :(', 10, 10);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-17 00:12:12', '@vanillagirl de nada sempre as ordens. Diverte te na quinta :D', 10, 2);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-17 01:03:45', 'vamos partir tudo !!! :D FEUPCaffe <3', 10, 7);
 
@@ -258,7 +258,7 @@ INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-18 19:57:50', 'obrigado
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-19 11:00:00', 'vou optar por esta, obrigado', 24, 4);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-19 11:05:46', 'LOL vou vos acusar malandros kkkkk', 25, 1);
 
-INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-19 11:00:00', 'obrigado @ferrolho', 27, 3);
+INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-19 11:00:00', 'obrigado @henrique', 27, 3);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-19 11:05:46', 'tambem já ouvi falar nisso mas foram so rumores', 28, 3);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-19 11:06:59', 'vai a secretaria da FEUP e fala lá :)', 28, 10);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-19 11:07:30', 'vou fazer isso depois entao @vanillagirl :)', 28, 3);
@@ -267,15 +267,15 @@ INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 10:15:15', 'envia me
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 10:15:50', 'e ganhando as eleiçoes nao xD ?', 31, 2);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 10:16:43', 'obvio né xD ?', 31, 1);
 
-INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 12:03:43', 'Isso não vale @ferrolho, baixando o preço obvio que ficas com o trabalho', 34, 1);
+INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 12:03:43', 'Isso não vale @henrique, baixando o preço obvio que ficas com o trabalho', 34, 1);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 12:04:34', 'Na guerra vale tudo sorry!', 34, 2);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 12:05:02', 'Fico-me pelos 150€ tambem @joker', 34, 1);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:04:54', '@betao a oferecer bolos tambem eu!', 35, 2);
-INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:05:43', '@ferrolho podes falar!', 35, 1);
+INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:05:43', '@henrique podes falar!', 35, 1);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:06:43', 'rime @zoid', 36, 1);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:07:12', '@zoid da te um tiro', 36, 2);
 INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:07:56', 'FOI MARA', 36, 3);
-INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:07:56', 'Cada um faz aquilo que pode @botas, @ferrolho e @betao', 36, 4);
+INSERT INTO askfeup.Comentario VALUES (DEFAULT, '2015-04-20 13:07:56', 'Cada um faz aquilo que pode @botas, @henrique e @betao', 36, 4);
 
 /** Tags **/
 INSERT INTO askfeup.Tag VALUES (DEFAULT, 'd.beatriz');
