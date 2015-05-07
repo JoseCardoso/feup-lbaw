@@ -2,7 +2,7 @@
 	<nav class="top-bar" data-topbar role="navigation">
 		<ul class="title-area">
 			<li class="name">
-				<h1><a href="?page=explore">AskFEUP</a></h1>
+				<h1><a href="{$BASE_DIR}/pages/menus/explore.php">AskFEUP</a></h1>
 			</li>
 
 			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
@@ -28,19 +28,21 @@
 			<!-- Right Nav Section -->
 			<ul class="right">
 				<li class="has-dropdown">
-					<a href="?page=explore"><i class="fi-compass nav-bar-icon"></i>Explore</a>
+					<a href="{$BASE_DIR}/pages/menus/explore.php"><i class="fi-compass nav-bar-icon"></i>Explore</a>
 					<ul class="dropdown">
-						<li><a href="?page=contacts"><i class="fi-address-book nav-bar-icon"></i>Contact us</a></li>
-						<li><a href="?page=about"><i class="fi-torsos-all nav-bar-icon"></i>About us</a></li>
+						<li><a href="{$BASE_DIR}/pages/menus/contacts.php"><i class="fi-address-book nav-bar-icon"></i>Contact us</a></li>
+						<li><a href="{$BASE_DIR}/pages/menus/about.php"><i class="fi-torsos-all nav-bar-icon"></i>About us</a></li>
 					</ul>
 				</li>
+                {if $username}
 				<li class="has-dropdown">
-					<a href="?page=profile"><i class="fi-torso nav-bar-icon"></i>Profile</a>
+					<a href="{$BASE_DIR}/pages/users/profile.php"><i class="fi-torso nav-bar-icon"></i>{$username}</a>
 					<ul class="dropdown">
-						<li><a href="?page=sign-out"><i class="fi-lock nav-bar-icon"></i>Sign out</a></li>
+						<li><a href="{$BASE_DIR}/actions/authentication/sign-out.php"><i class="fi-lock nav-bar-icon"></i>Sign out</a></li>
 					</ul>
 				</li>
-				<li><a href="?page=faq"><b class="nav-bar-icon">?</b>FAQ</a></li>
+                {/if}
+				<li><a href="{$BASE_DIR}/pages/menus/faq.php"><b class="nav-bar-icon">?</b>FAQ</a></li>
 			</ul>
 		</section>
 	</nav>

@@ -1,7 +1,7 @@
 <?php
 
 function getProfile() {
-    $userId = $_SESSION['user'];
+    $userId = $_SESSION['idUser'];
 
     global $connection;
     $stmt = $connection->prepare("SELECT email, username FROM utilizador, membro WHERE membroid=utilizadorid AND membroid=?");

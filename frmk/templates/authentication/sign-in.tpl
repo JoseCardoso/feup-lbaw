@@ -53,9 +53,9 @@
 					<li><a href="#" class="button google-plus-button">Google+</a></li>
 				</ul>
 
-				<p class="right"><a href="?page=requestPasswordRecovery">Forgot password?</a></p>
+				<p class="right"><a href="{$BASE_DIR}/pages/authentication/request-password-recovery.php">Forgot password?</a></p>
 				<p>Log in</p>
-				<form id="sign-in" action="actions.php?action=signIn" method="post" enctype="multipart/form-data">
+				<form id="sign-in" action="{$BASE_DIR}/actions/authentication/sign-in.php" method="post" enctype="multipart/form-data">
 					<input type="text" name="username"  placeholder="Username or Email" />
 					<input type="password" name="password"  placeholder="Password" />
 					<input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
@@ -64,12 +64,12 @@
 				<!-- log in button -->
 					<div class="row">
 						<div class="small-12 columns">
-							<button type="submit" class="button large expand">Log in</a>
+							<button type="submit" class="button large expand">Log in</button>
 						</div>
 					</div>
 				</form>	
 
-				<p class="text-center"><a href="?page=signUp">Create an account</a></p>
+				<p class="text-center"><a href="{$BASE_DIR}/pages/authentication/sign-up.php">Create an account</a></p>
 			</div>
 		</div>
 	</div>

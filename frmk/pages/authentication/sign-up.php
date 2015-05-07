@@ -1,6 +1,8 @@
 <?php
 
-include $BASE_DB . 'loadCities.php';
+include_once('../../config/config.php');
+
+include($BASE_DB . 'loadCities.php');
 
 $smarty->assign('BASE_ACTIONS', $BASE_ACTIONS);
 

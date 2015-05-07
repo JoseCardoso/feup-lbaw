@@ -1,13 +1,18 @@
 <?php
 
-function getQuestionsUser($userId) {
-    /*global $connection;
-    $stmt = $connection->prepare("SELECT pergunta.texto as texto,
-      COUNT(),
-      COUNT()
-      FROM pergunta WHERE ");
+function getQuestionsUser() {
+
+    $userId = $_SESSION['user'];
+
+    var_dump('USER: ' . $userId);
+
+    global $connection;
+    $stmt = $connection->prepare("SELECT perguntaid, pergunta.texto as texto
+                                  FROM pergunta, contribuicao
+                                  WHERE perguntaid=contribuicaoid AND contribuicao.membroid = ?");
     $stmt->execute(array($userId));
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-    */
+    $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    var_dump($questions);
 }
 
