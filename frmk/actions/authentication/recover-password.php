@@ -1,6 +1,8 @@
 <?php
 
-include $BASE_DB . '/authentication.php';
+include_once('../../config/config.php');
+
+include ($BASE_DB . '/authentication.php');
 
 if (!$_POST['password'] || !$_POST['code']) {
     var_dump('Missing data!');
@@ -8,8 +10,7 @@ if (!$_POST['password'] || !$_POST['code']) {
     $_SESSION['error_messages'][] = 'All fields are mandatory';
     $_SESSION['form_values'] = $_POST;
 
-    header("Location: index.php?page=recoverPassword");
-    exit;
+    go('../../pages/authentication/recover-password.php');
 }
 
 $password = $_POST['password'];
@@ -17,7 +18,7 @@ $code = $_POST['code'];
 
 try {
     if (changePassword($code, $password)) {
-        header("Location: index.php?page=signIn");
+        go('../../pages/authentication/sign-in.php');
     }
     else
         var_dump('Failed');

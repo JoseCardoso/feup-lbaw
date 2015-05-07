@@ -52,8 +52,7 @@ try {
     }
 
     $_SESSION['form_values'] = $_POST;
-    header("Location: index.php?page=signUp");
-    exit;
+    go('../../pages/authentication/sign-up.php');
 }
 
 $_SESSION['success_messages'][] = 'User registered successfully';

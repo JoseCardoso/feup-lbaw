@@ -7,7 +7,7 @@
 		<!-- sign up panel -->
 		<div class="small-12 medium-8 large-6 small-centered columns">
 			<div class="panel">
-				<form action="actions.php?action=requestPasswordRecovery" method="post" enctype="multipart/form-data">
+				<form action="{$BASE_DIR}/actions/authentication/request-password-recovery.php" method="post" enctype="multipart/form-data">
 					<h2 class="sign-up">Password recovery</h2>
 					<p>Enter your email address to recover your password.</p>
 					<div class="row">

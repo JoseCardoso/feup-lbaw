@@ -1,6 +1,8 @@
 <?php
 
-include $BASE_DB . '/authentication.php';
+include_once('../../config/config.php');
+
+include ($BASE_DB . '/authentication.php');
 
 if (!$_POST['email']) {
     var_dump('Missing data!');
@@ -8,8 +10,7 @@ if (!$_POST['email']) {
     $_SESSION['error_messages'][] = 'All fields are mandatory';
     $_SESSION['form_values'] = $_POST;
 
-    header("Location: index.php?page=requestPasswordRecovery");
-    exit;
+    go('../../pages/authentication/request-password-recovery.php');
 }
 
 $email = strip_tags($_POST['email']);
@@ -17,7 +18,7 @@ $email = strip_tags($_POST['email']);
 try {
     if (sentValidationCode($BASE_URL, $email)) {
 
-        header("Location: index.php?page=signIn");
+        go('../../pages/authentication/sign-in.php');
     }
     else
         var_dump('Failed');

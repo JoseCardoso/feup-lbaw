@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="small-12 medium-8 large-6 small-centered columns">
 			<div class="panel">
-				<form action="actions.php?action=recoverPassword" method="post" enctype="multipart/form-data">
+				<form action="{$BASE_DIR}/actions/authentication/recover-password.php" method="post" enctype="multipart/form-data">
 					<h2>Password recovery</h2>
 					<p>Choose a new password for your account.</p>
 

@@ -12,8 +12,7 @@ try {
 		$_SESSION['error_messages'][] = 'All fields are mandatory';
 		$_SESSION['form_values'] = $_POST;
 
-		header("Location: " . $_SERVER['HTTP_REFERER']);
-		exit;
+        go($_SERVER['HTTP_REFERER']);
 	}
 
     list($logged, $idUser) = correctLogin($username, $password);
@@ -22,8 +21,7 @@ try {
 		$_SESSION['error_messages'][] = 'Invalid username or password';
 		$_SESSION['form_values'] = $_POST;
 
-		header("Location: " . $_SERVER['HTTP_REFERER']);
-		exit;
+        go($_SERVER['HTTP_REFERER']);
 	}
 
 	$_SESSION['idUser'] = $idUser;

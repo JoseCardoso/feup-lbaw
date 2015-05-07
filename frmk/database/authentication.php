@@ -71,12 +71,12 @@ function sentValidationCode($BASE_URL, $email) {
         $code = rand(0, 10) . uniqid() . rand(0, 10);
 
         $subject = "Recuperação de password - AskFEUP";
-        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/index.php?page=recoverPassword&id=" . $code;
+        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/pages/authentication/recover-password.php&id=" . $code;
 
 
         /******Sent email to user******/
         global $error; global $mail;
-        $mail->SetFrom('pereiraffjoao1993@gmail.com', 'Joao Pereira');
+        $mail->SetFrom('askfeup@gmail.com', 'AskFEUP');
         $mail->Subject = $subject;
         $mail->Body = $message;
         $mail->AddAddress($email);
