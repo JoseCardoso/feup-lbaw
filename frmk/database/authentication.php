@@ -40,7 +40,7 @@ function correctLogin($username, $password) {
         return array(false, 0);
 }
 
-function sentValidationCode($BASE_URL, $email) {
+function sentValidationCode($URL, $email) {
     global $connection;
     $stmt = $connection->prepare("SELECT membroid FROM membro WHERE email = ?");
     $stmt->execute(array($email));
@@ -71,7 +71,7 @@ function sentValidationCode($BASE_URL, $email) {
         $code = rand(0, 10) . uniqid() . rand(0, 10);
 
         $subject = "Recuperação de password - AskFEUP";
-        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $BASE_URL . "/pages/authentication/recover-password.php&id=" . $code;
+        $message = "Para repor a sua password por favor clique no link abaixo.\r\n" . $URL . "/pages/authentication/recover-password.php?id=" . $code;
 
 
         /******Sent email to user******/

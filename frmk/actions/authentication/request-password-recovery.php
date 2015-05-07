@@ -16,8 +16,8 @@ if (!$_POST['email']) {
 $email = strip_tags($_POST['email']);
 
 try {
-    if (sentValidationCode($BASE_URL, $email)) {
-
+    $URL = "http://" . $_SERVER['SERVER_NAME'];
+    if (sentValidationCode($URL, $email)) {
         go('../../pages/authentication/sign-in.php');
     }
     else
