@@ -77,77 +77,31 @@
 			<div class="tabs-content">
 				<div class="content active" id="panel1">
 					<ul class="small-block-grid-1 medium-block-grid-2">
+                        {foreach $questions as $question}
 						<li>
 							<div class="panel question" data-reveal-id="questionModal">
 								<div class="row">
 									<div class="small-12 columns">
-										<p class="text-justify question-text">Que tipo de gomas são vendidas na D. Beatriz?</p>
+										<p class="text-justify question-text">{$question['texto']}</p>
 									</div>
 								</div>
 								<div class="row text-center">
 									<div class="small-3 medium-4 columns question-stats">
-										<p>50</p>
+										<p>{$question['visualizacoes']}</p>
 										<p>votes</p>
 									</div>
 									<div class="small-3 medium-4 columns question-stats">
-										<p>4</p>
+										<p>{$question['respostas']}</p>
 										<p>answers</p>
 									</div>
 									<div class="small-6 medium-4 columns text-right">
-										<p class="question-author"><a href="#">@ferrolho</a></p>
-										<p class="question-date">00h15 - 15 Jan 2015</p>
+										<p class="question-author"><a href="#">{$question['user']}</a></p>
+										<p class="question-date">{$question['data']}</p>
 									</div>
 								</div>
 							</div>
 						</li>
-
-						<li>
-							<div class="panel question" data-reveal-id="questionModal">
-								<div class="row">
-									<div class="small-12 columns">
-										<p class="text-justify question-text">Que tipo de gomas são vendidas na D. Beatriz?</p>
-									</div>
-								</div>
-								<div class="row text-center">
-									<div class="small-3 medium-4 columns question-stats">
-										<p>50</p>
-										<p>votes</p>
-									</div>
-									<div class="small-3 medium-4 columns question-stats">
-										<p>4</p>
-										<p>answers</p>
-									</div>
-									<div class="small-6 medium-4 columns text-right">
-										<p class="question-author"><a href="#">@ferrolho</a></p>
-										<p class="question-date">00h15 - 15 Jan 2015</p>
-									</div>
-								</div>
-							</div>
-						</li>
-
-						<li>
-							<div class="panel question" data-reveal-id="questionModal">
-								<div class="row">
-									<div class="small-12 columns">
-										<p class="text-justify question-text">Que tipo de gomas são vendidas na D. Beatriz?</p>
-									</div>
-								</div>
-								<div class="row text-center">
-									<div class="small-3 medium-4 columns question-stats">
-										<p>50</p>
-										<p>votes</p>
-									</div>
-									<div class="small-3 medium-4 columns question-stats">
-										<p>4</p>
-										<p>answers</p>
-									</div>
-									<div class="small-6 medium-4 columns text-right">
-										<p class="question-author"><a href="#">@ferrolho</a></p>
-										<p class="question-date">00h15 - 15 Jan 2015</p>
-									</div>
-								</div>
-							</div>
-						</li>
+                        {/foreach}
 					</ul>
 				</div>
 

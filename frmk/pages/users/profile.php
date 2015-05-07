@@ -7,14 +7,17 @@ include ($BASE_DB . 'questions.php');
 
 try {
     $profile = getProfile();
-    //$questions = getQuestionsUser();
+    $questions = getQuestionsUser();
 } catch (PDOException $e) {
     echo $e->getMessage();
     die();
 }
 
+
+
 verifySessionVariables();
 
 $smarty->assign('profile', $profile);
+$smarty->assign('questions', $questions);
 
 $smarty->display($BASE_TEMPLATES . 'users/profile.tpl');
