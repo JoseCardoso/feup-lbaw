@@ -2,7 +2,11 @@
 	<nav class="top-bar" data-topbar role="navigation">
 		<ul class="title-area">
 			<li class="name">
+                {if $username}
 				<h1><a href="{$BASE_DIR}/pages/menus/explore.php">AskFEUP</a></h1>
+                {else}
+                <h1><a href="{$BASE_DIR}/pages/authentication/sign-in.php">AskFEUP</a></h1>
+                {/if}
 			</li>
 
 			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->

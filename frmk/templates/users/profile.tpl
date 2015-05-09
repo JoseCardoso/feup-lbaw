@@ -87,7 +87,7 @@
 								</div>
 								<div class="row text-center">
 									<div class="small-3 medium-4 columns question-stats">
-										<p>{$question['visualizacoes']}</p>
+										<p>{$question['votos']}</p>
 										<p>votes</p>
 									</div>
 									<div class="small-3 medium-4 columns question-stats">
