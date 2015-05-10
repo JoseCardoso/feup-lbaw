@@ -7,7 +7,7 @@
 
 <div class="row">
     <!-- create question  panel -->
-    <div class="small-12 medium-8 large-6 small-centered columns">
+    <div class="small-12 medium-12 large-24 small-centered columns">
         <div class="panel">
             <form id="create-question" action="{$BASE_DIR}/actions/questions/create-question.php" method="post"
                   enctype="multipart/form-data" autocomplete="off">

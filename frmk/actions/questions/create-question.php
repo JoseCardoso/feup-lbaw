@@ -28,7 +28,7 @@ try {
     createUser($username, $password, $firstName, $lastName, $email, $cityName);
 
     // filling session with that user info to sign in directly after sign up submission
-    //$_SESSION['idUser'] = $user['idUser'];
+    
    // $_SESSION['username'] 
 
 } catch(PDOException $e) {
