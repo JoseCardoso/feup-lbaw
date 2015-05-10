@@ -36,21 +36,21 @@
 					<div class="panel question" data-reveal-id="questionModal">
 						<div class="row">
 							<div class="small-12 columns">
-								<p class="text-justify question-text">{$question['texto']}</p>
+								<p class="text-justify question-text">{$question->text}</p>
 							</div>
 						</div>
 						<div class="row text-center">
 							<div class="small-3 medium-4 columns question-stats">
-								<p>{$question['votos']}</p>
+								<p>{$question->contribution()->diferencaVotos}</p>
 								<p>votes</p>
 							</div>
 							<div class="small-3 medium-4 columns question-stats">
-								<p>{$question['respostas']}</p>
+								<p>{$question->contribution()->countAnswers()}</p>
 								<p>answers</p>
 							</div>
 							<div class="small-6 medium-4 columns text-right">
-								<p class="question-author"><a href="#">{$question['user']}</a></p>
-								<p class="question-date">{$question['date']}</p>
+								<p class="question-author"><a href="#">{$question->contribution()->user()->displayUsername()}</a></p>
+								<p class="question-date">{$question->contribution()->displayDate()}</p>
 							</div>
 						</div>
 					</div>

@@ -2,7 +2,7 @@
 
 include_once('../../config/config.php');
 
-include ($BASE_DB . '/authentication.php');
+include ($BASE_DB . '/user.php');
 
 try {
 	$username = strip_tags($_POST['username']);
@@ -15,7 +15,7 @@ try {
         go($_SERVER['HTTP_REFERER']);
 	}
 
-    list($logged, $idUser) = correctLogin($username, $password);
+    list($logged, $user) = User::login($username, $password);
 
 	if(!$logged) {
 		$_SESSION['error_messages'][] = 'Invalid username or password';
@@ -24,10 +24,11 @@ try {
         go($_SERVER['HTTP_REFERER']);
 	}
 
-	$_SESSION['idUser'] = $idUser;
-    $_SESSION['username'] = $username;
+	$_SESSION['iduser'] = $user->id;
+    $_SESSION['username'] = $user->username;
+    $_SESSION['email'] = $user->email;
 
-} catch (PDOException $e) {
+} catch (Exception $e) {
 	die($e->getMessage());
 }
 

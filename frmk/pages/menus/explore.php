@@ -2,10 +2,11 @@
 
 include_once('../../config/config.php');
 
-include ($BASE_DB . 'questions.php');
+include ($BASE_DB . 'question.php');
 
 try {
-    $questions = getAllQuestions();
+    $questions = Question::allByOrder('date');
+
 } catch (PDOException $e) {
     echo $e->getMessage();
     die();

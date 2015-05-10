@@ -2,23 +2,17 @@
 
 include_once('../../config/config.php');
 
-include ($BASE_DB . 'users.php');
-include ($BASE_DB . 'questions.php');
-
 include ($BASE_DB . 'user.php');
 include ($BASE_DB . 'question.php');
 
 
 try {
-    //$profile = getProfile();
-    $profile = User::find($_SESSION['idUser']);
-    // $questions = getQuestionsUser();
-    $questions = Question::userQuestions($_SESSION['idUser']);
+    $profile = User::find($_SESSION['iduser']);
+    $questions = Question::userQuestions($_SESSION['iduser']);
 } catch (PDOException $e) {
     echo $e->getMessage();
     die();
 }
-
 
 verifySessionVariables();
 

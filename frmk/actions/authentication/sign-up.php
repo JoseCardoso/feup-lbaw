@@ -2,62 +2,55 @@
 
 include_once('../../config/config.php');
 
-include ($BASE_DB . '/authentication.php');
+include($BASE_DB . '/user.php');
 
 try {
-	/*
-	if (... || !$_POST['cityName']) {
-		$_SESSION['error_messages'][] = 'All fields are mandatory';
-		$_SESSION['form_values'] = $_POST;
+    /* Get values from hidden url */
+    $username = strip_tags($_POST['username']);
+    $password = $_POST['password'];
+    $passwordConfirm = $_POST['passwordConfirm'];
+    $firstName = strip_tags($_POST['firstName']);
+    $lastName = strip_tags($_POST['lastName']);
+    $email = strip_tags($_POST['email']);
 
-		header("Location: index.php?page=signUp");
-		exit;
-	}
-	*/
 
-	$username = strip_tags($_POST['username']);
-	$password = $_POST['password'];
-	$passwordConfirm = $_POST['passwordConfirm'];
-	$firstName = strip_tags($_POST['firstName']);
-	$lastName = strip_tags($_POST['lastName']);
-	$email = strip_tags($_POST['email']);
-	$cityName = strip_tags($_POST['cityName']);
+    /* Confirm data */
+    if (!isset($username))
+        die('No username');
+    if (!isset($password))
+        die('No password');
+    if (!isset($passwordConfirm))
+        die('No password confirmation');
+    if (!isset($firstName))
+        die('No first name');
+    if (!isset($lastName))
+        die('No last name');
+    if (!isset($email))
+        die('No email');
 
-	if (!isset($username)) die('No username');
-	if (!isset($password)) die('No password');
-	if (!isset($passwordConfirm)) die('No password confirmation');
-	if (!isset($firstName)) die('No first name');
-	if (!isset($lastName)) die('No last name');
-	if (!isset($email)) die('No email');
-	if (!isset($cityName)) die('No city');
+    /* Creating user */
+   $user = User::register($username, $password, $firstName, $lastName, $email);
 
-    createUser($username, $password, $firstName, $lastName, $email, $cityName);
-
-    // filling session with that user info to sign in directly after sign up submission
-    //$_SESSION['idUser'] = $user['idUser'];
-    $_SESSION['username'] = $username;
-    $_SESSION['image'] = $user['image'];
-    $_SESSION['lastLoginDate'] = $user['lastLoginDate'];
-    $_SESSION['registerDate'] = $user['registerDate'];
-} catch(PDOException $e) {
-    var_dump('PDOException');
-    echo $e->getMessage();
-
-    if (strpos($e->getMessage(), 'users_pkey') !== false) {
-        $_SESSION['error_messages'][] = 'Duplicate username';
-        $_SESSION['field_errors']['username'] = 'Username already exists';
-    } else {
-        var_dump($e->getTraceAsString());
-        $_SESSION['error_messages'][] = 'Error creating user';
+    if($user === false) {
+        $error = "Failed in create user.";
+        throw new Exception($error);
     }
 
-    $_SESSION['form_values'] = $_POST;
-    go('../../pages/authentication/sign-up.php');
+    /* Filling session with that user info to sign in directly after sign up submission */
+    $_SESSION['iduser'] = $user->id;
+    $_SESSION['username'] = $user->username;
+    $_SESSION['lastlogin_at'] = $user->lastLogin_at;
+    $_SESSION['register_at'] = $user->register_at;
+
+    $_SESSION['success_messages'][] = 'User registered successfully';
+
+    go('../../pages/menus/explore.php');
+
+} catch (Exception $e) {
+    echo nl2br("\r\n" . "Exception caught: ". $e->getMessage());
+    exit();
+    //go('../../pages/authentication/sign-up.php');
 }
-
-$_SESSION['success_messages'][] = 'User registered successfully';
-
-go('../../pages/menus/explore.php');
 
 /*
 // check if there is already a user with the requested username
