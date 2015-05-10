@@ -1,6 +1,6 @@
 <?php
 $BASE_DIR = realpath(dirname(__FILE__) . '/..');
-$BASE_URL = dirname("http://" . $_SERVER['SERVER_NAME']);
+$BASE_URL = dirname("http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
 
 $BASE_PAGES = $BASE_DIR . '/pages/';
 $BASE_CONFIG = $BASE_DIR . '/config/';
