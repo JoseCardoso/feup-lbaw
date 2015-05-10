@@ -7,7 +7,7 @@
     <!-- create question  panel -->
     <div class="small-12 medium-8 large-6 small-centered columns">
         <div class="panel">
-            <form id="sign-up" action="{$BASE_DIR}/actions/questions/create-question.php" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form id="sign-up" action="{$BASE_DIR}/actions/objects/create-question.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <h2 class="sign-up">New Question</h2>
                 <p>Already have an account? <a href="{$BASE_DIR}/pages/authentication/sign-in.php">Log In</a></p>
 

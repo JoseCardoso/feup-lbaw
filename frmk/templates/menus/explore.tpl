@@ -2,6 +2,7 @@
 
 	<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css" />
 </head>
+
 <body>
 	{include file = 'common/navbar.tpl'}
 

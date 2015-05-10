@@ -1,7 +1,7 @@
 {include file = 'common/header.tpl'}
 
-<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
-<link rel="stylesheet" href="{$CSS_PATH}askfeup/profile.css"/>
+    <link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
+    <link rel="stylesheet" href="{$CSS_PATH}askfeup/profile.css"/>
 </head>
 
 <body>
@@ -37,9 +37,9 @@
                 <p class="text-right"><strong>Bio</strong></p>
             </div>
             <div class="medium-6 columns">
-                <p>{$profile['username']}</p>
+                <p>{$profile->username}</p>
 
-                <p>{$profile['email']}</p>
+                <p>{$profile->email}</p>
 
                 <p>MIEIC student</p>
             </div>
@@ -86,28 +86,28 @@
             <div class="content active" id="panel1">
                 <ul class="small-block-grid-1 medium-block-grid-2">
                     {foreach $questions as $question}
-                        <li class="questionModal" data-target="{$question['idpergunta']}">
-                            <div class="panel question" data-reveal-id="questionModal">
+                        <li>
+                            <div class="panel question" data-reveal-id="questionModal" data-target="{$BASE_URL}/../ajax/modal-question.php" data-value="{$question->id}" data-reveal-ajax="true">
                                 <div class="row">
                                     <div class="small-12 columns">
-                                        <p class="text-justify question-text">{$question['texto']}</p>
+                                        <p class="text-justify question-text">{$question->text}</p>
                                     </div>
                                 </div>
                                 <div class="row text-center">
                                     <div class="small-3 medium-4 columns question-stats">
-                                        <p>{$question['votos']}</p>
+                                        <p>{$question->contribution()->diferencaVotos}</p>
 
                                         <p>votes</p>
                                     </div>
                                     <div class="small-3 medium-4 columns question-stats">
-                                        <p>{$question['respostas']}</p>
+                                        <p>{$question->contribution()->countAnswers()}</p>
 
                                         <p>answers</p>
                                     </div>
                                     <div class="small-6 medium-4 columns text-right">
-                                        <p class="question-author"><a href="#">{$question['user']}</a></p>
+                                        <p class="question-author"><a href="#">{$question->contribution()->user()->displayUsername()}</a></p>
 
-                                        <p class="question-date">{$question['data']}</p>
+                                        <p class="question-date">{$question->contribution()->displayDate()}</p>
                                     </div>
                                 </div>
                             </div>
@@ -118,8 +118,8 @@
 
             <div class="content" id="panel2">
                 <ul class="small-block-grid-1 medium-block-grid-2">
-                    <li data-reveal-id="questionModal">
-                        <div class="panel question">
+                    <li>
+                        <div class="panel question" data-reveal-id="questionModal">
                             <div class="row">
                                 <div class="small-12 columns">
                                     <p class="text-justify question-text">Que tipo de gomas são vendidas na D.
@@ -155,10 +155,8 @@
     </div>
 </div>
 
-<div id="questionModal" class="reveal-modal large" data-reveal>
-		{*include file = '../questions/question-old.tpl'*}
-		<a class="close-reveal-modal">&#215;</a>
-	</div>
+<div id="questionModal" class="reveal-modal large">
+</div>
 
 <script src="{$JS_PATH}questions.js"></script>
 
