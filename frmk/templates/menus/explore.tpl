@@ -1,5 +1,5 @@
 	{include file = 'common/header.tpl'}
-	
+
 	<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css" />
 </head>
 <body>
@@ -26,7 +26,7 @@
 			<a href="#" class="button success small expand"><i class="fi-plus nav-bar-icon"></i>Add new</a>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="small-12 columns">
 			<ul class="small-block-grid-1 medium-block-grid-2">
@@ -49,7 +49,7 @@
 							</div>
 							<div class="small-6 medium-4 columns text-right">
 								<p class="question-author"><a href="#">{$question['user']}</a></p>
-								<p class="question-date">{$question['data']}</p>
+								<p class="question-date">{$question['date']}</p>
 							</div>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 	</div>
 
 	<div id="questionModal" class="reveal-modal large" data-reveal>
-		{include '../questions/question.tpl'}
+		{include '../questions/question-old.tpl'}
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
 

@@ -1,134 +1,149 @@
-<div class="question-modal-content favorite">
-	<div class="row">
-		<div class="small-4 large-2 columns">
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-like"></i>
-				</div>
-			</div>
+{include file = 'common/header.tpl'}
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<p class="score">50</p>
-				</div>
-			</div>
+<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
+</head>
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-dislike"></i>
-				</div>
-			</div>
+<body>
+<div id="questionModal" class="reveal-modal large" data-reveal>
+    <div class="question-modal-content favorite">
+        <div class="row">
+            <div class="small-4 large-2 columns">
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-like"></i>
+                    </div>
+                </div>
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-star"></i>
-				</div>
-			</div>
-		</div>
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <p class="score">50</p>
+                    </div>
+                </div>
 
-		<div class="small-8 large-10 columns">
-			<p class="question-text">Que tipo de gomas são vendidas na D. Beatriz?</p>
-			<p class="text-right question-author"><a href="#">@ferrolho</a></p>
-			<p class="text-right question-date">00h15 - 15 Jan 2015</p>
-		</div>
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-dislike"></i>
+                    </div>
+                </div>
 
-		<div class="small-10 columns comments">
-			<hr>
-			<p>também gostava de saber <a href="#">@zoid</a></p>
-		</div>
-	</div>
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-star"></i>
+                    </div>
+                </div>
+            </div>
 
-	<hr>
+            <div class="small-8 large-10 columns">
+                <p class="question-text">Que tipo de gomas são vendidas na D. Beatriz?</p>
 
-	<div class="row upvote checked-answer">
-		<div class="small-4 large-2 columns">
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-like"></i>
-				</div>
-			</div>
+                <p class="text-right question-author"><a href="#">@ferrolho</a></p>
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<p class="score">3004</p>
-				</div>
-			</div>
+                <p class="text-right question-date">00h15 - 15 Jan 2015</p>
+            </div>
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-dislike"></i>
-				</div>
-			</div>
+            <div class="small-10 columns comments">
+                <hr>
+                <p>também gostava de saber <a href="#">@zoid</a></p>
+            </div>
+        </div>
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-check"></i>
-				</div>
-			</div>
-		</div>
+        <hr>
 
-		<div class="small-8 large-10 columns">
-			<p>Marshmallows e aquelas gomas ácidas.</p>
-			<p class="text-right question-author"><a href="#">@botas</a></p>
-			<p class="text-right question-date">00h30 - 15 Jan 2015</p>
-		</div>
-	</div>
+        <div class="row upvote checked-answer">
+            <div class="small-4 large-2 columns">
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-like"></i>
+                    </div>
+                </div>
 
-	<hr class="dashed">
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <p class="score">3004</p>
+                    </div>
+                </div>
 
-	<div class="row downvote">
-		<div class="small-4 large-2 columns">
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-like"></i>
-				</div>
-			</div>
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-dislike"></i>
+                    </div>
+                </div>
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<p class="score negative-score">-23</p>
-				</div>
-			</div>
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-check"></i>
+                    </div>
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="small-12 columns text-center">
-					<i class="fi-dislike"></i>
-				</div>
-			</div>
-		</div>
+            <div class="small-8 large-10 columns">
+                <p>Marshmallows e aquelas gomas ácidas.</p>
 
-		<div class="small-8 large-10 columns">
-			<p>A Dona Beatriz não vende gomas.</p>
-			<p class="text-right question-author"><a href="#">@vecton</a></p>
-			<p class="text-right question-date">00h36 - 15 Jan 2015</p>
-		</div>
+                <p class="text-right question-author"><a href="#">@botas</a></p>
 
-		<div class="small-10 columns comments">
-			<hr>
-			<p>LOL! Vende sim... <a href="#">@botas</a></p>
-			<hr class="dashed">
-			<p>^ isto. Estão logo à direita da entrada, a seguir aos frigoríficos. <a href="#">@mariamir</a></p>
-			<hr class="dashed">
-			<p>rime <a href="#">@ferrolho</a></p>
-		</div>
-	</div>
+                <p class="text-right question-date">00h30 - 15 Jan 2015</p>
+            </div>
+        </div>
 
-	<hr class="dashed">
+        <hr class="dashed">
 
-	<form>
-		<div class="row">
-			<div class="small-12 columns">
-				<label>Add answer
-					<textarea placeholder="Your answer"></textarea>
-				</label>
-			</div>
-		</div>
+        <div class="row downvote">
+            <div class="small-4 large-2 columns">
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-like"></i>
+                    </div>
+                </div>
 
-		<div class="row">
-			<div class="small-12 columns">
-				<a href="#" class="button small success">Post answer</a>
-			</div>
-		</div>
-	</form>
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <p class="score negative-score">-23</p>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="small-12 columns text-center">
+                        <i class="fi-dislike"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-8 large-10 columns">
+                <p>A Dona Beatriz não vende gomas.</p>
+
+                <p class="text-right question-author"><a href="#">@vecton</a></p>
+
+                <p class="text-right question-date">00h36 - 15 Jan 2015</p>
+            </div>
+
+            <div class="small-10 columns comments">
+                <hr>
+                <p>LOL! Vende sim... <a href="#">@botas</a></p>
+                <hr class="dashed">
+                <p>^ isto. Estão logo à direita da entrada, a seguir aos frigoríficos. <a href="#">@mariamir</a></p>
+                <hr class="dashed">
+                <p>rime <a href="#">@ferrolho</a></p>
+            </div>
+        </div>
+
+        <hr class="dashed">
+
+        <form>
+            <div class="row">
+                <div class="small-12 columns">
+                    <label>Add answer
+                        <textarea placeholder="Your answer"></textarea>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <a href="#" class="button small success">Post answer</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <a class="close-reveal-modal">&#215;</a>
 </div>

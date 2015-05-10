@@ -13,11 +13,10 @@ try {
     die();
 }
 
-
-
 verifySessionVariables();
 
 $smarty->assign('profile', $profile);
 $smarty->assign('questions', $questions);
+$smarty->assign('JS_PATH', $JS_PATH);
 
 $smarty->display($BASE_TEMPLATES . 'users/profile.tpl');
