@@ -3,9 +3,9 @@
 		<ul class="title-area">
 			<li class="name">
                 {if $username}
-				<h1><a href="{$BASE_DIR}/pages/menus/explore.php">AskFEUP</a></h1>
+				<h1><a href="{$BASE_URL}/pages/menus/explore.php">AskFEUP</a></h1>
                 {else}
-                <h1><a href="{$BASE_DIR}/pages/authentication/sign-in.php">AskFEUP</a></h1>
+                <h1><a href="{$BASE_URL}/pages/authentication/sign-in.php">AskFEUP</a></h1>
                 {/if}
 			</li>
 
@@ -32,21 +32,21 @@
 			<!-- Right Nav Section -->
 			<ul class="right">
 				<li class="has-dropdown">
-					<a href="{$BASE_DIR}/pages/menus/explore.php"><i class="fi-compass nav-bar-icon"></i>Explore</a>
+					<a href="{$BASE_URL}/pages/menus/explore.php"><i class="fi-compass nav-bar-icon"></i>Explore</a>
 					<ul class="dropdown">
-						<li><a href="{$BASE_DIR}/pages/menus/contacts.php"><i class="fi-address-book nav-bar-icon"></i>Contact us</a></li>
-						<li><a href="{$BASE_DIR}/pages/menus/about.php"><i class="fi-torsos-all nav-bar-icon"></i>About us</a></li>
+						<li><a href="{$BASE_URL}/pages/menus/contacts.php"><i class="fi-address-book nav-bar-icon"></i>Contact us</a></li>
+						<li><a href="{$BASE_URL}/pages/menus/about.php"><i class="fi-torsos-all nav-bar-icon"></i>About us</a></li>
 					</ul>
 				</li>
                 {if $username}
 				<li class="has-dropdown">
-					<a href="{$BASE_DIR}/pages/users/profile.php"><i class="fi-torso nav-bar-icon"></i>{$username}</a>
+					<a href="{$BASE_URL}/pages/users/profile.php"><i class="fi-torso nav-bar-icon"></i>{$username}</a>
 					<ul class="dropdown">
-						<li><a href="{$BASE_DIR}/actions/authentication/sign-out.php"><i class="fi-lock nav-bar-icon"></i>Sign out</a></li>
+						<li><a href="{$BASE_URL}/actions/authentication/sign-out.php"><i class="fi-lock nav-bar-icon"></i>Sign out</a></li>
 					</ul>
 				</li>
                 {/if}
-				<li><a href="{$BASE_DIR}/pages/menus/faq.php"><b class="nav-bar-icon">?</b>FAQ</a></li>
+				<li><a href="{$BASE_URL}/pages/menus/faq.php"><b class="nav-bar-icon">?</b>FAQ</a></li>
 			</ul>
 		</section>
 	</nav>
