@@ -8,7 +8,8 @@ include ($BASE_DB . 'question.php');
 
 try {
     $profile = User::find($_SESSION['iduser']);
-    $questions = Question::userQuestions($_SESSION['iduser']);
+    $questions = Question::userQuestions($_SESSION['username']);
+
 } catch (PDOException $e) {
     echo $e->getMessage();
     die();

@@ -5,7 +5,7 @@ include_once('../../config/config.php');
 include ($BASE_DB . 'question.php');
 
 try {
-    $questions = Question::allByOrder('date');
+    $questions = Question::all();
 
 } catch (PDOException $e) {
     echo $e->getMessage();

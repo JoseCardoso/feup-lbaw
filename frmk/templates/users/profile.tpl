@@ -95,19 +95,19 @@
                                 </div>
                                 <div class="row text-center">
                                     <div class="small-3 medium-4 columns question-stats">
-                                        <p>{$question->contribution()->diferencaVotos}</p>
+                                        <p>{$question->diffVotes}</p>
 
                                         <p>votes</p>
                                     </div>
                                     <div class="small-3 medium-4 columns question-stats">
-                                        <p>{$question->contribution()->countAnswers()}</p>
+                                        <p>{$question->numAnswers}</p>
 
                                         <p>answers</p>
                                     </div>
                                     <div class="small-6 medium-4 columns text-right">
-                                        <p class="question-author"><a href="#">{$question->contribution()->user()->displayUsername()}</a></p>
+                                        <p class="question-author"><a href="#">{$question->displayUsername()}</a></p>
 
-                                        <p class="question-date">{$question->contribution()->displayDate()}</p>
+                                        <p class="question-date">{$question->displayDate()}</p>
                                     </div>
                                 </div>
                             </div>
