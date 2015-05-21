@@ -49,7 +49,7 @@
 			<div class="panel">
 				<p>Log in via</p>
 				<ul class="button-group even-2">
-					<li><a href="https://www.facebook.com/dialog/oauth?client_id=871827579529786&redirect_uri=http://gnomo.fe.up.pt/~lbaw1424/proto/index.php&scope=COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES" class="button facebook-button">Facebook</a></li>
+					<li><a href="https://www.facebook.com/dialog/oauth?client_id=871827579529786&redirect_uri=http://gnomo.fe.up.pt/~lbaw1424/proto/index.php&scope=email" class="button facebook-button">Facebook</a></li>
 					<li><a href="#" class="button google-plus-button">Google+</a></li>
 				</ul>
 
