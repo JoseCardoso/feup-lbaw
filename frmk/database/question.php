@@ -26,9 +26,13 @@ class Question extends Model
         $this->numViews = $attr['visualizacoes'];
     }
 
-    static function all()
+    static function all($query)
     {
-        $stmt = parent::query('SELECT * FROM questions_presentation;', array());
+        if (!$query)
+            $stmt = parent::query('SELECT * FROM questions_presentation ORDER BY data DESC;', array());
+        else {
+            $stmt = parent::query($query, array());
+        }
         $questions = self::processQuestions($stmt);
 
         return $questions;

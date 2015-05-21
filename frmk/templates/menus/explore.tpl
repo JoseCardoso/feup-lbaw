@@ -15,9 +15,9 @@
 			<div class="row">
 				<div class="small-12 medium-8 small-centered columns">
 					<ul class="button-group even-3">
-						<li><a href="#" class="button small secondary">Most Recent</a></li>
-						<li><a href="#" class="button small secondary">Most Popular</a></li>
-						<li><a href="#" class="button small secondary">Most Viewed</a></li>
+						<li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=recent" class="button small secondary">Most Recent</a></li>
+						<li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=popular" class="button small secondary">Most Popular</a></li>
+						<li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=viewed" class="button small secondary">Most Viewed</a></li>
 					</ul>
 				</div>
 			</div>
