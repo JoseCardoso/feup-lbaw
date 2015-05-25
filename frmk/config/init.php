@@ -1,6 +1,13 @@
 <?php
+
+//facebook_session
+//require_once($BASE_API . 'facebook_sdk/autoload.php');
+
 //session_set_cookie_params(3600, '/~lbaw1424');
 session_start();
+
+//Facebook App Details
+//include_once('fb.php');
 
 error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
@@ -34,3 +41,4 @@ unset($_SESSION['success_messages']);
 unset($_SESSION['error_messages']);  
 unset($_SESSION['field_errors']);
 unset($_SESSION['form_values']);
+

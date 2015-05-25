@@ -5,7 +5,6 @@ include_once('../../config/config.php');
 include ($BASE_DB . 'user.php');
 include ($BASE_DB . 'question.php');
 
-
 try {
     $profile = User::find($_SESSION['iduser']);
     $questions = Question::userQuestions($_SESSION['username']);
@@ -16,6 +15,9 @@ try {
 }
 
 verifySessionVariables();
+
+$smarty->assign('fb_logged', $_SESSION['fb_logged']);
+$smarty->assign('username', $_SESSION['username']);
 
 $smarty->assign('profile', $profile);
 $smarty->assign('questions', $questions);

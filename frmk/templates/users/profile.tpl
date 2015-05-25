@@ -1,7 +1,7 @@
 {include file = 'common/header.tpl'}
 
-    <link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
-    <link rel="stylesheet" href="{$CSS_PATH}askfeup/profile.css"/>
+<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
+<link rel="stylesheet" href="{$CSS_PATH}askfeup/profile.css"/>
 </head>
 
 <body>
@@ -37,8 +37,11 @@
                 <p class="text-right"><strong>Bio</strong></p>
             </div>
             <div class="medium-6 columns">
-                <p>{$profile->username}</p>
-
+                {if $fb_logged}
+                    <p>{$username}</p>
+                {else}
+                    <p>{$profile->username}</p>
+                {/if}
                 <p>{$profile->email}</p>
 
                 <p>MIEIC student</p>
@@ -87,7 +90,9 @@
                 <ul class="small-block-grid-1 medium-block-grid-2">
                     {foreach $questions as $question}
                         <li>
-                            <div class="panel question" data-reveal-id="questionModal" data-target="{$BASE_URL}/../ajax/modal-question.php" data-value="{$question->id}" data-reveal-ajax="true">
+                            <div class="panel question" data-reveal-id="questionModal"
+                                 data-target="{$BASE_URL}/../ajax/modal-question.php" data-value="{$question->id}"
+                                 data-reveal-ajax="true">
                                 <div class="row">
                                     <div class="small-12 columns">
                                         <p class="text-justify question-text">{$question->text}</p>

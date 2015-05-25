@@ -2,6 +2,11 @@
 
 require_once('model.php');
 
+use Facebook\FacebookSession;
+use Facebook\FacebookRequest;
+use Facebook\GraphUser;
+use Facebook\GraphLocation;
+
 class User extends Model
 {
     public $id;
@@ -38,7 +43,12 @@ class User extends Model
         return $object;
     }
 
-    static function find($id) {
+    private static function generateUsername($firstName, $lastName) {
+        return ($firstName . uniqid() . $lastName);
+    }
+
+    static function find($id)
+    {
         $stmt = parent::query('SELECT * FROM membro, utilizador WHERE membroid=? AND membroid=utilizadorid;', array($id));
         $objects = self::processUser($stmt);
 
@@ -78,6 +88,68 @@ class User extends Model
             $_SESSION['error_messages'][] = 'Error in login user';
             $_SESSION['form_values'] = $_POST;
         }
+    }
+
+    static public function fb_login() {
+
+        global $connection;
+
+        // creates facebook session
+        $session = new FacebookSession($_SESSION['fb-session']);
+
+        // getting user info
+        $request = new FacebookRequest($session, 'GET', '/me');
+        $response = $request->execute();
+        $user_profile = $response->getGraphObject(GraphUser::className());
+
+        try {
+
+            // Getting user from db
+            $stmt = $connection->prepare("SELECT * FROM utilizador, membro WHERE email = ? AND utilizadorid = membroid;");
+            $stmt->execute(array($user_profile->getEmail()));
+            $iduser = $stmt->fetch()['utilizadorid'];
+
+            if($iduser) {
+                // Updating lastlogin_at
+                $lastlogin = $connection->prepare("UPDATE membro SET ultimologin = ? WHERE membroid = ?");
+                $lastlogin->execute(array(date('Y-m-d G:i:s'), $iduser));
+
+            } else {
+                $connection->beginTransaction();
+
+                $username = self::generateUsername($user_profile->getFirstName(), $user_profile->getLastName());
+
+                $stmt = $connection->prepare("INSERT INTO utilizador(username, password) VALUES (?, ?)");
+                $stmt->execute(array($username, hash('sha256', $username)));
+
+                // gets last id from user
+                $idUserQuery = $connection->prepare("SELECT utilizadorid FROM utilizador ORDER BY utilizadorid DESC LIMIT 1");
+                $idUserQuery->execute();
+                $idUser = $idUserQuery->fetch()['utilizadorid'];
+
+                $stmt = $connection->prepare("INSERT INTO membro VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+                $timestamp = date('Y-m-d G:i:s');
+                $stmt->execute(array(1, $user_profile->getFirstName(), $user_profile->getLastName(), $user_profile->getEmail(), NULL, $timestamp, $timestamp, $idUser));
+
+                $connection->commit();
+            }
+
+            $user = self::find($iduser);
+
+            if ($user)
+                return array(true, $user);
+            else
+                return array(false, null);
+
+        } catch (PDOException $e) {
+            $connection->rollBack();
+            echo nl2br("Login failed: " . $e->getMessage());
+
+            $_SESSION['error_messages'][] = 'Error in login user';
+            $_SESSION['form_values'] = $_POST;
+        }
+
     }
 
     static function register($username, $password, $firstName, $lastName, $email)
@@ -127,7 +199,8 @@ class User extends Model
         return City::find($this->id);
     }
 
-    public function displayUsername() {
+    public function displayUsername()
+    {
         return '@' . $this->username;
     }
 }

@@ -2,7 +2,7 @@
 
 include_once('../../config/config.php');
 
-include($BASE_DB . 'question.php');
+include_once($BASE_DB . 'question.php');
 
 try {
     $mode = $_GET['tab'];
@@ -41,3 +41,5 @@ verifySessionVariables();
 $smarty->assign('questions', $questions);
 
 $smarty->display($BASE_TEMPLATES . 'menus/explore.tpl');
+
+var_dump($_SESSION);
