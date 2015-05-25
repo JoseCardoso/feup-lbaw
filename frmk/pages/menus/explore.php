@@ -38,6 +38,8 @@ try {
 
 verifySessionVariables();
 
+assignFacebookSmallPictureToSmarty($smarty);
+
 $smarty->assign('questions', $questions);
 
 $smarty->display($BASE_TEMPLATES . 'menus/explore.tpl');

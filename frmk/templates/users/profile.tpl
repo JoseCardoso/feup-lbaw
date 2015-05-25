@@ -15,7 +15,13 @@
 
 <div class="row">
     <div class="small-12 medium-3 medium-offset-2 columns">
-        <img src="http://placehold.it/400x400&amp;text=[img]">
+        <div class="large-image-div">
+            {if $fb_logged}
+                <img class="fb-large-image" src="{$fb_picture_large}">
+            {else}
+                <img src="http://placehold.it/400x400&amp;text=[img]">
+            {/if}
+        </div>
     </div>
 
     <div class="small-12 medium-6 end columns">

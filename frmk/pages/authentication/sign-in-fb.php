@@ -5,6 +5,7 @@ include_once('../../config/config.php');
 include($BASE_DB . '/user.php');
 
 use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookRequest;
 
 if(isset($_GET['error']) && $_GET['error'] == 'access_denied') {
     if(isset($_GET['error_code']) && $_GET['error_code'] == '200') {
@@ -57,6 +58,20 @@ try {
 
 } catch (Exception $e) {
     die($e->getMessage());
+}
+
+try {
+    $request = (new FacebookRequest($session, 'GET', '/me/picture?redirect=false'))->execute();
+    $smallPicture = $request->getGraphObject();
+
+    $request = (new FacebookRequest($session, 'GET', '/me/picture?type=large&redirect=false'))->execute();
+    $largePicture = $request->getGraphObject();
+
+    $_SESSION['fb-picture-small'] = $smallPicture->getProperty('url');
+    $_SESSION['fb-picture-large'] = $largePicture->getProperty('url');
+
+} catch(FacebookRequestException $ex) {
+    echo $ex->getMessage();
 }
 
 go('../../pages/users/profile.php');

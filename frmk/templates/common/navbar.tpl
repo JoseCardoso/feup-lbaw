@@ -40,7 +40,11 @@
 				</li>
                 {if $username}
 				<li class="has-dropdown">
-					<a href="{$BASE_URL}/../../pages/users/profile.php"><i class="fi-torso nav-bar-icon"></i>{$username}</a>
+                    {if $fb_logged}
+                        <a href="{$BASE_URL}/../../pages/users/profile.php"><img src="{$fb_picture_small}">{$username}</a>
+                    {else}
+					    <a href="{$BASE_URL}/../../pages/users/profile.php"><i class="fi-torso nav-bar-icon"></i>{$username}</a>
+                    {/if}
 					<ul class="dropdown">
 						<li><a href="{$BASE_URL}/../../actions/authentication/sign-out.php"><i class="fi-lock nav-bar-icon"></i>Sign out</a></li>
 					</ul>

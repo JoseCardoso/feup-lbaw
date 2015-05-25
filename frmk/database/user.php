@@ -5,7 +5,6 @@ require_once('model.php');
 use Facebook\FacebookSession;
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
-use Facebook\GraphLocation;
 
 class User extends Model
 {

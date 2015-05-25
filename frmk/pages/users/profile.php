@@ -19,6 +19,9 @@ verifySessionVariables();
 $smarty->assign('fb_logged', $_SESSION['fb_logged']);
 $smarty->assign('username', $_SESSION['username']);
 
+assignFacebookSmallPictureToSmarty($smarty);
+assignFacebookLargePictureToSmarty($smarty);
+
 $smarty->assign('profile', $profile);
 $smarty->assign('questions', $questions);
 

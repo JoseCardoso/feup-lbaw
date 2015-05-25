@@ -19,3 +19,15 @@ function verifySessionVariables() {
 
     $smarty->assign('username', $username);
 }
+
+function assignFacebookSmallPictureToSmarty($smarty) {
+    // fb small picture
+    if(isset($_SESSION['fb-picture-small']) && $_SESSION['fb-picture-small'])
+        $smarty->assign('fb_picture_small', $_SESSION['fb-picture-small']);
+}
+
+function assignFacebookLargePictureToSmarty($smarty) {
+    // fb large picture
+    if(isset($_SESSION['fb-picture-large']) && $_SESSION['fb-picture-large'])
+        $smarty->assign('fb_picture_large', $_SESSION['fb-picture-large']);
+}
