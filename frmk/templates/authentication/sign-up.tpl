@@ -38,8 +38,8 @@
 							<label>City
 								<select name="cityName" form="sign-up">
 									<option class="hiddenDropdownItem" value="" selected>Choose a city</option>
-									{foreach from=$cities item=city key=name}
-									<option value="{$city['nome']}">{$city['nome']}</option>
+                                    {foreach $cities as $city}
+									<option value="{$city->id}">{$city->name}</option>
 									{/foreach}
 								</select>
 							</label>

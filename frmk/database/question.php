@@ -9,7 +9,7 @@ class Question extends Model
     public $diffVotes;
     public $data;
     public $username;
-    public $categoryid;
+    public $category_id;
     public $numAnswers;
     public $numViews;
 
@@ -17,7 +17,7 @@ class Question extends Model
     {
         $this->text = $attr['texto'];
         $this->description = $attr['descricao'];
-        $this->categoryid = $attr['categoriaid'];
+        $this->category_id = $attr['categoriaid'];
         $this->id = $attr['perguntaid'];
         $this->data = $attr['data'];
         $this->username = $attr['user'];
@@ -56,6 +56,35 @@ class Question extends Model
         return $questions;
     }
 
+    static function createQuestion($text, $description, $category)
+    {
+        global $connection;
+
+        try {
+            $connection->beginTransaction();
+
+            // insert contribution
+            $stmt = $connection->prepare("INSERT INTO contribuicao(data, diferencavotos, votosnegativos, votospositivos, membroid) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute(array(date('Y-m-d G:i:s'), 0, 0, 0, $_SESSION['iduser']));
+
+            // get last id from contribution
+            $stmt = $connection->prepare("SELECT last_value FROM askfeup.contribuicao_contribuicaoid_seq;");
+            $stmt->execute();
+            $last_contribution_id = $stmt->fetch()['last_value'];
+
+            // insert question
+            $stmt = $connection->prepare("INSERT INTO pergunta(perguntaid, texto, descricao, categoriaid) VALUES (?, ?, ?, ?)");
+            $stmt->execute(array($last_contribution_id, $text, $description, $category));
+
+            $connection->commit();
+
+        } catch (PDOException $ex) {
+            echo $ex->getTraceAsString();
+        }
+
+        return $last_contribution_id;
+    }
+
     private static function processQuestions($stmt)
     {
         $classQuestion = array();
@@ -77,31 +106,4 @@ class Question extends Model
         $newDate = new DateTime($this->data);
         return $newDate->format('H\hm - d F Y');
     }
-
-    /*static function allByOrder($order) {
-        $questions = self::all();
-
-        switch($order) {
-            case 'date':
-                uasort($questions, 'orderByTimeStamp');
-                break;
-            case 'popular':
-                uasort($questions, 'orderByPopularity');
-                break;
-            case 'votes':
-                uasort($questions, 'orderByVotes');
-                break;
-            default:
-                break;
-        }
-
-        return $questions;
-    }*/
 }
-
-/*function orderByTimeStamp($a, $b) {
-    if($a->contribution()->data > $b->contribution()->data)
-        return false;
-    else
-        return true;
-}*/

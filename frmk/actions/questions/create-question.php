@@ -2,88 +2,55 @@
 
 include_once('../../config/config.php');
 
-include ($BASE_DB . '/authentication.php');
+include($BASE_DB . 'question.php');
+include($BASE_DB . 'tag.php');
 
 try {
-	/*
-	if (... || !$_POST['cityName']) {
-		$_SESSION['error_messages'][] = 'All fields are mandatory';
-		$_SESSION['form_values'] = $_POST;
+    /* Get values from hidden url */
+    $text = strip_tags($_POST['question']);
+    $description = strip_tags($_POST['description']);
+    $tags = strip_tags($_POST['tags']);
+    $category = strip_tags($_POST['category']);
 
-		header("Location: index.php?page=signUp");
-		exit;
-	}
-	*/
+    /* Confirm data */
+    // verifying text and category missing fields
+    if (empty($text) && empty($category))
+        throw new Exception('text and category');
 
-	$text = strip_tags($_POST['question']);
-	$description = strip_tags($_POST['description']);
-	$tags = strip_tags($_POST['tags']);
-	$categoryName = strip_tags($_POST['category']);
+    // verifying text missing fields
+    if (empty($text))
+        throw new Exception('text');
 
-	if (!isset($text)) die('No text');
-	if (!isset($description)) die('No description');
-	//if (!isset($tags)) die('No tags');
-	//if (!isset($categoryName)) die('No category');
+    // verifying category missing fields
+    if (empty($category))
+        throw new Exception('category');
 
-    createUser($username, $password, $firstName, $lastName, $email, $cityName);
 
-    // filling session with that user info to sign in directly after sign up submission
-    
-   // $_SESSION['username'] 
+    if (empty($description))
+        $description = null;
 
-} catch(PDOException $e) {
-    var_dump('PDOException');
-    echo $e->getMessage();
+    if (empty($tags))
+        $tags = null;
+    else
+        $tags = explode(",", $tags);
 
-    if (strpos($e->getMessage(), 'users_pkey') !== false) {
-        $_SESSION['error_messages'][] = 'Duplicate username';
-        $_SESSION['field_errors']['username'] = 'Username already exists';
-    } else {
-        var_dump($e->getTraceAsString());
-        $_SESSION['error_messages'][] = 'Error creating user';
-    }
+    $question_id = Question::createQuestion($text, $description, $category);
+    Tag::processTags($tags, $question_id);
+
+} catch (Exception $e) {
+
+    if (strcmp($e->getMessage(), 'text and category') === 0) {
+        $_SESSION['field_errors']['question_text'] = 'Text field required';
+        $_SESSION['field_errors']['question_category'] = 'Category selection required';
+    } else if (strcmp($e->getMessage(), 'text') === 0)
+        $_SESSION['field_errors']['question_text'] = 'Text field required';
+    else if (strcmp($e->getMessage(), 'category') === 0)
+        $_SESSION['field_errors']['question_category'] = 'Category selection required';
 
     $_SESSION['form_values'] = $_POST;
-    go('../../pages/authentication/sign-up.php');
+    go($_SERVER['HTTP_REFERER']);
 }
 
-$_SESSION['success_messages'][] = 'User registered successfully';
+$_SESSION['success_messages'][] = 'Question has been added successfully';
 
 go('../../pages/menus/explore.php');
-
-/*
-// check if there is already a user with the requested username
-$stmt = $dbh->prepare(
-    'SELECT * FROM User
-    WHERE username = ?');
-$stmt->execute(array($username));
-if($stmt->fetch()) {
-    $_SESSION['responseContent'] = 'That username is already taken.';
-    header("Location: index.php?page=signUp");
-    exit;
-}
-
-// inserting user into database
-$stmt = $dbh->prepare(
-    'INSERT INTO User
-    (username, password, lastLoginDate, registerDate, gender)
-    VALUES (?, ?, ?, ?, ?)');
-$stmt->execute(array(
-    $username,
-    hash('sha256', $password),
-    date('Y-m-d H:i:s'),
-    date('Y-m-d H:i:s'),
-    $gender));
-
-// getting user that has just sign up
-$stmt = $dbh->prepare(
-    'SELECT * FROM User
-    WHERE username = ?
-    AND password = ?');
-$stmt->execute(array($username, hash('sha256', $password)));
-if (!($user = $stmt->fetch())) {
-    $_SESSION['responseContent'] = 'Unexpected error after sign up: invalid username or password.';
-    header("Location: index.php?page=signIn");
-    exit;
-}
-*/

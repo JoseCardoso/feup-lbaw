@@ -2,12 +2,12 @@
 
 include_once('../../config/config.php');
 
-include($BASE_DB . 'loadCities.php');
+include($BASE_DB . 'city.php');
 
 $smarty->assign('BASE_ACTIONS', $BASE_ACTIONS);
 
 try {
-	$cities = loadCities();
+    $cities = City::all('SELECT cidade.nome FROM askfeup.cidade GROUP BY cidade.nome ORDER BY cidade.nome');
 } catch (PDOException $e) {
 	echo $e->getMessage();
     die();

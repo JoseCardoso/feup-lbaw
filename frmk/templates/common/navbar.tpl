@@ -34,10 +34,14 @@
 				<li class="has-dropdown">
 					<a href="{$BASE_URL}/../../pages/menus/explore.php"><i class="fi-compass nav-bar-icon"></i>Explore</a>
 					<ul class="dropdown">
+                        {if $currentPage eq 'explore.php' and !$username}
+                        <li><a href="{$BASE_URL}/../../pages/authentication/sign-in.php"><i class="fi-torso nav-bar-icon"></i>Sign in</a></li>
+                        {/if}
 						<li><a href="{$BASE_URL}/../../pages/menus/contacts.php"><i class="fi-address-book nav-bar-icon"></i>Contact us</a></li>
 						<li><a href="{$BASE_URL}/../../pages/menus/about.php"><i class="fi-torsos-all nav-bar-icon"></i>About us</a></li>
 					</ul>
 				</li>
+
                 {if $username}
 				<li class="has-dropdown">
                     {if $fb_logged}

@@ -23,9 +23,11 @@
 			</div>
 		</div>
 
+        {if $username}
 		<div class="small-12 medium-2 columns">
-			<a href="#" class="button success small expand"><i class="fi-plus nav-bar-icon"></i>Add new</a>
+			<a href="{$BASE_URL}/../../pages/questions/create-question.php" class="button success small expand"><i class="fi-plus nav-bar-icon"></i>Add new</a>
 		</div>
+        {/if}
 	</div>
 
 	<div class="row">

@@ -41,6 +41,7 @@ verifySessionVariables();
 assignFacebookSmallPictureToSmarty($smarty);
 
 $smarty->assign('questions', $questions);
+$smarty->assign('currentPage', basename($_SERVER['PHP_SELF']));
 
 $smarty->display($BASE_TEMPLATES . 'menus/explore.tpl');
 
