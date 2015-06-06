@@ -1,5 +1,6 @@
 <?php
 require_once('model.php');
+require_once('comment.php');
 
 class Question extends Model
 {
@@ -115,5 +116,11 @@ class Question extends Model
     {
         $newDate = new DateTime($this->data);
         return $newDate->format('H\hm - d F Y');
+    }
+
+    public function loadComments() {
+        $comments = Comment::all_comments_from_contributions(array($this->id));
+
+        return $comments;
     }
 }

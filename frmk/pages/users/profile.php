@@ -7,13 +7,19 @@ include ($BASE_DB . 'question.php');
 include ($BASE_DB . 'answer.php');
 
 try {
-    $profile = User::find($_SESSION['iduser']);
-    $user_questions = Question::userQuestions($_SESSION['username']);
+    if(isset($_GET['username']))
+        $profile = User::find_by_user($_GET['username']);
+    else
+        $profile = User::find($_SESSION['iduser']);
 
-    $answers = Answer::getQuestionsFromUserAnswers($_SESSION['username']);
+    // load user own questions
+    $user_questions = Question::userQuestions($profile->username);
 
+    // get ids from the questions that user answered
+    $answered_questions_id = Answer::getQuestionsFromUserAnswers($profile->username);
+    // load user answered questions
     if(isset($answers))
-        $user_questions_answered = Question::userAnsweredQuestions($answers);
+        $user_questions_answered = Question::userAnsweredQuestions($answered_questions_id);
 
 } catch (PDOException $e) {
     echo $e->getMessage();

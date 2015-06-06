@@ -97,7 +97,7 @@
                     {foreach $user_questions as $question}
                         <li>
                             <div class="panel question" data-reveal-id="questionModal"
-                                 data-target="{$BASE_URL}/../ajax/modal-question.php" data-value="{$question->id}"
+                                 data-target="{$BASE_URL}/../questions/question-modal.php" data-value="{$question->id}"
                                  data-reveal-ajax="true">
                                 <div class="row">
                                     <div class="small-12 columns">
@@ -116,7 +116,7 @@
                                         <p>answers</p>
                                     </div>
                                     <div class="small-6 medium-4 columns text-right">
-                                        <p class="question-author"><a href="#">{$question->displayUsername()}</a></p>
+                                        <p class="question-author"><a href="{$BASE_URL}/../../pages/users/profile.php">{$question->displayUsername()}</a></p>
 
                                         <p class="question-date">{$question->displayDate()}</p>
                                     </div>
@@ -132,7 +132,7 @@
                     {foreach $user_answered_questions as $question}
                         <li>
                             <div class="panel question" data-reveal-id="questionModal"
-                                 data-target="{$BASE_URL}/../ajax/modal-question.php" data-value="{$question->id}"
+                                 data-target="{$BASE_URL}/../questions/question-modal.php" data-value="{$question->id}"
                                  data-reveal-ajax="true">
                                 <div class="row">
                                     <div class="small-12 columns">
@@ -151,7 +151,7 @@
                                         <p>answers</p>
                                     </div>
                                     <div class="small-6 medium-4 columns text-right">
-                                        <p class="question-author"><a href="#">{$question->displayUsername()}</a></p>
+                                        <p class="question-author"><a href="{$BASE_URL}/../../pages/users/profile.php?username={$question->username}">{$question->displayUsername()}</a></p>
 
                                         <p class="question-date">{$question->displayDate()}</p>
                                     </div>

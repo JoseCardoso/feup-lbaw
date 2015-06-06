@@ -54,6 +54,14 @@ class User extends Model
         return $objects[0];
     }
 
+    static function find_by_user($username)
+    {
+        $stmt = parent::query('SELECT * FROM membro, utilizador WHERE username=? AND membroid=utilizadorid;', array($username));
+        $objects = self::processUser($stmt);
+
+        return $objects[0];
+    }
+
     static function login($username, $password)
     {
         global $connection;

@@ -11,11 +11,33 @@ class Comment extends Model
 
     public function  __construct($attr)
     {
-        $this->id = $attr['id'];
+        $this->id = $attr['comentarioid'];
         $this->data = $attr['data'];
         $this->description = $attr['descricao'];
-        $this->$question_id = $attr['contribuicaoid'];
-        $this->username = $attr['membroid'];
+        $this->contribution_id = $attr['contribuicaoid'];
+        $this->member_id = $attr['membroid'];
+    }
 
+    private static function processComments($stmt)
+    {
+        $object = array();
+
+        while ($answer = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $object[] = new Comment($answer);
+        }
+
+        return $object;
+    }
+
+    public static function all_comments_from_contributions($contributions_ids)
+    {
+        $string = '';
+        foreach($contributions_ids as $contribution_id) {
+            $string .= 'OR contribuicaoid = ?';
+        }
+        $string = substr($string, 3);
+        $stmt = parent::query('SELECT * FROM comentario WHERE '.$string.' ORDER BY comentarioid;', $contributions_ids);
+
+        return self::processComments($stmt);
     }
 }

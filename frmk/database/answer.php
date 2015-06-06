@@ -73,4 +73,13 @@ class Answer extends Model
         $newDate = new DateTime($this->data);
         return $newDate->format('H\hm - d F Y');
     }
+
+    public static function loadComments($answers) {
+        $prop = array_map(function($answer){ return $answer->id; }, $answers);
+        $comments = Comment::all_comments_from_contributions($prop);
+        var_dump($comments);
+        exit();
+
+        return $comments;
+    }
 }
