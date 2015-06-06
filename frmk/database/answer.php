@@ -6,29 +6,29 @@ class Answer extends Model
     public $id;
     public $description;
     public $correct;
-    public $question_id;
+    public $username;
     public $diffVotes;
     public $data;
-    public $username;
+    public $question_id;
 
     public function  __construct($attr)
     {
         $this->id = $attr['id'];
         $this->description = $attr['descricao'];
-        $this->$correct = $attr['correcta'];
-        $this->$question_id = $attr['perguntaid'];
+        $this->correct = $attr['correcta'];
+        $this->username = $attr['user'];
         $this->diffVotes = $attr['votos'];
         $this->data = $attr['data'];
-        $this->username = $attr['user'];
+        $this->question_id = $attr['perguntaid'];
 
     }
 
-    static function all($query)
+    static function all($query, $params)
     {
         if (!$query)
             $stmt = parent::query('SELECT * FROM answers_presentation ORDER BY id;', array());
         else {
-            $stmt = parent::query($query, array());
+            $stmt = parent::query($query, $params);
         }
         $answers = self::processAnswers($stmt);
 
@@ -54,13 +54,13 @@ class Answer extends Model
 
     private static function processAnswers($stmt)
     {
-        $object = array();
+        $objects = array();
 
         while ($answer = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $object[] = new Question($answer);
+            $objects[] = new Answer($answer);
         }
 
-        return $object;
+        return $objects;
     }
 
     public function displayUsername()
@@ -77,8 +77,6 @@ class Answer extends Model
     public static function loadComments($answers) {
         $prop = array_map(function($answer){ return $answer->id; }, $answers);
         $comments = Comment::all_comments_from_contributions($prop);
-        var_dump($comments);
-        exit();
 
         return $comments;
     }

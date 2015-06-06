@@ -116,7 +116,7 @@
                                         <p>answers</p>
                                     </div>
                                     <div class="small-6 medium-4 columns text-right">
-                                        <p class="question-author"><a href="{$BASE_URL}/../../pages/users/profile.php">{$question->displayUsername()}</a></p>
+                                        <p class="question-author"><a href="{$BASE_URL}/../../pages/users/profile.php?username={$question->username}">{$question->displayUsername()}</a></p>
 
                                         <p class="question-date">{$question->displayDate()}</p>
                                     </div>

@@ -2,14 +2,17 @@
 
 include_once('../../config/config.php');
 
-include ($BASE_DB . 'user.php');
-include ($BASE_DB . 'question.php');
-include ($BASE_DB . 'answer.php');
+include($BASE_DB . 'user.php');
+include($BASE_DB . 'question.php');
+include($BASE_DB . 'answer.php');
 
 try {
-    if(isset($_GET['username']))
-        $profile = User::find_by_user($_GET['username']);
-    else
+    if (isset($_GET['username'])) {
+        if ($_GET['username'] !== $_SESSION['username'])
+            $profile = User::find_by_user($_GET['username']);
+        else
+            $profile = User::find($_SESSION['iduser']);
+    } else
         $profile = User::find($_SESSION['iduser']);
 
     // load user own questions
@@ -18,7 +21,7 @@ try {
     // get ids from the questions that user answered
     $answered_questions_id = Answer::getQuestionsFromUserAnswers($profile->username);
     // load user answered questions
-    if(isset($answered_questions_id))
+    if (isset($answered_questions_id))
         $user_questions_answered = Question::userAnsweredQuestions($answered_questions_id);
 
 } catch (PDOException $e) {
