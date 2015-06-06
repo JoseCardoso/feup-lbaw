@@ -18,7 +18,7 @@ try {
     // get ids from the questions that user answered
     $answered_questions_id = Answer::getQuestionsFromUserAnswers($profile->username);
     // load user answered questions
-    if(isset($answers))
+    if(isset($answered_questions_id))
         $user_questions_answered = Question::userAnsweredQuestions($answered_questions_id);
 
 } catch (PDOException $e) {
