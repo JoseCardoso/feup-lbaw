@@ -35,7 +35,19 @@ try {
         $tags = explode(",", $tags);
 
     $question_id = Question::createQuestion($text, $description, $category);
-    Tag::processTags($tags, $question_id);
+
+    list($tags_result, $tags_message) = Tag::generateTags($tags, $question_id);
+    if (!$tags_result) {
+        throw new PDOException($tags_message);
+
+    }
+
+} catch (PDOException $e) {
+    echo($e->getMessage());
+    echo('<br><br>');
+    echo("Problem in database operations");
+
+    exit();
 
 } catch (Exception $e) {
 
@@ -51,6 +63,6 @@ try {
     go($_SERVER['HTTP_REFERER']);
 }
 
-$_SESSION['success_messages'][] = 'Question has been added successfully';
+$_SESSION['success_messages']['create-question'] = 'Question has been added successfully';
 
 go('../../pages/menus/explore.php');

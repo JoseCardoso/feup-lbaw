@@ -1,5 +1,5 @@
 $('div.question').on('click', function () {
-    alert($(this).attr("data-target"));
+    alert($(this).attr("data-value"));
 
     $.ajax({
         url: $(this).attr('data-target'),

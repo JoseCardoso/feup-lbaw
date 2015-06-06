@@ -4,10 +4,16 @@ include_once('../../config/config.php');
 
 include ($BASE_DB . 'user.php');
 include ($BASE_DB . 'question.php');
+include ($BASE_DB . 'answer.php');
 
 try {
     $profile = User::find($_SESSION['iduser']);
-    $questions = Question::userQuestions($_SESSION['username']);
+    $user_questions = Question::userQuestions($_SESSION['username']);
+
+    $answers = Answer::getQuestionsFromUserAnswers($_SESSION['username']);
+
+    if(isset($answers))
+        $user_questions_answered = Question::userAnsweredQuestions($answers);
 
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -23,7 +29,8 @@ assignFacebookSmallPictureToSmarty($smarty);
 assignFacebookLargePictureToSmarty($smarty);
 
 $smarty->assign('profile', $profile);
-$smarty->assign('questions', $questions);
+$smarty->assign('user_questions', $user_questions);
+$smarty->assign('user_answered_questions', $user_questions_answered);
 
 $smarty->assign('JS_PATH', $JS_PATH);
 $smarty->assign('BASE_URL', $BASE_URL);

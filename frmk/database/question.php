@@ -15,15 +15,15 @@ class Question extends Model
 
     public function  __construct($attr)
     {
-        $this->text = $attr['texto'];
-        $this->description = $attr['descricao'];
-        $this->category_id = $attr['categoriaid'];
-        $this->id = $attr['perguntaid'];
-        $this->data = $attr['data'];
-        $this->username = $attr['user'];
-        $this->diffVotes = $attr['votos'];
+        $this->id = $attr['id'];
         $this->numAnswers = $attr['respostas'];
         $this->numViews = $attr['visualizacoes'];
+        $this->text = $attr['texto'];
+        $this->description = $attr['descricao'];
+        $this->category_id = $attr['categoria'];
+        $this->username = $attr['user'];
+        $this->diffVotes = $attr['votos'];
+        $this->data = $attr['data'];
     }
 
     static function all($query)
@@ -40,7 +40,7 @@ class Question extends Model
 
     static function find($id)
     {
-        $stmt = parent::query('SELECT * FROM questions_presentation WHERE idpergunta=?;', array($id));
+        $stmt = parent::query('SELECT * FROM questions_presentation WHERE id=?;', array($id));
         $questions = self::processQuestions($stmt);
 
         return $questions[0];
@@ -54,6 +54,16 @@ class Question extends Model
         $questions = self::processQuestions($stmt);
 
         return $questions;
+    }
+
+    static function userAnsweredQuestions($answers)
+    {
+        $objects = array();
+        foreach ($answers as $answer) {
+            $objects[] = self::find($answer);
+        }
+
+        return $objects;
     }
 
     static function createQuestion($text, $description, $category)
@@ -87,13 +97,13 @@ class Question extends Model
 
     private static function processQuestions($stmt)
     {
-        $classQuestion = array();
+        $object = array();
 
         while ($question = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $classQuestion[] = new Question($question);
+            $object[] = new Question($question);
         }
 
-        return $classQuestion;
+        return $object;
     }
 
     public function displayUsername()

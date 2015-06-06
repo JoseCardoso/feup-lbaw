@@ -94,7 +94,7 @@
         <div class="tabs-content">
             <div class="content active" id="panel1">
                 <ul class="small-block-grid-1 medium-block-grid-2">
-                    {foreach $questions as $question}
+                    {foreach $user_questions as $question}
                         <li>
                             <div class="panel question" data-reveal-id="questionModal"
                                  data-target="{$BASE_URL}/../ajax/modal-question.php" data-value="{$question->id}"
@@ -129,33 +129,36 @@
 
             <div class="content" id="panel2">
                 <ul class="small-block-grid-1 medium-block-grid-2">
-                    <li>
-                        <div class="panel question" data-reveal-id="questionModal">
-                            <div class="row">
-                                <div class="small-12 columns">
-                                    <p class="text-justify question-text">Que tipo de gomas são vendidas na D.
-                                        Beatriz?</p>
+                    {foreach $user_answered_questions as $question}
+                        <li>
+                            <div class="panel question" data-reveal-id="questionModal"
+                                 data-target="{$BASE_URL}/../ajax/modal-question.php" data-value="{$question->id}"
+                                 data-reveal-ajax="true">
+                                <div class="row">
+                                    <div class="small-12 columns">
+                                        <p class="text-justify question-text">{$question->text}</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="small-3 medium-4 columns question-stats">
+                                        <p>{$question->diffVotes}</p>
+
+                                        <p>votes</p>
+                                    </div>
+                                    <div class="small-3 medium-4 columns question-stats">
+                                        <p>{$question->numAnswers}</p>
+
+                                        <p>answers</p>
+                                    </div>
+                                    <div class="small-6 medium-4 columns text-right">
+                                        <p class="question-author"><a href="#">{$question->displayUsername()}</a></p>
+
+                                        <p class="question-date">{$question->displayDate()}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row text-center">
-                                <div class="small-3 medium-4 columns question-stats">
-                                    <p>50</p>
-
-                                    <p>votes</p>
-                                </div>
-                                <div class="small-3 medium-4 columns question-stats">
-                                    <p>4</p>
-
-                                    <p>answers</p>
-                                </div>
-                                <div class="small-6 medium-4 columns text-right">
-                                    <p class="question-author"><a href="#">@ferrolho</a></p>
-
-                                    <p class="question-date">00h15 - 15 Jan 2015</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    {/foreach}
                 </ul>
             </div>
 
