@@ -169,8 +169,7 @@
     </div>
 </div>
 
-<div id="questionModal" class="reveal-modal large">
-</div>
+{include file = 'questions/question.tpl'}
 
 <script src="{$JS_PATH}questions.js"></script>
 

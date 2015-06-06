@@ -1,9 +1,3 @@
-{include file = 'common/header.tpl'}
-
-<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
-</head>
-
-<body>
 <div id="questionModal" class="reveal-modal large" data-reveal>
     <div class="question-modal-content favorite">
         <div class="row">
@@ -144,6 +138,5 @@
             </div>
         </form>
     </div>
-
     <a class="close-reveal-modal">&#215;</a>
 </div>
