@@ -27,13 +27,16 @@ class Question extends Model
         $this->data = $attr['data'];
     }
 
-    static function all($query)
+    static function all($query, $params)
     {
         if (!$query)
             $stmt = parent::query('SELECT * FROM questions_presentation ORDER BY data DESC;', array());
-        else {
+        else if ($query && !$params) {
             $stmt = parent::query($query, array());
+        } else {
+            $stmt = parent::query($query, $params);
         }
+
         $questions = self::processQuestions($stmt);
 
         return $questions;
@@ -118,19 +121,22 @@ class Question extends Model
         return $newDate->format('H\hm - d F Y');
     }
 
-    public function loadComments() {
+    public function loadComments()
+    {
         $comments = Comment::all_comments_from_contributions(array($this->id));
 
         return $comments;
     }
 
-    public function check_if_question_is_favourite($user_id) {
+    public function check_if_question_is_favourite($user_id)
+    {
         $stmt = parent::query("SELECT perguntaid, membroid FROM favorita WHERE perguntaid = ? AND membroid = ?;", array($this->id, $user_id));
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function get_vote_value($user_id) {
+    public function get_vote_value($user_id)
+    {
         $stmt = parent::query("SELECT voto.positivo FROM askfeup.voto WHERE voto.contribuicaoid = ? AND voto.membroid = ?", array($this->id, $user_id));
 
         return $stmt->fetch(PDO::FETCH_ASSOC);

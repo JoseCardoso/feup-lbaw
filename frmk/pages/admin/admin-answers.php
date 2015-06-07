@@ -8,6 +8,8 @@ try {
 
     if (isset($_GET['question_id']))
         $answers = Answer::all("SELECT * FROM answers_presentation WHERE perguntaid = ? ORDER BY data DESC;", array($_GET['question_id']));
+    else if (isset($_GET['user']))
+        $answers = Answer::all('SELECT * FROM askfeup.answers_presentation WHERE answers_presentation.user = ? ORDER BY answers_presentation.data DESC', array($_GET['user']));
     else
         $answers = Answer::all("SELECT * FROM answers_presentation ORDER BY data DESC;", array());
 

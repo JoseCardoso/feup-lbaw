@@ -25,7 +25,7 @@ class Comment extends Model
         if ($query)
             $stmt = parent::query($query, $params);
         else
-            $stmt = parent::query("SELECT * FROM contribuicao ORDER BY data;", null);
+            $stmt = parent::query("SELECT comentario.*, username FROM comentario, utilizador WHERE utilizadorid = membroid ORDER BY data;", null);
 
         $comments = self::processComments($stmt);
 

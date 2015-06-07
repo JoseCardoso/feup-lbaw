@@ -11,7 +11,6 @@ $('div.question').on('click', function () {
     }).done(function(data) {
         console.log(data);
 
-
         /*addFullQuestionBlock($('#questionModal'), data);
 
         for ( var k in data.answers)
@@ -23,7 +22,7 @@ $('div.question').on('click', function () {
 
 /*
 
-function addVoteSection(upDown, score, $HtmlElement) {
+/*function addVoteSection(upDown, score, $HtmlElement) {
 
 
      
@@ -80,5 +79,5 @@ function addQuestionBlock(authour, date, question_text, $HtmlElement) {
 
 
 
-
 */
+

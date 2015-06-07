@@ -29,7 +29,7 @@
                 <tr>
                     <td>{$comment->id}</td>
                     <td>{$comment->description}</td>
-                    <td>{$comment->username}</td>
+                    <td><a href="#">{$comment->username}</a></td>
                     <td>{$comment->contribution_id}</td>
                     <td><a href="#" class="button small">Details</a></td>
                     <td><a href="#" class="button small">Delete</a></td>
