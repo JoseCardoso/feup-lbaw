@@ -15,7 +15,7 @@
 
                 <li><a href="{$BASE_URL}/../../pages/admin/admin-answers.php">Answers</a></li>
 
-                <li><a href="#">Comments</a></li>
+                <li><a href="{$BASE_URL}/../../pages/admin/admin-comments.php">Comments</a></li>
 
                 <li><a href="#">Users</a></li>
 

@@ -7,7 +7,7 @@ include($BASE_DB . 'comment.php');
 try {
 
     if (isset($_GET['contribution_id']))
-        $comments = Comment::all_comments_from_contributions(array($_GET['contribution_id']));
+        $comments = Comment::all("SELECT comentario.*, username FROM comentario, utilizador WHERE contribuicaoid = ? AND utilizadorid = membroid ORDER BY data;", array($_GET['contribution_id']));
     else
         $comments = Comment::all(null, null);
 
