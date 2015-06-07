@@ -8,76 +8,113 @@ $('div.question').on('click', function () {
         data: {
             id: $(this).attr('data-value')
         }
-    }).done(function(data) {
-        console.log(data);
+    }).done(function (data) {
+        // console.log( data['question']);
 
-        /*addFullQuestionBlock($('#questionModal'), data);
+        JSON.stringify(data);
+        $('#questionModal').empty();
+        addFullQuestionBlock($('#questionModal'), data['question']);
+        $('#questionModal').append("</div> <hr>");
 
-        for ( var k in data.answers)
-            addFullAnswerBlock($('#questionModal'),k);
-    */
+        JSON.stringify(data['answers']);
+        $.each(data['answers'], function (index, value) {
+
+            addFullAnswerBlock($('#questionModal'), value);
+            $('#questionModal').append("</div>");
+            $('#questionModal').append("<hr class ='dashed'>");
+        });
     });
 });
 
 
-/*
-
-/*function addVoteSection(upDown, score, $HtmlElement) {
-
-
-     
-
-    if(upDown == true)
-        $HtmlElement.append("<div class='small-4 large-2 columns'> <div class='row'> <div class='small-12 columns text-center'> <i class='fi-like'></i> </div> </div> <div class='row'> <div class='small-12 columns text-center'> <p class='score'>" + score + "</p> </div> </div> <div class='row'> <div class='small-12 columns text-center'> <i class='fi-dislike'></i> </div> </div> <div class='row'> <div class='small-12 columns text-center'> <i class='fi-check'></i> </div> </div> </div>");
-    else
-        $HtmlElement.append("<div class='small-4 large-2 columns'> <div class='row'> <div class='small-12 columns text-center'> <i class='fi-like'></i> </div> </div> <div class='row'> <div class='small-12 columns text-center'> <p class='score negative-score'>" + score +"</p> </div> </div> <div class='row'> <div class='small-12 columns text-center'> <i class='fi-dislike'></i> </div> </div> </div>");
-
+function addVoteSection(upDown, score, $HtmlElement) {
+    $HtmlElement.append("  <div class='small-4 large-2 columns'>" +
+                                " <div class='row'>" +
+                                    " <div class='small-12 columns text-center'> " +
+                                        "<i class='fi-like'></i> " +
+                                     "</div> " +
+                                 "</div>" +
+                                " <div class='row'>" +
+                                    " <div class='small-12 columns text-center'>" +
+                                        " <p class='score'>" + score + "</p> " +
+                                    "</div> " +
+                                "</div> " +
+                                "<div class='row'> " +
+                                    "<div class='small-12 columns text-center'>" +
+                                        " <i class='fi-dislike'></i>" +
+                                    " </div> " +
+                                "</div>" +
+                                " <div class='row'>" +
+                                    " <div class='small-12 columns text-center'> " +
+                                        "<i class='fi-check'></i> " +
+                                    "</div> " +
+                                "</div> " +
+                            "</div> ");
 }
 
 function addQuestionBlock(authour, date, question_text, $HtmlElement) {
-     $HtmlElement.append("<div class='small-8 large-10 columns'> <p class='answer-text'>" + question_text +"</p> <p class='text-right question-author'><a href='#''>" +authour+"</a></p> <p class='text-right question-date'>" + date +"</p> </div>");
+    $HtmlElement.append("<div class='small-8 large-10 columns'> " +
+    "<p class='answer-text'>" + question_text + "</p> " +
+    "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p> " +
+    "<p class='text-right question-date'>" + date + "</p> " +
+    "</div>");
 
- }
-
- function addAnswerBlock(authour, date, answer_text, $HtmlElement) {
-     $HtmlElement.append( "<div class='small-8 large-10 columns'> <p>"+answer_text+"</p> <p class='text-right question-author'><a href='#''>"+authour+"</a></p> <p class='text-right question-date'>"+date+"</p> </div>");
-
- }
-
- function addComentBlock(authour, comment_text, $HtmlElement) {
-     $HtmlElement.append("<div class='small-10 columns comment'> <hr> <p>"+comment_text+"<a href='#'>"+authour+"</a></p> </div>");
-
- }
-
- function addFullQuestionBlock($HtmlElement,data){
-
-    addVoteSection(true, data.diffVotes, $HtmlElement);
-    addQuestionBlock(data.username, data.data , data.text, $HtmlElement);
-
-    for (var k in data.comments){
-        $HtmlElement.append('<hr>');
-        addComentBlock(k.username, k.description, $HtmlElement);
-    }
 }
- 
- function addFullAnswerBlock($HtmlElement, answer_array){
 
-    for ( var k in answer_array){
+function addAnswerBlock(authour, date, answer_text, $HtmlElement) {
+    $HtmlElement.append("<div class='small-8 large-10 columns'> <p>" + answer_text + "</p> <p class='text-right question-author'><a href='#''> @" + authour + "</a></p> <p class='text-right question-date'>" + date + "</p> </div>");
 
-        addVoteSection((true, k.diffVotes, $HtmlElement));
+}
 
-        addAnswerBlock(k.username, k.data, k.description, $HtmlElement);
+function addComentBlockFill(authour, comment_text, $HtmlElement) {
+    $HtmlElement.append("<div class='small-10 columns comment'> <hr> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p> </div>");
 
-        for (var l in k.comments){
-            $HtmlElement.append('<hr class= dashed>');
-            addComentBlock(l.username, l.description, $HtmlElement);
-        }
-
-    }
-
- }
+}
 
 
+function addComentBlockDashed(authour, comment_text, $HtmlElement) {
+    $HtmlElement.append("<div class='small-10 columns comment'> <hr class = 'dashed'> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p>");
 
-*/
+}
+
+function addFullQuestionBlock($HtmlElement, data) {
+
+    JSON.stringify(data);
+
+    $HtmlElement.append("<div class='row'>" );
+    addVoteSection(true, data['diffVotes'], $HtmlElement);
+
+    addQuestionBlock(data['username'], data['data'], data['text'], $HtmlElement);
+
+    $.each(data['comments'], function (index, value) {
+
+        if (index == 0)
+            addComentBlockFill(value['username'], value['description'], $HtmlElement);
+        else
+            addComentBlockDashed(value['username'], value['description'], $HtmlElement);
+    });
+
+    $HtmlElement.append("</div>");
+}
+
+function addFullAnswerBlock($HtmlElement, answer_array) {
+
+    JSON.stringify(answer_array);
+
+    addVoteSection(true, answer_array['diffVotes'], $HtmlElement);
+
+    addAnswerBlock(answer_array['username'], answer_array['data'], answer_array['description'], $HtmlElement);
+
+    $.each(answer_array['comments'], function (index, value) {
+
+        addComentBlockFill(value['username'], value['description'], $HtmlElement);
+    });
+
+
+    $HtmlElement.append("</div>");
+}
+
+
+
+
 
