@@ -1,4 +1,4 @@
-$('div.panel-question').on('click', function () {
+$('div.question').on('click', function () {
     alert($(this).attr("data-target"));
 
     $.ajax({
@@ -11,17 +11,17 @@ $('div.panel-question').on('click', function () {
     }).done(function(data) {
         console.log(JSON.stringify(data));
 
-
+/*
         addFullQuestionBlock($('panel-question'), data);
 
         for ( var k in data['answes'])
             addFullAnswerBlock($('panel-question'),k);
-    });
+ */});
 });
 
 
 
-function addVoteSection(upDown, score, $HtmlElement) {
+/*function addVoteSection(upDown, score, $HtmlElement) {
 
      
 
@@ -129,4 +129,4 @@ function addQuestionBlock(authour, date, question_text, $HtmlElement) {
 
  }
 
-
+*/
