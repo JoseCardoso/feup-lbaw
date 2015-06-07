@@ -20,6 +20,18 @@ class Comment extends Model
         $this->username = $attr['username'];
     }
 
+    public static function all($query, $params)
+    {
+        if ($query)
+            $stmt = parent::query($query, $params);
+        else
+            $stmt = parent::query("SELECT * FROM contribuicao ORDER BY data;", null);
+
+        $comments = self::processComments($stmt);
+
+        return $comments;
+    }
+
     private static function processComments($stmt)
     {
         $object = array();
@@ -34,11 +46,11 @@ class Comment extends Model
     public static function all_comments_from_contributions($contributions_ids)
     {
         $string = '';
-        foreach($contributions_ids as $contribution_id) {
+        foreach ($contributions_ids as $contribution_id) {
             $string .= 'OR contribuicaoid = ?';
         }
         $string = substr($string, 3);
-        $stmt = parent::query('SELECT comentario.*, username FROM comentario, utilizador WHERE ('.$string.') AND utilizadorid = membroid ORDER BY comentarioid;', $contributions_ids);
+        $stmt = parent::query('SELECT comentario.*, username FROM comentario, utilizador WHERE (' . $string . ') AND utilizadorid = membroid ORDER BY comentarioid;', $contributions_ids);
 
         return self::processComments($stmt);
     }
