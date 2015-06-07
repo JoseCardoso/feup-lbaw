@@ -28,7 +28,7 @@
                 <tr>
                     <td>{$answer->id}</td>
                     <td>{$answer->description}</td>
-                    <td><a href="#">{$answer->username}</a></td>
+                    <td><a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$answer->username}">{$answer->username}</a></td>
                     <td><a href="{$BASE_URL}/../../pages/admin/admin-question.php?id={$answer->question_id}" class="button small">Question</a></td>
                     <td><a href="{$BASE_URL}/../../pages/admin/admin-comments.php?contribution_id={$answer->id}" class="button small">Comments</a></td>
                     <td><a href="#" class="button small">Details</a></td>

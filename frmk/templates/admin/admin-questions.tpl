@@ -28,8 +28,8 @@
                 <tr>
                     <td>{$question->id}</td>
                     <td>{$question->text}</td>
-                    <td><a href="#">{$question->username}</a></td>
-                    <td><a href="#" class="button small">Details</a></td>
+                    <td><a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$question->username}">{$question->username}</a></td>
+                    <td><a href="{$BASE_URL}/../../pages/admin/admin-question.php?id={$question->id}" class="button small">Details</a></td>
                     <td><a href="{$BASE_URL}/../../pages/admin/admin-answers.php?question_id={$question->id}" class="button small">Answers</a></td>
                     <td><a href="{$BASE_URL}/../../pages/admin/admin-comments.php?contribution_id={$question->id}" class="button small">Comments</a></td>
                     <td><a href="#" class="button small">Delete</a></td>

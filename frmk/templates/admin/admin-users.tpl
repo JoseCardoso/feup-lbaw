@@ -32,7 +32,7 @@
                     <td><a href="{$BASE_URL}/../../pages/admin/admin-questions.php?user={$user->username}" class="button small">Questions</a></td>
                     <td><a href="{$BASE_URL}/../../pages/admin/admin-answers.php?user={$user->username}" class="button small">Answers</a></td>
                     <td><a href="{$BASE_URL}/../../pages/admin/admin-comments.php?user={$user->username}" class="button small">Comments</a></td>
-                    <td><a href="#" class="button small">Details</a></td>
+                    <td><a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$user->username}" class="button small">Details</a></td>
                     <td><a href="#" class="button small">Delete</a></td>
                 </tr>
             </li>
