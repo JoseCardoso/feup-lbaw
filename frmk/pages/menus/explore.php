@@ -25,10 +25,10 @@ try {
                 break;
         }
 
-        $questions = Question::all($query);
+        $questions = Question::all($query, null);
 
     } else {
-        $questions = Question::all(null);
+        $questions = Question::all(null, null);
     }
 
 } catch (PDOException $e) {

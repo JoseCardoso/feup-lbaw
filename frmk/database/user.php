@@ -46,6 +46,17 @@ class User extends Model
         return ($firstName . uniqid() . $lastName);
     }
 
+    public static function all($query, $params) {
+        if($query)
+            $stmt = parent::query($query, $params);
+        else
+            $stmt = parent::query('SELECT * FROM membro, utilizador WHERE membroid=utilizadorid ORDER BY registo DESC;', array());
+
+        $users = self::processUser($stmt);
+
+        return $users;
+    }
+
     static function find($id)
     {
         $stmt = parent::query('SELECT * FROM membro, utilizador WHERE membroid=? AND membroid=utilizadorid;', array($id));
