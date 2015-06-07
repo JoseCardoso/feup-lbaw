@@ -8,6 +8,7 @@ class Comment extends Model
     public $description;
     public $contribution_id;
     public $member_id;
+    public $username;
 
     public function  __construct($attr)
     {
@@ -16,6 +17,7 @@ class Comment extends Model
         $this->description = $attr['descricao'];
         $this->contribution_id = $attr['contribuicaoid'];
         $this->member_id = $attr['membroid'];
+        $this->username = $attr['username'];
     }
 
     private static function processComments($stmt)
@@ -36,7 +38,7 @@ class Comment extends Model
             $string .= 'OR contribuicaoid = ?';
         }
         $string = substr($string, 3);
-        $stmt = parent::query('SELECT * FROM comentario WHERE '.$string.' ORDER BY comentarioid;', $contributions_ids);
+        $stmt = parent::query('SELECT comentario.*, username FROM comentario, utilizador WHERE ('.$string.') AND utilizadorid = membroid ORDER BY comentarioid;', $contributions_ids);
 
         return self::processComments($stmt);
     }

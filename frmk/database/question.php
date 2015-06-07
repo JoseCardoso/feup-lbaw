@@ -123,4 +123,16 @@ class Question extends Model
 
         return $comments;
     }
+
+    public function check_if_question_is_favourite($user_id) {
+        $stmt = parent::query("SELECT perguntaid, membroid FROM favorita WHERE perguntaid = ? AND membroid = ?;", array($this->id, $user_id));
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function get_vote_value($user_id) {
+        $stmt = parent::query("SELECT voto.positivo FROM askfeup.voto WHERE voto.contribuicaoid = ? AND voto.membroid = ?", array($this->id, $user_id));
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

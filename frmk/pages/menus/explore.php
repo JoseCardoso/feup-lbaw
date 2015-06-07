@@ -43,4 +43,7 @@ assignFacebookSmallPictureToSmarty($smarty);
 $smarty->assign('questions', $questions);
 $smarty->assign('currentPage', basename($_SERVER['PHP_SELF']));
 
+$smarty->assign('JS_PATH', $JS_PATH);
+$smarty->assign('BASE_URL', $BASE_URL);
+
 $smarty->display($BASE_TEMPLATES . 'menus/explore.tpl');

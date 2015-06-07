@@ -52,6 +52,13 @@ class Answer extends Model
         return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
     }
 
+    public static function loadComments($answers) {
+        $prop = array_map(function($answer){ return $answer->id; }, $answers);
+        $comments = Comment::all_comments_from_contributions($prop);
+
+        return $comments;
+    }
+
     private static function processAnswers($stmt)
     {
         $objects = array();
@@ -74,10 +81,9 @@ class Answer extends Model
         return $newDate->format('H\hm - d F Y');
     }
 
-    public static function loadComments($answers) {
-        $prop = array_map(function($answer){ return $answer->id; }, $answers);
-        $comments = Comment::all_comments_from_contributions($prop);
+    public function get_vote_value($user_id) {
+        $stmt = parent::query("SELECT voto.positivo FROM askfeup.voto WHERE voto.contribuicaoid = ? AND voto.membroid = ?", array($this->id, $user_id));
 
-        return $comments;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

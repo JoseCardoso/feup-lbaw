@@ -1,79 +1,89 @@
-	{include file = 'common/header.tpl'}
+{include file = 'common/header.tpl'}
 
-	<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css" />
+<link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
 </head>
 
 <body>
-	{include file = 'common/navbar.tpl'}
+{include file = 'common/navbar.tpl'}
 
-	<div class="row">
-		<div class="small-12 medium-2 columns">
-			<a href="#" class="button small secondary expand"><i class="fi-filter nav-bar-icon"></i>Filter</a>
-		</div>
+<div class="row">
+    <div class="small-12 medium-2 columns">
+        <a href="#" class="button small secondary expand"><i class="fi-filter nav-bar-icon"></i>Filter</a>
+    </div>
 
-		<div class="small-12 medium-8 columns">
-			<div class="row">
-				<div class="small-12 medium-8 small-centered columns">
-					<ul class="button-group even-3">
-						<li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=recent" class="button small secondary">Most Recent</a></li>
-						<li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=popular" class="button small secondary">Most Popular</a></li>
-						<li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=viewed" class="button small secondary">Most Viewed</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+    <div class="small-12 medium-8 columns">
+        <div class="row">
+            <div class="small-12 medium-8 small-centered columns">
+                <ul class="button-group even-3">
+                    <li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=recent" class="button small secondary">Most
+                            Recent</a></li>
+                    <li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=popular" class="button small secondary">Most
+                            Popular</a></li>
+                    <li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=viewed" class="button small secondary">Most
+                            Viewed</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-        {if $username}
-		<div class="small-12 medium-2 columns">
-			<a href="{$BASE_URL}/../../pages/questions/create-question.php" class="button success small expand"><i class="fi-plus nav-bar-icon"></i>Add new</a>
-		</div>
-        {/if}
-	</div>
+    {if $username}
+        <div class="small-12 medium-2 columns">
+            <a href="{$BASE_URL}/../../pages/questions/create-question.php" class="button success small expand"><i
+                        class="fi-plus nav-bar-icon"></i>Add new</a>
+        </div>
+    {/if}
+</div>
 
-	<div class="row">
-		<div class="small-12 columns">
-			<ul class="small-block-grid-1 medium-block-grid-2">
-                {foreach $questions as $question}
-				<li>
-					<div class="panel question" data-reveal-id="questionModal">
-						<div class="row">
-							<div class="small-12 columns">
-								<p class="text-justify question-text">{$question->text}</p>
-							</div>
-						</div>
-						<div class="row text-center">
-							<div class="small-3 medium-4 columns question-stats">
-								<p>{$question->diffVotes}</p>
-								<p>votes</p>
-							</div>
-							<div class="small-3 medium-4 columns question-stats">
-								<p>{$question->numAnswers}</p>
-								<p>answers</p>
-							</div>
-							<div class="small-6 medium-4 columns text-right">
-								<p class="question-author"><a href="{$BASE_URL}/../../pages/users/profile.php?username={$question->username}">{$question->displayUsername()}</a></p>
-								<p class="question-date">{$question->displayDate()}</p>
-							</div>
-						</div>
-					</div>
-				</li>
-                {/foreach}
-			</ul>
-		</div>
-	</div>
+<div class="row">
+    <div class="small-12 columns">
+        <ul class="small-block-grid-1 medium-block-grid-2">
+            {foreach $questions as $question}
+                <li>
+                    <div class="panel question" data-reveal-id="questionModal"
+                         data-target="{$BASE_URL}/../questions/question-modal.php" data-value="{$question->id}"
+                         data-reveal-ajax="true">
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <p class="text-justify question-text">{$question->text}</p>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="small-3 medium-4 columns question-stats">
+                                <p>{$question->diffVotes}</p>
 
-	<div id="questionModal" class="reveal-modal large" data-reveal>
-		{include '../questions/question.tpl'}
-		<a class="close-reveal-modal">&#215;</a>
-	</div>
+                                <p>votes</p>
+                            </div>
+                            <div class="small-3 medium-4 columns question-stats">
+                                <p>{$question->numAnswers}</p>
 
-	{include file = 'common/footer.tpl'}
+                                <p>answers</p>
+                            </div>
+                            <div class="small-6 medium-4 columns text-right">
+                                <p class="question-author"><a
+                                            href="{$BASE_URL}/../../pages/users/profile.php?username={$question->username}">{$question->displayUsername()}</a>
+                                </p>
 
-	<script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function(event) {
-		var id = window.location.hash.substring(1); // remove the #
-		var element = document.querySelector('[data-reveal-id="' + id + '"]');
+                                <p class="question-date">{$question->displayDate()}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>
 
-		element.click();
-	});
-	</script>
+{include file = 'questions/question.tpl'}
+
+<script src="{$JS_PATH}questions.js"></script>
+
+{include file = 'common/footer.tpl'}
+
+{*<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var id = window.location.hash.substring(1); // remove the #
+        var element = document.querySelector('[data-reveal-id="' + id + '"]');
+
+        element.click();
+    });
+</script>*}

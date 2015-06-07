@@ -1,5 +1,5 @@
 $('div.question').on('click', function () {
-    alert($(this).attr("data-target"));
+    alert($(this).attr("data-value"));
 
     $.ajax({
         dataType: "json",
@@ -9,8 +9,6 @@ $('div.question').on('click', function () {
             id: $(this).attr('data-value')
         }
     }).done(function(data) {
-        console.log(JSON.stringify(data));
-        $('p.score').html(data.question.id);
-
+        console.log(data);
     });
 });
