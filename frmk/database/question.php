@@ -154,15 +154,34 @@ class Question extends Model
         $exitsVote = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if($exitsVote) {
-            if($exitsVote['positivo'])
-                return "e positivo";
-            else
-                return "e negativo";
-        } else
-            return "nao ha voto";
+            if($exitsVote['positivo']) {
+                if ($value) {
+                    parent::query("DELETE FROM voto WHERE membroid=? AND contribuicaoid=?", array($_SESSION['iduser'], $this->id));
+                    return array('positive-delete', -1);
+                }
+                else {
+                    parent::query("UPDATE voto SET positivo=? WHERE membroid=? AND contribuicaoid=?", array($value, $_SESSION['iduser'], $this->id));
+                    return array('positive-update', -1);
+                }
+            } else {
+                if ($value) {
+                    parent::query("UPDATE voto SET positivo=? WHERE membroid=? AND contribuicaoid=?", array($value, $_SESSION['iduser'], $this->id));
+                    return array('negative-update', 1);
+                }
+                else {
+                    parent::query("DELETE FROM voto WHERE membroid=? AND contribuicaoid=?", array($_SESSION['iduser'], $this->id));
+                    return array('negative-delete', 1);
+                }
+            }
+        } else {
+            parent::query("INSERT INTO voto (positivo, membroid, contribuicaoid) VALUES(?, ?, ?)", array($value, $_SESSION['iduser'], $this->id));
 
-        // MISSING CONFIRMATION FOR DUPLICATE VOTES
-        //parent::query("INSERT INTO voto (positivo, membroid, contribuicaoid) VALUES(?, ?, ?)", array($value, $_SESSION['iduser'], $this->id));
-
+            if($value) {
+                return array('positive-create', 1);
+            }
+            else {
+                return array('negative-create', -1);
+            }
+        }
     }
 }

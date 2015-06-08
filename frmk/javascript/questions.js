@@ -30,7 +30,7 @@ $('div.question').on('click', function () {
 
         $('form#submitAnswer').submit(function (e) {
             var postData = $(this).serializeArray();
-            html_content2 = '';
+            answer_block = '';
 
             $.ajax({
                 url: $(this).attr('action'),
@@ -38,11 +38,13 @@ $('div.question').on('click', function () {
                 data: postData,
                 type: 'POST',
                 success: function (data) {
-                    html_content2 = addFullAnswerBlock(html_content2, data);
-                    html_content2 += "</div>";
-                    html_content2 += "<hr class ='dashed'>";
-                    $('.question-modal-content form#submitAnswer').prepend(html_content2);
+                    answer_block = addFullAnswerBlock(answer_block, data);
+                    answer_block += "</div>";
+                    answer_block += "<hr class ='dashed'>";
+                    $('.question-modal-content form#submitAnswer').before(answer_block);
                 }
+            }).error(function(e) {
+                console.log(e);
             });
 
             $('form#submitAnswer textarea').val("");
@@ -52,20 +54,22 @@ $('div.question').on('click', function () {
 
         $('form#submitComment').submit(function (e) {
             var postData = $(this).serializeArray();
-            html_content2 = '';
+            comment_block = '';
 
             $.ajax({
-             url: $(this).attr('action'),
-             dataType: "json",
-             data: postData,
-             type: 'POST',
-             success: function ( data ) {
-             html_content2 = addCommentBlockDashed(html_content2, data);
-             html_content2 += "</div>";
-             html_content2 += "<hr class ='dashed'>";
-             $('.question-modal-content form#submitComment').prepend(html_content2);
-             }
-             });
+                url: $(this).attr('action'),
+                dataType: "json",
+                data: postData,
+                type: 'POST',
+                success: function (data) {
+                    comment_block = addCommentBlockDashed(data['username'], data['description'], comment_block);
+                    comment_block += "</div>";
+                     $('.question-modal-content form#submitComment').before(comment_block);
+                    console.log(data);
+                }
+            }).error(function(e) {
+                console.log(e);
+            });
 
             $('form#submitComment input.comment-content').val("");
 
@@ -79,16 +83,16 @@ $('div.question').on('click', function () {
             var superDiv = $(this).parent();
 
             var contributionType = superDiv.parent().parent().parent().data('type');
-            var postData = { id:superDiv.data('id'), value:superDiv.data('value'), type: contributionType };
+            var postData = {id: superDiv.data('id'), value: superDiv.data('value'), type: contributionType};
 
             $.ajax({
                 url: getFormUrl,
                 dataType: "json",
                 data: postData,
                 type: 'POST',
-                success: function ( data ) {
-                    $html = $("p#"+superDiv.data('id')).html();
-                    $("p#"+superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
+                success: function (data) {
+                    //$html = $("p#" + superDiv.data('id')).html();
+                    //$("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
 
                     console.log(data);
                 }
@@ -123,7 +127,7 @@ function addVoteSection(upDown, score, id, html_content) {
         "</div> " +
         "</div> ";
     }
-    else {
+    else if ( score >0){
         html_content += "<div class='small-4 large-2 columns'>" +
         " <div class='row'>" +
         " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
@@ -146,6 +150,31 @@ function addVoteSection(upDown, score, id, html_content) {
         "</div> " +
         "</div> " +
         "</div> ";
+    }
+    else{
+        html_content += "<div class='small-4 large-2 columns'>" +
+        " <div class='row'>" +
+        " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
+        "<i class='fi-like'></i> " +
+        "</div> " +
+        "</div>" +
+        " <div class='row'>" +
+        " <div class='small-12 columns text-center'>" +
+        " <p id='" + id + "' class='score'>" + score + "</p> " +
+        "</div> " +
+        "</div> " +
+        "<div class='row'> " +
+        "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >" +
+        " <i class='fi-dislike'></i>" +
+        " </div> " +
+        "</div>" +
+        " <div class='row'>" +
+        " <div class='small-12 columns text-center'> " +
+        "<i class='fi-check'></i> " +
+        "</div> " +
+        "</div> " +
+        "</div> ";
+
     }
 
     return html_content;
@@ -171,12 +200,13 @@ function addAnswerBlock(author, date, answer_text, html_content) {
     "<p class='text-right question-author'><a href='" + profileURL + "?username=" + author + "'> @" + author + "</a></p>" +
     "<p class='text-right question-date'>" + date + "</p> " +
     "</div>";
+    
     return html_content;
 }
 function addCommentBlockFill(author, comment_text, html_content) {
     var profileURL = $('#questionModal').data('profile');
 
-    html_content += "<hr><p>" + comment_text + "<a href='" + profileURL + "?username=" + author + "'> @" + author + "</a></p> ";
+    html_content += "<p>" + comment_text + "<a href='" + profileURL + "?username=" + author + "'> @" + author + "</a></p><hr class = 'dashed'>";
 
     return html_content;
 }
@@ -185,7 +215,7 @@ function addCommentBlockFill(author, comment_text, html_content) {
 function addCommentBlockDashed(author, comment_text, html_content) {
     var profileURL = $('#questionModal').data('profile');
 
-    html_content += "<hr class = 'dashed'> <p>" + comment_text + "<a href='" + profileURL + "?username=" + author + "'> @" + author + "</a></p> ";
+    html_content += "<p>" + comment_text + "<a href='" + profileURL + "?username=" + author + "'> @" + author + "</a></p><hr class = 'dashed'>";
 
     return html_content;
 }
@@ -199,7 +229,7 @@ function addFullQuestionBlock(html_content, data) {
 
     html_content = addQuestionBlock(data['username'], data['data'], data['text'], html_content);
 
-    html_content += "<div class='small-10 columns comment'>";
+    html_content += "<div class='small-10 columns comment'><hr>";
 
     $.each(data['comments'], function (index, value) {
 
@@ -224,7 +254,7 @@ function addFullAnswerBlock(html_content, answer) {
 
     html_content = addAnswerBlock(answer['username'], answer['data'], answer['description'], html_content);
 
-    html_content += "<div class='small-10 columns comment'>";
+    html_content += "<div class='small-10 columns comment'><hr>";
 
     $.each(answer['comments'], function (index, value) {
 
@@ -265,7 +295,7 @@ function addButtonToSubmitAnswer(html_content, question) {
 }
 
 function addButtonToSubmitComment(html_content, object_id) {
-    var getCommentURL = $('#questionModal').data('answer');
+    var getCommentURL = $('#questionModal').data('comment');
 
     html_content += '<form id="submitComment" action="' + getCommentURL + '" method="post">' +
     "<input type='hidden' name='contribution_id' value='" + object_id + "'>" +
