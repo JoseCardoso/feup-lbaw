@@ -32,6 +32,14 @@ class Comment extends Model
         return $comments;
     }
 
+    static function find($id)
+    {
+        $stmt = parent::query('SELECT * FROM comentario WHERE comentarioid=?;', array($id));
+        $comments = self::processComments($stmt);
+
+        return $comments[0];
+    }
+
     private static function processComments($stmt)
     {
         $object = array();
@@ -54,4 +62,30 @@ class Comment extends Model
 
         return self::processComments($stmt);
     }
+
+    public static function createComment($contribution_id, $comment)
+    {
+        global $connection;
+
+        try {
+            $connection->beginTransaction();
+            $stmt = $connection->prepare("INSERT INTO comentario(data, descricao, contribuicaoid, membroid) VALUES (?, ?, ?, ?)");
+            $stmt->execute(array(date('Y-m-d G:i:s'), $comment, $contribution_id, $_SESSION['iduser']));
+
+            // get last id from contribution
+            $stmt = $connection->prepare("SELECT last_value FROM askfeup.contribuicao_contribuicaoid_seq;");
+            $stmt->execute();
+            $last_contribution_id = $stmt->fetch()['last_value'];
+
+            $connection->commit();
+
+            return self::find($last_contribution_id);
+
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
+    }
+
+
 }
