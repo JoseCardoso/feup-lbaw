@@ -1,5 +1,4 @@
 $('div.question').on('click', function () {
-    // alert($(this).attr("data-target"));
 
     $.ajax({
         dataType: "json",
@@ -9,9 +8,7 @@ $('div.question').on('click', function () {
             id: $(this).attr('data-value')
         }
     }).done(function (data) {
-        // console.log( data['question']);
 
-        JSON.stringify(data);
         $('.question-modal-content').empty();
 
         var html_content = "";
@@ -33,6 +30,8 @@ $('div.question').on('click', function () {
 
         $('.question-modal-content').append(html_content);
 
+        console.log(html_content);
+
         $( 'form#submitAnswer' ).submit(function ( e ) {
             var postData = $(this).serializeArray();
             html_content2 = '';
@@ -50,6 +49,29 @@ $('div.question').on('click', function () {
                 }
             });
 
+            $('form#submitAnswer textarea').val("");
+
+            e.preventDefault();
+        });
+
+        $( 'form#submitComment' ).submit(function ( e ) {
+            var postData = $(this).serializeArray();
+            html_content2 = '';
+
+            /*$.ajax({
+                url: $(this).attr('action'),
+                dataType: "json",
+                data: postData,
+                type: 'POST',
+                success: function ( data ) {
+                    html_content2 = addFullAnswerBlock(html_content2, data);
+                    html_content2 += "</div>";
+                    html_content2 += "<hr class ='dashed'>";
+                    $('.question-modal-content form#submitAnswer').prepend(html_content2);
+                }
+            });*/
+
+            $('form#submitComment input.comment-content').val("");
 
             e.preventDefault();
         });
@@ -69,10 +91,6 @@ $('div.question').on('click', function () {
                 success: function ( data ) {
                     $html = $("p#"+superDiv.data('id')).html();
                     $("p#"+superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
-                    console.log($html);
-                    console.log(parseInt($html) + parseInt(data['value']));
-                    console.log(data);
-
                 }
             });
         });
@@ -80,7 +98,6 @@ $('div.question').on('click', function () {
 });
 
 function addVoteSection(upDown, score, id,  html_content) {
-    console.log(id);
 
     html_content += "<div class='small-4 large-2 columns'>" +
     " <div class='row'>" +
@@ -108,34 +125,42 @@ function addVoteSection(upDown, score, id,  html_content) {
     return html_content;
 }
 
-function addQuestionBlock(authour, date, question_text, html_content) {
+function addQuestionBlock(author, date, question_text, html_content) {
+    var profileURL = $('#questionModal').data('profile');
+
     html_content += "<div class='small-8 large-10 columns'> " +
     "<p class='answer-text'>" + question_text + "</p> " +
-    "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p> " +
+    "<p class='text-right question-author'><a href='" + profileURL + "?username="+ author +"'> @" + author + "</a></p> " +
     "<p class='text-right question-date'>" + date + "</p> " +
     "</div>";
 
     return html_content;
 }
 
-function addAnswerBlock(authour, date, answer_text, html_content) {
+function addAnswerBlock(author, date, answer_text, html_content) {
+    var profileURL = $('#questionModal').data('profile');
+
     html_content += "<div class='small-8 large-10 columns'> " +
     "<p>" + answer_text + "</p> " +
-    "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p>" +
+    "<p class='text-right question-author'><a href='" + profileURL + "?username="+ author +"'> @" + author + "</a></p>" +
     "<p class='text-right question-date'>" + date + "</p> " +
     "</div>";
     return html_content;
 }
-function addCommentBlockFill(authour, comment_text, html_content) {
-    html_content += "<hr><p>" + comment_text + "<a href='#'> @" + authour + "</a></p> ";
+function addCommentBlockFill(author, comment_text, html_content) {
+    var profileURL = $('#questionModal').data('profile');
+
+    html_content += "<hr><p>" + comment_text + "<a href='" + profileURL + "?username="+ author +"'> @" + author + "</a></p> ";
 
     return html_content;
 }
 
 
 
-function addCommentBlockDashed(authour, comment_text, html_content) {
-    html_content = "<hr class = 'dashed'> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p> ";
+function addCommentBlockDashed(author, comment_text, html_content) {
+    var profileURL = $('#questionModal').data('profile');
+
+    html_content += "<hr class = 'dashed'> <p>" + comment_text + "<a href='" + profileURL + "?username="+ author +"'> @" + author + "</a></p> ";
 
     return html_content;
 }
@@ -149,7 +174,7 @@ function addFullQuestionBlock(html_content, data) {
 
     html_content += "<div class='small-10 columns comment'>";
 
-    $.each(data['comments'], function (index, value) {
+        $.each(data['comments'], function (index, value) {
 
         if (index == 0)
 
@@ -158,33 +183,42 @@ function addFullQuestionBlock(html_content, data) {
             html_content = addCommentBlockDashed(value['username'], value['description'], html_content);
     });
 
+    html_content = addButtonToSubmitComment(html_content, data['id']);
+
     html_content += "</div></div>";
 
     return html_content;
 }
 
-function addFullAnswerBlock(html_content, answer_array) {
+function addFullAnswerBlock(html_content, answer) {
 
-    html_content = addVoteSection(true, answer_array['diffVotes'], answer_array['id'], html_content);
+    html_content += "<div class='row'>";
+    html_content = addVoteSection(true, answer['diffVotes'], answer['id'], html_content);
 
-    html_content = addAnswerBlock(answer_array['username'], answer_array['data'], answer_array['description'], html_content);
+    html_content = addAnswerBlock(answer['username'], answer['data'], answer['description'], html_content);
 
     html_content += "<div class='small-10 columns comment'>";
 
-    $.each(answer_array['comments'], function (index, value) {
+    $.each(answer['comments'], function (index, value) {
 
-        html_content = addCommentBlockFill(value['username'], value['description'], html_content);
+        if (index == 0)
+
+            html_content = addCommentBlockFill(value['username'], value['description'], html_content);
+        else
+            html_content = addCommentBlockDashed(value['username'], value['description'], html_content);
     });
 
-    html_content += "</div>";
+    html_content = addButtonToSubmitComment(html_content, answer['id']);
+
+    html_content += "</div></div>";
 
     return html_content;
 }
 
 function addButtonToSubmitAnswer(html_content, question) {
-    var getFormUrl = $('#questionModal').data('answer');
+    var getAnswerURL = $('#questionModal').data('answer');
 
-    html_content += '<form id="submitAnswer" action="'+ getFormUrl +'" method="post">' +
+    html_content += '<form id="submitAnswer" action="'+ getAnswerURL +'" method="post">' +
                         "<input type='hidden' name='question_id' value='"+question['id']+"'>" +
                         "<div class='row'>" +
                             "<div class='small-12 columns'>" +
@@ -199,6 +233,28 @@ function addButtonToSubmitAnswer(html_content, question) {
                             "</div>" +
                         "</div>" +
                     "</form>";
+
+    return html_content;
+}
+
+function addButtonToSubmitComment(html_content, object_id) {
+    var getCommentURL = $('#questionModal').data('answer');
+
+    html_content += '<form id="submitComment" action="'+ getCommentURL +'" method="post">' +
+    "<input type='hidden' name='contribution_id' value='"+object_id+"'>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns'>" +
+    "<label>" +
+    "<input class='comment-content' type='text' placeholder='Your comment' name='comment'>" +
+    "</label>" +
+    "</div>" +
+    "</div>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns'>" +
+    "<input type='submit' class='button tiny success' value='Post comment'>" +
+    "</div>" +
+    "</div>" +
+    "</form>";
 
     return html_content;
 }
