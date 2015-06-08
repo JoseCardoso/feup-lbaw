@@ -1,3 +1,4 @@
+
 $('div.question').on('click', function () {
     alert($(this).attr("data-target"));
 
@@ -16,25 +17,24 @@ $('div.question').on('click', function () {
 
         var html_content = "";
 
-        addFullQuestionBlock(html_content, data['question']);
+        html_content = addFullQuestionBlock(html_content, data['question']);
 
         html_content += "<hr>\n";
 
-        JSON.stringify(data['answers']);
         $.each(data['answers'], function (index, value) {
 
-            addFullAnswerBlock($('.question-modal-content'), value);
-            $('.question-modal-content').append("</div>");
-            $('.question-modal-content').append("<hr class ='dashed'>");
+            html_content = addFullAnswerBlock(html_content, value);
+            html_content += "</div>";
+            html_content += "<hr class ='dashed'>";
         });
 
-        console.log($('.question-modal-content'));
+        $('.question-modal-content').append(html_content);
     });
 });
 
 
-function addVoteSection(upDown, score, $HtmlElement) {
-    $HtmlElement.append("  <div class='small-4 large-2 columns'>" +
+function addVoteSection(upDown, score, html_content) {
+    html_content += "<div class='small-4 large-2 columns'>" +
                                 " <div class='row'>" +
                                     " <div class='small-12 columns text-center'> " +
                                         "<i class='fi-like'></i> " +
@@ -55,75 +55,84 @@ function addVoteSection(upDown, score, $HtmlElement) {
                                         "<i class='fi-check'></i> " +
                                     "</div> " +
                                 "</div> " +
-                            "</div> ");
+                            "</div> ";
+
+    return html_content;
 }
 
-function addQuestionBlock(authour, date, question_text, $HtmlElement) {
-    $HtmlElement.append("<div class='small-8 large-10 columns'> " +
+function addQuestionBlock(authour, date, question_text, html_content) {
+    html_content += "<div class='small-8 large-10 columns'> " +
     "<p class='answer-text'>" + question_text + "</p> " +
     "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p> " +
     "<p class='text-right question-date'>" + date + "</p> " +
-    "</div>");
+    "</div>";
 
+    return html_content;
 }
 
-function addAnswerBlock(authour, date, answer_text, $HtmlElement) {
-    $HtmlElement.append("<div class='small-8 large-10 columns'> " +
+function addAnswerBlock(authour, date, answer_text, html_content) {
+    html_content += "<div class='small-8 large-10 columns'> " +
                             "<p>" + answer_text + "</p> " +
                             "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p>" +
                             "<p class='text-right question-date'>" + date + "</p> " +
-                        "</div>");
+                        "</div>";
 
+    return html_content;
 }
 
-function addCommentBlockFill(authour, comment_text, $HtmlElement) {
-    $HtmlElement.append("<hr><p>" + comment_text + "<a href='#'> @" + authour + "</a></p> ");
+function addCommentBlockFill(authour, comment_text, html_content) {
+    html_content += "<hr><p>" + comment_text + "<a href='#'> @" + authour + "</a></p> ";
 
+    return html_content;
 }
 
 
-function addCommentBlockDashed(authour, comment_text, $HtmlElement) {
-    $HtmlElement.append("<hr class = 'dashed'> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p> ");
+function addCommentBlockDashed(authour, comment_text, html_content) {
+    html_content = "<hr class = 'dashed'> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p> ";
 
+    return html_content;
 }
 
-function addFullQuestionBlock($HtmlElement, data) {
+function addFullQuestionBlock(html_content, data) {
 
-    $HtmlElement.append("<div class='row'><div class='row'>ola");
-    addVoteSection(true, data['diffVotes'], $HtmlElement);
+    html_content += "<div class='row'>";
+    html_content = addVoteSection(true, data['diffVotes'], html_content);
 
-    addQuestionBlock(data['username'], data['data'], data['text'], $HtmlElement);
+    html_content = addQuestionBlock(data['username'], data['data'], data['text'], html_content);
 
-    $HtmlElement.append("<div class='small-10 columns comment'>");
+    html_content += "<div class='small-10 columns comment'>";
 
     $.each(data['comments'], function (index, value) {
 
         if (index == 0)
-            addCommentBlockFill(value['username'], value['description'], $HtmlElement);
+            html_content = addCommentBlockFill(value['username'], value['description'], html_content);
         else
-            addCommentBlockDashed(value['username'], value['description'], $HtmlElement);
+            html_content = addCommentBlockDashed(value['username'], value['description'], html_content);
     });
 
-    $HtmlElement.append("</div></div>");
+    html_content += "</div></div>";
+
+    return html_content;
 }
 
-function addFullAnswerBlock($HtmlElement, answer_array) {
+function addFullAnswerBlock(html_content, answer_array) {
 
-    JSON.stringify(answer_array);
+    //JSON.stringify(answer_array);
 
-    addVoteSection(true, answer_array['diffVotes'], $HtmlElement);
+    html_content = addVoteSection(true, answer_array['diffVotes'], html_content);
 
-    addAnswerBlock(answer_array['username'], answer_array['data'], answer_array['description'], $HtmlElement);
+    html_content = addAnswerBlock(answer_array['username'], answer_array['data'], answer_array['description'], html_content);
 
-    $HtmlElement.append("<div class='small-10 columns comment'>");
+    html_content += "<div class='small-10 columns comment'>";
 
     $.each(answer_array['comments'], function (index, value) {
 
-        addCommentBlockFill(value['username'], value['description'], $HtmlElement);
+        html_content = addCommentBlockFill(value['username'], value['description'], html_content);
     });
 
-    $HtmlElement.append("</div>")
+    html_content += "</div>";
 
+    return html_content;
 }
 
 
