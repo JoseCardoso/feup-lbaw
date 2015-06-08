@@ -82,8 +82,8 @@ class User extends Model
             $connection->beginTransaction();
 
             /* Getting user from db*/
-            $user = $connection->prepare("SELECT * FROM utilizador, membro WHERE username = ? AND password = ? AND membroid = utilizadorid;");
-            $user->execute(array($username, hash('sha256', $password)));
+            $user = $connection->prepare("SELECT * FROM utilizador, membro WHERE (username = ? OR email=?) AND password = ? AND membroid = utilizadorid;");
+            $user->execute(array($username, $username, hash('sha256', $password)));
             $iduser = $user->fetch()['utilizadorid'];
 
             // CHECK FOR ADMIN
