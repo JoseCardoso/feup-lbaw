@@ -35,18 +35,20 @@
 
 								<td>{$question->text}</td>
 
-								<td class="text-center"><a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$question->username}">{$question->username}</a></td>
+								<td class="text-center">
+									<a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$question->username}">{$question->username}</a>
+								</td>
 
 								<td>
 									<ul class="button-group even-4">
-										<li>
-											<a href="{$BASE_URL}/../../pages/admin/admin-question.php?id={$question->id}" class="button small">Details</a>
-										</li>
 										<li>
 											<a href="{$BASE_URL}/../../pages/admin/admin-answers.php?question_id={$question->id}" class="button small">Answers</a>
 										</li>
 										<li>
 											<a href="{$BASE_URL}/../../pages/admin/admin-comments.php?contribution_id={$question->id}" class="button small">Comments</a>
+										</li>
+										<li>
+											<a href="{$BASE_URL}/../../pages/admin/admin-question.php?id={$question->id}" class="button small">Details</a>
 										</li>
 										<li>
 											<a href="#" class="button small">Delete</a>
