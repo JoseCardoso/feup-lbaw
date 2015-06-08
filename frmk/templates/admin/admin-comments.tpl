@@ -45,7 +45,7 @@
 								<td>
 									<ul class="button-group even-2">
 										<li>
-											<a href="#" class="button small">Details</a>
+											<a href="{$BASE_URL}/../../pages/admin/admin-comment.php?comment={$comment->id}" class="button small">Details</a>
 										</li>
 										<li>
 											<a href="#" class="button small">Delete</a>

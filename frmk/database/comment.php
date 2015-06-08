@@ -32,6 +32,14 @@ class Comment extends Model
         return $comments;
     }
 
+    static function find($id)
+    {
+        $stmt = parent::query('SELECT * FROM comentario WHERE comentarioid=?;', array($id));
+        $comments = self::processComments($stmt);
+
+        return $comments[0];
+    }
+
     private static function processComments($stmt)
     {
         $object = array();

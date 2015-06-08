@@ -48,7 +48,7 @@
 											<a href="{$BASE_URL}/../../pages/admin/admin-comments.php?contribution_id={$answer->id}" class="button small">Comments</a>
 										</li>
 										<li>
-											<a href="{$BASE_URL}/../../pages/admin/admin-answer.php?contribution_id={$answer->id}" class="button small">Details</a>
+											<a href="{$BASE_URL}/../../pages/admin/admin-answer.php?answer={$answer->id}" class="button small">Details</a>
 										</li>
 										<li>
 											<a href="#" class="button small">Delete</a>

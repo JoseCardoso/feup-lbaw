@@ -14,36 +14,35 @@
 
 <div class="row">
     <div class="small-12 columns">
-        <h1>{$answer->description}</h1>
+        <h1>{$comment->description}</h1>
     </div>
 </div>
 
 <div class="row">
     <div class="small-5 small-centered columns">
         <table class="small-12">
-            <caption>Answer information</caption>
+            <caption>Comment information</caption>
             <tbody>
             <tr>
                 <th class="small-4 text-right">ID</th>
-                <td class="small-8">{$answer->id}</td>
+                <td class="small-8">{$comment->id}</td>
             </tr>
             <tr>
                 <th class="text-right">Description</th>
-                <td>{$answer->description}</td>
+                <td>{$comment->description}</td>
             </tr>
             <tr>
-                <th class="text-right">Question ID</th>
-                <td>{$answer->question_id}</td>
+                <th class="text-right">Contribution ID</th>
+                <td>{$comment->contribution_id}</td>
             </tr>
             <tr>
-                <th class="text-right">Correct?</th>
-                {if $answer->correct == 0}
-                    <td>False</td>
-                {else}
-                    <td>True</td>
-                {/if}
+                <th class="text-right">Member ID</th>
+                <td>{$comment->member_id}</td>
             </tr>
-
+            <tr>
+                <th class="text-right">Date</th>
+                <td>{$comment->data}</td>
+            </tr>
             </tbody>
         </table>
     </div>
