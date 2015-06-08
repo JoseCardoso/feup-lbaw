@@ -12,16 +12,16 @@ $('div.question').on('click', function () {
         // console.log( data['question']);
 
         JSON.stringify(data);
-        $('#questionModal').empty();
-        addFullQuestionBlock($('#questionModal'), data['question']);
-        $('#questionModal').append("</div> <hr>");
+        $('.question-modal-content').empty();
+        addFullQuestionBlock($('.question-modal-content'), data['question']);
+        $('.question-modal-content').append("</div> <hr>");
 
         JSON.stringify(data['answers']);
         $.each(data['answers'], function (index, value) {
 
-            addFullAnswerBlock($('#questionModal'), value);
-            $('#questionModal').append("</div>");
-            $('#questionModal').append("<hr class ='dashed'>");
+            addFullAnswerBlock($('.question-modal-content'), value);
+            $('.question-modal-content').append("</div>");
+            $('.question-modal-content').append("<hr class ='dashed'>");
         });
     });
 });
@@ -62,18 +62,26 @@ function addQuestionBlock(authour, date, question_text, $HtmlElement) {
 }
 
 function addAnswerBlock(authour, date, answer_text, $HtmlElement) {
-    $HtmlElement.append("<div class='small-8 large-10 columns'> <p>" + answer_text + "</p> <p class='text-right question-author'><a href='#''> @" + authour + "</a></p> <p class='text-right question-date'>" + date + "</p> </div>");
+    $HtmlElement.append("<div class='small-8 large-10 columns'> " +
+                            "<p>" + answer_text + "</p> " +
+                            "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p>" +
+                            "<p class='text-right question-date'>" + date + "</p> " +
+                        "</div>");
 
 }
 
-function addComentBlockFill(authour, comment_text, $HtmlElement) {
-    $HtmlElement.append("<div class='small-10 columns comment'> <hr> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p> </div>");
+function addCommentBlockFill(authour, comment_text, $HtmlElement) {
+    $HtmlElement.append("<div class='small-10 columns comment'> " +
+                            "<hr><p>" + comment_text + "<a href='#'> @" + authour + "</a></p> " +
+                        "</div>");
 
 }
 
 
-function addComentBlockDashed(authour, comment_text, $HtmlElement) {
-    $HtmlElement.append("<div class='small-10 columns comment'> <hr class = 'dashed'> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p>");
+function addCommentBlockDashed(authour, comment_text, $HtmlElement) {
+    $HtmlElement.append("<div class='small-10 columns comment'> " +
+    "                       <hr class = 'dashed'> <p>" + comment_text + "<a href='#'> @" + authour + "</a></p> " +
+    "                   </div>");
 
 }
 
@@ -89,9 +97,9 @@ function addFullQuestionBlock($HtmlElement, data) {
     $.each(data['comments'], function (index, value) {
 
         if (index == 0)
-            addComentBlockFill(value['username'], value['description'], $HtmlElement);
+            addCommentBlockFill(value['username'], value['description'], $HtmlElement);
         else
-            addComentBlockDashed(value['username'], value['description'], $HtmlElement);
+            addCommentBlockDashed(value['username'], value['description'], $HtmlElement);
     });
 
     $HtmlElement.append("</div>");
@@ -107,9 +115,8 @@ function addFullAnswerBlock($HtmlElement, answer_array) {
 
     $.each(answer_array['comments'], function (index, value) {
 
-        addComentBlockFill(value['username'], value['description'], $HtmlElement);
+        addCommentBlockFill(value['username'], value['description'], $HtmlElement);
     });
-
 
     $HtmlElement.append("</div>");
 }

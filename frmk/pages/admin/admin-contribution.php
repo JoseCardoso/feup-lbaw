@@ -14,7 +14,7 @@ if (isset($_GET['contribution_id'])) {
 
         var_dump($answer);
     } else {
-        
+
         go('../../pages/admin/admin-home.php');
     }
 
