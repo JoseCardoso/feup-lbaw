@@ -16,13 +16,13 @@ $('div.question').on('click', function () {
 
         var html_content = "";
 
+
         html_content = addFullQuestionBlock(html_content, data['question']);
 
-        html_content += "<hr>\n";
+
+        html_content += "<hr>";
 
         $.each(data['answers'], function (index, value) {
-
-            console.log(value);
 
             html_content = addFullAnswerBlock(html_content, value);
             html_content += "</div>";
@@ -79,9 +79,9 @@ $('div.question').on('click', function () {
     });
 });
 
-
 function addVoteSection(upDown, score, id,  html_content) {
     console.log(id);
+
     html_content += "<div class='small-4 large-2 columns'>" +
     " <div class='row'>" +
     " <div class='small-12 columns text-center' data-id='"+id.toString()+"' data-value='1'> " +
@@ -124,15 +124,14 @@ function addAnswerBlock(authour, date, answer_text, html_content) {
     "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p>" +
     "<p class='text-right question-date'>" + date + "</p> " +
     "</div>";
-
     return html_content;
 }
-
 function addCommentBlockFill(authour, comment_text, html_content) {
     html_content += "<hr><p>" + comment_text + "<a href='#'> @" + authour + "</a></p> ";
 
     return html_content;
 }
+
 
 
 function addCommentBlockDashed(authour, comment_text, html_content) {
@@ -153,6 +152,7 @@ function addFullQuestionBlock(html_content, data) {
     $.each(data['comments'], function (index, value) {
 
         if (index == 0)
+
             html_content = addCommentBlockFill(value['username'], value['description'], html_content);
         else
             html_content = addCommentBlockDashed(value['username'], value['description'], html_content);
