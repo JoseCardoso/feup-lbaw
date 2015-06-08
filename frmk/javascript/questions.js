@@ -13,8 +13,12 @@ $('div.question').on('click', function () {
 
         JSON.stringify(data);
         $('.question-modal-content').empty();
-        addFullQuestionBlock($('.question-modal-content'), data['question']);
-        $('.question-modal-content').append("</div> <hr>");
+
+        var html_content = "";
+
+        addFullQuestionBlock(html_content, data['question']);
+
+        html_content += "<hr>\n";
 
         JSON.stringify(data['answers']);
         $.each(data['answers'], function (index, value) {
@@ -23,6 +27,8 @@ $('div.question').on('click', function () {
             $('.question-modal-content').append("</div>");
             $('.question-modal-content').append("<hr class ='dashed'>");
         });
+
+        console.log($('.question-modal-content'));
     });
 });
 
@@ -83,9 +89,7 @@ function addCommentBlockDashed(authour, comment_text, $HtmlElement) {
 
 function addFullQuestionBlock($HtmlElement, data) {
 
-    JSON.stringify(data);
-
-    $HtmlElement.append("<div class='row'>" );
+    $HtmlElement.append("<div class='row'><div class='row'>ola");
     addVoteSection(true, data['diffVotes'], $HtmlElement);
 
     addQuestionBlock(data['username'], data['data'], data['text'], $HtmlElement);
@@ -100,7 +104,7 @@ function addFullQuestionBlock($HtmlElement, data) {
             addCommentBlockDashed(value['username'], value['description'], $HtmlElement);
     });
 
-    $HtmlElement.append("</div>");
+    $HtmlElement.append("</div></div>");
 }
 
 function addFullAnswerBlock($HtmlElement, answer_array) {
