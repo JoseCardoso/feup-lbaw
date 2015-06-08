@@ -43,6 +43,8 @@ $('div.question').on('click', function () {
                     answer_block += "<hr class ='dashed'>";
                     $('.question-modal-content form#submitAnswer').before(answer_block);
                 }
+            }).error(function(e) {
+                console.log(e);
             });
 
             $('form#submitAnswer textarea').val("");
@@ -64,8 +66,9 @@ $('div.question').on('click', function () {
                     comment_block += "</div>";
                      $('.question-modal-content form#submitComment').before(comment_block);
                     console.log(data);
-
                 }
+            }).error(function(e) {
+                console.log(e);
             });
 
             $('form#submitComment input.comment-content').val("");
@@ -88,8 +91,8 @@ $('div.question').on('click', function () {
                 data: postData,
                 type: 'POST',
                 success: function (data) {
-                    $html = $("p#" + superDiv.data('id')).html();
-                    $("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
+                    //$html = $("p#" + superDiv.data('id')).html();
+                    //$("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
 
                     console.log(data);
                 }
