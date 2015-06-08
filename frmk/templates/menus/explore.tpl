@@ -1,6 +1,9 @@
 {include file = 'common/header.tpl'}
 
 <link rel="stylesheet" href="{$CSS_PATH}askfeup/explore.css"/>
+
+<script src="{$JS_PATH}search.js"></script>
+
 </head>
 
 <body>

@@ -1,20 +1,15 @@
-$('.search').on('click', function() {
+$('#search').on('click', function() {
 
 
 
     var searchVal =  $('.search').val('');
     if(searchVal !== '') {
-        $.getJSON('/../../db/search.php?word='+searchVal, function(returnData) {
+
+
+        $.getJSON('{$BASE_URL}/../../database/search.php?word=' + searchVal, function(returnData) {
             if (returnData.length == 0) {
-                $('#results').html('<p>Search term entered does not return any data.</p>');
+                console.log(returnData);
             } else {
-                var htmlR = '<h1> Results: </h1> </br><ul>';
-                for (var i = returnData.length - 1; i >= 0; i--) {
-                    htmlR += '<li style="padding-left: 5px;">' +
-                    "<a href=''/../../database/question.php?question='" + returnData[i] +'">' + returnData[i] + '</a>'
-                    +'</li>';
-                };
-                $('#results').html(htmlR + '</ul>');
             }
         });
     } else {
