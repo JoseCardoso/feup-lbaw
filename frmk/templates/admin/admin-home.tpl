@@ -1,20 +1,18 @@
-{include file = 'common/header.tpl'}
+	{include file = 'common/header.tpl'}
 </head>
-
 <body>
-{include file = 'admin/admin-navbar.tpl'}
+	{include file = 'admin/admin-navbar.tpl'}
 
-<div class="row">
+	<div class="row">
+		<div class="small-12 columns">
+			<h1>Welcome administrator!</h1>
+		</div>
+	</div>
 
-    <div class="small-12 medium-2 columns">
-    </div>
+	<div class="row">
+		<div class="small-4 small-centered columns">
+			<a href="#" class="button success expand"><i class="fi-plus nav-bar-icon"></i>New admin</a>
+		</div>
+	</div>
 
-    <div class="small-12 medium-8 columns">
-    </div>
-
-    <div class="small-12 medium-2 columns">
-        <a href="#" class="button success small expand"><i class="fi-plus nav-bar-icon"></i>New admin</a>
-    </div>
-</div>
-
-{include file = 'common/footer.tpl'}
+	{include file = 'common/footer.tpl'}
