@@ -1,42 +1,64 @@
-{include file = 'common/header.tpl'}
+	{include file = 'common/header.tpl'}
 
-<style>
-    li {
-        list-style-type: none;
-    }
-</style>
-
+	<style>
+		li {
+			list-style-type: none;
+		}
+	</style>
 </head>
-
 <body>
-{include file = 'admin/admin-navbar.tpl'}
+	{include file = 'admin/admin-navbar.tpl'}
 
-<h1>Comments</h1>
+	<div class="row">
+		<div class="small-12 columns">
+			<h1>Comments</h1>
+		</div>
+	</div>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Description</th>
-        <th>Username</th>
-        <th>Contribution</th>
-    </tr>
+	<div class="row">
+		<div class="small-12 columns">
+			<table>
+				<thead>
+					<tr>
+						<th class="small-1 text-center">ID</th>
+						<th class="small-6 text-center">Description</th>
+						<th class="small-1 text-center">Username</th>
+						<th class="small-1 text-center">Contribution</th>
+						<th class="small-3 text-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ul class="custom-list-class">
+						{foreach $comments as $comment}
+						<li>
+							<tr>
+								<td class="text-center">{$comment->id}</td>
 
-    <tbody>
-    <ul class="custom-list-class">
-        {foreach $comments as $comment}
-            <li>
-                <tr>
-                    <td>{$comment->id}</td>
-                    <td>{$comment->description}</td>
-                    <td><a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$comment->username}">{$comment->username}</a></td>
-                    <td>{$comment->contribution_id}</td>
-                    <td><a href="#" class="button small">Details</a></td>
-                    <td><a href="#" class="button small">Delete</a></td>
-                </tr>
-            </li>
-        {/foreach}
-    </ul>
-</table>
+								<td>{$comment->description}</td>
 
-{include file = 'common/footer.tpl'}
+								<td class="text-center">
+									<a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$comment->username}">{$comment->username}</a>
+								</td>
+
+								<td class="text-center">{$comment->contribution_id}</td>
+
+								<td>
+									<ul class="button-group even-2">
+										<li>
+											<a href="#" class="button small">Details</a>
+										</li>
+										<li>
+											<a href="#" class="button small">Delete</a>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</li>
+						{/foreach}
+					</ul>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	{include file = 'common/footer.tpl'}
