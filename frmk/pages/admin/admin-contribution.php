@@ -1,6 +1,7 @@
 <?php
 
 include_once('../../config/config.php');
+include_once('../../config/admin-config.php');
 
 include($BASE_DB . 'question.php');
 include($BASE_DB . 'answer.php');

@@ -1,6 +1,7 @@
 <?php
 
 include_once('../../config/config.php');
+include_once('../../config/admin-config.php');
 
 include($BASE_DB . 'user.php');
 
@@ -10,6 +11,7 @@ if (isset($_GET['user'])) {
 
         $smarty->assign('user', $user);
         $smarty->assign('BASE_URL', $BASE_URL);
+        $smarty->assign('username', $_SESSION['adminUsername']);
 
         $smarty->display($BASE_TEMPLATES . 'admin/admin-user.tpl');
 

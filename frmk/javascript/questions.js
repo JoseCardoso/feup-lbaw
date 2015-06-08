@@ -43,7 +43,7 @@ $('div.question').on('click', function () {
                     answer_block += "<hr class ='dashed'>";
                     $('.question-modal-content form#submitAnswer').before(answer_block);
                 }
-            }).error(function(e) {
+            }).error(function (e) {
                 console.log(e);
             });
 
@@ -64,10 +64,14 @@ $('div.question').on('click', function () {
                 success: function (data) {
                     comment_block = addCommentBlockDashed(data['username'], data['description'], comment_block);
                     comment_block += "</div>";
-                     $('.question-modal-content form#submitComment' + data['id']).before(comment_block);
-                    console.log($('.question-modal-content form#submitComment' + data['id']));
+
+                    /*$('.question-modal-content form#submitComment' + data['id']).before(comment_block);
+                     console.log($('.question-modal-content form#submitComment' + data['id']));*/
+
+                    $('.question-modal-content form#submitComment').before(comment_block);
+                    console.log(data);
                 }
-            }).error(function(e) {
+            }).error(function (e) {
                 console.log(e);
             });
 
@@ -91,15 +95,54 @@ $('div.question').on('click', function () {
                 data: postData,
                 type: 'POST',
                 success: function (data) {
-                    //$html = $("p#" + superDiv.data('id')).html();
-                    //$("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
-
                     console.log(data);
+                    $html = $("p#" + superDiv.data('id')).html();
+
+                    $("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
+
                 }
             });
         });
     });
 });
+
+function updateVoteSection(data, $htmlElement) {
+
+
+    if (data['previous'] == "positive-update") {
+        $htmlElement.replaceWith(
+            addVoteSection(upDown, data['value'], data['id'], $htmlElement)
+        );
+    }
+    else if (data['previous'] == "positive-create") {
+        $htmlElement.replaceWith(
+
+
+        );
+    }
+    else if (data['previous'] == "positive-delete") {
+        $htmlElement.replaceWith(
+
+
+        );
+    } else if (data['previous'] == "negative-update") {
+        $htmlElement.replaceWith(
+
+
+        );
+    } else if (data['previous'] == "negative-create") {
+        $htmlElement.replaceWith(
+
+
+        );
+    } else if (data['previous'] == "negative-delete") {
+        $htmlElement.replaceWith(
+
+
+        );
+    }
+
+}
 
 function addVoteSection(upDown, score, id, html_content) {
 
@@ -127,7 +170,7 @@ function addVoteSection(upDown, score, id, html_content) {
         "</div> " +
         "</div> ";
     }
-    else if ( score >0){
+    else if (score > 0) {
         html_content += "<div class='small-4 large-2 columns'>" +
         " <div class='row'>" +
         " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
@@ -151,7 +194,7 @@ function addVoteSection(upDown, score, id, html_content) {
         "</div> " +
         "</div> ";
     }
-    else{
+    else {
         html_content += "<div class='small-4 large-2 columns'>" +
         " <div class='row'>" +
         " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
@@ -200,9 +243,10 @@ function addAnswerBlock(author, date, answer_text, html_content) {
     "<p class='text-right question-author'><a href='" + profileURL + "?username=" + author + "'> @" + author + "</a></p>" +
     "<p class='text-right question-date'>" + date + "</p> " +
     "</div>";
-    
+
     return html_content;
 }
+
 function addCommentBlockFill(author, comment_text, html_content) {
     var profileURL = $('#questionModal').data('profile');
 
@@ -297,7 +341,27 @@ function addButtonToSubmitAnswer(html_content, question) {
 function addButtonToSubmitComment(html_content, object_id) {
     var getCommentURL = $('#questionModal').data('comment');
 
-    html_content += '<form id="submitComment'+object_id+'" action="' + getCommentURL + '" method="post" class="submitComment">' +
+    html_content += '<form id="submitComment" action="' + getCommentURL + '" method="post">' +
+    "<input type='hidden' name='contribution_id' value='" + object_id + "'>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns'>" +
+    "<label>" +
+    "<input class='comment-content' type='text' placeholder='Your comment' name='comment'>" +
+    "</label>" +
+    "</div>" +
+    "</div>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns'>" +
+    "<input type='submit' class='button tiny success' value='Post comment'>" +
+    "</div>" +
+    "</div>" +
+    "</form>";
+}
+
+function addButtonToSubmitComment(html_content, object_id) {
+    var getCommentURL = $('#questionModal').data('comment');
+
+    html_content += '<form id="submitComment' + object_id + '" action="' + getCommentURL + '" method="post" class="submitComment">' +
     "<input type='hidden' name='contribution_id' value='" + object_id + "'>" +
     "<div class='row'>" +
     "<div class='small-12 columns'>" +

@@ -18,6 +18,11 @@ try {
     list($logged, $user) = User::login($username, $password);
 
 	if(!$logged) {
+        // Check admin
+        if($user != null) {
+            $_SESSION['adminid'] = $user;
+            go('../../pages/admin/admin-home.php');
+        }
 		$_SESSION['error_messages'][] = 'Invalid username or password';
 		$_SESSION['form_values'] = $_POST;
 

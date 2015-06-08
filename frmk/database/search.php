@@ -1,10 +1,10 @@
-<?php /**
- * Get user with username $username
- * @param $username String with user username
- * @return User Return user of type User
- */
+<?php
+
+require_once('model.php');
+
 if (isset($_GET['word'])) {
 
+    echo ' tou a aqui';
     $text = $_GET['word'];
     global $connection;
     try {
