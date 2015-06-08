@@ -1,4 +1,3 @@
-
 $('div.question').on('click', function () {
     alert($(this).attr("data-target"));
 
@@ -28,6 +27,8 @@ $('div.question').on('click', function () {
             html_content += "<hr class ='dashed'>";
         });
 
+        html_content = addButtonToSubmitAnswer(html_content);
+
         $('.question-modal-content').append(html_content);
     });
 });
@@ -35,27 +36,27 @@ $('div.question').on('click', function () {
 
 function addVoteSection(upDown, score, html_content) {
     html_content += "<div class='small-4 large-2 columns'>" +
-                                " <div class='row'>" +
-                                    " <div class='small-12 columns text-center'> " +
-                                        "<i class='fi-like'></i> " +
-                                     "</div> " +
-                                 "</div>" +
-                                " <div class='row'>" +
-                                    " <div class='small-12 columns text-center'>" +
-                                        " <p class='score'>" + score + "</p> " +
-                                    "</div> " +
-                                "</div> " +
-                                "<div class='row'> " +
-                                    "<div class='small-12 columns text-center'>" +
-                                        " <i class='fi-dislike'></i>" +
-                                    " </div> " +
-                                "</div>" +
-                                " <div class='row'>" +
-                                    " <div class='small-12 columns text-center'> " +
-                                        "<i class='fi-check'></i> " +
-                                    "</div> " +
-                                "</div> " +
-                            "</div> ";
+    " <div class='row'>" +
+    " <div class='small-12 columns text-center'> " +
+    "<i class='fi-like'></i> " +
+    "</div> " +
+    "</div>" +
+    " <div class='row'>" +
+    " <div class='small-12 columns text-center'>" +
+    " <p class='score'>" + score + "</p> " +
+    "</div> " +
+    "</div> " +
+    "<div class='row'> " +
+    "<div class='small-12 columns text-center'>" +
+    " <i class='fi-dislike'></i>" +
+    " </div> " +
+    "</div>" +
+    " <div class='row'>" +
+    " <div class='small-12 columns text-center'> " +
+    "<i class='fi-check'></i> " +
+    "</div> " +
+    "</div> " +
+    "</div> ";
 
     return html_content;
 }
@@ -72,10 +73,10 @@ function addQuestionBlock(authour, date, question_text, html_content) {
 
 function addAnswerBlock(authour, date, answer_text, html_content) {
     html_content += "<div class='small-8 large-10 columns'> " +
-                            "<p>" + answer_text + "</p> " +
-                            "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p>" +
-                            "<p class='text-right question-date'>" + date + "</p> " +
-                        "</div>";
+    "<p>" + answer_text + "</p> " +
+    "<p class='text-right question-author'><a href='#''> @" + authour + "</a></p>" +
+    "<p class='text-right question-date'>" + date + "</p> " +
+    "</div>";
 
     return html_content;
 }
@@ -135,7 +136,22 @@ function addFullAnswerBlock(html_content, answer_array) {
     return html_content;
 }
 
+function addButtonToSubmitAnswer(html_content) {
+    html_content += "<form>" +
+                        "<div class='row'>" +
+                            "<div class='small-12 columns'>" +
+                                "<label>Add answer" +
+                                    "<textarea placeholder='Your answer'></textarea>" +
+                                "</label>" +
+                            "</div>" +
+                        "</div>" +
+                        "<div class='row'>" +
+                            "<div class='small-12 columns'>" +
+                                "<a href='#' class='button small success'>Post answer</a>" +
+                            "</div>" +
+                        "</div>" +
+                    "</form>";
 
-
-
+    return html_content;
+}
 
