@@ -142,10 +142,22 @@ class Question extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function addVote($value) {
+    public function processVote($value) {
+
+        $stmt = parent::query("SELECT positivo FROM voto WHERE membroid = ? AND contribuicaoid = ?", array($_SESSION['iduser'], $this->id));
+
+        $exitsVote = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($exitsVote) {
+            if($exitsVote['positivo'])
+                return "e positivo";
+            else
+                return "e negativo";
+        } else
+            return "nao ha voto";
 
         // MISSING CONFIRMATION FOR DUPLICATE VOTES
-        parent::query("INSERT INTO voto (positivo, membroid, contribuicaoid) VALUES(?, ?, ?)", array($value, $_SESSION['iduser'], $this->id));
+        //parent::query("INSERT INTO voto (positivo, membroid, contribuicaoid) VALUES(?, ?, ?)", array($value, $_SESSION['iduser'], $this->id));
 
     }
 }

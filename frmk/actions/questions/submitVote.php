@@ -3,20 +3,33 @@
 include_once('../../config/config.php');
 
 include($BASE_DB . 'question.php');
+include($BASE_DB . 'answer.php');
 
-if(isset($_POST) && isset($_POST['id']) && $_POST['id'] != '' && isset($_POST['value'])) {
-    try{
-        $question = Question::find($_POST['id']);
-        $question->addVote($_POST['value']);
+if (isset($_POST) && isset($_POST['id']) && $_POST['id'] != '' && isset($_POST['value']) && isset($_POST['type'])) {
+    try {
+        $contribution = null;
 
-        $return = $_POST['value'];
-        if($return == 0) $return = -1;
+        if ($_POST['type'] == 'question')
+            $contribution = Question::find($_POST['id']);
+        else if ($_POST['type'] == 'answer')
+            $contribution = Answer::find($_POST['id']);
+        else
+            throw new Exception("Contribution does not exists");
 
-        echo json_encode(array('value' => $return));
+        $vote = $contribution->processVote($_POST['value']);
+        /*$return = $_POST['value'];
+        // it means that the value is negative
+        if($return == 0)
+            $return = -1;*/
 
-    }catch(Exception $ex) {
-        echo json_encode(array('value' => 0));
+        echo json_encode($vote);
+        //echo json_encode(array('value' => $return));
+
+    } catch (Exception $ex) {
+        echo json_encode("ERRO 1: " . $ex->getMessage());
+        //echo json_encode(array('value' => 0));
     }
 } else {
-    echo json_encode(array('value' => 0));
+    echo json_encode("ERRO 2: " . $ex->getMessage());
+    //echo json_encode(array('value' => 0));
 }

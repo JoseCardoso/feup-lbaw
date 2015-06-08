@@ -13,9 +13,7 @@ $('div.question').on('click', function () {
 
         var html_content = "";
 
-
         html_content = addFullQuestionBlock(html_content, data['question']);
-
 
         html_content += "<hr>";
 
@@ -29,8 +27,6 @@ $('div.question').on('click', function () {
         html_content = addButtonToSubmitAnswer(html_content, data['question']);
 
         $('.question-modal-content').append(html_content);
-
-        console.log(html_content);
 
         $( 'form#submitAnswer' ).submit(function ( e ) {
             var postData = $(this).serializeArray();
@@ -81,7 +77,10 @@ $('div.question').on('click', function () {
             var getFormUrl = $('#questionModal').data('votes');
 
             var superDiv = $(this).parent();
-            var postData = { id:superDiv.data('id'), value:superDiv.data('value') };
+            var contributionType = superDiv.parent().parent().parent().data('type');
+            var postData = { id:superDiv.data('id'), value:superDiv.data('value'), type: contributionType };
+
+            //console.log(postData);
 
             $.ajax({
                 url: getFormUrl,
@@ -91,6 +90,8 @@ $('div.question').on('click', function () {
                 success: function ( data ) {
                     $html = $("p#"+superDiv.data('id')).html();
                     $("p#"+superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
+
+                    console.log(data);
                 }
             });
         });
@@ -167,7 +168,7 @@ function addCommentBlockDashed(author, comment_text, html_content) {
 
 function addFullQuestionBlock(html_content, data) {
 
-    html_content += "<div class='row'>";
+    html_content += "<div class='row' data-type='question'>";
     html_content = addVoteSection(true, data['diffVotes'], data['id'], html_content);
 
     html_content = addQuestionBlock(data['username'], data['data'], data['text'], html_content);
@@ -192,7 +193,7 @@ function addFullQuestionBlock(html_content, data) {
 
 function addFullAnswerBlock(html_content, answer) {
 
-    html_content += "<div class='row'>";
+    html_content += "<div class='row' data-type='answer'>";
     html_content = addVoteSection(true, answer['diffVotes'], answer['id'], html_content);
 
     html_content = addAnswerBlock(answer['username'], answer['data'], answer['description'], html_content);
