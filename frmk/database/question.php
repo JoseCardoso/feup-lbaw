@@ -150,27 +150,33 @@ class Question extends Model
 
         if($exitsVote) {
             if($exitsVote['positivo']) {
-                if ($value)
+                if ($value) {
                     parent::query("DELETE FROM voto WHERE membroid=? AND contribuicaoid=?", array($_SESSION['iduser'], $this->id));
-                else
+                    return array('positive-delete', -1);
+                }
+                else {
                     parent::query("UPDATE voto SET positivo=? WHERE membroid=? AND contribuicaoid=?", array($value, $_SESSION['iduser'], $this->id));
-
-                return -1;
+                    return array('positive-update', -1);
+                }
             } else {
-                if ($value)
+                if ($value) {
                     parent::query("UPDATE voto SET positivo=? WHERE membroid=? AND contribuicaoid=?", array($value, $_SESSION['iduser'], $this->id));
-                else
+                    return array('negative-update', 1);
+                }
+                else {
                     parent::query("DELETE FROM voto WHERE membroid=? AND contribuicaoid=?", array($_SESSION['iduser'], $this->id));
-
-                return 1;
+                    return array('negative-delete', 1);
+                }
             }
         } else {
             parent::query("INSERT INTO voto (positivo, membroid, contribuicaoid) VALUES(?, ?, ?)", array($value, $_SESSION['iduser'], $this->id));
 
-            if($value)
-                return 1;
-            else
-                return -1;
+            if($value) {
+                return array('positive-create', 1);
+            }
+            else {
+                return array('negative-create', -1);
+            }
         }
     }
 }

@@ -16,9 +16,9 @@ if (isset($_POST) && isset($_POST['id']) && $_POST['id'] != '' && isset($_POST['
         else
             throw new Exception("Contribution does not exists");
 
-        $vote = $contribution->processVote($_POST['value']);
+        list($previous, $vote) = $contribution->processVote($_POST['value']);
 
-        echo json_encode(array('value' => $vote));
+        echo json_encode(array('previous' => $previous, 'value' => $vote));
 
     } catch (Exception $ex) {
         echo json_encode($ex->getMessage());
