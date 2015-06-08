@@ -32,6 +32,18 @@
                 <td>{$answer->description}</td>
             </tr>
             <tr>
+                <th class="text-right">Username</th>
+                <td>{$answer->username}</td>
+            </tr>
+            <tr>
+                <th class="text-right">Difference Votes</th>
+                <td>{$answer->diffVotes}</td>
+            </tr>
+            <tr>
+                <th class="text-right">Data</th>
+                <td>{$answer->data}</td>
+            </tr>
+            <tr>
                 <th class="text-right">Question ID</th>
                 <td>{$answer->question_id}</td>
             </tr>
@@ -50,6 +62,9 @@
 </div>
 
 
+public $username;
+public $diffVotes;
+public $data;
 <div class="row">
     <div class="small-8 small-centered columns">
         <ul class="button-group even-4">

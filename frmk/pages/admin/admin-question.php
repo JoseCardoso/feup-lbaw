@@ -2,19 +2,19 @@
 
 include_once('../../config/config.php');
 
-include($BASE_DB . 'answer.php');
+include($BASE_DB . 'question.php');
 
-if (isset($_GET['answer'])) {
+if (isset($_GET['question'])) {
     try {
-        $answer = Answer::find($_GET['answer']);
+        $question = Question::find($_GET['question']);
 
-        $smarty->assign('answer', $answer);
+        $smarty->assign('question', $question);
         $smarty->assign('BASE_URL', $BASE_URL);
 
-        $smarty->display($BASE_TEMPLATES . 'admin/admin-answer.tpl');
+        $smarty->display($BASE_TEMPLATES . 'admin/admin-question.tpl');
 
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 } else
-    go('../../pages/admin/admin-answers.php');
+    go('../../pages/admin/admin-questions.php');
