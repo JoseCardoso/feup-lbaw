@@ -34,7 +34,7 @@ class Comment extends Model
 
     static function find($id)
     {
-        $stmt = parent::query('SELECT * FROM comentario WHERE comentarioid=?;', array($id));
+        $stmt = parent::query('SELECT comentario.*, username FROM comentario, utilizador WHERE comentarioid=? AND utilizadorid = membroid;', array($id));
         $comments = self::processComments($stmt);
 
         return $comments[0];
@@ -65,25 +65,18 @@ class Comment extends Model
 
     public static function createComment($contribution_id, $comment)
     {
-        global $connection;
-
         try {
-            $connection->beginTransaction();
-            $stmt = $connection->prepare("INSERT INTO comentario(data, descricao, contribuicaoid, membroid) VALUES (?, ?, ?, ?)");
-            $stmt->execute(array(date('Y-m-d G:i:s'), $comment, $contribution_id, $_SESSION['iduser']));
+            // insert comment on db
+            parent::query("INSERT INTO comentario(data, descricao, contribuicaoid, membroid) VALUES (?, ?, ?, ?)", array(date('Y-m-d G:i:s'), $comment, $contribution_id, $_SESSION['iduser']));
 
-            // get last id from contribution
-            $stmt = $connection->prepare("SELECT last_value FROM askfeup.contribuicao_contribuicaoid_seq;");
-            $stmt->execute();
+            // get last id from comment
+            $stmt = parent::query("SELECT last_value FROM askfeup.comentario_comentarioid_seq;", array());
             $last_contribution_id = $stmt->fetch()['last_value'];
-
-            $connection->commit();
 
             return self::find($last_contribution_id);
 
         } catch (PDOException $ex) {
-            echo $ex->getMessage();
-            return false;
+            return $ex->getMessage();
         }
     }
 
