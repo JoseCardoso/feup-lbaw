@@ -80,5 +80,10 @@ class Comment extends Model
         }
     }
 
+    public static function delete($comment)
+    {
+        parent::query("DELETE FROM comentario WHERE comentarioid=?;", array($comment));
+    }
+
 
 }

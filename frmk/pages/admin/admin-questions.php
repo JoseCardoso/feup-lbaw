@@ -1,6 +1,7 @@
 <?php
 
 include_once('../../config/config.php');
+include_once('../../config/admin-config.php');
 include($BASE_DB . 'question.php');
 
 try {
@@ -14,6 +15,7 @@ try {
 }
 
 $smarty->assign('questions', $questions);
+$smarty->assign('username', $_SESSION['adminUsername']);
 
 $smarty->assign('BASE_URL', $BASE_URL);
 

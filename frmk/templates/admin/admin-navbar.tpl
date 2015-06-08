@@ -29,9 +29,9 @@
                 </li>
 
                 <li class="has-dropdown">
-                    <a href="#"><i class="fi-widget nav-bar-icon"></i>Name</a>
+                    <a href="#"><i class="fi-widget nav-bar-icon"></i>{$username}</a>
                     <ul class="dropdown">
-                        <li><a href="#"><i class="fi-torso nav-bar-icon"></i>Sign out</a></li>
+                        <li><a href="{$BASE_URL}/admin-logout.php"><i class="fi-torso nav-bar-icon"></i>Sign out</a></li>
                     </ul>
                 </li>
             </ul>

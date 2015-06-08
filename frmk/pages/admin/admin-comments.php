@@ -1,6 +1,7 @@
 <?php
 
 include_once('../../config/config.php');
+include_once('../../config/admin-config.php');
 
 include($BASE_DB . 'comment.php');
 
@@ -20,5 +21,6 @@ try {
 $smarty->assign('comments', $comments);
 
 $smarty->assign('BASE_URL', $BASE_URL);
+$smarty->assign('username', $_SESSION['adminUsername']);
 
 $smarty->display($BASE_TEMPLATES . 'admin/admin-comments.tpl');

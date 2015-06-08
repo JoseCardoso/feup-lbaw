@@ -82,23 +82,31 @@ class User extends Model
             $connection->beginTransaction();
 
             /* Getting user from db*/
-            $user = $connection->prepare("SELECT * FROM utilizador, membro WHERE username = ? AND password = ? AND membroid = utilizadorid;");
-            $user->execute(array($username, hash('sha256', $password)));
+            $user = $connection->prepare("SELECT * FROM utilizador, membro WHERE (username = ? OR email=?) AND password = ? AND membroid = utilizadorid;");
+            $user->execute(array($username, $username, hash('sha256', $password)));
             $iduser = $user->fetch()['utilizadorid'];
 
-            /* Updating lastlogin_at */
-            $lastlogin = $connection->prepare("UPDATE membro SET ultimologin = ? WHERE membroid = ?");
-            $lastlogin->execute(array(date('Y-m-d G:i:s'), $iduser));
+            // CHECK FOR ADMIN
+            if($iduser == null) {
+                $user = $connection->prepare("SELECT * FROM utilizador WHERE username = ? AND password = ?;");
+                $user->execute(array($username, hash('sha256', $password)));
+                $idadmin = $user->fetch()['utilizadorid'];
+                return array(false, $idadmin);
+            } else {
 
-            $connection->commit();
+                /* Updating lastlogin_at */
+                $lastlogin = $connection->prepare("UPDATE membro SET ultimologin = ? WHERE membroid = ?");
+                $lastlogin->execute(array(date('Y-m-d G:i:s'), $iduser));
 
-            $user = self::find($iduser);
+                $connection->commit();
 
-            if ($user)
-                return array(true, $user);
-            else
-                return array(false, null);
+                $user = self::find($iduser);
 
+                if ($user)
+                    return array(true, $user);
+                else
+                    return array(false, null);
+            }
         } catch (PDOException $e) {
             $connection->rollBack();
             echo nl2br("Login failed: " . $e->getMessage());
@@ -209,6 +217,11 @@ class User extends Model
             $_SESSION['form_values'] = $_POST;
             return false;
         }
+    }
+
+    public static function delete($user)
+    {
+        parent::query("DELETE FROM utilizador WHERE username=?;", array($user));
     }
 
     public function city()
