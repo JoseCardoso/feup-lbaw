@@ -23,7 +23,7 @@
 							<input type="search" placeholder="Ask something">
 						</div>
 						<div class="small-4 columns">
-							<a href="#" class="button expand">Search</a>
+							<a href="#" class="button expand search">Search</a>
 						</div>
 					</div>
 				</li>
