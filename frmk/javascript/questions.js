@@ -123,7 +123,7 @@ function addVoteSection(upDown, score, id, html_content) {
         "</div> " +
         "</div> ";
     }
-    else {
+    else if ( score >0){
         html_content += "<div class='small-4 large-2 columns'>" +
         " <div class='row'>" +
         " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
@@ -146,6 +146,31 @@ function addVoteSection(upDown, score, id, html_content) {
         "</div> " +
         "</div> " +
         "</div> ";
+    }
+    else{
+        html_content += "<div class='small-4 large-2 columns'>" +
+        " <div class='row'>" +
+        " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
+        "<i class='fi-like'></i> " +
+        "</div> " +
+        "</div>" +
+        " <div class='row'>" +
+        " <div class='small-12 columns text-center'>" +
+        " <p id='" + id + "' class='score'>" + score + "</p> " +
+        "</div> " +
+        "</div> " +
+        "<div class='row'> " +
+        "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >" +
+        " <i class='fi-dislike'></i>" +
+        " </div> " +
+        "</div>" +
+        " <div class='row'>" +
+        " <div class='small-12 columns text-center'> " +
+        "<i class='fi-check'></i> " +
+        "</div> " +
+        "</div> " +
+        "</div> ";
+
     }
 
     return html_content;
