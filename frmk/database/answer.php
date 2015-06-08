@@ -97,6 +97,11 @@ class Answer extends Model
         }
     }
 
+    public static function delete($answer)
+    {
+        parent::query("DELETE FROM resposta WHERE respostaid=?;", array($answer));
+    }
+
     public function displayUsername()
     {
         return '@' . $this->username;

@@ -51,7 +51,7 @@
 											<a href="{$BASE_URL}/../../pages/admin/admin-answer.php?answer={$answer->id}" class="button small">Details</a>
 										</li>
 										<li>
-											<a href="#" class="button small">Delete</a>
+											<a href="{$BASE_URL}/../../pages/admin/admin-answer-delete.php?answer={$answer->id}" class="button small">Delete</a>
 										</li>
 									</ul>
 								</td>

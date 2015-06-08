@@ -52,7 +52,7 @@
 											<a href="{$BASE_URL}/../../pages/admin/admin-user.php?user={$user->username}" class="button small">Details</a>
 										</li>
 										<li>
-											<a href="#" class="button small">Delete</a>
+											<a href="{$BASE_URL}/../../pages/admin/admin-user-delete.php?user={$user->username}" class="button small">Delete</a>
 										</li>
 									</ul>
 								</td>

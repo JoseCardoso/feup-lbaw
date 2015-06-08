@@ -110,6 +110,11 @@ class Question extends Model
         return $object;
     }
 
+    public static function delete($question)
+    {
+        parent::query("DELETE FROM pergunta WHERE perguntaid=?;", array($question));
+    }
+
     public function displayUsername()
     {
         return '@' . $this->username;
