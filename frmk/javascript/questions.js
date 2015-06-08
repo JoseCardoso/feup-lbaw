@@ -52,7 +52,7 @@ $('div.question').on('click', function () {
             e.preventDefault();
         });
 
-        $('form#submitComment').submit(function (e) {
+        $('form.submitComment').submit(function (e) {
             var postData = $(this).serializeArray();
             comment_block = '';
 
@@ -64,8 +64,8 @@ $('div.question').on('click', function () {
                 success: function (data) {
                     comment_block = addCommentBlockDashed(data['username'], data['description'], comment_block);
                     comment_block += "</div>";
-                     $('.question-modal-content form#submitComment').before(comment_block);
-                    console.log(data);
+                     $('.question-modal-content form#submitComment' + data['id']).before(comment_block);
+                    console.log($('.question-modal-content form#submitComment' + data['id']));
                 }
             }).error(function(e) {
                 console.log(e);
@@ -297,7 +297,7 @@ function addButtonToSubmitAnswer(html_content, question) {
 function addButtonToSubmitComment(html_content, object_id) {
     var getCommentURL = $('#questionModal').data('comment');
 
-    html_content += '<form id="submitComment" action="' + getCommentURL + '" method="post">' +
+    html_content += '<form id="submitComment'+object_id+'" action="' + getCommentURL + '" method="post" class="submitComment">' +
     "<input type='hidden' name='contribution_id' value='" + object_id + "'>" +
     "<div class='row'>" +
     "<div class='small-12 columns'>" +
