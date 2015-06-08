@@ -58,18 +58,18 @@ $('div.question').on('click', function () {
             var postData = $(this).serializeArray();
             html_content2 = '';
 
-            /*$.ajax({
+            $.ajax({
              url: $(this).attr('action'),
              dataType: "json",
              data: postData,
              type: 'POST',
              success: function ( data ) {
-             html_content2 = addFullAnswerBlock(html_content2, data);
+             html_content2 = addCommentBlockDashed(html_content2, data);
              html_content2 += "</div>";
              html_content2 += "<hr class ='dashed'>";
-             $('.question-modal-content form#submitAnswer').prepend(html_content2);
+             $('.question-modal-content form#submitComment').prepend(html_content2);
              }
-             });*/
+             });
 
             $('form#submitComment input.comment-content').val("");
 
