@@ -1,5 +1,5 @@
 $('div.question').on('click', function () {
-    alert($(this).attr("data-target"));
+    // alert($(this).attr("data-target"));
 
     $.ajax({
         dataType: "json",
@@ -22,32 +22,79 @@ $('div.question').on('click', function () {
 
         $.each(data['answers'], function (index, value) {
 
+            console.log(value);
+
             html_content = addFullAnswerBlock(html_content, value);
             html_content += "</div>";
             html_content += "<hr class ='dashed'>";
         });
 
-        html_content = addButtonToSubmitAnswer(html_content);
+        html_content = addButtonToSubmitAnswer(html_content, data['question']);
 
         $('.question-modal-content').append(html_content);
+
+        $( 'form#submitAnswer' ).submit(function ( e ) {
+            var postData = $(this).serializeArray();
+            html_content2 = '';
+
+            $.ajax({
+                url: $(this).attr('action'),
+                dataType: "json",
+                data: postData,
+                type: 'POST',
+                success: function ( data ) {
+                    html_content2 = addFullAnswerBlock(html_content2, data);
+                    html_content2 += "</div>";
+                    html_content2 += "<hr class ='dashed'>";
+                    $('.question-modal-content form#submitAnswer').prepend(html_content2);
+                }
+            });
+
+
+            e.preventDefault();
+        });
+
+        $('div i.fi-like, div i.fi-dislike').on('click', function ( e ) {
+
+            var getFormUrl = $('#questionModal').data('votes');
+
+            var superDiv = $(this).parent();
+            var postData = { id:superDiv.data('id'), value:superDiv.data('value') };
+
+            $.ajax({
+                url: getFormUrl,
+                dataType: "json",
+                data: postData,
+                type: 'POST',
+                success: function ( data ) {
+                    $html = $("p#"+superDiv.data('id')).html();
+                    $("p#"+superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
+                    console.log($html);
+                    console.log(parseInt($html) + parseInt(data['value']));
+                    console.log(data);
+
+                }
+            });
+        });
     });
 });
 
 
-function addVoteSection(upDown, score, html_content) {
+function addVoteSection(upDown, score, id,  html_content) {
+    console.log(id);
     html_content += "<div class='small-4 large-2 columns'>" +
     " <div class='row'>" +
-    " <div class='small-12 columns text-center'> " +
+    " <div class='small-12 columns text-center' data-id='"+id.toString()+"' data-value='1'> " +
     "<i class='fi-like'></i> " +
     "</div> " +
     "</div>" +
     " <div class='row'>" +
     " <div class='small-12 columns text-center'>" +
-    " <p class='score'>" + score + "</p> " +
+    " <p id='"+id+"' class='score'>" + score + "</p> " +
     "</div> " +
     "</div> " +
     "<div class='row'> " +
-    "<div class='small-12 columns text-center'>" +
+    "<div class='small-12 columns text-center' data-id='"+id+"' data-value='0' >" +
     " <i class='fi-dislike'></i>" +
     " </div> " +
     "</div>" +
@@ -97,7 +144,7 @@ function addCommentBlockDashed(authour, comment_text, html_content) {
 function addFullQuestionBlock(html_content, data) {
 
     html_content += "<div class='row'>";
-    html_content = addVoteSection(true, data['diffVotes'], html_content);
+    html_content = addVoteSection(true, data['diffVotes'], data['id'], html_content);
 
     html_content = addQuestionBlock(data['username'], data['data'], data['text'], html_content);
 
@@ -118,9 +165,7 @@ function addFullQuestionBlock(html_content, data) {
 
 function addFullAnswerBlock(html_content, answer_array) {
 
-    //JSON.stringify(answer_array);
-
-    html_content = addVoteSection(true, answer_array['diffVotes'], html_content);
+    html_content = addVoteSection(true, answer_array['diffVotes'], answer_array['id'], html_content);
 
     html_content = addAnswerBlock(answer_array['username'], answer_array['data'], answer_array['description'], html_content);
 
@@ -136,22 +181,24 @@ function addFullAnswerBlock(html_content, answer_array) {
     return html_content;
 }
 
-function addButtonToSubmitAnswer(html_content) {
-    html_content += "<form>" +
+function addButtonToSubmitAnswer(html_content, question) {
+    var getFormUrl = $('#questionModal').data('answer');
+
+    html_content += '<form id="submitAnswer" action="'+ getFormUrl +'" method="post">' +
+                        "<input type='hidden' name='question_id' value='"+question['id']+"'>" +
                         "<div class='row'>" +
                             "<div class='small-12 columns'>" +
                                 "<label>Add answer" +
-                                    "<textarea placeholder='Your answer'></textarea>" +
+                                    "<textarea placeholder='Your answer' name='answer'></textarea>" +
                                 "</label>" +
                             "</div>" +
                         "</div>" +
                         "<div class='row'>" +
                             "<div class='small-12 columns'>" +
-                                "<a href='#' class='button small success'>Post answer</a>" +
+                                "<input type='submit' class='button small success' value='Post answer'>" +
                             "</div>" +
                         "</div>" +
                     "</form>";
 
     return html_content;
 }
-

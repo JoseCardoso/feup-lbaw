@@ -77,7 +77,7 @@ class Question extends Model
         try {
             $connection->beginTransaction();
 
-            // insert contribution
+            // insert contributionq
             $stmt = $connection->prepare("INSERT INTO contribuicao(data, diferencavotos, votosnegativos, votospositivos, membroid) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute(array(date('Y-m-d G:i:s'), 0, 0, 0, $_SESSION['iduser']));
 
@@ -140,5 +140,12 @@ class Question extends Model
         $stmt = parent::query("SELECT voto.positivo FROM askfeup.voto WHERE voto.contribuicaoid = ? AND voto.membroid = ?", array($this->id, $user_id));
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function addVote($value) {
+
+        // MISSING CONFIRMATION FOR DUPLICATE VOTES
+        parent::query("INSERT INTO voto (positivo, membroid, contribuicaoid) VALUES(?, ?, ?)", array($value, $_SESSION['iduser'], $this->id));
+
     }
 }

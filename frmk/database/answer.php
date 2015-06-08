@@ -70,6 +70,33 @@ class Answer extends Model
         return $objects;
     }
 
+    public static function createAnswer($question_id, $answer)
+    {
+        global $connection;
+
+        try {
+            $connection->beginTransaction();
+            $stmt = $connection->prepare("INSERT INTO contribuicao(data, diferencavotos, votosnegativos, votospositivos, membroid) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute(array(date('Y-m-d G:i:s'), 0, 0, 0, $_SESSION['iduser']));
+
+            // get last id from contribution
+            $stmt = $connection->prepare("SELECT last_value FROM askfeup.contribuicao_contribuicaoid_seq;");
+            $stmt->execute();
+            $last_contribution_id = $stmt->fetch()['last_value'];
+
+            $stmt = $connection->prepare('INSERT INTO resposta(respostaid, correcta, descricao, perguntaid) VALUES (?, ?, ?, ?);');
+            $stmt->execute(array($last_contribution_id, 0, $answer, $question_id));
+
+            $connection->commit();
+
+            return self::find($last_contribution_id);
+
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
+    }
+
     public function displayUsername()
     {
         return '@' . $this->username;
