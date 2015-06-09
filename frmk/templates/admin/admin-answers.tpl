@@ -42,7 +42,7 @@
 								<td>
 									<ul class="button-group even-4">
 										<li>
-											<a href="{$BASE_URL}/../../pages/admin/admin-question.php?id={$answer->question_id}" class="button small">Question</a>
+											<a href="{$BASE_URL}/../../pages/admin/admin-question.php?question={$answer->question_id}" class="button small">Question</a>
 										</li>
 										<li>
 											<a href="{$BASE_URL}/../../pages/admin/admin-comments.php?contribution_id={$answer->id}" class="button small">Comments</a>

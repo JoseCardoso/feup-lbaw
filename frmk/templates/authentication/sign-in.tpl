@@ -1,77 +1,91 @@
-	{include file = 'common/header.tpl'}
+{include file = 'common/header.tpl'}
 
-	<link rel="stylesheet" href="{$CSS_PATH}askfeup/sign-in.css" />
+<link rel="stylesheet" href="{$CSS_PATH}askfeup/sign-in.css"/>
 </head>
 <body>
-	{include file = 'common/navbar.tpl'}
-	
-	<div class="row">
-		<div class="small-12 medium-6 large-8 columns">
-			<div data-alert class="alert-box warning radius">
-				<h5 style="color: yellow;">
-					<i class="fi-alert"></i>
-					This is still under construction!
-				</h5>
-				<a href="#" class="close">&times;</a>
-			</div>
+{include file = 'common/navbar.tpl'}
 
-			<!-- orbit -->
-			<ul class="orbit" data-orbit data-options="pause_on_hover: false;">
-				<li>
-					<img src="{$IMAGE_PATH}main-page/feup-garden.jpg" alt="slide 1" />
-					<div class="orbit-caption">
-						FEUP
-					</div>
-				</li>
-				<li>
-					<img src="{$IMAGE_PATH}main-page/feup-biblio.jpg" alt="slide 2" />
-				</li>
-				<li>
-					<img src="{$IMAGE_PATH}main-page/feup-sunset.jpg" alt="slide 3" />
-				</li>
-			</ul>
+<div class="row">
+    <div class="small-12 medium-6 large-8 columns">
+        <div data-alert class="alert-box warning radius">
+            <h5 style="color: yellow;">
+                <i class="fi-alert"></i>
+                This is still under construction!
+            </h5>
+            <a href="#" class="close">&times;</a>
+        </div>
 
-			<!-- search box panel -->
-			<div class="panel search-box-panel">
-				<div class="row">
-					<div class="small-10 columns">
-						<input type="text" placeholder="Ask something">
-					</div>
-					<div class="small-2 columns">
-						<i class="fi-magnifying-glass"></i>
-					</div>
-				</div>
-			</div>
-		</div>
+        <!-- orbit -->
+        <ul class="orbit" data-orbit data-options="pause_on_hover: false;">
+            <li>
+                <img src="{$IMAGE_PATH}main-page/feup-garden.jpg" alt="slide 1"/>
 
-		<!-- log in panel -->
-		<div class="small-12 medium-6 large-4 columns">
-			<div class="panel">
-				<p>Log in via</p>
-				<ul class="button-group even-2">
-					<li><a href="{$loginUrl}" class="button facebook-button">Facebook</a></li>
-					<li><a href="#" class="button google-plus-button">Google+</a></li>
-				</ul>
+                <div class="orbit-caption">
+                    FEUP
+                </div>
+            </li>
+            <li>
+                <img src="{$IMAGE_PATH}main-page/feup-biblio.jpg" alt="slide 2"/>
+            </li>
+            <li>
+                <img src="{$IMAGE_PATH}main-page/feup-sunset.jpg" alt="slide 3"/>
+            </li>
+        </ul>
 
-				<p class="right"><a href="{$BASE_URL}/../../pages/authentication/request-password-recovery.php">Forgot password?</a></p>
-				<p>Log in</p>
-				<form id="sign-in" action="{$BASE_URL}/../../actions/authentication/sign-in.php" method="post" enctype="multipart/form-data">
-					<input type="text" name="username"  placeholder="Username or Email" />
-					<input type="password" name="password"  placeholder="Password" />
-					<input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
-				
+        <!-- search box panel -->
+        <div class="panel search-box-panel">
+            <div class="row">
+                <div class="small-10 columns">
+                    <input type="text" placeholder="Ask something">
+                </div>
+                <div class="small-2 columns">
+                    <i class="fi-magnifying-glass"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 
-				<!-- log in button -->
-					<div class="row">
-						<div class="small-12 columns">
-							<button type="submit" class="button large expand">Log in</button>
-						</div>
-					</div>
-				</form>	
+    <!-- log in panel -->
+    <div class="small-12 medium-6 large-4 columns">
+        <div class="panel">
+            <p>Log in via</p>
+            <ul class="button-group even-2">
+                <li><a href="{$loginUrl}" class="button facebook-button">Facebook</a></li>
+                <li><a href="#" class="button google-plus-button">Google+</a></li>
+            </ul>
 
-				<p class="text-center"><a href="{$BASE_URL}/../../pages/authentication/sign-up.php">Create an account</a></p>
-			</div>
-		</div>
-	</div>
+            <p class="right"><a href="{$BASE_URL}/../../pages/authentication/request-password-recovery.php">Forgot
+                    password?</a></p>
 
-	{include file = 'common/footer.tpl'}
+            <p>Log in</p>
+
+            <form id="sign-in" action="{$BASE_URL}/../../actions/authentication/sign-in.php" method="post"
+                  enctype="multipart/form-data">
+                {if $_SESSION['field_errors']['username']}
+                    <label>{$_SESSION['field_errors']['username']}</label>
+                {elseif $_SESSION['error_messages']['login_failed']}
+                    <label>{$_SESSION['error_messages']['login_failed']}</label>
+                {/if}
+                <input type="text" name="username" value="{$_SESSION['form_values']['username']}" placeholder="Username or Email"/>
+                {if $_SESSION['field_errors']['password']}
+                    <label>{$_SESSION['field_errors']['password']}</label>
+                {/if}
+                <input type="password" name="password" value="{$_SESSION['form_values']['password']}" placeholder="Password"/>
+                <input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
+
+
+                <!-- log in button -->
+                <div class="row">
+                    <div class="small-12 columns">
+                        <button type="submit" class="button large expand">Log in</button>
+                    </div>
+                </div>
+            </form>
+
+            <p class="text-center"><a href="{$BASE_URL}/../../pages/authentication/sign-up.php">Create an account</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{include file = 'common/footer.tpl'}

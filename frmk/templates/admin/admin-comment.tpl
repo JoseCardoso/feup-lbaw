@@ -53,17 +53,17 @@
     <div class="small-8 small-centered columns">
         <ul class="button-group even-4">
             <li>
-                <a href="{$BASE_URL}/../../pages/admin/admin-questions.php?user={$user->username}" class="button">Questions</a>
+                <a href="{$BASE_URL}/../../pages/admin/admin-questions.php" class="button">Questions</a>
             </li>
             <li>
-                <a href="{$BASE_URL}/../../pages/admin/admin-answers.php?user={$user->username}"
+                <a href="{$BASE_URL}/../../pages/admin/admin-answers.php"
                    class="button">Answers</a>
             </li>
             <li>
-                <a href="{$BASE_URL}/../../pages/admin/admin-comments.php?user={$user->username}" class="button">Comments</a>
+                <a href="{$BASE_URL}/../../pages/admin/admin-comments.php" class="button">Comments</a>
             </li>
             <li>
-                <a href="#" class="button">Delete</a>
+                <a href="{$BASE_URL}/../../pages/admin/admin-comment-delete.php?comment={$comment->id}" class="button">Delete</a>
             </li>
         </ul>
     </div>

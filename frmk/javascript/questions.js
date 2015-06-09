@@ -95,8 +95,8 @@ $('div.question').on('click', function () {
                 success: function (data) {
                     console.log(data);
                     $html = $("p#" + superDiv.data('id')).html();
-
                     $("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
+                    //$("p#" + superDiv.data('id')).html(parseInt(data['value']));
 
                     changeColorOfVotes(superDiv, data);
 

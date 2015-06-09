@@ -9,6 +9,9 @@ if (isset($_GET['question'])) {
     try {
         $question = Question::find($_GET['question']);
 
+        /*var_dump($question);
+        exit();*/
+
         $smarty->assign('question', $question);
         $smarty->assign('BASE_URL', $BASE_URL);
         $smarty->assign('username', $_SESSION['adminUsername']);

@@ -23,4 +23,5 @@ $smarty->assign('JS_PATH', $JS_PATH);
 $smarty->display($BASE_TEMPLATES . 'questions/create-question.tpl');
 
 unset($_SESSION['field_errors']);
+unset($_SESSION['error_messages']);
 unset($_SESSION['form_values']);

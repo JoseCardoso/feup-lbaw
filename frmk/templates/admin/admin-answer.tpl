@@ -61,25 +61,21 @@
     </div>
 </div>
 
-
-public $username;
-public $diffVotes;
-public $data;
 <div class="row">
     <div class="small-8 small-centered columns">
         <ul class="button-group even-4">
             <li>
-                <a href="{$BASE_URL}/../../pages/admin/admin-questions.php?user={$user->username}" class="button">Questions</a>
+                <a href="{$BASE_URL}/../../pages/admin/admin-question.php?question={$answer->question_id}" class="button">Question</a>
             </li>
             <li>
-                <a href="{$BASE_URL}/../../pages/admin/admin-answers.php?user={$user->username}"
+                <a href="{$BASE_URL}/../../pages/admin/admin-answers.php"
                    class="button">Answers</a>
             </li>
             <li>
-                <a href="{$BASE_URL}/../../pages/admin/admin-comments.php?user={$user->username}" class="button">Comments</a>
+                <a href="{$BASE_URL}/../../pages/admin/admin-comments.php?contribution_id={$answer->id}" class="button">Comments</a>
             </li>
             <li>
-                <a href="#" class="button">Delete</a>
+                <a href="{$BASE_URL}/../../pages/admin/admin-answer-delete.php?answer={$answer->id}" class="button">Delete</a>
             </li>
         </ul>
     </div>
