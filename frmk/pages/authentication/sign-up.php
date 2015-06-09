@@ -14,5 +14,10 @@ try {
 }
 
 $smarty->assign('cities', $cities);
+$smarty->assign('_SESSION', $_SESSION);
 
 $smarty->display($BASE_TEMPLATES . 'authentication/sign-up.tpl');
+
+unset($_SESSION['field_errors']);
+unset($_SESSION['error_messages']);
+unset($_SESSION['form_values']);

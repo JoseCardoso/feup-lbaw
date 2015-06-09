@@ -70,7 +70,7 @@
                 {if $_SESSION['field_errors']['password']}
                     <label>{$_SESSION['field_errors']['password']}</label>
                 {/if}
-                <input type="password" name="password" value="{$_SESSION['form_values']['password']}" placeholder="Password"/>
+                <input type="password" name="password" placeholder="Password"/>
                 <input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
 
 

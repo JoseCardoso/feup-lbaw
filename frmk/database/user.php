@@ -205,16 +205,15 @@ class User extends Model
 
         } catch (PDOException $e) {
             $connection->rollBack();
-            echo nl2br("Register failed: " . $e->getMessage());
 
-            if (strpos($e->getMessage(), 'users_pkey') !== false) {
-                $_SESSION['error_messages'][] = 'Duplicate username';
+            if (strpos($e->getMessage(), 'uk_utilizador_username') !== false) {
+                $_SESSION['error_messages']['username'] = 'Duplicate username';
                 $_SESSION['field_errors']['username'] = 'Username already exists';
-            } else {
-                $_SESSION['error_messages'][] = 'Error creating user';
+            } else if(strpos($e->getMessage(), 'uk_membro_email') !== false){
+                $_SESSION['error_messages']['email'] = 'Duplicate email';
+                $_SESSION['field_errors']['email'] = 'Email already used';
             }
 
-            $_SESSION['form_values'] = $_POST;
             return false;
         }
     }

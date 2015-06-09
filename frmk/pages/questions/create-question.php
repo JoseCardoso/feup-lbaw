@@ -5,6 +5,9 @@ include_once('../../config/config.php');
 include($BASE_DB . 'question.php');
 include($BASE_DB . 'category.php');
 
+if(!isset($_SESSION['iduser']) || empty($_SESSION['iduser']))
+    go('../../pages/authentication/sign-in.php');
+
 $categories = Category::all(null);
 
 assignFacebookSmallPictureToSmarty($smarty);

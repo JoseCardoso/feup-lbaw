@@ -7,6 +7,9 @@ include($BASE_DB . 'question.php');
 include($BASE_DB . 'answer.php');
 
 try {
+    if(!isset($_SESSION['iduser']) || empty($_SESSION['iduser']))
+        go('../../pages/authentication/sign-in.php');
+
     if (isset($_GET['username'])) {
         if ($_GET['username'] !== $_SESSION['username'])
             $profile = User::find_by_user($_GET['username']);
