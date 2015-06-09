@@ -23,7 +23,7 @@
                     <div class="large-12 columns ">
                         <h5>Text
                             {if $field_missing['question_text']}
-                                <label>{$field_missing['question_text']}</label>
+                                <label class="error">{$field_missing['question_text']}</label>
                             {/if}
                             <textarea name="question" class="questionText"
                                       placeholder="Your Question">{$form_values['question']}</textarea>
@@ -51,7 +51,7 @@
                     <div class="small-12 columns">
                         <h5>Category
                             {if $field_missing['question_category']}
-                                <label>{$field_missing['question_category']}</label>
+                                <label class="error">{$field_missing['question_category']}</label>
                             {/if}
                             <select name="category" form="create-question">
                                 <option class="hiddenDropdownItem" value="" selected>Choose a category</option>

@@ -7,8 +7,7 @@ include($BASE_DB . 'question.php');
 include($BASE_DB . 'answer.php');
 
 try {
-    if(!isset($_SESSION['iduser']) || empty($_SESSION['iduser']))
-        go('../../pages/authentication/sign-in.php');
+    $profile = null;
 
     if (isset($_GET['username'])) {
         if ($_GET['username'] !== $_SESSION['username'])
@@ -16,7 +15,10 @@ try {
         else
             $profile = User::find($_SESSION['iduser']);
     } else
-        $profile = User::find($_SESSION['iduser']);
+        if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser']))
+            go('../../pages/authentication/sign-in.php');
+        else
+            $profile = User::find($_SESSION['iduser']);
 
     // load user own questions
     $user_questions = Question::userQuestions($profile->username);

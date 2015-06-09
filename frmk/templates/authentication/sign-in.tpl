@@ -62,13 +62,13 @@
             <form id="sign-in" action="{$BASE_URL}/../../actions/authentication/sign-in.php" method="post"
                   enctype="multipart/form-data">
                 {if $_SESSION['field_errors']['username']}
-                    <label>{$_SESSION['field_errors']['username']}</label>
+                    <label class="error">{$_SESSION['field_errors']['username']}</label>
                 {elseif $_SESSION['error_messages']['login_failed']}
-                    <label>{$_SESSION['error_messages']['login_failed']}</label>
+                    <label class="error">{$_SESSION['error_messages']['login_failed']}</label>
                 {/if}
                 <input type="text" name="username" value="{$_SESSION['form_values']['username']}" placeholder="Username or Email"/>
                 {if $_SESSION['field_errors']['password']}
-                    <label>{$_SESSION['field_errors']['password']}</label>
+                    <label class="error">{$_SESSION['field_errors']['password']}</label>
                 {/if}
                 <input type="password" name="password" placeholder="Password"/>
                 <input id="remember-me-checkbox" type="checkbox"><label for="remember-me-checkbox">Remember me</label>
