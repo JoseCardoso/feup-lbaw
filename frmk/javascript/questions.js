@@ -65,17 +65,15 @@ $('div.question').on('click', function () {
                     comment_block = addCommentBlockDashed(data['username'], data['description'], comment_block);
                     comment_block += "</div>";
 
-                    /*$('.question-modal-content form#submitComment' + data['id']).before(comment_block);
-                     console.log($('.question-modal-content form#submitComment' + data['id']));*/
-
-                    $('.question-modal-content form#submitComment').before(comment_block);
+                    $('.question-modal-content form#submitComment' + data['contribution_id']).before(comment_block);
+                     console.log($('.question-modal-content form#submitComment' + data['contribution_id']));
                     console.log(data);
                 }
             }).error(function (e) {
                 console.log(e);
             });
 
-            $('form#submitComment input.comment-content').val("");
+            $('form.submitComment input.comment-content').val("");
 
             e.preventDefault();
         });
@@ -100,46 +98,39 @@ $('div.question').on('click', function () {
 
                     $("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
 
+                    changeColorOfVotes(superDiv, data);
+
                 }
             });
         });
     });
 });
 
-function updateVoteSection(data, $htmlElement) {
+function changeColorOfVotes(element, data) {
 
+    console.log(element);
+    console.log(element.children().attr('style'));
+    console.log(element.parent().next().next().children().children());
 
     if (data['previous'] == "positive-update") {
-        $htmlElement.replaceWith(
-            addVoteSection(upDown, data['value'], data['id'], $htmlElement)
-        );
+        element.children().attr('style', 'color:red');
+        element.parent().prev().prev().children().children().attr('style', '');
     }
     else if (data['previous'] == "positive-create") {
-        $htmlElement.replaceWith(
-
-
-        );
+        element.children().attr('style', 'color:green');
     }
     else if (data['previous'] == "positive-delete") {
-        $htmlElement.replaceWith(
+        element.children().attr('style', '');
 
-
-        );
     } else if (data['previous'] == "negative-update") {
-        $htmlElement.replaceWith(
+        element.parent().next().next().children().children().attr('style', '');
+        element.children().attr('style', 'color:green');
 
-
-        );
     } else if (data['previous'] == "negative-create") {
-        $htmlElement.replaceWith(
+        element.children().attr('style', 'color:red');
 
-
-        );
     } else if (data['previous'] == "negative-delete") {
-        $htmlElement.replaceWith(
-
-
-        );
+        element.children().attr('style', '');
     }
 
 }
@@ -149,24 +140,24 @@ function addVoteSection(upDown, score, id, html_content) {
     if (score < 0) {
         html_content += "<div class='small-4 large-2 columns'>" +
         " <div class='row'>" +
-        " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
-        "<i class='fi-like'></i> " +
-        "</div> " +
+            " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
+                "<i class='fi-like'></i> " +
+            "</div> " +
         "</div>" +
         " <div class='row'>" +
-        " <div class='small-12 columns text-center'>" +
-        " <p id='" + id + "' class='score'>" + score + "</p> " +
-        "</div> " +
+            " <div class='small-12 columns text-center'>" +
+                " <p id='" + id + "' class='score'>" + score + "</p> " +
+            "</div> " +
         "</div> " +
         "<div class='row'> " +
-        "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >" +
-        " <i class='fi-dislike' style ='color:red'></i>" +
-        " </div> " +
+            "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >" +
+                " <i class='fi-dislike' style ='color:red'></i>" +
+            " </div> " +
         "</div>" +
         " <div class='row'>" +
-        " <div class='small-12 columns text-center'> " +
-        "<i class='fi-check'></i> " +
-        "</div> " +
+            " <div class='small-12 columns text-center'> " +
+                "<i class='fi-check'></i> " +
+            "</div> " +
         "</div> " +
         "</div> ";
     }
