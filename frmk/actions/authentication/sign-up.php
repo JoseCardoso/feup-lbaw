@@ -34,9 +34,8 @@ try {
     $_SESSION['register_at'] = $user->register_at;
 
 } catch (Exception $e) {
-    if (strcmp($e->getMessage(), 'missing_all_fields') === 0) {
+    if (strcmp($e->getMessage(), 'missing_all_fields') === 0)
         $_SESSION['field_errors']['missed_fields'] = 'All fields are required';
-    }
     else if(strcmp($e->getMessage(), 'register_failed') === 0)
         $_SESSION['error_messages']['register'] = 'Register failed';
     else if(strcmp($e->getMessage(), 'password_not_match') === 0)

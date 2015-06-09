@@ -15,20 +15,24 @@
 
                 {if $_SESSION['error_messages']['register']}
                     <label class="error">{$_SESSION['error_messages']['register']}</label>
-                {elseif $_SESSION['field_errors']['missed_fields']}
-                    <label class="error">{$_SESSION['error_messages']['missed_fields']}</label>
+                {/if}
+
+                {if $_SESSION['field_errors']['missed_fields']}
+                    <label class="error">{$_SESSION['field_errors']['missed_fields']}</label>
                 {/if}
 
                 <div class="row">
                     <div class="small-6 columns">
                         <label>First name
-                            <input type="text" name="firstName" value="{$_SESSION['form_values']['firstName']}" placeholder="First name"/>
+                            <input type="text" name="firstName" value="{$_SESSION['form_values']['firstName']}"
+                                   placeholder="First name"/>
                         </label>
                     </div>
 
                     <div class="small-6 columns">
                         <label>Last name
-                            <input type="text" name="lastName" value="{$_SESSION['form_values']['lastName']}" placeholder="Last name"/>
+                            <input type="text" name="lastName" value="{$_SESSION['form_values']['lastName']}"
+                                   placeholder="Last name"/>
                         </label>
                     </div>
                 </div>
@@ -39,7 +43,8 @@
                             <label class="error">{$_SESSION['error_messages']['email']}</label>
                         {/if}
                         <label>E-mail
-                            <input type="email" name="email" value="{$_SESSION['form_values']['email']}" placeholder="user@fe.up.pt"/>
+                            <input type="email" name="email" value="{$_SESSION['form_values']['email']}"
+                                   placeholder="user@fe.up.pt"/>
                         </label>
                     </div>
                 </div>
@@ -63,7 +68,8 @@
                             <label class="error">{$_SESSION['error_messages']['username']}</label>
                         {/if}
                         <label>Username
-                            <input type="text" name="username" value="{$_SESSION['form_values']['username']}" placeholder="Insert Username"/>
+                            <input type="text" name="username" value="{$_SESSION['form_values']['username']}"
+                                   placeholder="Insert Username"/>
                         </label>
                     </div>
                 </div>
