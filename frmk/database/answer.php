@@ -21,6 +21,9 @@ class Answer extends Model
         $this->data = $attr['data'];
         $this->question_id = $attr['perguntaid'];
 
+        if (isset($attr['rank']))
+            $this->rank = $attr['rank'];
+
     }
 
     static function all($query, $params)
@@ -155,5 +158,17 @@ class Answer extends Model
                 return array('negative-create', -1);
             }
         }
+    }
+
+    public static function search($search) {
+        $stmt = parent::query("SELECT answers_presentation.*, ts_rank(to_tsvector(descricao || user), to_tsquery('$search')) as rank
+                              FROM answers_presentation
+                              WHERE to_tsvector(descricao || user) @@ to_tsquery('$search')
+                              ORDER BY ts_rank(tsvector(descricao || user), to_tsquery('$search'))
+                              DESC;", null);
+
+        $answers = self::processAnswers($stmt);
+
+        return $answers;
     }
 }

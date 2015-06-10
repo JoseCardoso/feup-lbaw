@@ -25,6 +25,9 @@ class Question extends Model
         $this->username = $attr['user'];
         $this->diffVotes = $attr['votos'];
         $this->data = $attr['data'];
+
+        if (isset($attr['rank']))
+            $this->rank = $attr['rank'];
     }
 
     static function all($query, $params)
@@ -147,19 +150,19 @@ class Question extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function processVote($value) {
+    public function processVote($value)
+    {
 
         $stmt = parent::query("SELECT positivo FROM voto WHERE membroid = ? AND contribuicaoid = ?", array($_SESSION['iduser'], $this->id));
 
         $exitsVote = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($exitsVote) {
-            if($exitsVote['positivo']) {
+        if ($exitsVote) {
+            if ($exitsVote['positivo']) {
                 if ($value) {
                     parent::query("DELETE FROM voto WHERE membroid=? AND contribuicaoid=?", array($_SESSION['iduser'], $this->id));
                     return array('positive-delete', -1);
-                }
-                else {
+                } else {
                     parent::query("UPDATE voto SET positivo=? WHERE membroid=? AND contribuicaoid=?", array($value, $_SESSION['iduser'], $this->id));
                     return array('positive-update', -1);
                 }
@@ -167,8 +170,7 @@ class Question extends Model
                 if ($value) {
                     parent::query("UPDATE voto SET positivo=? WHERE membroid=? AND contribuicaoid=?", array($value, $_SESSION['iduser'], $this->id));
                     return array('negative-update', 1);
-                }
-                else {
+                } else {
                     parent::query("DELETE FROM voto WHERE membroid=? AND contribuicaoid=?", array($_SESSION['iduser'], $this->id));
                     return array('negative-delete', 1);
                 }
@@ -176,18 +178,24 @@ class Question extends Model
         } else {
             parent::query("INSERT INTO voto (positivo, membroid, contribuicaoid) VALUES(?, ?, ?)", array($value, $_SESSION['iduser'], $this->id));
 
-            if($value) {
+            if ($value) {
                 return array('positive-create', 1);
-            }
-            else {
+            } else {
                 return array('negative-create', -1);
             }
         }
     }
 
-    public static function search($search) {
-        $stmt = parent::query("select to_tsvector('It''s kind of fun to do the impossible') @@ 'impossible';", null);
+    public static function search($search)
+    {
+        $stmt = parent::query("SELECT questions_presentation.*, ts_rank(to_tsvector(texto || descricao || user), to_tsquery('$search')) as rank
+                              FROM questions_presentation
+                              WHERE to_tsvector(texto || descricao || user) @@ to_tsquery('$search')
+                              ORDER BY ts_rank(tsvector(texto || descricao || user), to_tsquery('$search'))
+                              DESC;", null);
 
-        return $stmt->fetchAll();
+        $questions = self::processQuestions($stmt);
+
+        return $questions;
     }
 }

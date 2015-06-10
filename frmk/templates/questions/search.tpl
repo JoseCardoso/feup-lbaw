@@ -8,31 +8,9 @@
 {include file = 'common/navbar.tpl'}
 
 <div class="row">
-    <div class="small-12 medium-2 columns">
-        <a href="#" class="button small secondary expand"><i class="fi-filter nav-bar-icon"></i>Filter</a>
+    <div class="small-12 columns">
+        <h3>Results of search {$search_content}</h3>
     </div>
-
-    <div class="small-12 medium-8 columns">
-        <div class="row">
-            <div class="small-12 medium-8 small-centered columns">
-                <ul class="button-group even-3">
-                    <li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=recent" class="button small secondary">Most
-                            Recent</a></li>
-                    <li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=popular" class="button small secondary">Most
-                            Popular</a></li>
-                    <li><a href="{$BASE_URL}/../../pages/menus/explore.php?tab=viewed" class="button small secondary">Most
-                            Viewed</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    {if $username}
-        <div class="small-12 medium-2 columns">
-            <a href="{$BASE_URL}/../../pages/questions/create-question.php" class="button success small expand"><i
-                        class="fi-plus nav-bar-icon"></i>Add new</a>
-        </div>
-    {/if}
 </div>
 
 <div class="row">
@@ -41,7 +19,7 @@
             {foreach $questions as $question}
                 <li>
                     <div class="panel question" data-reveal-id="questionModal"
-                         data-target="{$BASE_URL}/../questions/question-modal.php" data-value="{$question->id}"
+                         data-target="{$BASE_URL}/../../pages/questions/question-modal.php" data-value="{$question->id}"
                          data-reveal-ajax="true">
                         <div class="row">
                             <div class="small-12 columns">
