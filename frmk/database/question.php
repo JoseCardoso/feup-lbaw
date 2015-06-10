@@ -184,4 +184,10 @@ class Question extends Model
             }
         }
     }
+
+    public static function search($search) {
+        $stmt = parent::query("select to_tsvector('It''s kind of fun to do the impossible') @@ 'impossible';", null);
+
+        return $stmt->fetchAll();
+    }
 }

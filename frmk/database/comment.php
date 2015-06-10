@@ -84,6 +84,4 @@ class Comment extends Model
     {
         parent::query("DELETE FROM comentario WHERE comentarioid=?;", array($comment));
     }
-
-
 }
