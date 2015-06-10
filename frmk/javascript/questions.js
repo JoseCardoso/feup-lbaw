@@ -52,9 +52,11 @@ $('div.question').on('click', function () {
             e.preventDefault();
         });
 
-        $('form.submitComment').submit(function (e) {
+        $('div.question-modal-content').on('submit', 'form.submitComment', function(eventComment) {
             var postData = $(this).serializeArray();
             comment_block = '';
+
+            eventComment.preventDefault();
 
             $.ajax({
                 url: $(this).attr('action'),
@@ -74,8 +76,6 @@ $('div.question').on('click', function () {
             });
 
             $('form.submitComment input.comment-content').val("");
-
-            e.preventDefault();
         });
 
         $('div i.fi-like, div i.fi-dislike').on('click', function (e) {
@@ -105,6 +105,10 @@ $('div.question').on('click', function () {
         });
     });
 });
+
+function submitComment(element, data) {
+
+}
 
 function changeColorOfVotes(element, data) {
 
