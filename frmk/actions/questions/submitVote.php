@@ -7,7 +7,8 @@ include($BASE_DB . 'answer.php');
 
 if (isset($_POST) && isset($_POST['id']) && $_POST['id'] != '' &&
     isset($_POST['value']) && isset($_POST['type']) &&
-    isset($_POST['user_session']) && $_POST['user_session'] != '') {
+    isset($_POST['user_session']) && $_POST['user_session'] != ''
+) {
     try {
         $contribution = null;
 
@@ -18,9 +19,14 @@ if (isset($_POST) && isset($_POST['id']) && $_POST['id'] != '' &&
         else
             throw new Exception("Contribution does not exists");
 
-        list($previous, $vote) = $contribution->processVote($_POST['value']);
+        if ($contribution->username != $_SESSION['username']) {
 
-        echo json_encode(array('previous' => $previous, 'value' => $vote));
+            list($previous, $vote) = $contribution->processVote($_POST['value']);
+
+            echo json_encode(array('previous' => $previous, 'value' => $vote));
+        } else {
+            echo json_encode(array('value' => 0));
+        }
 
     } catch (Exception $ex) {
         echo json_encode($ex->getMessage());

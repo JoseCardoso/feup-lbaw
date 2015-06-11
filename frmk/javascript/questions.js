@@ -106,7 +106,9 @@ $('div.question').on('click', function () {
             });
         });
 
-        $('div i.fi-check').on('click', function (e) {
+        $('div.question-modal-content').on('click', 'div i.fi-check', function (e) {
+
+            e.preventDefault();
 
             var getFormUrl = $('#questionModal').data('correct');
 
