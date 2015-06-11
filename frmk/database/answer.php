@@ -171,4 +171,18 @@ class Answer extends Model
 
         return $answers;
     }
+
+    public static function getCorrectAnswer($question_id) {
+        $stmt = parent::query("SELECT * FROM answers_presentation WHERE perguntaid=? AND correcta=?", array($question_id, true));
+
+        return self::processAnswers($stmt);
+    }
+
+    public static function insertCorrectAnswer($id) {
+        parent::query("UPDATE askfeup.resposta SET correcta='true' WHERE respostaid=?", array($id));
+    }
+
+    public function removeCorrectAnswer() {
+        parent::query("UPDATE askfeup.resposta SET correcta='false' WHERE respostaid=?", array($this->id));
+    }
 }

@@ -9,6 +9,9 @@ $('div.question').on('click', function () {
         }
     }).done(function (data) {
 
+        var question = data['question'];
+        var userSession = data['user_session'];
+
         $('.question-modal-content').empty();
 
         var html_content = "";
@@ -19,7 +22,7 @@ $('div.question').on('click', function () {
 
         $.each(data['answers'], function (index, value) {
 
-            html_content = addFullAnswerBlock(html_content, value);
+            html_content = addFullAnswerBlock(html_content, value, data['question']);
             html_content += "</div>";
             html_content += "<hr class ='dashed'>";
         });
@@ -38,7 +41,7 @@ $('div.question').on('click', function () {
                 data: postData,
                 type: 'POST',
                 success: function (data) {
-                    answer_block = addFullAnswerBlock(answer_block, data);
+                    answer_block = addFullAnswerBlock(answer_block, data, question);
                     answer_block += "</div>";
                     answer_block += "<hr class ='dashed'>";
                     $('.question-modal-content form#submitAnswer').before(answer_block);
@@ -52,7 +55,7 @@ $('div.question').on('click', function () {
             e.preventDefault();
         });
 
-        $('div.question-modal-content').on('submit', 'form.submitComment', function(eventComment) {
+        $('div.question-modal-content').on('submit', 'form.submitComment', function (eventComment) {
             var postData = $(this).serializeArray();
             comment_block = '';
 
@@ -96,12 +99,48 @@ $('div.question').on('click', function () {
                     //$("p#" + superDiv.data('id')).html(parseInt(data['value']));
 
                     changeColorOfVotes(superDiv, data);
-
                 }
             });
         });
+
+        $('div i.fi-check').on('click', function (e) {
+
+            var getFormUrl = $('#questionModal').data('correct');
+
+            var superDiv = $(this).parent();
+
+            var postData = {
+                id: superDiv.data('id'),
+                question_id: superDiv.data('question'),
+                user_session: userSession,
+                question_owner: superDiv.data('owner')
+            };
+
+            $.ajax({
+                url: getFormUrl,
+                dataType: "json",
+                data: postData,
+                type: 'POST',
+                success: function (data) {
+
+                    changeColorOfCorrect(data);
+                }
+            });
+        })
     });
 });
+
+function changeColorOfCorrect(info) {
+
+    if (info['state'] == "insert")
+        $('div[data-id="' + info['new_correct'] + '"] i.fi-check').attr('style', 'color: limegreen');
+    else if (info['state'] == "remove")
+        $('div[data-id="' + info['last_correct'] + '"] i.fi-check').attr('style', '');
+    else if (info['state'] == "update") {
+        $('div[data-id="' + info['last_correct'] + '"] i.fi-check').attr('style', '');
+        $('div[data-id="' + info['new_correct'] + '"] i.fi-check').attr('style', 'color: limegreen');
+    }
+}
 
 function changeColorOfVotes(element, data) {
 
@@ -128,40 +167,83 @@ function changeColorOfVotes(element, data) {
 
 }
 
-function addVoteSection(vote, score, id, html_content) {
+function addQuestionVoteSection(vote, score, id, html_content) {
 
     html_content += "<div class='small-4 large-2 columns'>" +
-                        "<div class='row'>" +
-                            "<div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'>";
+    "<div class='row'>" +
+    "<div class='small-12 columns text-center' data-id='" + id + "' data-value='1'>";
 
-    if(vote == false || vote == null)
+    if (vote == false || vote == null)
         html_content += "<i class='fi-like'></i>";
-    else if(vote == true)
+    else if (vote == true)
         html_content += "<i class='fi-like' style='color:green'></i> ";
 
     html_content += "</div> " +
-                "</div>" +
-                "<div class='row'>" +
-                    "<div class='small-12 columns text-center'>" +
-                        "<p id='" + id + "' class='score'>" + score + "</p> " +
-                    "</div> " +
-                "</div> " +
-                "<div class='row'> " +
-                    "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >";
+    "</div>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns text-center'>" +
+    "<p id='" + id + "' class='score'>" + score + "</p> " +
+    "</div> " +
+    "</div> " +
+    "<div class='row'> " +
+    "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >";
 
-    if(vote == false)
+    if (vote == false)
         html_content += "<i class='fi-dislike' style ='color:red'></i>";
-    else if(vote == true || vote == null)
+    else if (vote == true || vote == null)
         html_content += "<i class='fi-dislike'></i>";
 
     html_content += "</div> " +
-                "</div>" +
-                "<div class='row'>" +
-                    "<div class='small-12 columns text-center'> " +
-                        "<i class='fi-check'></i> " +
-                    "</div> " +
-                "</div> " +
-            "</div> ";
+    "</div>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns text-center'>" +
+    "<i class='fi-star'></i>" +
+    "</div>" +
+    "</div>" +
+    "</div> ";
+
+    return html_content;
+}
+
+function addAnswerVoteSection(vote, score, correct, id, question_id, question_username, html_content) {
+
+    html_content += "<div class='small-4 large-2 columns'>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns text-center' data-id='" + id + "' data-value='1'>";
+
+    if (vote == false || vote == null)
+        html_content += "<i class='fi-like'></i>";
+    else if (vote == true)
+        html_content += "<i class='fi-like' style='color:green'></i> ";
+
+    html_content += "</div> " +
+    "</div>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns text-center'>" +
+    "<p id='" + id + "' class='score'>" + score + "</p> " +
+    "</div> " +
+    "</div> " +
+    "<div class='row'> " +
+    "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >";
+
+    if (vote == false)
+        html_content += "<i class='fi-dislike' style ='color:red'></i>";
+    else if (vote == true || vote == null)
+        html_content += "<i class='fi-dislike'></i>";
+
+    html_content += "</div> " +
+    "</div>" +
+    "<div class='row'>" +
+    "<div class='small-12 columns text-center' data-id='" + id + "' data-question='" + question_id + "' data-owner='" + question_username + "' >";
+
+    if (correct == true)
+        html_content += "<i class='fi-check' style='color:limegreen'></i> ";
+    else
+        html_content += "<i class='fi-check'></i> ";
+
+    html_content += "</div> " +
+    "</div> " +
+    "</div> ";
 
     return html_content;
 }
@@ -209,10 +291,9 @@ function addCommentBlockDashed(author, comment_text, html_content) {
 
 function addFullQuestionBlock(html_content, data) {
 
-
     html_content += "<div class='row' data-type='question'>";
 
-    html_content = addVoteSection(data['vote'], data['diffVotes'], data['id'], html_content);
+    html_content = addQuestionVoteSection(data['vote'], data['diffVotes'], data['id'], html_content);
 
     html_content = addQuestionBlock(data['username'], data['data'], data['text'], html_content);
 
@@ -234,10 +315,10 @@ function addFullQuestionBlock(html_content, data) {
     return html_content;
 }
 
-function addFullAnswerBlock(html_content, answer) {
+function addFullAnswerBlock(html_content, answer, question) {
 
     html_content += "<div class='row' data-type='answer'>";
-    html_content = addVoteSection(answer['vote'], answer['diffVotes'], answer['id'], html_content);
+    html_content = addAnswerVoteSection(answer['vote'], answer['diffVotes'], answer['correct'], answer['id'], question['id'], question['username'], html_content);
 
     html_content = addAnswerBlock(answer['username'], answer['data'], answer['description'], html_content);
 

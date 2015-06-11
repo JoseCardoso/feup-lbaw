@@ -49,13 +49,13 @@ hr.dashed {
 	font-size: 130%;
 }
 
-.upvote .fi-like {
+/*.upvote .fi-like {
 	color: green;
 }
 
 .downvote .fi-dislike {
 	color: red;
-}
+}*/
 
 .score {
 	margin: 0;
@@ -65,8 +65,8 @@ hr.dashed {
 	color: red;
 }
 
-.favorite .fi-star {
-	color: gold;
+.favorite .fi-star{
+	color: lightgray;
 }
 
 .checked-answer .fi-check {
