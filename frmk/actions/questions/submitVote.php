@@ -5,7 +5,9 @@ include_once('../../config/config.php');
 include($BASE_DB . 'question.php');
 include($BASE_DB . 'answer.php');
 
-if (isset($_POST) && isset($_POST['id']) && $_POST['id'] != '' && isset($_POST['value']) && isset($_POST['type'])) {
+if (isset($_POST) && isset($_POST['id']) && $_POST['id'] != '' &&
+    isset($_POST['value']) && isset($_POST['type']) &&
+    isset($_POST['user_session']) && $_POST['user_session'] != '') {
     try {
         $contribution = null;
 

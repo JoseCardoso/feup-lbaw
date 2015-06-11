@@ -63,11 +63,11 @@ class Question extends Model
         return $questions;
     }
 
-    static function userAnsweredQuestions($answers)
+    static function constructQuestionsByIds($ids)
     {
         $objects = array();
-        foreach ($answers as $answer) {
-            $objects[] = self::find($answer);
+        foreach ($ids as $id) {
+            $objects[] = self::find($id);
         }
 
         return $objects;
@@ -197,5 +197,25 @@ class Question extends Model
         $questions = self::processQuestions($stmt);
 
         return $questions;
+    }
+
+    public static function getUserFavoriteQuestions($id) {
+        $stmt = parent::query("SELECT perguntaid FROM favorita WHERE membroid=?;", array($id));
+
+        return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    }
+
+    public static function checkIfQuestionIsFavourite($id, $user_id) {
+        $stmt = parent::query("SELECT perguntaid FROM favorita WHERE perguntaid=? AND membroid=?", array($id, $user_id));
+
+        return $stmt->fetchAll();
+    }
+
+    public static function insertFavoriteQuestion($id, $user_id) {
+        parent::query("INSERT INTO favorita (membroid, perguntaid) VALUES(?, ?)", array($user_id, $id));
+    }
+
+    public static function removeFavoriteQuestion($id, $user_id) {
+        parent::query("DELETE FROM favorita WHERE perguntaid=? AND membroid=?", array($id, $user_id));
     }
 }

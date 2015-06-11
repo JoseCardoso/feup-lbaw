@@ -86,7 +86,10 @@ $('div.question').on('click', function () {
             var superDiv = $(this).parent();
 
             var contributionType = superDiv.parent().parent().parent().data('type');
-            var postData = {id: superDiv.data('id'), value: superDiv.data('value'), type: contributionType};
+            var postData = {id: superDiv.data('id'),
+                            value: superDiv.data('value'),
+                            type: contributionType,
+                            user_session: userSession};
 
             $.ajax({
                 url: getFormUrl,
@@ -126,9 +129,40 @@ $('div.question').on('click', function () {
                     changeColorOfCorrect(data);
                 }
             });
-        })
+        });
+
+        $('div i.fi-star').on('click', function (e) {
+
+            var getFormUrl = $('#questionModal').data('favorite');
+
+            var superDiv = $(this).parent();
+
+            var postData = {
+                id: superDiv.data('id'),
+                user_session: userSession
+            };
+
+            $.ajax({
+                url: getFormUrl,
+                dataType: "json",
+                data: postData,
+                type: 'POST',
+                success: function (data) {
+                    console.log(data);
+
+                    changeColorOfFavourite(data);
+                }
+            });
+        });
     });
 });
+
+function changeColorOfFavourite(info) {
+    if (info['state'] == "insert")
+        $('div[data-id="' + info['new_favourite'] + '"] i.fi-star').attr('style', 'color: gold');
+    else if (info['state'] == "remove")
+        $('div[data-id="' + info['last_favourite'] + '"] i.fi-star').attr('style', '');
+}
 
 function changeColorOfCorrect(info) {
 
@@ -167,7 +201,7 @@ function changeColorOfVotes(element, data) {
 
 }
 
-function addQuestionVoteSection(vote, score, id, html_content) {
+function addQuestionVoteSection(vote, score, favourite, id, html_content) {
 
     html_content += "<div class='small-4 large-2 columns'>" +
     "<div class='row'>" +
@@ -196,9 +230,14 @@ function addQuestionVoteSection(vote, score, id, html_content) {
     html_content += "</div> " +
     "</div>" +
     "<div class='row'>" +
-    "<div class='small-12 columns text-center'>" +
-    "<i class='fi-star'></i>" +
-    "</div>" +
+    "<div class='small-12 columns text-center'" + " data-id='" + id + "'>";
+
+    if(favourite == false)
+    html_content += "<i class='fi-star'></i>";
+    else
+        html_content += "<i class='fi-star' style='color: gold'></i>";
+
+    html_content += "</div>" +
     "</div>" +
     "</div> ";
 
@@ -293,7 +332,7 @@ function addFullQuestionBlock(html_content, data) {
 
     html_content += "<div class='row' data-type='question'>";
 
-    html_content = addQuestionVoteSection(data['vote'], data['diffVotes'], data['id'], html_content);
+    html_content = addQuestionVoteSection(data['vote'], data['diffVotes'], data['favourite'], data['id'], html_content);
 
     html_content = addQuestionBlock(data['username'], data['data'], data['text'], html_content);
 

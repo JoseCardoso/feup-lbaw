@@ -166,7 +166,44 @@
             </div>
 
             <div class="content" id="panel3">
+                {if not $user_favorite_questions}
                 <p>No favorites yet.</p>
+                {else}
+                    <ul class="small-block-grid-1 medium-block-grid-2">
+                        {foreach $user_favorite_questions as $question}
+                            <li>
+                                <div class="panel question" data-reveal-id="questionModal"
+                                     data-target="{$BASE_URL}/../questions/question-modal.php" data-value="{$question->id}"
+                                     data-reveal-ajax="true">
+                                    <div class="row">
+                                        <div class="small-12 columns">
+                                            <p class="text-justify question-text">{$question->text}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="small-3 medium-4 columns question-stats">
+                                            <p>{$question->diffVotes}</p>
+
+                                            <p>votes</p>
+                                        </div>
+                                        <div class="small-3 medium-4 columns question-stats">
+                                            <p>{$question->numAnswers}</p>
+
+                                            <p>answers</p>
+                                        </div>
+                                        <div class="small-6 medium-4 columns text-right">
+                                            <p class="question-author"><a
+                                                        href="{$BASE_URL}/../../pages/users/profile.php?username={$question->username}">{$question->displayUsername()}</a>
+                                            </p>
+
+                                            <p class="question-date">{$question->displayDate()}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {/foreach}
+                    </ul>
+                {/if}
             </div>
         </div>
     </div>

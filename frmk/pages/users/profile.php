@@ -27,7 +27,14 @@ try {
     $answered_questions_id = Answer::getQuestionsFromUserAnswers($profile->username);
     // load user answered questions
     if (isset($answered_questions_id))
-        $user_questions_answered = Question::userAnsweredQuestions($answered_questions_id);
+        $user_questions_answered = Question::constructQuestionsByIds($answered_questions_id);
+
+    // get user favorite questions
+    $user_favorite_questions_ids = Question::getUserFavoriteQuestions($profile->id);
+    // load user favorite questions
+    if(isset($user_favorite_questions_ids))
+        $user_favorite_questions = Question::constructQuestionsByIds($user_favorite_questions_ids);
+
 
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -45,6 +52,7 @@ assignFacebookLargePictureToSmarty($smarty);
 $smarty->assign('profile', $profile);
 $smarty->assign('user_questions', $user_questions);
 $smarty->assign('user_answered_questions', $user_questions_answered);
+$smarty->assign('user_favorite_questions', $user_favorite_questions);
 
 $smarty->assign('JS_PATH', $JS_PATH);
 $smarty->assign('BASE_URL', $BASE_URL);
