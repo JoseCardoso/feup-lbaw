@@ -35,13 +35,16 @@
         <!-- search box panel -->
         <div class="panel search-box-panel">
             <div class="row">
-                <div class="small-10 columns">
-                    <input type="text" placeholder="Ask something">
-                </div>
-                <div class="small-2 columns">
-                    <i class="fi-magnifying-glass"></i>
-                </div>
-            </div>
+                <form id="search" action="{$BASE_URL}/../../actions/questions/search.php" method="post"
+                              enctype="multipart/form-data" autocomplete="off">
+                   <div class="small-10 columns">
+                    <input type="text" name="search" placeholder="Ask something">
+                   </div>
+                   <div class="small-2 columns">
+                     <i class="fi-magnifying-glass"></i>
+                 </div>
+                 </form>
+         </div>
         </div>
     </div>
 
