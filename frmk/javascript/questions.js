@@ -68,8 +68,6 @@ $('div.question').on('click', function () {
                     comment_block += "</div>";
 
                     $('.question-modal-content form#submitComment' + data['contribution_id']).before(comment_block);
-                     console.log($('.question-modal-content form#submitComment' + data['contribution_id']));
-                    console.log(data);
                 }
             }).error(function (e) {
                 console.log(e);
@@ -93,7 +91,6 @@ $('div.question').on('click', function () {
                 data: postData,
                 type: 'POST',
                 success: function (data) {
-                    console.log(data);
                     $html = $("p#" + superDiv.data('id')).html();
                     $("p#" + superDiv.data('id')).html(parseInt($html) + parseInt(data['value']));
                     //$("p#" + superDiv.data('id')).html(parseInt(data['value']));
@@ -106,15 +103,7 @@ $('div.question').on('click', function () {
     });
 });
 
-function submitComment(element, data) {
-
-}
-
 function changeColorOfVotes(element, data) {
-
-    console.log(element);
-    console.log(element.children().attr('style'));
-    console.log(element.parent().next().next().children().children());
 
     if (data['previous'] == "positive-update") {
         element.children().attr('style', 'color:red');
@@ -139,81 +128,40 @@ function changeColorOfVotes(element, data) {
 
 }
 
-function addVoteSection(upDown, score, id, html_content) {
+function addVoteSection(vote, score, id, html_content) {
 
-    if (score < 0) {
-        html_content += "<div class='small-4 large-2 columns'>" +
-        " <div class='row'>" +
-            " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
-                "<i class='fi-like'></i> " +
-            "</div> " +
-        "</div>" +
-        " <div class='row'>" +
-            " <div class='small-12 columns text-center'>" +
-                " <p id='" + id + "' class='score'>" + score + "</p> " +
-            "</div> " +
-        "</div> " +
-        "<div class='row'> " +
-            "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >" +
-                " <i class='fi-dislike' style ='color:red'></i>" +
-            " </div> " +
-        "</div>" +
-        " <div class='row'>" +
-            " <div class='small-12 columns text-center'> " +
-                "<i class='fi-check'></i> " +
-            "</div> " +
-        "</div> " +
-        "</div> ";
-    }
-    else if (score > 0) {
-        html_content += "<div class='small-4 large-2 columns'>" +
-        " <div class='row'>" +
-        " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
-        "<i class='fi-like' style='color:green'></i> " +
-        "</div> " +
-        "</div>" +
-        " <div class='row'>" +
-        " <div class='small-12 columns text-center'>" +
-        " <p id='" + id + "' class='score'>" + score + "</p> " +
-        "</div> " +
-        "</div> " +
-        "<div class='row'> " +
-        "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >" +
-        " <i class='fi-dislike'></i>" +
-        " </div> " +
-        "</div>" +
-        " <div class='row'>" +
-        " <div class='small-12 columns text-center'> " +
-        "<i class='fi-check'></i> " +
-        "</div> " +
-        "</div> " +
-        "</div> ";
-    }
-    else {
-        html_content += "<div class='small-4 large-2 columns'>" +
-        " <div class='row'>" +
-        " <div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'> " +
-        "<i class='fi-like'></i> " +
-        "</div> " +
-        "</div>" +
-        " <div class='row'>" +
-        " <div class='small-12 columns text-center'>" +
-        " <p id='" + id + "' class='score'>" + score + "</p> " +
-        "</div> " +
-        "</div> " +
-        "<div class='row'> " +
-        "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >" +
-        " <i class='fi-dislike'></i>" +
-        " </div> " +
-        "</div>" +
-        " <div class='row'>" +
-        " <div class='small-12 columns text-center'> " +
-        "<i class='fi-check'></i> " +
-        "</div> " +
-        "</div> " +
-        "</div> ";
+    html_content += "<div class='small-4 large-2 columns'>" +
+                        "<div class='row'>" +
+                            "<div class='small-12 columns text-center' data-id='" + id.toString() + "' data-value='1'>";
 
-    }
+    if(vote == false || vote == null)
+        html_content += "<i class='fi-like'></i>";
+    else if(vote == true)
+        html_content += "<i class='fi-like' style='color:green'></i> ";
+
+    html_content += "</div> " +
+                "</div>" +
+                "<div class='row'>" +
+                    "<div class='small-12 columns text-center'>" +
+                        "<p id='" + id + "' class='score'>" + score + "</p> " +
+                    "</div> " +
+                "</div> " +
+                "<div class='row'> " +
+                    "<div class='small-12 columns text-center' data-id='" + id + "' data-value='0' >";
+
+    if(vote == false)
+        html_content += "<i class='fi-dislike' style ='color:red'></i>";
+    else if(vote == true || vote == null)
+        html_content += "<i class='fi-dislike'></i>";
+
+    html_content += "</div> " +
+                "</div>" +
+                "<div class='row'>" +
+                    "<div class='small-12 columns text-center'> " +
+                        "<i class='fi-check'></i> " +
+                    "</div> " +
+                "</div> " +
+            "</div> ";
 
     return html_content;
 }
@@ -264,7 +212,7 @@ function addFullQuestionBlock(html_content, data) {
 
     html_content += "<div class='row' data-type='question'>";
 
-    html_content = addVoteSection(true, data['diffVotes'], data['id'], html_content);
+    html_content = addVoteSection(data['vote'], data['diffVotes'], data['id'], html_content);
 
     html_content = addQuestionBlock(data['username'], data['data'], data['text'], html_content);
 
@@ -289,7 +237,7 @@ function addFullQuestionBlock(html_content, data) {
 function addFullAnswerBlock(html_content, answer) {
 
     html_content += "<div class='row' data-type='answer'>";
-    html_content = addVoteSection(true, answer['diffVotes'], answer['id'], html_content);
+    html_content = addVoteSection(answer['vote'], answer['diffVotes'], answer['id'], html_content);
 
     html_content = addAnswerBlock(answer['username'], answer['data'], answer['description'], html_content);
 

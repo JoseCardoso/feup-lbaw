@@ -51,7 +51,7 @@ try {
     }
 
 // constructing data with all info
-    $data = array('question' => $question, 'answers' => $answers);
+    $data = array('question' => $question, 'answers' => $answers, 'user_session' => $_SESSION['username']);
 } catch (Exception $e) {
     $data = $e->getMessage();
 }
