@@ -16,7 +16,7 @@ $('div.question').on('click', function () {
 
         var html_content = "";
 
-        html_content = addFullQuestionBlock(html_content, data['question']);
+        html_content = addFullQuestionBlock(html_content, data['question'], userSession);
 
         html_content += "<hr>";
 
@@ -27,7 +27,7 @@ $('div.question').on('click', function () {
             html_content += "<hr class ='dashed'>";
         });
 
-        html_content = addButtonToSubmitAnswer(html_content, data['question']);
+        html_content = addButtonToSubmitAnswer(html_content, data['question'], userSession);
 
         $('.question-modal-content').append(html_content);
 
@@ -86,10 +86,12 @@ $('div.question').on('click', function () {
             var superDiv = $(this).parent();
 
             var contributionType = superDiv.parent().parent().parent().data('type');
-            var postData = {id: superDiv.data('id'),
-                            value: superDiv.data('value'),
-                            type: contributionType,
-                            user_session: userSession};
+            var postData = {
+                id: superDiv.data('id'),
+                value: superDiv.data('value'),
+                type: contributionType,
+                user_session: userSession
+            };
 
             $.ajax({
                 url: getFormUrl,
@@ -234,8 +236,8 @@ function addQuestionVoteSection(vote, score, favourite, id, html_content) {
     "<div class='row'>" +
     "<div class='small-12 columns text-center'" + " data-id='" + id + "'>";
 
-    if(favourite == false)
-    html_content += "<i class='fi-star'></i>";
+    if (favourite == false)
+        html_content += "<i class='fi-star'></i>";
     else
         html_content += "<i class='fi-star' style='color: gold'></i>";
 
@@ -330,7 +332,7 @@ function addCommentBlockDashed(author, comment_text, html_content) {
     return html_content;
 }
 
-function addFullQuestionBlock(html_content, data) {
+function addFullQuestionBlock(html_content, data, userSession) {
 
     html_content += "<div class='row' data-type='question'>";
 
@@ -349,7 +351,7 @@ function addFullQuestionBlock(html_content, data) {
             html_content = addCommentBlockDashed(value['username'], value['description'], html_content);
     });
 
-    html_content = addButtonToSubmitComment(html_content, data['id']);
+    html_content = addButtonToSubmitComment(html_content, data['id'], userSession);
 
     html_content += "</div></div>";
 
@@ -381,66 +383,55 @@ function addFullAnswerBlock(html_content, answer, question) {
     return html_content;
 }
 
-function addButtonToSubmitAnswer(html_content, question) {
-    var getAnswerURL = $('#questionModal').data('answer');
+function addButtonToSubmitAnswer(html_content, question, userSession) {
+    if (userSession) {
+        var getAnswerURL = $('#questionModal').data('answer');
 
-    html_content += '<form id="submitAnswer" action="' + getAnswerURL + '" method="post">' +
-    "<input type='hidden' name='question_id' value='" + question['id'] + "'>" +
-    "<div class='row'>" +
-    "<div class='small-12 columns'>" +
-    "<label>Add answer" +
-    "<textarea placeholder='Your answer' name='answer'></textarea>" +
-    "</label>" +
-    "</div>" +
-    "</div>" +
-    "<div class='row'>" +
-    "<div class='small-12 columns'>" +
-    "<input type='submit' class='button small success' value='Post answer'>" +
-    "</div>" +
-    "</div>" +
-    "</form>";
+        html_content += '<form id="submitAnswer" action="' + getAnswerURL + '" method="post">' +
+        "<input type='hidden' name='question_id' value='" + question['id'] + "'>" +
+        "<div class='row'>" +
+        "<div class='small-12 columns'>" +
+        "<label>Add answer" +
+        "<textarea placeholder='Your answer' name='answer'></textarea>" +
+        "</label>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='small-12 columns'>" +
+        "<input type='submit' class='button small success' value='Post answer'>" +
+        "</div>" +
+        "</div>" +
+        "</form>";
 
-    return html_content;
+        return html_content;
+    }
+    else
+        return html_content;
 }
 
-function addButtonToSubmitComment(html_content, object_id) {
-    var getCommentURL = $('#questionModal').data('comment');
+function addButtonToSubmitComment(html_content, object_id, userSession) {
+    if (userSession) {
 
-    html_content += '<form id="submitComment" action="' + getCommentURL + '" method="post">' +
-    "<input type='hidden' name='contribution_id' value='" + object_id + "'>" +
-    "<div class='row'>" +
-    "<div class='small-12 columns'>" +
-    "<label>" +
-    "<input class='comment-content' type='text' placeholder='Your comment' name='comment'>" +
-    "</label>" +
-    "</div>" +
-    "</div>" +
-    "<div class='row'>" +
-    "<div class='small-12 columns'>" +
-    "<input type='submit' class='button tiny success' value='Post comment'>" +
-    "</div>" +
-    "</div>" +
-    "</form>";
-}
+        var getCommentURL = $('#questionModal').data('comment');
 
-function addButtonToSubmitComment(html_content, object_id) {
-    var getCommentURL = $('#questionModal').data('comment');
+        html_content += '<form id="submitComment' + object_id + '" action="' + getCommentURL + '" method="post" class="submitComment">' +
+        "<input type='hidden' name='contribution_id' value='" + object_id + "'>" +
+        "<div class='row'>" +
+        "<div class='small-12 columns'>" +
+        "<label>" +
+        "<input class='comment-content' type='text' placeholder='Your comment' name='comment'>" +
+        "</label>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='small-12 columns'>" +
+        "<input type='submit' class='button tiny success' value='Post comment'>" +
+        "</div>" +
+        "</div>" +
+        "</form>";
 
-    html_content += '<form id="submitComment' + object_id + '" action="' + getCommentURL + '" method="post" class="submitComment">' +
-    "<input type='hidden' name='contribution_id' value='" + object_id + "'>" +
-    "<div class='row'>" +
-    "<div class='small-12 columns'>" +
-    "<label>" +
-    "<input class='comment-content' type='text' placeholder='Your comment' name='comment'>" +
-    "</label>" +
-    "</div>" +
-    "</div>" +
-    "<div class='row'>" +
-    "<div class='small-12 columns'>" +
-    "<input type='submit' class='button tiny success' value='Post comment'>" +
-    "</div>" +
-    "</div>" +
-    "</form>";
-
-    return html_content;
+        return html_content;
+    }
+    else
+        return html_content;
 }
